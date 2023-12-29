@@ -1,41 +1,59 @@
-import type { MetaFunction } from "@vercel/remix";
+import { useLoaderData } from "@remix-run/react"
+import { json } from "@vercel/remix"
+import type { MetaFunction } from "@vercel/remix"
+
+import { ArticleOverview } from "~/components/ArticleOverview"
+import { Container } from "~/components/Container"
+import { Photos } from "~/components/Photos"
+import { Résumé } from "~/components/Résumé"
+import { getAllArticles } from "~/utils/article.server"
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "New Remix App" },
+    { title: "Micah Yeager" },
     { name: "description", content: "Welcome to Remix!" },
-  ];
-};
+  ]
+}
+
+export async function loader() {
+  const recentArticles = (await getAllArticles()).slice(0, 4)
+
+  return json({ recentArticles }, { status: 200 })
+}
 
 export default function Index() {
+  const { recentArticles } = useLoaderData<typeof loader>()
+
   return (
-    <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.8" }}>
-      <h1>Welcome to Remix</h1>
-      <ul>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/blog"
-            rel="noreferrer"
-          >
-            15m Quickstart Blog Tutorial
-          </a>
-        </li>
-        <li>
-          <a
-            target="_blank"
-            href="https://remix.run/tutorials/jokes"
-            rel="noreferrer"
-          >
-            Deep Dive Jokes App Tutorial
-          </a>
-        </li>
-        <li>
-          <a target="_blank" href="https://remix.run/docs" rel="noreferrer">
-            Remix Docs
-          </a>
-        </li>
-      </ul>
-    </div>
-  );
+    <>
+      <Container className="mt-9">
+        <div className="max-w-2xl">
+          <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
+            Solutions architect, developer, and amateur musician.
+          </h1>
+          <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
+            I'm Micah, a full-stack developer based in Maryland, United States
+            (soon to be British Columbia, Canada). I enjoy tackling problems
+            holistically, and I'm passionate about building software that is
+            beautiful, functional, and accessible by all.
+          </p>
+        </div>
+      </Container>
+
+      <Photos />
+
+      <Container className="mt-24 md:mt-28">
+        <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2 lg:gap-y-0">
+          <div className="flex flex-col gap-16">
+            {recentArticles.map((article) => (
+              <ArticleOverview key={article.slug} articleMeta={article} />
+            ))}
+          </div>
+          <div className="space-y-10 lg:pl-16 xl:pl-24">
+            <Résumé />
+          </div>
+        </div>
+      </Container>
+    </>
+  )
 }
