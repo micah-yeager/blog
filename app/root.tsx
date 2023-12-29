@@ -10,6 +10,7 @@ import {
 import { Analytics } from "@vercel/analytics/react"
 import type { LinksFunction } from "@vercel/remix"
 import { json } from "@vercel/remix"
+import { SpeedInsights } from "@vercel/speed-insights/remix"
 
 import type { Env } from "~/browser-globals"
 import { Layout } from "~/components/Layout"
@@ -62,6 +63,7 @@ export default function App() {
         {/*/>*/}
         <Scripts />
         <LiveReload />
+        <SpeedInsights />
         <Analytics />
       </body>
     </html>
