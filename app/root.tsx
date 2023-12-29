@@ -51,20 +51,10 @@ export default function App() {
           <Outlet context={ENV} />
         </Layout>
         <ScrollRestoration />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.ENV = ${JSON.stringify(ENV)}`,
-          }}
-        />
-        {/*<script*/}
-        {/*  src="https://challenges.cloudflare.com/turnstile/v0/api.js"*/}
-        {/*  async*/}
-        {/*  defer*/}
-        {/*/>*/}
         <Scripts />
-        <LiveReload />
         <SpeedInsights />
         <Analytics />
+        <LiveReload />
       </body>
     </html>
   )
