@@ -15,7 +15,7 @@ export function ArticleOverview({ articleMeta }: { articleMeta: ArticleMeta }) {
         {date.toLocaleString(DateTime.DATE_FULL)}
       </Card.Meta>
       <Card.Description>{articleMeta.frontmatter.description}</Card.Description>
-      <Card.Action>Read articleMeta</Card.Action>
+      <Card.Action>Read</Card.Action>
     </Card>
   )
 }
