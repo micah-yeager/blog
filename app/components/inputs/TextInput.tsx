@@ -140,7 +140,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
                 {...rest}
                 {...{ ref, type, required, disabled }}
                 className={clsx(
-                  "focus:ring-primary-500 dark:focus:ring-primary-500 block w-full rounded-md border-0 py-1.5 text-zinc-900 ring-1 ring-inset placeholder:text-zinc-400 focus:z-10 focus:ring-2 focus:ring-inset disabled:cursor-not-allowed disabled:bg-zinc-100 disabled:text-zinc-500 disabled:ring-zinc-200 group-data-[leading-add-on=true]/Input:rounded-l-none group-data-[trailing-add-on=true]/Input:rounded-r-none dark:bg-black dark:text-zinc-100 dark:placeholder:text-zinc-600 dark:disabled:bg-zinc-900 dark:disabled:ring-zinc-800 sm:text-sm sm:leading-6",
+                  "block w-full rounded-md border-0 py-1.5 text-zinc-900 ring-1 ring-inset placeholder:text-zinc-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-primary-500 disabled:cursor-not-allowed disabled:bg-zinc-100 disabled:text-zinc-500 disabled:ring-zinc-200 group-data-[leading-add-on=true]/Input:rounded-l-none group-data-[trailing-add-on=true]/Input:rounded-r-none dark:bg-black dark:text-zinc-100 dark:placeholder:text-zinc-600 dark:focus:ring-primary-500 dark:disabled:bg-zinc-900 dark:disabled:ring-zinc-800 sm:text-sm sm:leading-6",
                   error ? "ring-red-500" : "ring-zinc-300 dark:ring-zinc-700",
                 )}
                 aria-invalid={Boolean(error)}

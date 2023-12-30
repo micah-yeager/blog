@@ -7,7 +7,7 @@ function NavLink({ to, children }: { to: string; children: ReactNode }) {
   return (
     <Link
       to={to}
-      className="hover:text-primary-500 dark:hover:text-primary-400 transition"
+      className="transition hover:text-primary-500 dark:hover:text-primary-400"
     >
       {children}
     </Link>

@@ -62,7 +62,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
               {...{ required, disabled }}
               ref={forwardedRef}
               className={clsx(
-                "focus:ring-primary-500 focus:dark:ring-primary-500 block min-h-[2.25rem] w-full rounded-md border-0 py-1.5 text-zinc-900 shadow-sm ring-1 ring-inset ring-zinc-300 placeholder:text-zinc-400 focus:ring-2 focus:ring-inset disabled:cursor-not-allowed disabled:bg-zinc-100 disabled:text-zinc-500 disabled:ring-zinc-200 dark:bg-black dark:text-zinc-100 dark:ring-zinc-700 dark:disabled:bg-zinc-900 dark:disabled:ring-zinc-800 sm:text-sm sm:leading-6",
+                "block min-h-[2.25rem] w-full rounded-md border-0 py-1.5 text-zinc-900 shadow-sm ring-1 ring-inset ring-zinc-300 placeholder:text-zinc-400 focus:ring-2 focus:ring-inset focus:ring-primary-500 disabled:cursor-not-allowed disabled:bg-zinc-100 disabled:text-zinc-500 disabled:ring-zinc-200 dark:bg-black dark:text-zinc-100 dark:ring-zinc-700 focus:dark:ring-primary-500 dark:disabled:bg-zinc-900 dark:disabled:ring-zinc-800 sm:text-sm sm:leading-6",
                 error
                   ? "pr-10 ring-red-500"
                   : "ring-zinc-300 dark:ring-zinc-700",
