@@ -6,34 +6,34 @@ import rehypeHighlight from "rehype-highlight"
 import remarkGfm from "remark-gfm"
 import remarkMdxImages from "remark-mdx-images"
 
-type ArticleFrontmatter = {
+type PostFrontmatter = {
   title: string
   description: string
   date: string
 }
-export type ArticleMeta = {
+export type PostMeta = {
   slug: string
-  frontmatter: ArticleFrontmatter
+  frontmatter: PostFrontmatter
 }
 
-const ARTICLES_CACHE_KEY = "articles"
+const POSTS_CACHE_KEY = "posts"
 
-export async function getAllArticles() {
+export async function getAllPosts() {
   // check if we have a cached result
-  const cachedArticleMetas = await kv.get<ArticleMeta[]>(ARTICLES_CACHE_KEY)
-  if (cachedArticleMetas) return cachedArticleMetas
+  const cachedPostMetas = await kv.get<PostMeta[]>(POSTS_CACHE_KEY)
+  if (cachedPostMetas) return cachedPostMetas
 
-  // get all articleMetas from local filesystem
-  const cwd = `${process.cwd()}/content/articles`
-  let articleFilenames = await fastGlob.glob("*/page.mdx", { cwd })
-  let articles = await Promise.all(
-    articleFilenames.map((file) => {
-      return getArticle({ file: `${cwd}/${file}`, cwd })
+  // get all postMetas from local filesystem
+  const cwd = `${process.cwd()}/content/posts`
+  let postFilenames = await fastGlob.glob("*/page.mdx", { cwd })
+  let posts = await Promise.all(
+    postFilenames.map((file) => {
+      return getPost({ file: `${cwd}/${file}`, cwd })
     }),
   )
 
-  // sort articleMetas by date and extract frontmatter / slug
-  const sortedArticleMetas = articles
+  // sort postMetas by date and extract frontmatter / slug
+  const sortedPostMetas = posts
     .sort(
       (a, z) => +new Date(z.frontmatter.date) - +new Date(a.frontmatter.date),
     )
@@ -43,17 +43,17 @@ export async function getAllArticles() {
     }))
 
   // cache the result
-  await kv.set(ARTICLES_CACHE_KEY, sortedArticleMetas, {
+  await kv.set(POSTS_CACHE_KEY, sortedPostMetas, {
     ex: 60 * 60 * 24, // 24 hours
   })
-  return sortedArticleMetas
+  return sortedPostMetas
 }
 
-export type Article = Awaited<ReturnType<typeof bundleMDX>> & {
+export type Post = Awaited<ReturnType<typeof bundleMDX>> & {
   slug: string
 }
 
-export async function getArticle({
+export async function getPost({
   file,
   ...rest
 }: Omit<
@@ -62,7 +62,7 @@ export async function getArticle({
 > &
   Required<Pick<Parameters<typeof bundleMDX>[0], "file">>) {
   // parse MDX
-  const mdx = await bundleMDX<ArticleFrontmatter>({
+  const mdx = await bundleMDX<PostFrontmatter>({
     file,
     ...rest,
     // add our plugins

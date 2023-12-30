@@ -1,18 +1,18 @@
 import { useLoaderData } from "@remix-run/react"
 import { json } from "@vercel/remix"
 
-import { ArticleOverview } from "~/components/ArticleOverview"
+import { PostOverview } from "~/components/PostOverview"
 import { SimpleLayout } from "~/components/SimpleLayout"
-import { getAllArticles } from "~/utils/article.server"
+import { getAllPosts } from "~/utils/post.server"
 
 export async function loader() {
-  let articleMetas = await getAllArticles()
+  let postMetas = await getAllPosts()
 
-  return json({ articleMetas }, { status: 200 })
+  return json({ postMetas }, { status: 200 })
 }
 
 export default function Route() {
-  const { articleMetas } = useLoaderData<typeof loader>()
+  const { postMetas } = useLoaderData<typeof loader>()
 
   return (
     <SimpleLayout
@@ -21,8 +21,8 @@ export default function Route() {
     >
       <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
         <div className="flex max-w-3xl flex-col space-y-16">
-          {articleMetas.map((articleMeta) => (
-            <ArticleOverview {...{ articleMeta }} key={articleMeta.slug} />
+          {postMetas.map((postMeta) => (
+            <PostOverview {...{ postMeta }} key={postMeta.slug} />
           ))}
         </div>
       </div>

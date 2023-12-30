@@ -4,9 +4,9 @@ import type { LoaderFunctionArgs } from "@vercel/remix"
 import { getMDXComponent } from "mdx-bundler/client/index.js"
 import { useMemo } from "react"
 
-import { ArticleLayout } from "~/components/ArticleLayout"
-import type { Article } from "~/utils/article.server"
-import { getArticle } from "~/utils/article.server"
+import { PostLayout } from "~/components/PostLayout"
+import type { Post } from "~/utils/post.server"
+import { getPost } from "~/utils/post.server"
 
 import codeStyles from "./prism.css"
 
@@ -15,20 +15,20 @@ export function links() {
 }
 
 export async function loader({ params }: LoaderFunctionArgs) {
-  const articleId = params.id
-  if (!articleId) {
+  const postId = params.id
+  if (!postId) {
     throw new Response(null, {
       status: 404,
       statusText: "Not Found",
     })
   }
 
-  const cwd = `${process.cwd()}/content/articles/${articleId}`
+  const cwd = `${process.cwd()}/content/posts/${postId}`
   const file = `${cwd}/page.mdx`
 
-  let article: Article
+  let post: Post
   try {
-    article = await getArticle({ file, cwd })
+    post = await getPost({ file, cwd })
   } catch (error) {
     console.error(error)
     throw new Response(null, {
@@ -37,20 +37,20 @@ export async function loader({ params }: LoaderFunctionArgs) {
     })
   }
 
-  return json({ article }, { status: 200 })
+  return json({ post }, { status: 200 })
 }
 
-export default function Article() {
-  const { article } = useLoaderData<typeof loader>()
+export default function Post() {
+  const { post } = useLoaderData<typeof loader>()
 
   const Component = useMemo(() => {
-    return getMDXComponent(article.code)
-  }, [article.code])
+    return getMDXComponent(post.code)
+  }, [post.code])
 
   return (
-    <ArticleLayout article={article}>
+    <PostLayout post={post}>
       <Component />
-    </ArticleLayout>
+    </PostLayout>
   )
 }
 
