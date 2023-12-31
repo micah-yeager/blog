@@ -9,7 +9,7 @@ import { useState } from "react"
 
 import { Alert } from "~/components/Alert"
 import { Button } from "~/components/Button"
-import { CloudflareTurnstile } from "~/components/CloudflareTurnstile"
+import { Captcha } from "~/components/Captcha"
 import { Dialog } from "~/components/Dialog"
 import { Icon } from "~/components/Icon"
 import { TextArea } from "~/components/inputs/TextArea"
@@ -80,7 +80,7 @@ export function ContactMe(
               <TextArea label="Message" name="message" rows={8} required />
 
               {/* Cloudflare captcha */}
-              <CloudflareTurnstile className="mx-auto" />
+              <Captcha className="mx-auto" />
             </div>
 
             {/* actions */}

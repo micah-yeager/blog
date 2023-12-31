@@ -14,7 +14,7 @@ import { SpeedInsights } from "@vercel/speed-insights/remix"
 
 import type { Env } from "~/browser-globals"
 import { Layout } from "~/components/Layout"
-import { TURNSTILE_SITE_KEY } from "~/services/turnstile.server"
+import { TURNSTILE_SITE_KEY } from "~/services/captcha.server"
 
 import styles from "./tailwind.css"
 

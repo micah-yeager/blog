@@ -2,14 +2,14 @@ import { json } from "@vercel/remix"
 import type { ActionFunctionArgs } from "@vercel/remix"
 
 import type { ContactMeFields } from "~/components/ContactMe"
+import type { VerifyTurnstileErrorResponse } from "~/services/captcha.server"
+import { verifyTurnstile } from "~/services/captcha.server"
 import {
   EMAIL_FROM,
   EMAIL_TO,
   POSTMARK_TRANSACTIONAL_STREAM,
   initEmailClient,
 } from "~/services/email.server"
-import type { VerifyTurnstileErrorResponse } from "~/services/turnstile.server"
-import { verifyTurnstile } from "~/services/turnstile.server"
 import type { ActionResponse, FieldErrors } from "~/utils/response"
 
 type ContactResult = {

@@ -4,7 +4,7 @@ import type { ComponentPropsWithoutRef } from "react"
 
 import type { Env } from "~/browser-globals"
 
-export function CloudflareTurnstile(
+export function Captcha(
   props: Omit<ComponentPropsWithoutRef<typeof Turnstile>, "siteKey">,
 ) {
   const { TURNSTILE_SITE_KEY } = useOutletContext<Env>()
