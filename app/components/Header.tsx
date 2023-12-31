@@ -15,8 +15,6 @@ import { Container } from "~/components/Container"
 import { Icon } from "~/components/Icon"
 import { clamp } from "~/utils/numbers"
 
-// import avatarImage from "@/images/avatar.jpg"
-
 function MobileNavItem({
   className,
   children,
@@ -46,6 +44,7 @@ function MobileNavigation(props: ComponentPropsWithoutRef<typeof Popover>) {
         />
       </Popover.Button>
       <Transition.Root>
+        {/* backdrop overlay */}
         <Transition.Child
           as={Fragment}
           enter="duration-150 ease-out"
@@ -57,6 +56,8 @@ function MobileNavigation(props: ComponentPropsWithoutRef<typeof Popover>) {
         >
           <Popover.Overlay className="fixed inset-0 z-50 bg-zinc-800/40 backdrop-blur-sm dark:bg-black/80" />
         </Transition.Child>
+
+        {/* menu */}
         <Transition.Child
           as={Fragment}
           enter="duration-150 ease-out"
@@ -70,17 +71,23 @@ function MobileNavigation(props: ComponentPropsWithoutRef<typeof Popover>) {
             focus
             className="fixed inset-x-4 top-8 z-50 origin-top rounded-3xl bg-white p-8 ring-1 ring-zinc-900/5 dark:bg-zinc-900 dark:ring-zinc-800"
           >
+            {/* header */}
             <div className="flex flex-row-reverse items-center justify-between">
+              {/* close button */}
               <Popover.Button aria-label="Close menu" className="-m-1 p-1">
                 <Icon
                   as={XMarkIcon}
                   className="h-6 w-6 text-zinc-500 dark:text-zinc-400"
                 />
               </Popover.Button>
+
+              {/* title */}
               <h2 className="text-sm font-medium text-zinc-600 dark:text-zinc-400">
                 Navigation
               </h2>
             </div>
+
+            {/* links */}
             <nav className="mt-6">
               <ul className="-my-2 divide-y divide-zinc-100 text-base text-zinc-800 dark:divide-zinc-100/5 dark:text-zinc-300">
                 <MobileNavItem to="/about">About</MobileNavItem>
@@ -145,7 +152,9 @@ function ThemeToggle() {
   const [darkMode, setDarkMode] = useState<boolean>(true)
 
   useEffect(() => {
-    // add or remove `dark` class as needed
+    // Add or remove `dark` class on-demand.
+    // Use this method instead of a React state or context to avoid
+    // a flash of light mode on page load.
     if (darkMode && !document.documentElement.classList.contains("dark")) {
       document.documentElement.classList.add("dark")
     } else if (
@@ -339,6 +348,7 @@ export function Header() {
           marginBottom: "var(--header-mb)",
         }}
       >
+        {/* avatar */}
         {isHomePage && (
           <>
             <div

@@ -21,6 +21,7 @@ export function PostLayout({
     <Container className="mt-16 lg:mt-32">
       <div className="xl:relative">
         <div className="mx-auto max-w-2xl">
+          {/* back button */}
           <Button
             to="/posts"
             prefetch="intent"
@@ -38,11 +39,15 @@ export function PostLayout({
             />
           </Button>
 
+          {/* content */}
           <article>
             <header className="flex flex-col">
+              {/* title */}
               <h1 className="mt-6 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
                 {post.frontmatter.title}
               </h1>
+
+              {/* meta */}
               <time
                 dateTime={post.frontmatter.date}
                 className="order-first flex items-center text-base text-zinc-400 dark:text-zinc-500"
@@ -53,6 +58,8 @@ export function PostLayout({
                 </span>
               </time>
             </header>
+
+            {/* body */}
             <Prose className="mt-8" data-mdx-content>
               {children}
             </Prose>

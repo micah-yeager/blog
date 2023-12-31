@@ -44,6 +44,7 @@ export function ContactMe(
       Get in touch
       {/* dialog */}
       <Dialog open={open} setOpen={setOpen}>
+        {/* show form until submission */}
         {!fetcher.data?.result?.success ? (
           <fetcher.Form method="post" action="/contact">
             <div className="space-y-5 sm:space-y-4">
@@ -98,6 +99,7 @@ export function ContactMe(
             </Dialog.Actions>
           </fetcher.Form>
         ) : (
+          // after successful submission
           <>
             <div className="space-y-5 sm:space-y-4">
               <Dialog.Title>Submitted!</Dialog.Title>
