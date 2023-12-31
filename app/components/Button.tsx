@@ -29,9 +29,9 @@ const shapeSizeStyles: Record<string, Record<string, string>> = {
     xl: tw`gap-x-3 rounded-full px-4 py-2.5 text-sm`,
   },
   circle: {
-    sm: tw`rounded-full p-1`,
-    md: tw`rounded-full p-1.5`,
-    lg: tw`rounded-full p-2`,
+    sm: tw`h-6 w-6 rounded-full p-1`,
+    md: tw`h-8 w-8 rounded-full p-1.5`,
+    lg: tw`h-10 w-10 rounded-full p-2`,
   },
 } as const
 
