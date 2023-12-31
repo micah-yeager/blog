@@ -62,7 +62,13 @@ Card.Title = function CardTitle<T extends ElementType = "h2">({
         className,
       )}
     >
-      {to ? <Card.Link {...{ to }}>{children}</Card.Link> : children}
+      {to ? (
+        <Card.Link {...{ to }} prefetch="intent">
+          {children}
+        </Card.Link>
+      ) : (
+        children
+      )}
     </Component>
   )
 }

@@ -25,6 +25,7 @@ function MobileNavItem({
       <Popover.Button
         {...rest}
         as={Link}
+        prefetch="intent"
         className={clsx("block py-2", className)}
       >
         {children}
@@ -112,6 +113,7 @@ function NavItem({
     <li>
       <NavLink
         {...rest}
+        prefetch="intent"
         className={({ isActive, isTransitioning, isPending }) =>
           clsx(
             "relative block px-3 py-2 transition",
