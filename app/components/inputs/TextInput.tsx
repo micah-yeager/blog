@@ -10,6 +10,7 @@ import type {
 } from "react"
 import { forwardRef, useRef, useState } from "react"
 
+import { Icon } from "~/components/Icon"
 import { InlineAddOn } from "~/components/inputs/shared/InlineAddOn"
 import { InputOptionalHint } from "~/components/inputs/shared/InputOptionalHint"
 import { useDimensions, useForwardRef } from "~/utils/hooks"
@@ -161,7 +162,8 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
                 >
                   {trailingInlineAddOn}
                   {error && (
-                    <ExclamationCircleIcon
+                    <Icon
+                      as={ExclamationCircleIcon}
                       className="h-5 w-5 text-red-500"
                       aria-hidden="true"
                     />
@@ -189,12 +191,16 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
                 {type === "password" ? (
                   <>
                     <span className="sr-only">Show password</span>
-                    <EyeIcon className="h-5 w-5" aria-hidden="true" />
+                    <Icon as={EyeIcon} className="h-5 w-5" aria-hidden="true" />
                   </>
                 ) : (
                   <>
                     <span className="sr-only">Hide password</span>
-                    <EyeSlashIcon className="h-5 w-5" aria-hidden="true" />
+                    <Icon
+                      as={EyeSlashIcon}
+                      className="h-5 w-5"
+                      aria-hidden="true"
+                    />
                   </>
                 )}
               </AddOnButton>

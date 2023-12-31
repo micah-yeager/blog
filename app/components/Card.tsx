@@ -3,6 +3,8 @@ import { Link } from "@remix-run/react"
 import clsx from "clsx"
 import type { ComponentPropsWithoutRef, ElementType, ReactNode } from "react"
 
+import { Icon } from "~/components/Icon"
+
 export function Card<T extends ElementType = "div">({
   as,
   className,
@@ -73,7 +75,7 @@ Card.Action = function CardAction({ children }: { children: ReactNode }) {
       className="relative z-10 mt-4 flex items-center text-sm font-medium text-primary-500"
     >
       {children}
-      <ChevronRightIcon className="ml-1 h-4 w-4 stroke-current" />
+      <Icon as={ChevronRightIcon} className="ml-1 h-4 w-4 stroke-current" />
     </div>
   )
 }

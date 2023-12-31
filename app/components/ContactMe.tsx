@@ -11,6 +11,7 @@ import { Alert } from "~/components/Alert"
 import { Button } from "~/components/Button"
 import { CloudflareTurnstile } from "~/components/CloudflareTurnstile"
 import { Dialog } from "~/components/Dialog"
+import { Icon } from "~/components/Icon"
 import { TextArea } from "~/components/inputs/TextArea"
 import { TextInput } from "~/components/inputs/TextInput"
 import type { ContactMeResponse } from "~/routes/contact"
@@ -62,7 +63,7 @@ export function ContactMe(
                 label="Subject"
                 name="subject"
                 leadingInlineAddOn={
-                  <ChatBubbleLeftEllipsisIcon className="h-5 w-5" />
+                  <Icon as={ChatBubbleLeftEllipsisIcon} className="h-5 w-5" />
                 }
                 required
               />
@@ -70,7 +71,9 @@ export function ContactMe(
                 label="Your email"
                 name="email"
                 type="email"
-                leadingInlineAddOn={<EnvelopeSolidIcon className="h-5 w-5" />}
+                leadingInlineAddOn={
+                  <Icon as={EnvelopeSolidIcon} className="h-5 w-5" />
+                }
                 placeholder="you@example.com"
                 required
               />

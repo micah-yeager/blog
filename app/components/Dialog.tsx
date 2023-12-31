@@ -4,6 +4,8 @@ import clsx from "clsx"
 import type { ComponentPropsWithoutRef } from "react"
 import { Fragment, useRef } from "react"
 
+import { Icon } from "~/components/Icon"
+
 type DialogProps = ComponentPropsWithoutRef<typeof HeadlessUIDialog.Panel> & {
   open: boolean
   setOpen: (open: boolean) => void
@@ -65,7 +67,11 @@ export function Dialog({ open, setOpen, onClose, children }: DialogProps) {
                         onClick={close}
                       >
                         <span className="sr-only">Close</span>
-                        <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                        <Icon
+                          as={XMarkIcon}
+                          className="h-6 w-6"
+                          aria-hidden="true"
+                        />
                       </button>
                     </div>
 

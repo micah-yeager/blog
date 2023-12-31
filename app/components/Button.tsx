@@ -1,13 +1,10 @@
 import { Link } from "@remix-run/react"
 import clsx from "clsx"
-import type {
-  ComponentPropsWithoutRef,
-  ExoticComponent,
-  PropsWithoutRef,
-  SVGProps,
-} from "react"
+import type { ComponentPropsWithoutRef } from "react"
 import { createContext, useContext } from "react"
 
+import type { IconProps } from "~/components/Icon"
+import { Icon } from "~/components/Icon"
 import { tw } from "~/utils/templates"
 
 const variantStyles = {
@@ -77,21 +74,8 @@ export function Button<T extends ButtonShapeOption>({
   )
 }
 
-type IconElementType = ExoticComponent<
-  PropsWithoutRef<SVGProps<SVGSVGElement>> & {
-    title?: string
-    titleId?: string
-  }
->
-type ButtonIconProps = ComponentPropsWithoutRef<IconElementType> & {
-  as: IconElementType
-}
-
-Button.Icon = function ButtonIcon({
-  as: Component,
-  className,
-  ...rest
-}: ButtonIconProps) {
+Button.Icon = function ButtonIcon({ className, ...rest }: IconProps) {
+  // determine button size from context
   const { size } = useContext(ButtonContext)
   let sizeClassName
   switch (size) {
@@ -107,14 +91,13 @@ Button.Icon = function ButtonIcon({
   }
 
   return (
-    <Component
+    <Icon
       {...rest}
       className={clsx(
         "flex-shrink-0 first:-ml-0.5 last:mr-0.5",
         sizeClassName,
         className,
       )}
-      aria-hidden="true"
     />
   )
 }

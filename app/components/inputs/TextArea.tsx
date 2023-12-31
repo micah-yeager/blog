@@ -3,6 +3,7 @@ import clsx from "clsx"
 import type { ComponentPropsWithoutRef } from "react"
 import { forwardRef } from "react"
 
+import { Icon } from "~/components/Icon"
 import { InlineAddOn } from "~/components/inputs/shared/InlineAddOn"
 
 import type { SharedFormProps } from "./shared"
@@ -76,7 +77,8 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
                 {...{ disabled }}
                 className="right-0 flex items-center gap-2 pr-3"
               >
-                <ExclamationCircleIcon
+                <Icon
+                  as={ExclamationCircleIcon}
                   className="h-5 w-5 text-red-500"
                   aria-hidden="true"
                 />
