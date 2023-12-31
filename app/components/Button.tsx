@@ -96,28 +96,36 @@ export function Button<T extends ButtonShapeOption>({
   )
 }
 
-Button.Icon = function ButtonIcon({ className, ...rest }: IconProps) {
-  // determine button size from context
+const buttonIconSizes = {
+  xs: "h-3 w-3",
+  sm: "h-4 w-4",
+  _default: "h-5 w-5",
+}
+
+type ButtonIconProps = IconProps & {
+  sizeOverride?: keyof Omit<typeof buttonIconSizes, "_default">
+}
+
+Button.Icon = function ButtonIcon({
+  sizeOverride,
+  className,
+  ...rest
+}: ButtonIconProps) {
+  // Determine button size from context.
+  // Use a switch instead of a direct mapping since the size shouldn't increase
+  // beyond the medium size.
   const { size } = useContext(ButtonContext)
-  let sizeClassName
-  switch (size) {
-    case "xs":
-      sizeClassName = "h-3 w-3"
-      break
-    case "sm":
-      sizeClassName = "h-4 w-4"
-      break
-    default:
-      sizeClassName = "h-5 w-5"
-      break
-  }
 
   return (
     <Icon
       {...rest}
       className={clsx(
-        "flex-shrink-0 first:-ml-0.5 last:mr-0.5",
-        sizeClassName,
+        "flex-shrink-0 first:-ml-0.5 last:-mr-0.5",
+        sizeOverride
+          ? buttonIconSizes[sizeOverride]
+          : size in buttonIconSizes
+            ? buttonIconSizes[size as keyof typeof buttonIconSizes]
+            : buttonIconSizes._default,
         className,
       )}
     />
