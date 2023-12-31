@@ -2,9 +2,11 @@ import { Link } from "@remix-run/react"
 import clsx from "clsx"
 import type { ComponentPropsWithoutRef } from "react"
 import { createContext, useContext } from "react"
+import { useGlobalSubmittingState } from "remix-utils/use-global-navigation-state"
 
 import type { IconProps } from "~/components/Icon"
 import { Icon } from "~/components/Icon"
+import { LoadingIndicator } from "~/components/LoadingIndicator"
 import { tw } from "~/utils/templates"
 
 const variantStyles = {
@@ -59,11 +61,31 @@ export function Button<T extends ButtonShapeOption>({
     className,
   )
 
+  // nav state to disable proper buttons when submitting
+  const navState = useGlobalSubmittingState()
+  const disableForSubmit = props.type === "submit" && navState === "submitting"
+
   return (
     <ButtonContext.Provider value={{ size }}>
       {typeof props.to === "undefined" ? (
-        <button {...props} {...{ className }}>
-          {children}
+        <button
+          {...props}
+          className={clsx(
+            "relative disabled:cursor-default disabled:bg-zinc-100 disabled:opacity-75 dark:disabled:bg-zinc-900",
+            className,
+          )}
+          disabled={props.disabled || disableForSubmit}
+        >
+          {/* Make the children invisible rather than replacing with the spinner
+          to reduce layout shift. */}
+          {disableForSubmit ? (
+            <span className="invisible">{children}</span>
+          ) : (
+            children
+          )}
+          {disableForSubmit && (
+            <LoadingIndicator variant="subtle" className="absolute h-5 w-5" />
+          )}
         </button>
       ) : (
         <Link {...props} {...{ className }}>
