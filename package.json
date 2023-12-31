@@ -10,6 +10,9 @@
     "format": "prettier --no-error-on-unmatched-pattern --write '{**/*,*}.{js,ts,jsx,tsx,vue,astro,css,scss,sass,json,yaml,toml,md,mdx,cjs,mjs}'",
     "typecheck": "tsc"
   },
+  "files": [
+    "content"
+  ],
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
     "@fortawesome/free-brands-svg-icons": "^6.5.1",
