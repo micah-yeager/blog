@@ -5,14 +5,10 @@ import {
   SunIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline"
+import type { LinkProps } from "@remix-run/react"
 import { Link, NavLink, useLocation } from "@remix-run/react"
 import clsx from "clsx"
-import type {
-  CSSProperties,
-  ComponentPropsWithoutRef,
-  ElementRef,
-  ReactNode,
-} from "react"
+import type { CSSProperties, ComponentPropsWithoutRef, ElementRef } from "react"
 import { Fragment, useEffect, useRef, useState } from "react"
 
 import { Container } from "~/components/Container"
@@ -21,10 +17,18 @@ import { clamp } from "~/utils/numbers"
 
 // import avatarImage from "@/images/avatar.jpg"
 
-function MobileNavItem({ to, children }: { to: string; children: ReactNode }) {
+function MobileNavItem({
+  className,
+  children,
+  ...rest
+}: Omit<LinkProps, "prefetch">) {
   return (
     <li>
-      <Popover.Button as={Link} to={to} className="block py-2">
+      <Popover.Button
+        {...rest}
+        as={Link}
+        className={clsx("block py-2", className)}
+      >
         {children}
       </Popover.Button>
     </li>
@@ -92,14 +96,19 @@ function MobileNavigation(props: ComponentPropsWithoutRef<typeof Popover>) {
   )
 }
 
-function NavItem({ to, children }: { to: string; children: ReactNode }) {
+function NavItem({
+  className,
+  children,
+  ...rest
+}: Omit<LinkProps, "prefetch">) {
   return (
     <li>
       <NavLink
-        to={to}
+        {...rest}
         className={({ isActive, isTransitioning, isPending }) =>
           clsx(
             "relative block px-3 py-2 transition",
+            className,
             isActive || isTransitioning || isPending
               ? "text-primary-500 dark:text-primary-400"
               : "hover:text-primary-500 dark:hover:text-primary-400",

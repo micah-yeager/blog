@@ -15,7 +15,7 @@ export function PostOverview({ postMeta }: { postMeta: PostMeta }) {
         {date.toLocaleString(DateTime.DATE_FULL)}
       </Card.Meta>
       <Card.Description>{postMeta.frontmatter.description}</Card.Description>
-      <Card.Action>Read</Card.Action>
+      <Card.CallToAction>Read post</Card.CallToAction>
     </Card>
   )
 }

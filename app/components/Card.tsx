@@ -1,7 +1,8 @@
 import { ChevronRightIcon } from "@heroicons/react/24/outline"
+import type { LinkProps } from "@remix-run/react"
 import { Link } from "@remix-run/react"
 import clsx from "clsx"
-import type { ComponentPropsWithoutRef, ElementType, ReactNode } from "react"
+import type { ComponentPropsWithoutRef, ElementType } from "react"
 
 import { Icon } from "~/components/Icon"
 
@@ -9,11 +10,10 @@ export function Card<T extends ElementType = "div">({
   as,
   className,
   children,
-}: Omit<ComponentPropsWithoutRef<T>, "as" | "className"> & {
+}: Omit<ComponentPropsWithoutRef<T>, "as"> & {
   as?: T
-  className?: string
 }) {
-  let Component = as ?? "div"
+  const Component = as ?? "div"
 
   return (
     <Component
@@ -42,37 +42,59 @@ Card.Link = function CardLink({
 Card.Title = function CardTitle<T extends ElementType = "h2">({
   as,
   to,
+  className,
   children,
-}: Omit<ComponentPropsWithoutRef<T>, "as" | "href" | "to"> & {
-  as?: T
-  to?: string
-}) {
-  let Component = as ?? "h2"
+  ...rest
+}: Omit<ComponentPropsWithoutRef<T>, "as" | "href" | "to"> &
+  Partial<Pick<LinkProps, "to">> & {
+    as?: T
+  }) {
+  const Component = as ?? "h2"
 
   return (
-    <Component className="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
-      {to ? <Card.Link to={to}>{children}</Card.Link> : children}
+    <Component
+      {...rest}
+      className={clsx(
+        "text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100",
+        className,
+      )}
+    >
+      {to ? <Card.Link {...{ to }}>{children}</Card.Link> : children}
     </Component>
   )
 }
 
 Card.Description = function CardDescription({
+  className,
   children,
-}: {
-  children: ReactNode
-}) {
+  ...rest
+}: ComponentPropsWithoutRef<"p">) {
   return (
-    <p className="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+    <p
+      {...rest}
+      className={clsx(
+        "relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400",
+        className,
+      )}
+    >
       {children}
     </p>
   )
 }
 
-Card.Action = function CardAction({ children }: { children: ReactNode }) {
+Card.CallToAction = function CardCallToAction({
+  className,
+  children,
+  ...rest
+}: Omit<ComponentPropsWithoutRef<"div">, "aria-hidden">) {
   return (
     <div
+      {...rest}
       aria-hidden="true"
-      className="relative z-10 mt-4 flex items-center text-sm font-medium text-primary-500"
+      className={clsx(
+        "relative z-10 mt-4 flex items-center text-sm font-medium text-primary-500",
+        className,
+      )}
     >
       {children}
       <Icon as={ChevronRightIcon} className="ml-1 h-4 w-4 stroke-current" />
@@ -85,7 +107,7 @@ Card.Meta = function CardMeta<T extends ElementType = "p">({
   decorate = false,
   className,
   children,
-  ...props
+  ...rest
 }: Omit<ComponentPropsWithoutRef<T>, "as" | "decorate"> & {
   as?: T
   decorate?: boolean
@@ -94,12 +116,12 @@ Card.Meta = function CardMeta<T extends ElementType = "p">({
 
   return (
     <Component
+      {...rest}
       className={clsx(
         className,
         "relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500",
         decorate && "pl-3.5",
       )}
-      {...props}
     >
       {decorate && (
         <span
