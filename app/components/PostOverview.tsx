@@ -1,7 +1,7 @@
 import { DateTime } from "luxon"
 
 import { Card } from "~/components/Card"
-import type { PostMeta } from "~/utils/post.server"
+import type { PostMeta } from "~/services/posts.server"
 
 export function PostOverview({ postMeta }: { postMeta: PostMeta }) {
   const date = DateTime.fromISO(postMeta.frontmatter.date)

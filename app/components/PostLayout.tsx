@@ -6,7 +6,7 @@ import type { PropsWithChildren, ReactNode } from "react"
 import { Button } from "~/components/Button"
 import { Container } from "~/components/Container"
 import { Prose } from "~/components/Prose"
-import type { Post } from "~/utils/post.server"
+import type { Post } from "~/services/posts.server"
 
 export function PostLayout({
   post,

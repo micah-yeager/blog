@@ -6,7 +6,7 @@ import { Container } from "~/components/Container"
 import { Photos } from "~/components/Photos"
 import { PostOverview } from "~/components/PostOverview"
 import { Résumé } from "~/components/Résumé"
-import { getAllPosts } from "~/utils/post.server"
+import { getAllPosts } from "~/services/posts.server"
 
 export const meta: MetaFunction = () => {
   return [

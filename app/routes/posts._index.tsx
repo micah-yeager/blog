@@ -3,7 +3,7 @@ import { json } from "@vercel/remix"
 
 import { PostOverview } from "~/components/PostOverview"
 import { SimpleLayout } from "~/components/SimpleLayout"
-import { getAllPosts } from "~/utils/post.server"
+import { getAllPosts } from "~/services/posts.server"
 
 export async function loader() {
   let postMetas = await getAllPosts()
