@@ -3,6 +3,7 @@ import { createReadableStreamFromReadable } from "@remix-run/node"
 import { RemixServer } from "@remix-run/react"
 import { PassThrough } from "node:stream"
 import { renderToPipeableStream } from "react-dom/server"
+import { preloadRouteAssets } from "remix-utils/preload-route-assets"
 
 const ABORT_DELAY = 5_000
 
@@ -28,6 +29,7 @@ export default function handleRequest(
           const stream = createReadableStreamFromReadable(body)
 
           responseHeaders.set("Content-Type", "text/html")
+          preloadRouteAssets(remixContext, responseHeaders)
 
           resolve(
             new Response(stream, {
