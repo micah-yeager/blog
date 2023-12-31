@@ -8,8 +8,8 @@ import {
   useLoaderData,
 } from "@remix-run/react"
 import { Analytics } from "@vercel/analytics/react"
-import type { LinksFunction } from "@vercel/remix"
 import { json } from "@vercel/remix"
+import type { HeadersFunction, LinksFunction } from "@vercel/remix"
 import { SpeedInsights } from "@vercel/speed-insights/remix"
 
 import type { Env } from "~/browser-globals"
@@ -23,6 +23,16 @@ export const links: LinksFunction = () => [
   { rel: "preconnect", href: "https://rsms.me/" },
   { rel: "stylesheet", href: "https://rsms.me/inter/inter.css" },
 ]
+
+export const headers: HeadersFunction = () => {
+  // Default set of headers used for data requests.
+  const clientMaxAge = 60 * 30 // 30 minutes
+  const cdnMaxAge = 60 * 60 // 1 hour
+  const revalidationPeriod = 60 * 5 // 5 minutes
+  return {
+    "Cache-Control": `max-age=${clientMaxAge}, s-maxage=${cdnMaxAge}, stale-while-revalidate=${revalidationPeriod}`,
+  }
+}
 
 export async function loader() {
   return json({
