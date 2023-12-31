@@ -1,4 +1,3 @@
-import { kv } from "@vercel/kv"
 import fastGlob from "fast-glob"
 import { bundleMDX } from "mdx-bundler"
 import path from "node:path"
@@ -16,13 +15,7 @@ export type PostMeta = {
   frontmatter: PostFrontmatter
 }
 
-const POSTS_CACHE_KEY = "posts"
-
 export async function getAllPosts() {
-  // check if we have a cached result
-  const cachedPostMetas = await kv.get<PostMeta[]>(POSTS_CACHE_KEY)
-  if (cachedPostMetas) return cachedPostMetas
-
   // get all postMetas from local filesystem
   const cwd = `${process.cwd()}/content/posts`
   let postFilenames = await fastGlob.glob("*/page.mdx", { cwd })
@@ -33,7 +26,7 @@ export async function getAllPosts() {
   )
 
   // sort postMetas by date and extract frontmatter / slug
-  const sortedPostMetas = posts
+  return posts
     .sort(
       (a, z) => +new Date(z.frontmatter.date) - +new Date(a.frontmatter.date),
     )
@@ -41,12 +34,6 @@ export async function getAllPosts() {
       frontmatter,
       slug,
     }))
-
-  // cache the result
-  await kv.set(POSTS_CACHE_KEY, sortedPostMetas, {
-    ex: 60 * 60 * 24, // 24 hours
-  })
-  return sortedPostMetas
 }
 
 export type Post = Awaited<ReturnType<typeof bundleMDX>> & {
