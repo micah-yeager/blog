@@ -10,7 +10,7 @@
       ]
     },
     {
-      "source": "/build/*",
+      "source": "/build/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -19,7 +19,7 @@
       ]
     },
     {
-      "source": "/fonts/*",
+      "source": "/fonts/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -28,7 +28,7 @@
       ]
     },
     {
-      "source": "/images/*",
+      "source": "/images/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
