@@ -1,7 +1,16 @@
 {
   "headers": [
     {
-      "source": "/*.(js|css)",
+      "source": "/favicon.ico",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=1800, s-maxage=3600, stale-while-revalidate=900"
+        }
+      ]
+    },
+    {
+      "source": "/build/*",
       "headers": [
         {
           "key": "Cache-Control",
@@ -10,7 +19,16 @@
       ]
     },
     {
-      "source": "/*.(png|jpg|jpeg|gif|svg|webp|ico)",
+      "source": "/fonts/*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=1800, s-maxage=3600, stale-while-revalidate=900"
+        }
+      ]
+    },
+    {
+      "source": "/images/*",
       "headers": [
         {
           "key": "Cache-Control",
