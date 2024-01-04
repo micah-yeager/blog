@@ -10,6 +10,7 @@ export function ErrorBoundary() {
     </Container>
   )
 }
+
 export function ErrorBoundaryContent() {
   const error = useRouteError()
 
