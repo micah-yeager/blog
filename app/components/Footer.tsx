@@ -46,7 +46,6 @@ export function Footer() {
               <Background className="flex flex-wrap justify-center gap-x-6 gap-y-1 px-6 text-sm font-medium text-zinc-800 dark:text-zinc-200">
                 <NavLink to="/about">About</NavLink>
                 <NavLink to="/projects">Projects</NavLink>
-                <NavLink to="/uses">Uses</NavLink>
               </Background>
 
               {/* copyright */}
