@@ -105,7 +105,7 @@ export function ContactMe(
               <Dialog.Title>Submitted!</Dialog.Title>
 
               <p className="prose dark:prose-invert">
-                Thanks for getting in touch! I'll get back to you as I'm able.
+                Thanks for getting in touch! I’ll get back to you as I’m able.
               </p>
             </div>
 

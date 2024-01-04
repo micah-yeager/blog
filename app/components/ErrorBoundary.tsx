@@ -25,7 +25,7 @@ export function ErrorBoundaryContent() {
       </h1>
       {isRouteErrorResponse(error) && error.status === 404 && (
         <p className="mt-4 text-base text-zinc-600 dark:text-zinc-400">
-          Sorry, we couldn't find the page you’re looking for.
+          Sorry, we couldn’t find the page you’re looking for.
         </p>
       )}
       <Button to="/" variant="secondary" className="mt-4">

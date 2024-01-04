@@ -43,13 +43,13 @@ export default function About() {
               However, I persevered out of sheer stubbornness, and I came out
               with something that I was reasonably pleased with. Because of that
               project, I ended up with an internship to help redesign the
-              college's public website, and I've been hooked ever since.
+              college’s public website, and I’ve been hooked ever since.
             </p>
             <p>
-              I've learned a lot since that project, and I'll never stop
-              learning. I'm not satisfied with "good enough" — I'm always
+              I’ve learned a lot since that project, and I’ll never stop
+              learning. I’m not satisfied with "good enough" — I’m always
               looking for ways to improve systems, processes, and myself. Maybe
-              I won't change the world, but I can certainly do my best to make
+              I won’t change the world, but I can certainly do my best to make
               it just a little bit better.
             </p>
           </div>

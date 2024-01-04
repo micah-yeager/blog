@@ -20,7 +20,7 @@ const projects: Project[] = [
   {
     name: "Personal website",
     description:
-      "You're looking at it, baby! A blog and portfolio built using the Tailwind UI Spotlight template, ported to Remix and adapted.",
+      "You’re looking at it, baby! A blog and portfolio built using the Tailwind UI Spotlight template, ported to Remix and adapted.",
     link: {
       to: "https://github.com/micah-yeager/blog",
       label: "github.com",
@@ -33,7 +33,7 @@ export default function Route() {
   return (
     <SimpleLayout
       title="Side projects I’ve worked on. Some are even finished."
-      intro="While I’ve mainly worked on closed-source projects at my day job over the years, I've also made a few fun, open-source things in my free time. Feel free to check them out and contribute!"
+      intro="While I’ve mainly worked on closed-source projects at my day job over the years, I’ve also made a few fun, open-source things in my free time. Feel free to check them out and contribute!"
     >
       <ul className="grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
         {projects.map((project) => (
