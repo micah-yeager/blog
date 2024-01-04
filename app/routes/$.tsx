@@ -1,3 +1,5 @@
+import { AppError } from "~/components/AppError"
+
 export async function loader() {
   throw new Response(null, {
     status: 404,
@@ -9,4 +11,12 @@ export default function SplatRoute() {
   return null
 }
 
-export { ErrorBoundary } from "~/components/ErrorBoundary"
+export function ErrorBoundary() {
+  return (
+    <AppError
+      code={404}
+      title="Not found"
+      description="Not all who wander are lost, but the page you’re looking for is."
+    />
+  )
+}
