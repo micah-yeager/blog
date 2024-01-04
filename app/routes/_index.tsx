@@ -27,16 +27,21 @@ export default function Index() {
   return (
     <>
       <Container className="mt-9">
-        <div className="max-w-2xl">
+        <div className="max-w-2xl space-y-6">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-            Solutions architect, developer, and amateur musician.
+            Solutions architect, developer, and cat enthusiast.
           </h1>
-          <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I'm Micah, a full-stack developer based in Maryland, United States
-            (soon to be British Columbia, Canada). I enjoy tackling problems
-            holistically, and I'm passionate about building software that is
-            beautiful, functional, and accessible by all.
-          </p>
+          <div className="space-y-4 text-base text-zinc-600 dark:text-zinc-400">
+            <p>
+              I'm Micah, a full-stack developer based in Maryland, United States
+              (soon to be British Columbia, Canada). I enjoy tackling problems
+              holistically, and I'm passionate about building software that is
+              beautiful, functional, and accessible by all.
+            </p>
+            <p>
+              And holy <i>shit</i> do I love cats.
+            </p>
+          </div>
         </div>
       </Container>
 

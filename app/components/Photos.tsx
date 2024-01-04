@@ -1,27 +1,28 @@
 import clsx from "clsx"
+import type { ComponentPropsWithoutRef } from "react"
 
-type Photos = {
+type Photo = {
   src: string
   alt: string
   className?: string
 }
 
-const photos: Photos[] = [
+const photos: Photo[] = [
   {
-    src: "/images/corolla-storm-front.jpeg",
-    alt: "A storm front rolling in on the beach in Corolla, North Carolina",
+    src: "/images/bean-couch.jpeg",
+    alt: "Our cat, Bean, sitting attentively on the couch",
   },
   {
-    src: "/images/backyard-autumn-tree.jpeg",
-    alt: "A tree in our backyard in the fall",
+    src: "/images/dorian-bird-watching.jpeg",
+    alt: "Our cat, Dorian, bird-watching at the window",
   },
   {
     src: "/images/sanya-books.jpeg",
     alt: "Our cat, Sanya, sitting on a stack of books",
   },
   {
-    src: "/images/cancún-umbrella.jpeg",
-    alt: "The underside of an umbrella from our honeymoon in Cancún, Mexico",
+    src: "/images/pippin-couch.jpeg",
+    alt: "Our cat, Pippin, laying lazily on the couch",
   },
   {
     src: "/images/bast-sink.jpeg",
@@ -29,27 +30,49 @@ const photos: Photos[] = [
   },
 ]
 
+function PhotoFrame({
+  className,
+  children,
+  ...rest
+}: ComponentPropsWithoutRef<"div">) {
+  return (
+    <div
+      {...rest}
+      className={clsx(
+        "relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl",
+        className,
+      )}
+    >
+      {children}
+    </div>
+  )
+}
+
+type PhotoProps = Omit<ComponentPropsWithoutRef<"img">, "alt"> &
+  Required<Pick<ComponentPropsWithoutRef<"img">, "alt">>
+
+function Photo({ alt, className, ...rest }: PhotoProps) {
+  return (
+    <img
+      {...rest}
+      // separate out alt to satisfy linter
+      alt={alt}
+      sizes="(min-width: 640px) 18rem, 11rem"
+      className={clsx("absolute inset-0 h-full w-full object-cover", className)}
+    />
+  )
+}
+
 export function Photos() {
   let rotations = ["rotate-2", "-rotate-2", "rotate-2", "rotate-2", "-rotate-2"]
 
   return (
     <div className="mt-16 sm:mt-20">
       <div className="-my-4 flex justify-center gap-5 overflow-hidden py-4 sm:gap-8">
-        {photos.map((photo, imageIndex) => (
-          <div
-            key={photo.src}
-            className={clsx(
-              "relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl",
-              rotations[imageIndex % rotations.length],
-            )}
-          >
-            <img
-              src={photo.src}
-              alt={photo.alt}
-              sizes="(min-width: 640px) 18rem, 11rem"
-              className="absolute inset-0 h-full w-full object-cover"
-            />
-          </div>
+        {photos.map(({ src, alt }, index) => (
+          <PhotoFrame className={rotations[index]} key={src}>
+            <Photo src={src} alt={alt} />
+          </PhotoFrame>
         ))}
       </div>
     </div>
