@@ -152,16 +152,37 @@ function ThemeToggle() {
   const [darkMode, setDarkMode] = useState<boolean>(true)
 
   useEffect(() => {
+    // Get the user's preferred color scheme from local storage, if present.
+    const storedData = localStorage.getItem("darkMode")
+    if (storedData !== null) {
+      const storedValue = JSON.parse(storedData)
+      // If this is a valid value, use it.
+      if (typeof storedValue === "boolean") {
+        return setDarkMode(Boolean(JSON.parse(storedData)))
+      }
+      // Otherwise, remove the associated key from storage.
+      else {
+        localStorage.removeItem("darkMode")
+      }
+    }
+
+    // If nothing was stored, fall back to OS preference.
+    setDarkMode(window.matchMedia("(prefers-color-scheme: dark)").matches)
+  }, [])
+
+  useEffect(() => {
     // Add or remove `dark` class on-demand.
     // Use this method instead of a React state or context to avoid
     // a flash of light mode on page load.
     if (darkMode && !document.documentElement.classList.contains("dark")) {
       document.documentElement.classList.add("dark")
+      localStorage.setItem("darkMode", JSON.stringify(true))
     } else if (
       !darkMode &&
       document.documentElement.classList.contains("dark")
     ) {
       document.documentElement.classList.remove("dark")
+      localStorage.setItem("darkMode", JSON.stringify(false))
     }
   }, [darkMode])
 
