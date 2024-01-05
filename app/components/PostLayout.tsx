@@ -1,7 +1,7 @@
 import { ArrowLeftIcon } from "@heroicons/react/24/outline"
 import type { Jsonify } from "@remix-run/server-runtime/dist/jsonify"
 import { DateTime } from "luxon"
-import type { PropsWithChildren, ReactNode } from "react"
+import type { ReactNode } from "react"
 
 import { Button } from "~/components/Button"
 import { Container } from "~/components/Container"
@@ -68,8 +68,4 @@ export function PostLayout({
       </div>
     </Container>
   )
-}
-
-export function PostContent({ children }: PropsWithChildren) {
-  return <>{children}</>
 }
