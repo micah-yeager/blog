@@ -80,11 +80,6 @@ export async function getPost({
       }
       return options
     },
-    // auto-generate excerpts
-    grayMatterOptions: (options) => {
-      options.excerpt = true
-      return options
-    },
   })
 
   // add slug to object
