@@ -9,13 +9,16 @@ type PostFrontmatter = {
   title: string
   description: string
   date: string
+  [key: string]: any
 }
-export type PostMeta = {
+export type PostMeta = Pick<
+  Awaited<ReturnType<typeof bundleMDX<PostFrontmatter>>>,
+  "frontmatter"
+> & {
   slug: string
-  frontmatter: PostFrontmatter
 }
 
-export async function getAllPosts() {
+export async function getAllPosts(): Promise<PostMeta[]> {
   // get all postMetas from local filesystem
   const cwd = `${process.cwd()}/content/posts`
   let postFilenames = await fastGlob.glob("*/page.mdx", { cwd })
@@ -36,7 +39,7 @@ export async function getAllPosts() {
     }))
 }
 
-export type Post = Awaited<ReturnType<typeof bundleMDX>> & {
+export type Post = Awaited<ReturnType<typeof bundleMDX<PostFrontmatter>>> & {
   slug: string
 }
 
@@ -47,8 +50,9 @@ export async function getPost({
   Parameters<typeof bundleMDX>[0],
   "source" | "file" | "mdxOptions" | "esbuildOptions" | "grayMatterOptions"
 > &
-  Required<Pick<Parameters<typeof bundleMDX>[0], "file">>) {
-  // parse MDX
+  Required<
+    Pick<Parameters<typeof bundleMDX<PostFrontmatter>>[0], "file">
+  >): Promise<Post> {
   const mdx = await bundleMDX<PostFrontmatter>({
     file,
     ...rest,
