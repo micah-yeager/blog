@@ -53,10 +53,12 @@ export async function getPost({
   Required<
     Pick<Parameters<typeof bundleMDX<PostFrontmatter>>[0], "file">
   >): Promise<Post> {
+  // Parse MDX file.
   const mdx = await bundleMDX<PostFrontmatter>({
     file,
     ...rest,
-    // add our plugins
+
+    // Add plugins.
     mdxOptions(options) {
       options.remarkPlugins = [
         ...(options.remarkPlugins ?? []),
@@ -69,10 +71,13 @@ export async function getPost({
       ]
       return options
     },
+
+    // Define build options.
     esbuildOptions(options) {
-      // use the same target as the rest of the app, needs to be set since it defaults to esnext
+      // Use the same target as the root app, needs to be set since it would
+      // otherwise default to `esnext`.
       options.target = "ES2022"
-      // inline images
+      // Inline images.
       options.loader = {
         ...options.loader,
         ".png": "dataurl",
@@ -86,7 +91,7 @@ export async function getPost({
     },
   })
 
-  // add slug to object
+  // Add the slug to the post.
   const slug = path.basename(path.dirname(file))
   return { ...mdx, slug }
 }
