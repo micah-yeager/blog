@@ -6,6 +6,13 @@ export function Prose({
   ...props
 }: ComponentPropsWithoutRef<"div">) {
   return (
-    <div className={clsx(className, "prose dark:prose-invert")} {...props} />
+    <div
+      className={clsx(
+        className,
+        // Tweak vertical margins between lists and list items
+        "prose dark:prose-invert prose-ol:my-7 prose-ul:my-7 prose-li:my-0",
+      )}
+      {...props}
+    />
   )
 }
