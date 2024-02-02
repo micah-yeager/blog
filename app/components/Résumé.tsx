@@ -45,7 +45,13 @@ export function Résumé() {
       </ol>
 
       {/* résumé download */}
-      <Button to="#" variant="secondary" className="group mt-6 w-full">
+      <Button
+        to="/cv"
+        variant="secondary"
+        className="group mt-6 w-full"
+        // reload required to force download
+        reloadDocument
+      >
         Download CV
         <Icon
           as={ArrowDownIcon}
