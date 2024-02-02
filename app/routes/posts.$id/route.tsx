@@ -1,6 +1,7 @@
 import { useLoaderData } from "@remix-run/react"
 import { json } from "@vercel/remix"
 import type { LoaderFunctionArgs } from "@vercel/remix"
+import { DateTime } from "luxon"
 import { getMDXComponent } from "mdx-bundler/client/index.js"
 import { useMemo } from "react"
 
@@ -15,6 +16,7 @@ export function links() {
 }
 
 export async function loader({ params }: LoaderFunctionArgs) {
+  // Ensure a post ID is provided.
   const postId = params.id
   if (!postId) {
     throw new Response(null, {
@@ -23,9 +25,9 @@ export async function loader({ params }: LoaderFunctionArgs) {
     })
   }
 
+  // Load and process the post.
   const cwd = `${process.cwd()}/content/posts/${postId}`
   const file = `${cwd}/page.mdx`
-
   let post: Post
   try {
     post = await getPost({ file, cwd })
@@ -37,7 +39,20 @@ export async function loader({ params }: LoaderFunctionArgs) {
     })
   }
 
-  return json({ post }, { status: 200 })
+  // Change caching length based on article age.
+  const headers = new Headers()
+  // If less than a day old, only cache for 30 minutes to allow for hotfixes.
+  if (
+    DateTime.fromISO(post.frontmatter.date) > DateTime.now().minus({ days: 1 })
+  ) {
+    headers.set("Cache-Control", "public, max-age=1800")
+  }
+  // Otherwise, cache for a day.
+  else {
+    headers.set("Cache-Control", "public, max-age=86400")
+  }
+
+  return json({ post }, { status: 200, headers })
 }
 
 export default function Post() {
