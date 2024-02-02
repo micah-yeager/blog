@@ -1,0 +1,282 @@
+---
+title: Intro to writing HTML emails for web developers
+date: 2024-02-02
+description:
+  Writing and styling HTML emails has always been a pain. Here are some rules
+  and resources on how to write emails that both look good and display
+  consistently for all recipients.
+---
+
+Writing and styling HTML emails has always been a giant pain in the ass. There
+are no "standards" for what markup and styles are supported among the multitude
+of email clients out there, so it's a minefield of figuring out what will work
+and what won't.
+
+Below is a crash-course on how to avoid common pitfalls and create emails that
+both look good and display consistently for your recipients. I'll be assuming
+that you're already familiar with the basics of web development.
+
+## A brief ~~rant~~ history
+
+The current, horrific state of email markup can't be blamed on any one person or
+company — the fact that
+[_no_ email client supports the full HTML / CSS spec](https://www.caniemail.com/scoreboard/)
+is a pretty clear indicator of that. That being said, Microsoft's Outlook 2007
+is really where things started to go south. This set the closest thing a
+"standard" that email will likely get for the foreseeable future for email
+clients, given Microsoft's ubiquity within the business world.
+
+That's because, starting with Outlook 2007,
+[the HTML / CSS rendering engine is the same that powers _Microsoft Word_](https://www.campaignmonitor.com/css/email-client/outlook-2007-16/)(!),
+which has pretty terrible support for CSS. What's worse, even at the time this
+was clearly downgrade from Outlook 2003, which used Internet Explorer's
+rendering engine. Which, you know, was actually built for web content.
+
+In true Microsoft fashion, instead of learning from their mistake, Microsoft
+doubled-down and continued using Word as the rendering engine until (checks
+notes)... oh, it's still being used even in Outlook 2021. Things are _starting_
+to look better: Microsoft's "new Outlook" (which started rolling out in
+late 2023)
+[finally gets rid of Word as the rendering engine](https://www.emailonacid.com/blog/article/industry-news/new-outlook-for-windows/),
+and instead seems to be mainly taking
+[inspiration from Outlook on the Web](https://learn.microsoft.com/en-us/deployoffice/outlook/overview-new-outlook#architecture).
+
+This is a huge step back to normalcy, and this hopefully will lead to the
+majority of this article being obsolete in a few years — Microsoft has
+end-of-support for Outlook 2021 marked for
+[October 2026](https://learn.microsoft.com/en-us/lifecycle/products/?terms=Outlook).
+I'm not holding my breath, though, since the precedent that Microsoft set with
+Outlook 2007 can still be seen in other email clients.
+
+## Some basics
+
+### What counts as an "email client"?
+
+The obvious answer would be "a desktop application to view emails", but that's
+only partially correct. Email providers often provide their own web-based method
+of viewing emails (e.g. Gmail, Outlook on the Web, GoDaddy, etc.), and even
+those have varying degrees of support for the full HTML / CSS specification.
+
+These aren't just minor divergences from the HTML and CSS specs, either. For
+example, `style` tags are stripped out of the email body
+([Gmail](https://www.campaignmonitor.com/css/email-client/gmail/) /
+[G Suite](https://www.campaignmonitor.com/css/email-client/g-suite/)) or are
+removed entirely
+([AOL Mail](https://www.campaignmonitor.com/css/email-client/aol-mail/), which
+still had
+[1.5 million paying users in 2021](https://www.cnbc.com/2021/05/03/aol-1point5-million-people-still-pay-for-service-but-not-for-dial-up-internet.html)).
+
+### How can I find out what's supported?
+
+When creating emails, I basically have two resources open at all times:
+
+- [Campaign Monitor's CSS Support Guide](https://www.campaignmonitor.com/css/)
+- [Can I email...?](https://www.caniemail.com/)
+
+The two of these together will give you a pretty good idea of what's supported
+and what isn't by each email client. The former is a bit more detailed, but the
+latter is more up-to-date.
+
+Additionally, GitHub user
+[seanpowell created a solid boilerplate](https://github.com/seanpowell/Email-Boilerplate/blob/master/email_min.html)
+that implements several best practices, as well as resets some email
+client-specific styles that can get in the way of your design process.
+
+## General tips
+
+### Please for the love of god test your emails everywhere you can
+
+This is the most important tip I can give. Don't assume that what looks good in
+a browser or a single email client will look remotely similar in another.
+
+You can use services like [Email on Acid](https://www.emailonacid.com/),
+[Litmus](https://www.litmus.com/), [https://testi.at/](https://testi.at/), etc.
+to do these tests for you, but if you're working small-scale (e.g. a single
+custom email, or an email signature) or are on a budget, there's absolutely
+nothing wrong with sending test emails to yourself and opening them in as many
+clients as you can.
+
+At minimum, you should be testing in:
+
+- Outlook
+- "new" Outlook
+- Outlook's mobile app
+- Gmail
+
+And if you can, also test in:
+
+- Apple Mail
+- Outlook for Mac
+
+### "Code like it's 1999"
+
+This is a common joke among email developers, but it still holds true. The more
+you can stick to the HTML 4 spec, the better. Effectively, this means no modern
+HTML tags or CSS properties, and styles should be converted to attributes
+wherever applicable.
+
+For example, instead of this:
+
+```html
+<img src="https://cataas.com/cat?type=square" alt="A picture of a cat" />
+<hr />
+```
+
+you'd be better off with this:
+
+```html
+<img
+  src="https://cataas.com/cat?type=square"
+  alt="A picture of a cat"
+  height="48"
+  width="48"
+/>
+<hr />
+```
+
+Notice that the `width` and `height` CSS properties were converted to pixels and
+moved to HTML attributes —
+[Outlook 2007–2023 has only support for the CSS property some tags](https://www.caniemail.com/features/css-height/).
+Additionally, we replaced the self-closing `hr` tag with an "open" one; this
+isn't good HTML 5, but it _is_ valid HTML 4 (good luck getting your IDE to not
+try to automatically add the closing slash).
+
+### Use `table`s when alignment matters, not `div`s
+
+This is probably the most important, non-obvious rule. Tables are essentially
+the **only** way to ensure consistent alignment and spacing in any context. So,
+instead of this:
+
+```html
+<div>
+  <div style="display: inline-block; width: 100px; height: 100px;">
+    First item
+  </div>
+  <div style="display: inline-block; width: 100px; height: 100px;">
+    Second item
+  </div>
+</div>
+```
+
+do something like this instead:
+
+```html
+<table>
+  <tr>
+    <td style="width: 100px; height: 100px;">First item</td>
+    <td style="width: 100px; height: 100px;">Second item</td>
+  </tr>
+</table>
+```
+
+Notice that we lose some of the responsiveness that we're used to with `div`s —
+the two elements will always be side-by-side, regardless of the width of the
+viewport. This will be a common theme — consistency at the cost of flexibility.
+
+### Use inline styles, not CSS classes
+
+This is likely the biggest pain point for web developers. The final,
+"production" build of an email should use inline styles due to
+[inconsistencies with how email clients handle `style` tags](https://www.caniemail.com/features/html-style/).
+This means, however, that things like media queries and pseudo-selectors become
+impossible to use (although [support](https://www.caniemail.com/search/?s=%3A)
+for [them](https://www.caniemail.com/search/?s=%40) was already spotty at best
+to begin with).
+
+The easiest way to handle this is using classes like normal during development,
+and use a post-processing tool to convert everything to inline styles, which
+will convert this:
+
+```html
+<head>
+  <style>
+    .red {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <p class="red">This text will be red</p>
+</body>
+```
+
+to this automatically:
+
+```html
+<body>
+  <p style="color: red;">This text will be red</p>
+</body>
+```
+
+This, of course, gets tricky when combined with the **"Code like it's 1999"**
+section above and dealing with HTML attributes. This leads me into my final tip:
+
+### Use a build tool purpose-built for email
+
+There are a few tools out there that are specifically designed to make writing
+easier. I love using [Tailwind CSS](https://tailwindcss.com) for web
+development, and it turns out that a tool called [Maizzle](https://maizzle.com)
+has been created to allow you to use it in emails as well!
+
+In addition to having the ability to convert classes to inline styles, Maizzle
+also has a component system that allows you to create reusable components and
+abstract repetitive code. This allows for this:
+
+```html
+<body>
+  <table>
+    <tr>
+      <td style="padding: 10px;">
+        <h1>I've come to make an announcement!</h1>
+        <p>[redacted]</p>
+        <img
+          src="https://cataas.com/cat?type=square"
+          alt="A picture of a cat"
+          height="48"
+          width="48"
+        />
+        <img
+          src="https://cataas.com/cat?type=square"
+          alt="A picture of a cat"
+          height="26"
+          width="26"
+        />
+        <img
+          src="https://cataas.com/cat?type=square"
+          alt="A picture of a cat"
+          height="86"
+          width="86"
+        />
+      </td>
+    </tr>
+  </table>
+</body>
+```
+
+into something a bit more manageable:
+
+```html
+<body>
+  <x-content>
+    <h1>I've come to make an announcement!</h1>
+    <p>[redacted]</p>
+    <x-cat-image size="48" />
+    <x-cat-image size="26" />
+    <x-cat-image size="86" />
+  </x-content>
+</body>
+```
+
+## Final thoughts
+
+Writing HTML emails is a pain, but it's a necessary evil (for now). Hopefully
+this has been a helpful crash-course on how to avoid common pitfalls and point
+you in the right direction! Once you get a grasp of the general things to watch
+out for, you'll be able to pump out emails in no time.
+
+I know I already called these resources out above, but here they are again for
+easier access:
+
+- [Campaign Monitor's CSS Support Guide](https://www.campaignmonitor.com/css/)
+- [Can I email...?](https://www.caniemail.com/)
+- [seanpowell's email boilerplate](https://github.com/seanpowell/Email-Boilerplate/blob/master/email_min.html)
