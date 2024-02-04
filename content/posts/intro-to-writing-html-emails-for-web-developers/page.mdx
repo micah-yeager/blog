@@ -209,7 +209,8 @@ to this automatically:
 ```
 
 This, of course, gets tricky when combined with the **"Code like it's 1999"**
-section above and dealing with HTML attributes. This leads me into my final tip:
+section above and dealing with HTML attributes. This leads me into my
+penultimate tip:
 
 ### Use a build tool purpose-built for email
 
@@ -266,6 +267,35 @@ into something a bit more manageable:
   </x-content>
 </body>
 ```
+
+### Don't be afraid to use Outlook-specific workarounds
+
+Finally, given how restrictive Outlook is, there is absolutely nothing wrong
+with targeting all other email clients first, then using Outlook-specific styles
+to fill any gaps. This is done in two ways:
+
+1. [Outlook-specific CSS properties](https://stigmortenmyre.no/mso/html/concepts/ofconstyletable.htm)
+   — some important ones:
+   - `mso-line-height-rule`:
+     - `exactly`: prevents Outlook from overriding line-height to `20px` on `td`
+       and `img` tags.
+     - `at-least` (default): allows the line-height to grow vertically to fit
+       content, e.g. images.
+   - `mso-line-height-alt`: since
+     [Outlook's support for the `line-height` property isn't great](https://www.campaignmonitor.com/css/text-fonts/line-height/),
+     use this property in addition to the normal property, e.g.
+     `line-height: 12px; mso-line-height-alt: 12px;`.
+   - `mso-table-lspace` / `mso-table-rspace`: set to `0pt` on `table` tags in
+     your reset stylesheet to remove Outlook's unique table spacing.
+   - `-ms-interpolation-mode`: when set to `bicubic` on `img` tags, makes images
+     display much more cleanly if it's not displayed at the image's native size.
+     Helpful in Internet Explorer and Outlook 2003 and earlier.
+2. [Outlook conditional comments](https://stackoverflow.design/email/base/mso/)
+   — the most important statement is
+   `<!--[if mso]> Outlook-specific code <![endif]-->`, which allows us to define
+   Outlook-specific HTML that's ignored in all other clients. This is incredibly
+   powerful, but can lead to duplicate or hard-to-manage code if overused — use
+   it when nothing else is working.
 
 ## Final thoughts
 
