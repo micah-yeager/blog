@@ -8,7 +8,14 @@ import { getAllPosts } from "~/services/posts.server"
 export async function loader() {
   let postMetas = await getAllPosts()
 
-  return json({ postMetas }, { status: 200 })
+  return json(
+    { postMetas },
+    {
+      status: 200,
+      // Cache for 30 minutes.
+      headers: { "Cache-Control": "public, max-age=1800" },
+    },
+  )
 }
 
 export default function Route() {

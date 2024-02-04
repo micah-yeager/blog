@@ -18,7 +18,14 @@ export const meta: MetaFunction = () => {
 export async function loader() {
   const recentPosts = (await getAllPosts()).slice(0, 4)
 
-  return json({ recentPosts }, { status: 200 })
+  return json(
+    { recentPosts },
+    {
+      status: 200,
+      // Cache for 30 minutes.
+      headers: { "Cache-Control": "public, max-age=1800" },
+    },
+  )
 }
 
 export default function Index() {
