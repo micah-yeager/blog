@@ -1,7 +1,6 @@
 import { useLoaderData } from "@remix-run/react"
 import { json } from "@vercel/remix"
 import type { LoaderFunctionArgs, TypedResponse } from "@vercel/remix"
-import { DateTime } from "luxon"
 import { getMDXComponent } from "mdx-bundler/client/index.js"
 import { useMemo } from "react"
 
@@ -66,20 +65,7 @@ export async function loader({ params }: LoaderFunctionArgs): Promise<
     })
   }
 
-  // Change caching length based on article age.
-  const headers = new Headers()
-  // If less than a day old, only cache for 30 minutes to allow for hotfixes.
-  if (
-    DateTime.fromISO(post.frontmatter.date) > DateTime.now().minus({ days: 1 })
-  ) {
-    headers.set("Cache-Control", "public, max-age=1800")
-  }
-  // Otherwise, cache for a day.
-  else {
-    headers.set("Cache-Control", "public, max-age=86400")
-  }
-
-  return json({ post }, { status: 200, headers })
+  return json({ post }, { status: 200 })
 }
 
 export default function Post() {

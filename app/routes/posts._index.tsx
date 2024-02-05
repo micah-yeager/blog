@@ -10,15 +10,7 @@ export const meta = mergeMeta(() => [{ title: "Posts" }])
 
 export async function loader() {
   let postMetas = await getAllPosts()
-
-  return json(
-    { postMetas },
-    {
-      status: 200,
-      // Cache for 30 minutes.
-      headers: { "Cache-Control": "public, max-age=1800" },
-    },
-  )
+  return json({ postMetas }, { status: 200 })
 }
 
 export default function Route() {
