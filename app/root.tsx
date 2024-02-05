@@ -35,7 +35,8 @@ export const links: LinksFunction = () => [
 export const headers: HeadersFunction = () => {
   // Default set of headers used for data requests.
   const clientMaxAge = 60 * 30 // 30 minutes
-  const cdnMaxAge = 60 * 60 // 1 hour
+  // Since we can control the CDN cache, we can set a much longer max age.
+  const cdnMaxAge = 60 * 60 * 24 * 30 // 30 days
   const revalidationPeriod = 60 * 5 // 5 minutes
   return {
     "Cache-Control": `max-age=${clientMaxAge}, s-maxage=${cdnMaxAge}, stale-while-revalidate=${revalidationPeriod}`,
