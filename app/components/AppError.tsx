@@ -1,6 +1,10 @@
-import { RouteError } from "~/components/RouteError"
+import { isRouteErrorResponse, useRouteError } from "@remix-run/react"
+
+import { Button } from "~/components/Button"
 
 export function AppError() {
+  const error = useRouteError()
+
   return (
     <div className="isolate min-h-full text-center">
       {/* background image and overlay */}
@@ -13,7 +17,26 @@ export function AppError() {
 
       {/* content */}
       <div className="mx-auto my-24 inline-block min-w-[32rem] max-w-2xl rounded-lg bg-zinc-200/75 p-6 text-center shadow-2xl dark:bg-zinc-800/75 sm:my-32 lg:px-8">
-        <RouteError />
+        {/* error code */}
+        <p className="text-base font-semibold text-zinc-400 dark:text-zinc-500">
+          {isRouteErrorResponse(error) ? error.status : "Error"}
+        </p>
+        {/* status text */}
+        <h1 className="mt-4 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
+          {(isRouteErrorResponse(error) && error.statusText) ??
+            "An unknown error occurred"}
+        </h1>
+        {/* error message */}
+        <p className="mt-4 text-base text-zinc-600 dark:text-zinc-400">
+          {isRouteErrorResponse(error) && error.data
+            ? String(error.data)
+            : "We ran into a problem while trying to fulfill your request. Please try again later."}
+        </p>
+
+        {/* back to home link */}
+        <Button to="/" variant="secondary" className="mt-4">
+          Go back home
+        </Button>
       </div>
     </div>
   )
