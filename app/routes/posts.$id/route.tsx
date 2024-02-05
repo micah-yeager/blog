@@ -42,10 +42,27 @@ export async function loader({ params }: LoaderFunctionArgs): Promise<
   try {
     post = await getPost({ file, cwd })
   } catch (error) {
+    // Check if this is a file-not-found error and respond accordingly.
+    if (
+      error &&
+      typeof error === "object" &&
+      "code" in error &&
+      error.code === "ENOENT"
+    ) {
+      throw new Response(
+        "Not all who wander are lost, but the page you’re looking for is.",
+        {
+          status: 404,
+          statusText: "Not found",
+        },
+      )
+    }
+
+    // Otherwise, respond with a generic error.
     console.error(error)
     throw new Response(null, {
-      status: 404,
-      statusText: "Not Found",
+      status: 500,
+      statusText: "Server error",
     })
   }
 
@@ -78,5 +95,3 @@ export default function Post() {
     </PostLayout>
   )
 }
-
-export { ErrorBoundary } from "~/components/ErrorBoundary"

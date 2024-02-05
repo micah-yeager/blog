@@ -6,7 +6,6 @@ import {
   Scripts,
   ScrollRestoration,
   useLoaderData,
-  useRouteError,
 } from "@remix-run/react"
 import { Analytics } from "@vercel/analytics/react"
 import { json } from "@vercel/remix"
@@ -95,16 +94,9 @@ export default function Root() {
 }
 
 export function ErrorBoundary() {
-  const error = useRouteError()
-  console.error(error)
-
   return (
     <App title="Whoops :/ | Micah Yeager">
-      <AppError
-        code={500}
-        title="Server error"
-        description="We ran into a problem while trying to fulfill your request. Please try again later."
-      />
+      <AppError />
     </App>
   )
 }
