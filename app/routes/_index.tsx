@@ -1,10 +1,10 @@
 import { useLoaderData } from "@remix-run/react"
 import { json } from "@vercel/remix"
 
+import { CV } from "~/components/CV"
 import { Container } from "~/components/Container"
 import { Photos } from "~/components/Photos"
 import { PostOverview } from "~/components/PostOverview"
-import { Résumé } from "~/components/Résumé"
 import { getAllPosts } from "~/services/posts.server"
 
 export async function loader() {
@@ -47,7 +47,7 @@ export default function Index() {
             ))}
           </div>
           <div className="space-y-10 lg:pl-16 xl:pl-24">
-            <Résumé />
+            <CV />
           </div>
         </div>
       </Container>

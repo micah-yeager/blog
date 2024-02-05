@@ -4,8 +4,10 @@ import { Button } from "~/components/Button"
 import { Icon } from "~/components/Icon"
 import { Role } from "~/components/Role"
 
-export function Résumé() {
-  let resume: Array<Role> = [
+export function CV() {
+  // Define within route, so end.dateTime gets updated independently of server
+  // execution and subsequent storage of end.dateTime.
+  const cv: Array<Role> = [
     {
       company: "Innovative, Inc.",
       title: "Solutions Architect",
@@ -39,12 +41,12 @@ export function Résumé() {
 
       {/* roles list */}
       <ol className="mt-6 space-y-4">
-        {resume.map((role, roleIndex) => (
+        {cv.map((role, roleIndex) => (
           <Role key={roleIndex} role={role} />
         ))}
       </ol>
 
-      {/* résumé download */}
+      {/* CV download */}
       <Button
         to="/documents/cv.pdf"
         variant="secondary"
