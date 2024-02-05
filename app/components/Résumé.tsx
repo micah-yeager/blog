@@ -46,9 +46,10 @@ export function Résumé() {
 
       {/* résumé download */}
       <Button
-        to="/cv"
+        to="/documents/cv.pdf"
         variant="secondary"
         className="group mt-6 w-full"
+        download="CV - Micah Yeager.pdf"
         // reload required to force download
         reloadDocument
       >
