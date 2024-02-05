@@ -4,6 +4,9 @@ import { json } from "@vercel/remix"
 import { PostOverview } from "~/components/PostOverview"
 import { SimpleLayout } from "~/components/SimpleLayout"
 import { getAllPosts } from "~/services/posts.server"
+import { mergeMeta } from "~/utils/meta"
+
+export const meta = mergeMeta(() => [{ title: "Posts" }])
 
 export async function loader() {
   let postMetas = await getAllPosts()

@@ -10,7 +10,11 @@ import {
 } from "@remix-run/react"
 import { Analytics } from "@vercel/analytics/react"
 import { json } from "@vercel/remix"
-import type { HeadersFunction, LinksFunction } from "@vercel/remix"
+import type {
+  HeadersFunction,
+  LinksFunction,
+  MetaFunction,
+} from "@vercel/remix"
 import { SpeedInsights } from "@vercel/speed-insights/remix"
 import type { PropsWithChildren } from "react"
 
@@ -37,6 +41,13 @@ export const headers: HeadersFunction = () => {
   return {
     "Cache-Control": `max-age=${clientMaxAge}, s-maxage=${cdnMaxAge}, stale-while-revalidate=${revalidationPeriod}`,
   }
+}
+
+export const meta: MetaFunction = () => {
+  return [
+    { title: "Micah Yeager" },
+    { description: "Solutions architect, developer, and cat enthusiast." },
+  ]
 }
 
 export async function loader() {
@@ -88,7 +99,7 @@ export function ErrorBoundary() {
   console.error(error)
 
   return (
-    <App title="Whoops :/">
+    <App title="Whoops :/ | Micah Yeager">
       <AppError
         code={500}
         title="Server error"

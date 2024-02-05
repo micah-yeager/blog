@@ -5,6 +5,7 @@ import { Card } from "~/components/Card"
 import type { IconProp } from "~/components/Icon"
 import { Icon } from "~/components/Icon"
 import { SimpleLayout } from "~/components/SimpleLayout"
+import { mergeMeta } from "~/utils/meta"
 
 type Project = {
   name: string
@@ -28,6 +29,8 @@ const projects: Project[] = [
     logo: faAddressCard,
   },
 ]
+
+export const meta = mergeMeta(() => [{ title: "Projects" }])
 
 export default function Route() {
   return (

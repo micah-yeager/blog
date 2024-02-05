@@ -1,6 +1,6 @@
 import { useLoaderData } from "@remix-run/react"
 import { json } from "@vercel/remix"
-import type { LoaderFunctionArgs } from "@vercel/remix"
+import type { LoaderFunctionArgs, TypedResponse } from "@vercel/remix"
 import { DateTime } from "luxon"
 import { getMDXComponent } from "mdx-bundler/client/index.js"
 import { useMemo } from "react"
@@ -8,6 +8,7 @@ import { useMemo } from "react"
 import { PostLayout } from "~/components/PostLayout"
 import type { Post } from "~/services/posts.server"
 import { getPost } from "~/services/posts.server"
+import { mergeMeta } from "~/utils/meta"
 
 import codeStyles from "./prism.css"
 
@@ -15,7 +16,16 @@ export function links() {
   return [{ rel: "stylesheet", href: codeStyles }]
 }
 
-export async function loader({ params }: LoaderFunctionArgs) {
+export const meta = mergeMeta<typeof loader>(({ data }) => {
+  // Use the post title as the page title.
+  return [{ title: data?.post.frontmatter.title ?? "Whoops :/" }]
+})
+
+export async function loader({ params }: LoaderFunctionArgs): Promise<
+  TypedResponse<{
+    post: Post
+  }>
+> {
   // Ensure a post ID is provided.
   const postId = params.id
   if (!postId) {

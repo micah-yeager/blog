@@ -1,5 +1,8 @@
 import { ContactMe } from "~/components/ContactMe"
 import { Container } from "~/components/Container"
+import { mergeMeta } from "~/utils/meta"
+
+export const meta = mergeMeta(() => [{ title: "About" }])
 
 export default function About() {
   return (

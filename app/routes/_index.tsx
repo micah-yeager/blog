@@ -1,19 +1,11 @@
 import { useLoaderData } from "@remix-run/react"
 import { json } from "@vercel/remix"
-import type { MetaFunction } from "@vercel/remix"
 
 import { Container } from "~/components/Container"
 import { Photos } from "~/components/Photos"
 import { PostOverview } from "~/components/PostOverview"
 import { Résumé } from "~/components/Résumé"
 import { getAllPosts } from "~/services/posts.server"
-
-export const meta: MetaFunction = () => {
-  return [
-    { title: "Micah Yeager" },
-    { name: "description", content: "Welcome to Remix!" },
-  ]
-}
 
 export async function loader() {
   const recentPosts = (await getAllPosts()).slice(0, 4)

@@ -1,4 +1,7 @@
 import { AppError } from "~/components/AppError"
+import { mergeMeta } from "~/utils/meta"
+
+export const meta = mergeMeta(() => [{ title: "Not Found" }])
 
 export async function loader() {
   throw new Response(null, {
