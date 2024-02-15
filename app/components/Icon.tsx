@@ -4,7 +4,6 @@ import type { IconDefinition as FASolidIconDefinition } from "@fortawesome/free-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import type {
   ComponentPropsWithoutRef,
-  ElementType,
   ForwardRefExoticComponent,
   PropsWithoutRef,
   RefAttributes,
@@ -23,7 +22,7 @@ export type IconProp =
   | FACoreIconDefinition
   | FASolidIconDefinition
   | FABrandIconDefinition
-export type IconProps = ComponentPropsWithoutRef<ElementType> & {
+export type IconProps = Omit<ComponentPropsWithoutRef<"svg">, "as" | "mask"> & {
   as: IconProp
 }
 
