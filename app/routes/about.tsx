@@ -7,8 +7,8 @@ export const meta = mergeMeta(() => [{ title: "About" }])
 export default function About() {
   return (
     <Container className="mt-16 sm:mt-32">
-      {/* photo */}
       <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
+        {/* photo */}
         <div className="lg:pl-20">
           <div className="max-w-xs px-2.5 lg:max-w-none">
             <img
@@ -17,6 +17,16 @@ export default function About() {
               sizes="(min-width: 1024px) 32rem, 20rem"
               className="aspect-square rotate-3 rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
             />
+            {/* photo credit */}
+            <p className="mt-2 text-center text-sm text-zinc-400 dark:text-zinc-600">
+              Photo by{" "}
+              <a
+                href="https://www.instagram.com/subjecttophotography/"
+                className="text-zinc-500 hover:underline"
+              >
+                Wes Yeager
+              </a>
+            </p>
           </div>
         </div>
 
