@@ -1,16 +1,37 @@
-import { useLoaderData } from "@remix-run/react"
+import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons"
+import { Link, useLoaderData } from "@remix-run/react"
 import { json } from "@vercel/remix"
+import type { ComponentPropsWithoutRef } from "react"
 
 import { CV } from "~/components/CV"
 import { Container } from "~/components/Container"
+import type { IconProp } from "~/components/Icon"
+import { Icon } from "~/components/Icon"
 import { Photos } from "~/components/Photos"
 import { PostOverview } from "~/components/PostOverview"
+import { GITHUB_URL, LINKEDIN_URL } from "~/constants"
 import { getAllPosts } from "~/services/posts.server"
 
 export async function loader() {
   const postMetas = await getAllPosts()
   // Return the most recent 4 posts.
   return json({ recentPosts: postMetas.slice(0, 4) }, { status: 200 })
+}
+
+function SocialLink({
+  icon,
+  ...props
+}: ComponentPropsWithoutRef<typeof Link> & {
+  icon: IconProp
+}) {
+  return (
+    <Link className="group/SocialLink -m-1 p-1" {...props}>
+      <Icon
+        as={icon}
+        className="h-6 w-6 text-zinc-500 transition group-hover/SocialLink:text-zinc-600 dark:text-zinc-400 dark:group-hover/SocialLink:text-zinc-300"
+      />
+    </Link>
+  )
 }
 
 export default function Index() {
@@ -33,6 +54,18 @@ export default function Index() {
             <p>
               And holy <i>shit</i> do I love cats.
             </p>
+          </div>
+          <div className="flex gap-6">
+            <SocialLink
+              to={GITHUB_URL}
+              aria-label="Follow on GitHub"
+              icon={faGithub}
+            />
+            <SocialLink
+              to={LINKEDIN_URL}
+              aria-label="Follow on LinkedIn"
+              icon={faLinkedin}
+            />
           </div>
         </div>
       </Container>
