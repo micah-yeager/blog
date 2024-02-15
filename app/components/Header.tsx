@@ -235,7 +235,7 @@ function Avatar({
       {...props}
     >
       <img
-        src="/images/avatar.jpg"
+        src="/images/me-standing.jpeg"
         alt=""
         sizes={large ? "4rem" : "2.25rem"}
         className={clsx(
