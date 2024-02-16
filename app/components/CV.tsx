@@ -56,11 +56,7 @@ export function CV() {
         reloadDocument
       >
         Download CV
-        <Icon
-          as={ArrowDownIcon}
-          className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50"
-          aria-hidden="true"
-        />
+        <Button.Icon as={ArrowDownIcon} sizeOverride="sm" className="-ml-1" />
       </Button>
     </div>
   )

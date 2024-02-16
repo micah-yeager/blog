@@ -36,12 +36,11 @@ export function ContactMe(
       {...props}
       type="button"
       variant="secondary"
-      shape="pill"
       size="sm"
       onClick={() => setOpen(true)}
     >
-      <Button.Icon as={EnvelopeOutlineIcon} />
       Get in touch
+      <Button.Icon as={EnvelopeOutlineIcon} />
       {/* dialog */}
       <Dialog open={open} setOpen={setOpen}>
         {/* show form until submission */}

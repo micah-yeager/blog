@@ -48,7 +48,7 @@ const ButtonContext = createContext({} as { size: string })
 
 export function Button<T extends ButtonShapeOption>({
   variant = "primary",
-  shape = "rectangle" as T,
+  shape = "pill" as T,
   size = "md",
   className,
   children,
@@ -120,7 +120,7 @@ Button.Icon = function ButtonIcon({
     <Icon
       {...rest}
       className={clsx(
-        "flex-shrink-0 first:-ml-0.5 last:-mr-0.5",
+        "flex-shrink-0",
         sizeOverride
           ? buttonIconSizes[sizeOverride]
           : size in buttonIconSizes
