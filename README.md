@@ -16,7 +16,7 @@ To run locally, make sure the project's local dependencies are installed:
 pnpm install
 ```
 
-Afterwards, start the Remix development server:
+Afterward, start the Remix development server:
 
 ```sh
 pnpm run dev
