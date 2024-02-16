@@ -35,8 +35,6 @@ vercel
 ```
 
 <!-- prettier-ignore-start -->
-
 > [!IMPORTANT]
 > Vercel should be installed globally, not locally.
-
 <!-- prettier-ignore-end -->
