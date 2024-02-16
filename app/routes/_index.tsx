@@ -4,6 +4,7 @@ import { json } from "@vercel/remix"
 import type { ComponentPropsWithoutRef } from "react"
 
 import { CV } from "~/components/CV"
+import { ContactMe } from "~/components/ContactMe"
 import { Container } from "~/components/Container"
 import type { IconProp } from "~/components/Icon"
 import { Icon } from "~/components/Icon"
@@ -81,6 +82,7 @@ export default function Index() {
           </div>
           <div className="space-y-10 lg:pl-16 xl:pl-24">
             <CV />
+            <ContactMe className="w-full" />
           </div>
         </div>
       </Container>
