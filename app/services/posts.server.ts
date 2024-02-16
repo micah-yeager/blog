@@ -1,9 +1,17 @@
 import fastGlob from "fast-glob"
+import { toString } from "hast-util-to-string"
 import { bundleMDX } from "mdx-bundler"
 import path from "node:path"
+import type { Options as AutolinkOptions } from "rehype-autolink-headings"
+import rehypeAutolinkHeadings from "rehype-autolink-headings"
 import rehypeHighlight from "rehype-highlight"
+import rehypeSlug from "rehype-slug"
 import remarkGfm from "remark-gfm"
 import remarkMdxImages from "remark-mdx-images"
+import type { Options as TocOptions } from "remark-toc"
+import remarkToc from "remark-toc"
+
+import { tw } from "~/utils/templates"
 
 type PostFrontmatter = {
   title: string
@@ -62,12 +70,59 @@ export async function getPost({
     mdxOptions(options) {
       options.remarkPlugins = [
         ...(options.remarkPlugins ?? []),
+        [remarkToc, { maxDepth: 3 } as TocOptions],
         remarkGfm,
         remarkMdxImages,
       ]
       options.rehypePlugins = [
         ...(options.rehypePlugins ?? []),
-        [rehypeHighlight],
+        rehypeHighlight,
+        rehypeSlug,
+        [
+          rehypeAutolinkHeadings,
+          {
+            behavior: "before",
+            group: {
+              type: "element",
+              tagName: "div",
+              properties: {
+                className: tw`group/LinkedHeading relative -ml-12 pl-12`,
+              },
+              children: [],
+            },
+            properties: (element) => ({
+              className: tw`invisible absolute top-1/2 -ml-8 -translate-y-1/2 px-1 text-zinc-500 group-hover/LinkedHeading:visible`,
+              ariaLabel: `Section titled: ${toString(element)}`,
+            }),
+            content: [
+              {
+                type: "element",
+                tagName: "svg",
+                properties: {
+                  xmlns: "http://www.w3.org/2000/svg",
+                  fill: "none",
+                  viewBox: "0 0 24 24",
+                  strokeWidth: 1.5,
+                  stroke: "currentColor",
+                  className: tw`size-5 text-zinc-500`,
+                  ariaHidden: true,
+                },
+                children: [
+                  {
+                    type: "element",
+                    tagName: "path",
+                    properties: {
+                      strokeLinecap: "round",
+                      strokeLinejoin: "round",
+                      d: "M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244",
+                    },
+                    children: [],
+                  },
+                ],
+              },
+            ],
+          } as AutolinkOptions,
+        ],
       ]
       return options
     },

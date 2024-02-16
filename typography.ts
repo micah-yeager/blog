@@ -87,19 +87,23 @@ export default function typographyStyles({ theme }: PluginUtils) {
           color: "var(--tw-prose-headings)",
           fontWeight: theme("fontWeight.semibold"),
         },
-        h2: {
+        ".group\\/LinkedHeading h2, .group\\/LinkedHeading h3": {
+          marginTop: "0 !important",
+          marginBottom: "0 !important",
+        },
+        "h2, .group\\/LinkedHeading:has(h2)": {
           fontSize: theme("fontSize.xl")[0],
           lineHeight: theme("lineHeight.7"),
           marginTop: theme("spacing.20"),
           marginBottom: theme("spacing.4"),
         },
-        h3: {
+        "h3, .group\\/LinkedHeading:has(h3)": {
           fontSize: theme("fontSize.base")[0],
           lineHeight: theme("lineHeight.7"),
           marginTop: theme("spacing.16"),
           marginBottom: theme("spacing.4"),
         },
-        ":is(h2, h3) + *": {
+        ":is(h2, h3, .group\\/LinkedHeading) + *": {
           marginTop: 0,
         },
 
