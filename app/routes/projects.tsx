@@ -1,5 +1,5 @@
 import { faOldRepublic } from "@fortawesome/free-brands-svg-icons"
-import { faAddressCard } from "@fortawesome/free-solid-svg-icons"
+import { faCropSimple } from "@fortawesome/free-solid-svg-icons"
 import { LinkIcon } from "@heroicons/react/24/outline"
 import clsx from "clsx"
 
@@ -32,7 +32,7 @@ const projects: Project[] = [
       label: "github.com",
     },
     logo: {
-      using: faAddressCard,
+      using: faCropSimple,
       className: "bg-orange-500 dark:bg-orange-600",
     },
   },
