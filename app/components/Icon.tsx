@@ -1,5 +1,6 @@
 import type { IconDefinition as FACoreIconDefinition } from "@fortawesome/fontawesome-svg-core"
 import type { IconDefinition as FABrandIconDefinition } from "@fortawesome/free-brands-svg-icons"
+import type { IconDefinition as FARegularIconDefinition } from "@fortawesome/free-regular-svg-icons"
 import type { IconDefinition as FASolidIconDefinition } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import type {
@@ -20,8 +21,10 @@ type HeroIconDefinition = ForwardRefExoticComponent<
 export type IconProp =
   | HeroIconDefinition
   | FACoreIconDefinition
-  | FASolidIconDefinition
   | FABrandIconDefinition
+  | FARegularIconDefinition
+  | FASolidIconDefinition
+
 export type IconProps = Omit<ComponentPropsWithoutRef<"svg">, "as" | "mask"> & {
   as: IconProp
 }
