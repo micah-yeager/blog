@@ -134,7 +134,9 @@ you'd be better off with this:
   height="48"
   width="48"
 />
+<!-- prettier-ignore-start -->
 <hr>
+<!-- prettier-ignore-end -->
 ```
 {/* prettier-ignore-end */}
 
@@ -142,8 +144,9 @@ Notice that the `width` and `height` CSS properties were converted to pixels and
 moved to HTML attributes —
 [Outlook 2007–2023 has only support for the CSS property some tags](https://www.caniemail.com/features/css-height/).
 Additionally, we replaced the self-closing `hr` tag with an "open" one; this
-isn't good HTML 5, but it _is_ valid HTML 4 (good luck getting your IDE to not
-try to automatically add the closing slash).
+isn't good HTML 5, but it _is_ valid HTML 4. The `prettier-ignore` comments are
+required if you use [Prettier](https://prettier.io) for code-formatting, so it
+doesn't automatically self-close the `<hr>` tag.
 
 ### Use `table`s when alignment matters, not `div`s
 
