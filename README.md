@@ -1,41 +1,37 @@
-# Remix
+# Personal site & blog
 
-This directory is a brief example of a [Remix](https://remix.run/docs) site that
-can be deployed to Vercel with zero configuration.
+This project is the source for my personal site and blog, built with the
+following technologies:
 
-To get started, run the Remix cli with this template
-
-```sh
-npx create-remix@latest --template vercel/vercel/examples/remix
-```
-
-## Deploy Your Own
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/vercel/tree/main/examples/remix&template=remix)
-
-_Live Example: https://remix-run-template.vercel.app_
-
-You can also deploy using the [Vercel CLI](https://vercel.com/cli):
-
-```sh
-npm i -g vercel
-vercel
-```
+- [Remix](https://remix.run/)
+- [MDX](https://mdxjs.com/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Vercel](https://vercel.com/)
 
 ## Development
 
-To run your Remix app locally, make sure your project's local dependencies are
-installed:
+To run locally, make sure the project's local dependencies are installed:
 
 ```sh
-npm install
+pnpm install
 ```
 
-Afterwards, start the Remix development server like so:
+Afterwards, start the Remix development server:
 
 ```sh
-npm run dev
+pnpm run dev
 ```
 
-Open up [http://localhost:3000](http://localhost:3000) and you should be ready
-to go!
+Open [http://localhost:3000](http://localhost:3000) and you should be ready to
+go!
+
+## Deploy Your Own
+
+Deployment can be done using the [Vercel CLI](https://vercel.com/cli):
+
+```sh
+pnpm i -g vercel
+vercel
+```
+
+> [!IMPORTANT] Vercel should be installed globally, not locally.
