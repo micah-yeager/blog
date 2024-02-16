@@ -1,5 +1,5 @@
 import { Dialog as HeadlessUIDialog, Transition } from "@headlessui/react"
-import { XMarkIcon } from "@heroicons/react/24/solid"
+import { XMarkIcon } from "@heroicons/react/24/outline"
 import clsx from "clsx"
 import type { ComponentPropsWithoutRef } from "react"
 import { Fragment, useRef } from "react"
