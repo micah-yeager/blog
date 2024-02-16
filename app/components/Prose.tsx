@@ -10,7 +10,7 @@ export function Prose({
       className={clsx(
         className,
         // Tweak vertical margins between lists and list items
-        "prose dark:prose-invert prose-ol:my-7 prose-ul:my-7 prose-li:my-0",
+        "prose dark:prose-invert",
       )}
       {...props}
     />

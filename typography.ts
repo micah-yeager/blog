@@ -78,6 +78,9 @@ export default function typographyStyles({ theme }: PluginUtils) {
           marginTop: theme("spacing.7"),
           marginBottom: theme("spacing.7"),
         },
+        "p:has(+ ol, + ul, + pre)": {
+          marginBottom: theme("spacing.3"),
+        },
 
         // Headings
         "h2, h3": {
@@ -168,10 +171,10 @@ export default function typographyStyles({ theme }: PluginUtils) {
         },
         "ul, ol": {
           paddingLeft: theme("spacing.6"),
+          marginTop: theme("spacing.3"),
+          marginBottom: theme("spacing.3"),
         },
         li: {
-          marginTop: theme("spacing.6"),
-          marginBottom: theme("spacing.6"),
           paddingLeft: theme("spacing[3.5]"),
         },
         "li::marker": {
@@ -204,6 +207,8 @@ export default function typographyStyles({ theme }: PluginUtils) {
           overflowX: "auto",
           border: "1px solid",
           borderColor: "var(--tw-prose-pre-border)",
+          marginTop: theme("spacing.3"),
+          marginBottom: theme("spacing.3"),
         },
         "pre code": {
           display: "inline",
