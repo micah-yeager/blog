@@ -111,7 +111,7 @@ export default function About() {
           <SocialLink href={LINKEDIN_URL} icon={faLinkedin}>
             Follow on LinkedIn
           </SocialLink>
-          <ContactMe className="w-full" />
+          <ContactMe className="lg:w-full" />
         </div>
       </div>
     </Container>
