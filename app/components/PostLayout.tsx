@@ -49,10 +49,12 @@ export function PostLayout({
           <div className="lg:absolute lg:left-12 lg:-mt-1 lg:mb-0 lg:h-full xl:-top-1.5 xl:left-0 xl:mt-0">
             <div className="gap-4 space-y-2 lg:sticky lg:top-24">
               <Button
+                to="/posts"
+                prefetch="intent"
                 variant="secondary"
                 shape="circle"
                 size="lg"
-                className="group/BackButton mb-8 shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:ring-0 dark:ring-white/10 dark:hover:border-zinc-700 dark:hover:ring-white/20 lg:mb-0"
+                className="group/BackButton mb-8 inline-block shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:ring-0 dark:ring-white/10 dark:hover:border-zinc-700 dark:hover:ring-white/20 lg:mb-0"
                 aria-label="Go back to all posts"
               >
                 <Button.Icon
