@@ -50,7 +50,7 @@ export function CV() {
       <Button
         to="/documents/cv.pdf"
         variant="secondary"
-        className="group mt-6 w-full"
+        className="group mt-6 block w-full"
         download="CV - Micah Yeager.pdf"
         // reload required to force download
         reloadDocument

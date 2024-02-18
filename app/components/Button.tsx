@@ -55,7 +55,7 @@ export function Button<T extends ButtonShapeOption>({
   ...props
 }: ButtonProps<T>) {
   className = clsx(
-    "inline-flex items-center justify-center outline-offset-2 backdrop-blur transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 active:transition-none",
+    "outline-offset-2 backdrop-blur transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 active:transition-none",
     variantStyles[variant],
     shapeSizeStyles[shape][size],
     className,
@@ -71,7 +71,7 @@ export function Button<T extends ButtonShapeOption>({
         <button
           {...props}
           className={clsx(
-            "relative disabled:cursor-default disabled:bg-zinc-100 disabled:opacity-75 dark:disabled:bg-zinc-900",
+            "disabled:cursor-default disabled:bg-zinc-100 disabled:opacity-75 dark:disabled:bg-zinc-900",
             className,
           )}
           disabled={props.disabled || disableForSubmit}
@@ -79,17 +79,21 @@ export function Button<T extends ButtonShapeOption>({
           {/* Make the children invisible rather than replacing with the spinner
           to reduce layout shift. */}
           {disableForSubmit ? (
-            <span className="invisible">{children}</span>
+            <>
+              <span className="invisible">{children}</span>
+              <LoadingIndicator variant="subtle" className="h-5 w-5" />
+            </>
           ) : (
-            children
-          )}
-          {disableForSubmit && (
-            <LoadingIndicator variant="subtle" className="absolute h-5 w-5" />
+            <span className="flex w-full items-center justify-center gap-x-2">
+              {children}
+            </span>
           )}
         </button>
       ) : (
         <Link {...props} {...{ className }}>
-          {children}
+          <span className="inline-flex w-full items-center justify-center gap-x-2">
+            {children}
+          </span>
         </Link>
       )}
     </ButtonContext.Provider>
@@ -120,7 +124,7 @@ Button.Icon = function ButtonIcon({
     <Icon
       {...rest}
       className={clsx(
-        "flex-shrink-0",
+        "transition",
         sizeOverride
           ? buttonIconSizes[sizeOverride]
           : size in buttonIconSizes

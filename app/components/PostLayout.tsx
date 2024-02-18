@@ -1,5 +1,6 @@
-import { ArrowLeftIcon } from "@heroicons/react/24/outline"
+import { ArrowLeftIcon, ChevronDoubleUpIcon } from "@heroicons/react/24/outline"
 import type { Jsonify } from "@remix-run/server-runtime/dist/jsonify"
+import clsx from "clsx"
 import { DateTime } from "luxon"
 import type { ReactNode } from "react"
 
@@ -7,6 +8,29 @@ import { Button } from "~/components/Button"
 import { Container } from "~/components/Container"
 import { Prose } from "~/components/Prose"
 import type { Post } from "~/services/posts.server"
+
+function ScrollToTop({ className }: { className?: string }) {
+  return (
+    <Button
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      variant="secondary"
+      shape="circle"
+      size="lg"
+      className={clsx(
+        "group/ToTopButton shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:ring-0 dark:ring-white/10 dark:hover:border-zinc-700 dark:hover:ring-white/20 lg:relative lg:mb-0",
+        className,
+      )}
+      aria-label="Scroll to top"
+    >
+      <Button.Icon
+        as={ChevronDoubleUpIcon}
+        sizeOverride="sm"
+        className="stroke-zinc-500 group-hover/ToTopButton:stroke-zinc-700 dark:stroke-zinc-500 dark:group-hover/ToTopButton:stroke-zinc-400"
+        aria-hidden="true"
+      />
+    </Button>
+  )
+}
 
 export function PostLayout({
   post,
@@ -22,22 +46,25 @@ export function PostLayout({
       <div className="xl:relative">
         <div className="mx-auto max-w-2xl">
           {/* back button */}
-          <Button
-            to="/posts"
-            prefetch="intent"
-            variant="secondary"
-            shape="circle"
-            size="lg"
-            className="group/BackButton mb-8 shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 transition dark:border dark:border-zinc-700/50 dark:ring-0 dark:ring-white/10 dark:hover:border-zinc-700 dark:hover:ring-white/20 lg:absolute lg:-left-5 lg:-mt-2 lg:mb-0 xl:-top-1.5 xl:left-0 xl:mt-0"
-            aria-label="Go back to all posts"
-          >
-            <Button.Icon
-              as={ArrowLeftIcon}
-              sizeOverride="sm"
-              className="h-4 w-4 stroke-zinc-500 transition group-hover/BackButton:stroke-zinc-700 dark:stroke-zinc-500 dark:group-hover/BackButton:stroke-zinc-400"
-              aria-hidden="true"
-            />
-          </Button>
+          <div className="lg:absolute lg:left-12 lg:-mt-1 lg:mb-0 lg:h-full xl:-top-1.5 xl:left-0 xl:mt-0">
+            <div className="gap-4 space-y-2 lg:sticky lg:top-24">
+              <Button
+                variant="secondary"
+                shape="circle"
+                size="lg"
+                className="group/BackButton mb-8 shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:ring-0 dark:ring-white/10 dark:hover:border-zinc-700 dark:hover:ring-white/20 lg:mb-0"
+                aria-label="Go back to all posts"
+              >
+                <Button.Icon
+                  as={ArrowLeftIcon}
+                  sizeOverride="sm"
+                  className="stroke-zinc-500 group-hover/BackButton:stroke-zinc-700 dark:stroke-zinc-500 dark:group-hover/BackButton:stroke-zinc-400"
+                  aria-hidden="true"
+                />
+              </Button>
+              <ScrollToTop className="hidden lg:block" />
+            </div>
+          </div>
 
           {/* content */}
           <article>
@@ -65,6 +92,7 @@ export function PostLayout({
             </Prose>
           </article>
         </div>
+        <ScrollToTop className="sticky bottom-4 ml-auto mt-8 block lg:hidden" />
       </div>
     </Container>
   )
