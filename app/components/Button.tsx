@@ -11,7 +11,7 @@ import { tw } from "~/utils/templates"
 
 const variantStyles = {
   primary: tw`bg-primary-800 font-semibold text-primary-100 hover:bg-primary-700 focus-visible:outline-primary-800 active:bg-primary-800 active:text-primary-100/70 dark:bg-primary-700 dark:hover:bg-primary-600 dark:focus-visible:outline-primary-700 dark:active:bg-primary-700 dark:active:text-primary-100/70`,
-  secondary: tw`bg-zinc-100 font-medium text-zinc-900 hover:bg-zinc-100 focus-visible:outline-zinc-100 active:bg-zinc-100 active:text-zinc-900/60 dark:bg-zinc-800/75 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-zinc-50 dark:focus-visible:outline-zinc-800/75 dark:active:bg-zinc-800/50 dark:active:text-zinc-50/70`,
+  secondary: tw`bg-zinc-100 font-medium text-zinc-900 hover:bg-zinc-100 focus-visible:outline-zinc-100 active:bg-zinc-100 active:text-zinc-900/60 dark:bg-zinc-800/90 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-zinc-50 dark:focus-visible:outline-zinc-800/75 dark:active:bg-zinc-800/75 dark:active:text-zinc-50/70`,
 }
 const shapeSizeStyles: Record<string, Record<string, string>> = {
   rectangle: {
@@ -55,7 +55,7 @@ export function Button<T extends ButtonShapeOption>({
   ...props
 }: ButtonProps<T>) {
   className = clsx(
-    "inline-flex items-center justify-center outline-offset-2 transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 active:transition-none",
+    "inline-flex items-center justify-center outline-offset-2 backdrop-blur transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 active:transition-none",
     variantStyles[variant],
     shapeSizeStyles[shape][size],
     className,
