@@ -1,7 +1,7 @@
+import type { ComponentPropsWithoutRef } from "react"
 import { faSpinner } from "@fortawesome/free-solid-svg-icons"
 import { EllipsisHorizontalIcon } from "@heroicons/react/20/solid"
 import clsx from "clsx"
-import type { ComponentPropsWithoutRef } from "react"
 
 import type { IconProp } from "~/components/Icon"
 import { Icon } from "~/components/Icon"
@@ -13,12 +13,12 @@ type VariantMap = {
 const variants: Record<string, VariantMap> = {
   spinner: {
     icon: faSpinner,
-    className: "animate-spin",
+    className: "animate-spin"
   },
   subtle: {
     icon: EllipsisHorizontalIcon,
-    className: "animate-pulse",
-  },
+    className: "animate-pulse"
+  }
 }
 
 type LoadingIndicatorProps = Omit<
@@ -60,7 +60,7 @@ export function LoadingIndicator({
         className={clsx(
           "hidden motion-safe:block",
           variants["spinner"].className,
-          className,
+          className
         )}
       />
       <Icon
@@ -69,7 +69,7 @@ export function LoadingIndicator({
         className={clsx(
           "hidden motion-reduce:block",
           variants["spinner"].className,
-          className,
+          className
         )}
       />
     </>

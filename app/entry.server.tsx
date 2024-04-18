@@ -1,7 +1,8 @@
+import { PassThrough } from "node:stream"
+
 import type { AppLoadContext, EntryContext } from "@remix-run/node"
 import { createReadableStreamFromReadable } from "@remix-run/node"
 import { RemixServer } from "@remix-run/react"
-import { PassThrough } from "node:stream"
 import { renderToPipeableStream } from "react-dom/server"
 import { preloadRouteAssets } from "remix-utils/preload-route-assets"
 
@@ -12,7 +13,7 @@ export default function handleRequest(
   responseStatusCode: number,
   responseHeaders: Headers,
   remixContext: EntryContext,
-  loadContext: AppLoadContext,
+  loadContext: AppLoadContext
 ) {
   return new Promise((resolve, reject) => {
     let shellRendered = false
@@ -34,8 +35,8 @@ export default function handleRequest(
           resolve(
             new Response(stream, {
               headers: responseHeaders,
-              status: responseStatusCode,
-            }),
+              status: responseStatusCode
+            })
           )
 
           pipe(body)
@@ -51,8 +52,8 @@ export default function handleRequest(
           if (shellRendered) {
             console.error(error)
           }
-        },
-      },
+        }
+      }
     )
 
     setTimeout(abort, ABORT_DELAY)

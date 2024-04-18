@@ -1,6 +1,7 @@
+import crypto from "node:crypto"
+
 import type { TypedResponse } from "@vercel/remix"
 import { json } from "@vercel/remix"
-import crypto from "node:crypto"
 import { getClientIPAddress } from "remix-utils/get-client-ip-address"
 
 import type { ActionResponse } from "~/utils/response"
@@ -36,12 +37,12 @@ type VerifyTurnstileArgs = {
  *
  * @param request The incoming request.
  * @param formData The form data to parse. If not provided, it will be parsed
- * from the request.
+ *   from the request.
  * @returns The idempotency key for the verification request.
  */
 export async function verifyTurnstile({
   request,
-  formData,
+  formData
 }: VerifyTurnstileArgs) {
   // If formData is not provided, parse it from the request.
   if (!formData) {
@@ -56,7 +57,7 @@ export async function verifyTurnstile({
   if (!cfTurnstileResponse || !connectingIp) {
     throw json<ActionResponse>(
       { formError: "Missing Turnstile token." },
-      { status: 400 },
+      { status: 400 }
     )
   }
 
@@ -71,12 +72,12 @@ export async function verifyTurnstile({
 
   const verificationResult = await fetch(VERIFICATION_ENDPOINT, {
     body: verificationFormData,
-    method: "POST",
+    method: "POST"
   })
   if (!verificationResult.ok) {
     throw json<ActionResponse>(
       { formError: "Error verifying Turnstile response." },
-      { status: 400 },
+      { status: 400 }
     )
   }
 

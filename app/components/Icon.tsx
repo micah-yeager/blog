@@ -2,14 +2,14 @@ import type { IconDefinition as FACoreIconDefinition } from "@fortawesome/fontaw
 import type { IconDefinition as FABrandIconDefinition } from "@fortawesome/free-brands-svg-icons"
 import type { IconDefinition as FARegularIconDefinition } from "@fortawesome/free-regular-svg-icons"
 import type { IconDefinition as FASolidIconDefinition } from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import type {
   ComponentPropsWithoutRef,
   ForwardRefExoticComponent,
   PropsWithoutRef,
   RefAttributes,
-  SVGProps,
+  SVGProps
 } from "react"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 type HeroIconDefinition = ForwardRefExoticComponent<
   PropsWithoutRef<SVGProps<SVGSVGElement>> & {

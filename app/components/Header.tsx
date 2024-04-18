@@ -1,14 +1,14 @@
+import type { LinkProps } from "@remix-run/react"
+import type { ComponentPropsWithoutRef, CSSProperties, ElementRef } from "react"
 import { Popover, Transition } from "@headlessui/react"
 import {
   ChevronDownIcon,
   MoonIcon,
   SunIcon,
-  XMarkIcon,
+  XMarkIcon
 } from "@heroicons/react/24/outline"
-import type { LinkProps } from "@remix-run/react"
 import { Link, NavLink, useLocation } from "@remix-run/react"
 import clsx from "clsx"
-import type { CSSProperties, ComponentPropsWithoutRef, ElementRef } from "react"
 import { Fragment, useEffect, useRef, useState } from "react"
 
 import { Container } from "~/components/Container"
@@ -119,7 +119,7 @@ function NavItem({
             className,
             isActive || isTransitioning || isPending
               ? "text-primary-500 dark:text-primary-400"
-              : "hover:text-primary-500 dark:hover:text-primary-400",
+              : "hover:text-primary-500 dark:hover:text-primary-400"
           )
         }
       >
@@ -213,7 +213,7 @@ function AvatarContainer({
     <div
       className={clsx(
         className,
-        "h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10",
+        "h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10"
       )}
       {...props}
     />
@@ -240,7 +240,7 @@ function Avatar({
         sizes={large ? "4rem" : "2.25rem"}
         className={clsx(
           "rounded-full bg-zinc-100 object-cover dark:bg-zinc-800",
-          large ? "h-16 w-16" : "h-9 w-9",
+          large ? "h-16 w-16" : "h-9 w-9"
         )}
       />
     </Link>
@@ -278,7 +278,7 @@ export function Header() {
       let scrollY = clamp(
         window.scrollY,
         0,
-        document.body.scrollHeight - window.innerHeight,
+        document.body.scrollHeight - window.innerHeight
       )
 
       // start as a sticky header
@@ -333,7 +333,7 @@ export function Header() {
 
       setProperty(
         "--avatar-image-transform",
-        `translate3d(${x}rem, 0, 0) scale(${scale})`,
+        `translate3d(${x}rem, 0, 0) scale(${scale})`
       )
 
       let borderScale = 1 / (toScale / scale)
@@ -366,7 +366,7 @@ export function Header() {
         className="pointer-events-none relative z-10 flex flex-none flex-col"
         style={{
           height: "var(--header-height)",
-          marginBottom: "var(--header-mb)",
+          marginBottom: "var(--header-mb)"
         }}
       >
         {/* avatar */}
@@ -379,14 +379,14 @@ export function Header() {
             <Container
               className="top-0 order-last -mb-3 pt-3"
               style={{
-                position: "var(--header-position)" as CSSProperties["position"],
+                position: "var(--header-position)" as CSSProperties["position"]
               }}
             >
               <div
                 className="top-[var(--avatar-top,theme(spacing.3))] w-full"
                 style={{
                   position:
-                    "var(--header-inner-position)" as CSSProperties["position"],
+                    "var(--header-inner-position)" as CSSProperties["position"]
                 }}
               >
                 <div className="relative">
@@ -394,7 +394,7 @@ export function Header() {
                     className="absolute left-0 top-3 origin-left transition-opacity"
                     style={{
                       opacity: "var(--avatar-border-opacity, 0)",
-                      transform: "var(--avatar-border-transform)",
+                      transform: "var(--avatar-border-transform)"
                     }}
                   />
                   <Avatar
@@ -413,14 +413,14 @@ export function Header() {
           ref={headerRef}
           className="top-0 z-10 h-16 pt-6"
           style={{
-            position: "var(--header-position)" as CSSProperties["position"],
+            position: "var(--header-position)" as CSSProperties["position"]
           }}
         >
           <Container
             className="top-[var(--header-top,theme(spacing.6))] w-full"
             style={{
               position:
-                "var(--header-inner-position)" as CSSProperties["position"],
+                "var(--header-inner-position)" as CSSProperties["position"]
             }}
           >
             <div className="relative flex gap-4">

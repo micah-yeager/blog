@@ -1,5 +1,5 @@
-import clsx from "clsx"
 import type { ComponentPropsWithoutRef } from "react"
+import clsx from "clsx"
 
 export function Prose({
   className,
@@ -10,7 +10,7 @@ export function Prose({
       className={clsx(
         className,
         // Tweak vertical margins between lists and list items
-        "prose dark:prose-invert",
+        "prose dark:prose-invert"
       )}
       {...props}
     />

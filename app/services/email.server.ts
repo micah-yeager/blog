@@ -1,4 +1,5 @@
 // Cast to string since verification below will ensure the value exists.
+
 import { ServerClient } from "postmark"
 
 const EMAIL_FROM = process.env.EMAIL_FROM as string

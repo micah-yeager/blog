@@ -1,12 +1,13 @@
+import type { ComponentPropsWithoutRef } from "react"
 import { EnvelopeIcon as EnvelopeOutlineIcon } from "@heroicons/react/24/outline"
 import {
   ChatBubbleLeftEllipsisIcon,
-  EnvelopeIcon as EnvelopeSolidIcon,
+  EnvelopeIcon as EnvelopeSolidIcon
 } from "@heroicons/react/24/solid"
 import { useFetcher } from "@remix-run/react"
-import type { ComponentPropsWithoutRef } from "react"
 import { useState } from "react"
 
+import type { ContactMeResponse } from "~/routes/contact"
 import { Alert } from "~/components/Alert"
 import { Button } from "~/components/Button"
 import { Captcha } from "~/components/Captcha"
@@ -14,7 +15,6 @@ import { Dialog } from "~/components/Dialog"
 import { Icon } from "~/components/Icon"
 import { TextArea } from "~/components/inputs/TextArea"
 import { TextInput } from "~/components/inputs/TextInput"
-import type { ContactMeResponse } from "~/routes/contact"
 
 export type ContactMeFields = {
   subject: string
@@ -26,7 +26,7 @@ export function ContactMe(
   props: Omit<
     ComponentPropsWithoutRef<"button">,
     "type" | "children" | "onClick"
-  >,
+  >
 ) {
   const [open, setOpen] = useState(false)
   const fetcher = useFetcher<ContactMeResponse>()

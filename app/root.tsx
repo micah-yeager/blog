@@ -1,3 +1,9 @@
+import type {
+  HeadersFunction,
+  LinksFunction,
+  MetaFunction
+} from "@vercel/remix"
+import type { PropsWithChildren } from "react"
 import {
   Links,
   LiveReload,
@@ -5,17 +11,11 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useLoaderData,
+  useLoaderData
 } from "@remix-run/react"
 import { Analytics } from "@vercel/analytics/react"
 import { json } from "@vercel/remix"
-import type {
-  HeadersFunction,
-  LinksFunction,
-  MetaFunction,
-} from "@vercel/remix"
 import { SpeedInsights } from "@vercel/speed-insights/remix"
-import type { PropsWithChildren } from "react"
 
 import type { Env } from "~/browser-globals"
 import { AppError } from "~/components/AppError"
@@ -29,7 +29,7 @@ export const links: LinksFunction = () => [
   { rel: "preconnect", href: "https://rsms.me/" },
   { rel: "stylesheet", href: "https://rsms.me/inter/inter.css" },
   { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
-  { rel: "icon", type: "image/png", href: "/favicon.png" },
+  { rel: "icon", type: "image/png", href: "/favicon.png" }
 ]
 
 export const headers: HeadersFunction = () => {
@@ -39,22 +39,22 @@ export const headers: HeadersFunction = () => {
   const cdnMaxAge = 60 * 60 * 24 * 30 // 30 days
   const revalidationPeriod = 60 * 5 // 5 minutes
   return {
-    "Cache-Control": `max-age=${clientMaxAge}, s-maxage=${cdnMaxAge}, stale-while-revalidate=${revalidationPeriod}`,
+    "Cache-Control": `max-age=${clientMaxAge}, s-maxage=${cdnMaxAge}, stale-while-revalidate=${revalidationPeriod}`
   }
 }
 
 export const meta: MetaFunction = () => {
   return [
     { title: "Micah Yeager" },
-    { description: "Solutions architect, developer, and cat enthusiast." },
+    { description: "Solutions architect, developer, and cat enthusiast." }
   ]
 }
 
 export async function loader() {
   return json({
     ENV: {
-      TURNSTILE_SITE_KEY,
-    } as Env,
+      TURNSTILE_SITE_KEY
+    } as Env
   })
 }
 

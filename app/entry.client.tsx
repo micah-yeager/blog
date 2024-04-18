@@ -1,5 +1,5 @@
 import { RemixBrowser } from "@remix-run/react"
-import { StrictMode, startTransition } from "react"
+import { startTransition, StrictMode } from "react"
 import { hydrateRoot } from "react-dom/client"
 import { cacheAssets } from "remix-utils/cache-assets"
 
@@ -10,6 +10,6 @@ startTransition(() => {
     document,
     <StrictMode>
       <RemixBrowser />
-    </StrictMode>,
+    </StrictMode>
   )
 })

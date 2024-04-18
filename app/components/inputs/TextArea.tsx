@@ -1,6 +1,6 @@
+import type { ComponentPropsWithoutRef } from "react"
 import { ExclamationCircleIcon } from "@heroicons/react/24/solid"
 import clsx from "clsx"
-import type { ComponentPropsWithoutRef } from "react"
 import { forwardRef } from "react"
 
 import { Icon } from "~/components/Icon"
@@ -29,7 +29,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
       className,
       ...rest
     },
-    forwardedRef,
+    forwardedRef
   ) {
     // shortcut for showing the `optional` hint
     const showOptionalHint = !hideOptionalHint && !required
@@ -45,7 +45,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
                   ? showOptionalHint
                     ? "flex justify-between"
                     : "inline-block"
-                  : "flex justify-end",
+                  : "flex justify-end"
               )}
             >
               {/* label */}
@@ -66,7 +66,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
                 "block min-h-[2.25rem] w-full rounded-md border-0 py-1.5 text-zinc-900 shadow-sm ring-1 ring-inset ring-zinc-300 placeholder:text-zinc-400 focus:ring-2 focus:ring-inset focus:ring-primary-500 disabled:cursor-not-allowed disabled:bg-zinc-100 disabled:text-zinc-500 disabled:ring-zinc-200 dark:bg-black dark:text-zinc-100 dark:ring-zinc-700 focus:dark:ring-primary-500 dark:disabled:bg-zinc-900 dark:disabled:ring-zinc-800 sm:text-sm sm:leading-6",
                 error
                   ? "pr-10 ring-red-500"
-                  : "ring-zinc-300 dark:ring-zinc-700",
+                  : "ring-zinc-300 dark:ring-zinc-700"
               )}
               aria-invalid={Boolean(error)}
             />
@@ -98,5 +98,5 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
         )}
       </div>
     )
-  },
+  }
 )

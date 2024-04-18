@@ -1,13 +1,13 @@
-import { ArrowLeftIcon, ChevronDoubleUpIcon } from "@heroicons/react/24/outline"
 import type { Jsonify } from "@remix-run/server-runtime/dist/jsonify"
+import type { ReactNode } from "react"
+import { ArrowLeftIcon, ChevronDoubleUpIcon } from "@heroicons/react/24/outline"
 import clsx from "clsx"
 import { DateTime } from "luxon"
-import type { ReactNode } from "react"
 
+import type { Post } from "~/services/posts.server"
 import { Button } from "~/components/Button"
 import { Container } from "~/components/Container"
 import { Prose } from "~/components/Prose"
-import type { Post } from "~/services/posts.server"
 
 function ScrollToTop({ className }: { className?: string }) {
   return (
@@ -18,7 +18,7 @@ function ScrollToTop({ className }: { className?: string }) {
       size="lg"
       className={clsx(
         "group/ToTopButton shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:ring-0 dark:ring-white/10 dark:hover:border-zinc-700 dark:hover:ring-white/20 lg:relative lg:mb-0",
-        className,
+        className
       )}
       aria-label="Scroll to top"
     >
@@ -34,7 +34,7 @@ function ScrollToTop({ className }: { className?: string }) {
 
 export function PostLayout({
   post,
-  children,
+  children
 }: {
   post: Jsonify<Post>
   children: ReactNode

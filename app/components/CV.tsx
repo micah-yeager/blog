@@ -15,16 +15,16 @@ export function CV() {
       start: "2017",
       end: {
         label: "Present",
-        dateTime: new Date().getFullYear().toString(),
-      },
+        dateTime: new Date().getFullYear().toString()
+      }
     },
     {
       company: "Life Pacific University - Virginia",
       title: "IT & Media Management",
       logo: "/images/logos/life-pacific-university.svg",
       start: "2014",
-      end: "2017",
-    },
+      end: "2017"
+    }
   ]
 
   return (

@@ -8,8 +8,8 @@ export async function loader() {
     "Not all who wander are lost, but the page you’re looking for is.",
     {
       status: 404,
-      statusText: "Not found",
-    },
+      statusText: "Not found"
+    }
   )
 }
 

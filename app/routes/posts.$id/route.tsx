@@ -1,11 +1,11 @@
+import type { LoaderFunctionArgs, TypedResponse } from "@vercel/remix"
 import { useLoaderData } from "@remix-run/react"
 import { json } from "@vercel/remix"
-import type { LoaderFunctionArgs, TypedResponse } from "@vercel/remix"
 import { getMDXComponent } from "mdx-bundler/client/index.js"
 import { useMemo } from "react"
 
-import { PostLayout } from "~/components/PostLayout"
 import type { Post } from "~/services/posts.server"
+import { PostLayout } from "~/components/PostLayout"
 import { getPost } from "~/services/posts.server"
 import { mergeMeta } from "~/utils/meta"
 
@@ -30,7 +30,7 @@ export async function loader({ params }: LoaderFunctionArgs): Promise<
   if (!postId) {
     throw new Response(null, {
       status: 404,
-      statusText: "Not Found",
+      statusText: "Not Found"
     })
   }
 
@@ -52,8 +52,8 @@ export async function loader({ params }: LoaderFunctionArgs): Promise<
         "Not all who wander are lost, but the page you’re looking for is.",
         {
           status: 404,
-          statusText: "Not found",
-        },
+          statusText: "Not found"
+        }
       )
     }
 
@@ -61,7 +61,7 @@ export async function loader({ params }: LoaderFunctionArgs): Promise<
     console.error(error)
     throw new Response(null, {
       status: 500,
-      statusText: "Server error",
+      statusText: "Server error"
     })
   }
 

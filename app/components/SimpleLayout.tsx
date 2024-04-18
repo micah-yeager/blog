@@ -5,7 +5,7 @@ import { Container } from "~/components/Container"
 export function SimpleLayout({
   title,
   intro,
-  children,
+  children
 }: PropsWithChildren<{
   title: string
   intro: string

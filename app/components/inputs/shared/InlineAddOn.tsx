@@ -1,5 +1,6 @@
+import type { ComponentPropsWithoutRef } from "react"
 import clsx from "clsx"
-import { type ComponentPropsWithoutRef, forwardRef } from "react"
+import { forwardRef } from "react"
 
 type InlineAddOnProps = ComponentPropsWithoutRef<"div"> & {
   disabled?: boolean
@@ -7,7 +8,7 @@ type InlineAddOnProps = ComponentPropsWithoutRef<"div"> & {
 export const InlineAddOn = forwardRef<HTMLDivElement, InlineAddOnProps>(
   function InlineAddOn(
     { disabled, className, children, ...rest },
-    forwardedRef,
+    forwardedRef
   ) {
     return (
       <div
@@ -16,11 +17,11 @@ export const InlineAddOn = forwardRef<HTMLDivElement, InlineAddOnProps>(
         className={clsx(
           "pointer-events-none absolute inset-y-0 z-20 flex items-center",
           disabled ? "text-zinc-500" : "text-zinc-400 dark:text-zinc-600",
-          className,
+          className
         )}
       >
         {children}
       </div>
     )
-  },
+  }
 )

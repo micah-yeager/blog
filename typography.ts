@@ -22,8 +22,8 @@ export default function typographyStyles({ theme }: PluginUtils) {
         "--tw-prose-pre-bg": "var(--tw-prose-invert-pre-bg)",
         "--tw-prose-pre-border": "var(--tw-prose-invert-pre-border)",
         "--tw-prose-th-borders": "var(--tw-prose-invert-th-borders)",
-        "--tw-prose-td-borders": "var(--tw-prose-invert-td-borders)",
-      },
+        "--tw-prose-td-borders": "var(--tw-prose-invert-td-borders)"
+      }
     },
     DEFAULT: {
       css: {
@@ -72,44 +72,44 @@ export default function typographyStyles({ theme }: PluginUtils) {
         lineHeight: theme("lineHeight.7"),
         "> *": {
           marginTop: theme("spacing.10"),
-          marginBottom: theme("spacing.10"),
+          marginBottom: theme("spacing.10")
         },
         p: {
           marginTop: theme("spacing.7"),
-          marginBottom: theme("spacing.7"),
+          marginBottom: theme("spacing.7")
         },
         "p:has(+ ol, + ul, + pre)": {
-          marginBottom: theme("spacing.3"),
+          marginBottom: theme("spacing.3")
         },
 
         // Headings
         "h2, h3": {
           color: "var(--tw-prose-headings)",
-          fontWeight: theme("fontWeight.semibold"),
+          fontWeight: theme("fontWeight.semibold")
         },
         ".group\\/LinkedHeading h2, .group\\/LinkedHeading h3": {
           marginTop: "0 !important",
-          marginBottom: "0 !important",
+          marginBottom: "0 !important"
         },
         "h2, .group\\/LinkedHeading:has(h2)": {
           fontSize: theme("fontSize.xl")[0],
           lineHeight: theme("lineHeight.7"),
           marginTop: theme("spacing.20"),
-          marginBottom: theme("spacing.4"),
+          marginBottom: theme("spacing.4")
         },
         "h3, .group\\/LinkedHeading:has(h3)": {
           fontSize: theme("fontSize.base")[0],
           lineHeight: theme("lineHeight.7"),
           marginTop: theme("spacing.16"),
-          marginBottom: theme("spacing.4"),
+          marginBottom: theme("spacing.4")
         },
         ":is(h2, h3, .group\\/LinkedHeading) + *": {
-          marginTop: 0,
+          marginTop: 0
         },
 
         // Images
         img: {
-          borderRadius: theme("borderRadius.3xl"),
+          borderRadius: theme("borderRadius.3xl")
         },
 
         // Inline elements
@@ -120,15 +120,15 @@ export default function typographyStyles({ theme }: PluginUtils) {
           textDecorationColor: "var(--tw-prose-underline)",
           transitionProperty: "color, text-decoration-color",
           transitionDuration: theme("transitionDuration.150"),
-          transitionTimingFunction: theme("transitionTimingFunction.in-out"),
+          transitionTimingFunction: theme("transitionTimingFunction.in-out")
         },
         "a:hover": {
           color: "var(--tw-prose-links-hover)",
-          textDecorationColor: "var(--tw-prose-underline-hover)",
+          textDecorationColor: "var(--tw-prose-underline-hover)"
         },
         strong: {
           color: "var(--tw-prose-bold)",
-          fontWeight: theme("fontWeight.semibold"),
+          fontWeight: theme("fontWeight.semibold")
         },
         code: {
           display: "inline-block",
@@ -138,13 +138,13 @@ export default function typographyStyles({ theme }: PluginUtils) {
           backgroundColor: "var(--tw-prose-code-bg)",
           borderRadius: theme("borderRadius.lg"),
           paddingLeft: theme("spacing.1"),
-          paddingRight: theme("spacing.1"),
+          paddingRight: theme("spacing.1")
         },
         "a code": {
-          color: "inherit",
+          color: "inherit"
         },
         ":is(h2, h3) code": {
-          fontWeight: theme("fontWeight.bold"),
+          fontWeight: theme("fontWeight.bold")
         },
 
         // Quotes
@@ -152,7 +152,7 @@ export default function typographyStyles({ theme }: PluginUtils) {
           paddingLeft: theme("spacing.6"),
           borderLeftWidth: theme("borderWidth.2"),
           borderLeftColor: "var(--tw-prose-quote-borders)",
-          fontStyle: "italic",
+          fontStyle: "italic"
         },
 
         // Figures
@@ -160,44 +160,44 @@ export default function typographyStyles({ theme }: PluginUtils) {
           color: "var(--tw-prose-captions)",
           fontSize: theme("fontSize.sm")[0],
           lineHeight: theme("lineHeight.6"),
-          marginTop: theme("spacing.3"),
+          marginTop: theme("spacing.3")
         },
         "figcaption > p": {
-          margin: 0,
+          margin: 0
         },
 
         // Lists
         ul: {
-          listStyleType: "disc",
+          listStyleType: "disc"
         },
         ol: {
-          listStyleType: "decimal",
+          listStyleType: "decimal"
         },
         "ul, ol": {
           paddingLeft: theme("spacing.6"),
           marginTop: theme("spacing.3"),
-          marginBottom: theme("spacing.3"),
+          marginBottom: theme("spacing.3")
         },
         li: {
-          paddingLeft: theme("spacing[3.5]"),
+          paddingLeft: theme("spacing[3.5]")
         },
         "li::marker": {
           fontSize: theme("fontSize.sm")[0],
-          fontWeight: theme("fontWeight.semibold"),
+          fontWeight: theme("fontWeight.semibold")
         },
         "ol > li::marker": {
-          color: "var(--tw-prose-counters)",
+          color: "var(--tw-prose-counters)"
         },
         "ul > li::marker": {
-          color: "var(--tw-prose-bullets)",
+          color: "var(--tw-prose-bullets)"
         },
         "li :is(ol, ul)": {
           marginTop: theme("spacing.4"),
-          marginBottom: theme("spacing.4"),
+          marginBottom: theme("spacing.4")
         },
         "li :is(li, p)": {
           marginTop: theme("spacing.3"),
-          marginBottom: theme("spacing.3"),
+          marginBottom: theme("spacing.3")
         },
 
         // Code blocks
@@ -212,7 +212,7 @@ export default function typographyStyles({ theme }: PluginUtils) {
           border: "1px solid",
           borderColor: "var(--tw-prose-pre-border)",
           marginTop: theme("spacing.3"),
-          marginBottom: theme("spacing.3"),
+          marginBottom: theme("spacing.3")
         },
         "pre code": {
           display: "inline",
@@ -221,7 +221,7 @@ export default function typographyStyles({ theme }: PluginUtils) {
           fontWeight: "inherit",
           backgroundColor: "transparent",
           borderRadius: 0,
-          padding: 0,
+          padding: 0
         },
 
         // Horizontal rules
@@ -232,8 +232,8 @@ export default function typographyStyles({ theme }: PluginUtils) {
           borderColor: "var(--tw-prose-hr)",
           "@screen lg": {
             marginLeft: `calc(${theme("spacing.12")} * -1)`,
-            marginRight: `calc(${theme("spacing.12")} * -1)`,
-          },
+            marginRight: `calc(${theme("spacing.12")} * -1)`
+          }
         },
 
         // Tables
@@ -241,52 +241,52 @@ export default function typographyStyles({ theme }: PluginUtils) {
           width: "100%",
           tableLayout: "auto",
           textAlign: "left",
-          fontSize: theme("fontSize.sm")[0],
+          fontSize: theme("fontSize.sm")[0]
         },
         thead: {
           borderBottomWidth: "1px",
-          borderBottomColor: "var(--tw-prose-th-borders)",
+          borderBottomColor: "var(--tw-prose-th-borders)"
         },
         "thead th": {
           color: "var(--tw-prose-headings)",
           fontWeight: theme("fontWeight.semibold"),
           verticalAlign: "bottom",
-          paddingBottom: theme("spacing.2"),
+          paddingBottom: theme("spacing.2")
         },
         "thead th:not(:first-child)": {
-          paddingLeft: theme("spacing.2"),
+          paddingLeft: theme("spacing.2")
         },
         "thead th:not(:last-child)": {
-          paddingRight: theme("spacing.2"),
+          paddingRight: theme("spacing.2")
         },
         "tbody tr": {
           borderBottomWidth: "1px",
-          borderBottomColor: "var(--tw-prose-td-borders)",
+          borderBottomColor: "var(--tw-prose-td-borders)"
         },
         "tbody tr:last-child": {
-          borderBottomWidth: 0,
+          borderBottomWidth: 0
         },
         "tbody td": {
-          verticalAlign: "baseline",
+          verticalAlign: "baseline"
         },
         tfoot: {
           borderTopWidth: "1px",
-          borderTopColor: "var(--tw-prose-th-borders)",
+          borderTopColor: "var(--tw-prose-th-borders)"
         },
         "tfoot td": {
-          verticalAlign: "top",
+          verticalAlign: "top"
         },
         ":is(tbody, tfoot) td": {
           paddingTop: theme("spacing.2"),
-          paddingBottom: theme("spacing.2"),
+          paddingBottom: theme("spacing.2")
         },
         ":is(tbody, tfoot) td:not(:first-child)": {
-          paddingLeft: theme("spacing.2"),
+          paddingLeft: theme("spacing.2")
         },
         ":is(tbody, tfoot) td:not(:last-child)": {
-          paddingRight: theme("spacing.2"),
-        },
-      },
-    },
+          paddingRight: theme("spacing.2")
+        }
+      }
+    }
   }
 }

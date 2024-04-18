@@ -1,5 +1,5 @@
-import clsx from "clsx"
 import type { ComponentPropsWithoutRef } from "react"
+import clsx from "clsx"
 
 type Photo = {
   src: string
@@ -10,24 +10,24 @@ type Photo = {
 const photos: Photo[] = [
   {
     src: "/images/bean-couch.jpeg",
-    alt: "Our cat, Bean, sitting attentively on the couch",
+    alt: "Our cat, Bean, sitting attentively on the couch"
   },
   {
     src: "/images/dorian-bird-watching.jpeg",
-    alt: "Our cat, Dorian, bird-watching at the window",
+    alt: "Our cat, Dorian, bird-watching at the window"
   },
   {
     src: "/images/sanya-books.jpeg",
-    alt: "Our cat, Sanya, sitting on a stack of books",
+    alt: "Our cat, Sanya, sitting on a stack of books"
   },
   {
     src: "/images/pippin-couch.jpeg",
-    alt: "Our cat, Pippin, laying lazily on the couch",
+    alt: "Our cat, Pippin, laying lazily on the couch"
   },
   {
     src: "/images/bast-sink.jpeg",
-    alt: "Our cat, Bast, sitting on a sink",
-  },
+    alt: "Our cat, Bast, sitting on a sink"
+  }
 ]
 
 function PhotoFrame({
@@ -40,7 +40,7 @@ function PhotoFrame({
       {...rest}
       className={clsx(
         "relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl",
-        className,
+        className
       )}
     >
       {children}

@@ -3,18 +3,19 @@ import type { LoaderFunction, MetaFunction } from "@vercel/remix"
 /**
  * Merges the meta from the leaf route with the meta from the parents. Assumes
  * that the leaf route overrides the parent meta.
+ *
  * @param leafMetaFn The meta function for the leaf route.
  * @returns A new meta function that merges the meta from the leaf route with
- * the parent routes.
+ *   the parent routes.
  */
 export const mergeMeta = <
   Loader extends LoaderFunction | unknown = unknown,
   ParentsLoaders extends Record<string, LoaderFunction | unknown> = Record<
     string,
     unknown
-  >,
+  >
 >(
-  leafMetaFn: MetaFunction<Loader, ParentsLoaders>,
+  leafMetaFn: MetaFunction<Loader, ParentsLoaders>
 ): MetaFunction<Loader, ParentsLoaders> => {
   return (args) => {
     let leafMeta = leafMetaFn(args)
@@ -34,7 +35,7 @@ export const mergeMeta = <
               "property" in parentMeta &&
               meta.property === parentMeta.property) ||
             // ...title is present in both the leaf and parent meta.
-            ("title" in meta && "title" in parentMeta),
+            ("title" in meta && "title" in parentMeta)
         )
         // If not present, add the parent's meta property to the accumulator.
         if (index === -1) {

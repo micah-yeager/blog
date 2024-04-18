@@ -1,6 +1,6 @@
+import type { ComponentPropsWithoutRef, ElementType, ReactNode } from "react"
 import { Link } from "@remix-run/react"
 import clsx from "clsx"
-import type { ComponentPropsWithoutRef, ElementType, ReactNode } from "react"
 
 import { ContainerInner, ContainerOuter } from "~/components/Container"
 
@@ -29,7 +29,7 @@ function Background<T extends ElementType = "div">({
       {...rest}
       className={clsx(
         "rounded-full bg-zinc-50/75 drop-shadow-2xl dark:bg-zinc-900/75",
-        className,
+        className
       )}
     />
   )

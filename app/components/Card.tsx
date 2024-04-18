@@ -1,15 +1,15 @@
-import { ChevronRightIcon } from "@heroicons/react/24/outline"
 import type { LinkProps } from "@remix-run/react"
+import type { ComponentPropsWithoutRef, ElementType } from "react"
+import { ChevronRightIcon } from "@heroicons/react/24/outline"
 import { Link } from "@remix-run/react"
 import clsx from "clsx"
-import type { ComponentPropsWithoutRef, ElementType } from "react"
 
 import { Icon } from "~/components/Icon"
 
 export function Card<T extends ElementType = "div">({
   as,
   className,
-  children,
+  children
 }: Omit<ComponentPropsWithoutRef<T>, "as"> & {
   as?: T
 }) {
@@ -19,7 +19,7 @@ export function Card<T extends ElementType = "div">({
     <Component
       className={clsx(
         className,
-        "group/Card relative flex flex-col items-start",
+        "group/Card relative flex flex-col items-start"
       )}
     >
       {children}
@@ -59,7 +59,7 @@ Card.Title = function CardTitle<T extends ElementType = "h2">({
       {...rest}
       className={clsx(
         "text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100",
-        className,
+        className
       )}
     >
       {to ? (
@@ -83,7 +83,7 @@ Card.Description = function CardDescription({
       {...rest}
       className={clsx(
         "relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400",
-        className,
+        className
       )}
     >
       {children}
@@ -102,7 +102,7 @@ Card.CallToAction = function CardCallToAction({
       aria-hidden="true"
       className={clsx(
         "relative z-10 mt-4 flex items-center text-sm font-medium text-primary-500",
-        className,
+        className
       )}
     >
       {children}
@@ -129,7 +129,7 @@ Card.Meta = function CardMeta<T extends ElementType = "p">({
       className={clsx(
         className,
         "relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500",
-        decorate && "pl-3.5",
+        decorate && "pl-3.5"
       )}
     >
       {decorate && (
