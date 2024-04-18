@@ -63,7 +63,8 @@ function App({ title, children }: PropsWithChildren<{ title?: string }>) {
   // unless explicitly provided.
   // noinspection HtmlRequiredTitleElement
   return (
-    // Always start with the "dark" class, so we don't flash-bang our dark mode users while the JS loads.
+    // Always start with the "dark" class, so we don't flash-bang our dark mode
+    // users while the JS loads.
     <html lang="en" className="dark h-full antialiased">
       <head>
         {title && <title>{title}</title>}

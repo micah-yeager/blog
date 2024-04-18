@@ -1,6 +1,5 @@
 import type { LoaderFunction, MetaFunction } from "@vercel/remix"
 
-
 /**
  * Merges the meta from the leaf route with the meta from the parents. Assumes
  * that the leaf route overrides the parent meta.
