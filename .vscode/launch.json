@@ -1,0 +1,49 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    // Dev runtimes
+    {
+      "name": "Dev",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["run", "dev"],
+      "cwd": "${workspaceFolder}",
+      "outFiles": ["${workspaceFolder}/.netlify/functions-serve/**/*.js"],
+      "console": "integratedTerminal",
+      "env": { "BROWSER": "none" },
+      "serverReadyAction": {
+        "pattern": "Server now ready on (https?://[\\w:.-]+)",
+        "uriFormat": "%s",
+        "action": "debugWithEdge"
+      }
+    },
+    {
+      "name": "Build",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["run", "build"],
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "Start",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["run", "start"],
+      "cwd": "${workspaceFolder}",
+      "outFiles": ["${workspaceFolder}/.netlify/functions-serve/**/*.js"],
+      "console": "integratedTerminal",
+      "env": { "BROWSER": "none" },
+      "serverReadyAction": {
+        "pattern": "Server now ready on (https?://[\\w:.-]+)",
+        "uriFormat": "%s",
+        "action": "debugWithEdge"
+      }
+    }
+  ]
+}
