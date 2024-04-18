@@ -6,6 +6,9 @@ node_modules
 .env
 .vercel
 
+### VS Code
+.history/
+
 ### Linux template
 *~
 
