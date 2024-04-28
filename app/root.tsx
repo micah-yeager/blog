@@ -34,11 +34,23 @@ export const links: LinksFunction = () => [
 
 export const headers: HeadersFunction = () => {
   // Default set of headers used for data requests.
-  const clientMaxAge = 60 * 5 // 5 minutes
-  const cdnMaxAge = 60 * 60 // 1 hour
-  const revalidationPeriod = 60 * 60 * 24 * 90 // 90 days
+  /*
+  The end goal of these headers are to:
+  - Reduce the amount of time waiting on first load.
+  - Keep content as fresh as possible.
+
+  Caching with the CDN with serve-while-revalidating while forcing clients to
+  always revalidate with the CDN is a good way to do this, since we shift the
+  burden of revalidating to the CDN, which is much faster in this configuration.
+
+  If we encounter a situation where we need to invalidate the cache, we can
+  do that confidently at the CDN level without worrying about client caches.
+  */
+  const cdnMaxAge = 60 * 2.5 // 2.5 minutes
+  const cdnRevalidationPeriod = 60 * 60 * 24 * 90 // 90 days
   return {
-    "Cache-Control": `max-age=${clientMaxAge}, s-maxage=${cdnMaxAge}, stale-while-revalidate=${revalidationPeriod}`
+    "CDN-Cache-Control": `max-age=${cdnMaxAge}, stale-while-revalidate=${cdnRevalidationPeriod}`,
+    "Cache-Control": "no-cache"
   }
 }
 
