@@ -4,7 +4,7 @@
       "source": "/favicon.(.*)",
       "headers": [
         {
-          "key": "Cloudflare-CDN-Cache-Control",
+          "key": "CDN-Cache-Control",
           "value": "max-age=86400, stale-while-revalidate=7776000"
         },
         {
@@ -35,7 +35,7 @@
       "source": "/images/(.*)",
       "headers": [
         {
-          "key": "Cloudflare-CDN-Cache-Control",
+          "key": "CDN-Cache-Control",
           "value": "max-age=1800, stale-while-revalidate=7776000"
         },
         {

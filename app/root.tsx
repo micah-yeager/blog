@@ -49,7 +49,7 @@ export const headers: HeadersFunction = () => {
   const cdnMaxAge = 60 * 2.5 // 2.5 minutes
   const cdnRevalidationPeriod = 60 * 60 * 24 * 90 // 90 days
   return {
-    "Cloudflare-CDN-Cache-Control": `max-age=${cdnMaxAge}, stale-while-revalidate=${cdnRevalidationPeriod}`,
+    "CDN-Cache-Control": `max-age=${cdnMaxAge}, stale-while-revalidate=${cdnRevalidationPeriod}`,
     "Cache-Control": "no-cache"
   }
 }
