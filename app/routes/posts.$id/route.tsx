@@ -9,7 +9,7 @@ import { PostLayout } from "~/components/PostLayout"
 import { getPost } from "~/services/posts.server"
 import { mergeMeta } from "~/utils/meta"
 
-import codeStyles from "./prism.css"
+import codeStyles from "./prism.css?url"
 
 export function links() {
   return [{ rel: "stylesheet", href: codeStyles }]

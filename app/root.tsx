@@ -6,7 +6,6 @@ import type {
 import type { PropsWithChildren } from "react"
 import {
   Links,
-  LiveReload,
   Meta,
   Outlet,
   Scripts,
@@ -22,7 +21,7 @@ import { AppError } from "~/components/AppError"
 import { Layout } from "~/components/Layout"
 import { TURNSTILE_SITE_KEY } from "~/services/captcha.server"
 
-import styles from "./tailwind.css"
+import styles from "./tailwind.css?url"
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: styles },
@@ -90,7 +89,6 @@ function App({ title, children }: PropsWithChildren<{ title?: string }>) {
         <Scripts />
         <SpeedInsights />
         <Analytics />
-        <LiveReload />
       </body>
     </html>
   )

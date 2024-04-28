@@ -4,9 +4,9 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "build": "remix build",
-    "dev": "remix dev",
-    "start": "remix-serve ./build/index.js",
+    "build": "remix vite:build",
+    "dev": "remix vite:dev",
+    "start": "remix-serve ./build/server/index.js",
     "format": "prettier --no-error-on-unmatched-pattern --write '{**/*,*}.{js,ts,jsx,tsx,vue,astro,css,scss,sass,json,yaml,toml,md,mdx,cjs,mjs}'",
     "typecheck": "tsc"
   },
@@ -74,7 +74,9 @@
     "prettier-plugin-tailwindcss": "^0.5.14",
     "tailwindcss": "^3.4.3",
     "type-fest": "^4.17.0",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "vite": "^5.2.10",
+    "vite-tsconfig-paths": "^4.3.2"
   },
   "engines": {
     "node": ">=18.0.0"
