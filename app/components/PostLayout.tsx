@@ -1,8 +1,8 @@
-import type { Jsonify } from "@remix-run/server-runtime/dist/jsonify"
 import type { ReactNode } from "react"
 import { ArrowLeftIcon, ChevronDoubleUpIcon } from "@heroicons/react/24/outline"
 import clsx from "clsx"
 import { DateTime } from "luxon"
+import type { Jsonify } from "type-fest"
 
 import type { Post } from "~/services/posts.server"
 import { Button } from "~/components/Button"
