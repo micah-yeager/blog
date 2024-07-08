@@ -2,7 +2,8 @@
 Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-license.org/, adapted by Micah Yeager
 */
 
-.hljs {
+.hljs,
+.hljs .bash {
   color: #f8f8f2;
 }
 
@@ -72,6 +73,19 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
 
 .hljs-comment,
 .hljs-deletion,
-.hljs-meta {
+.hljs-meta,
+.hljs.language-console {
   color: #75715e;
+}
+
+.hljs .prompt_ {
+  /* Prefix is still required for Apple browsers, per caniuse.com */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.hljs.language-console,
+.hljs.language-text {
+  text-wrap: wrap;
 }
