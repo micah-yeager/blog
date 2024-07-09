@@ -1,15 +1,15 @@
 /** @type {import("prettier").Config} */
 const baseConfig = {
+  plugins: [
+    "@ianvs/prettier-plugin-sort-imports",
+    "prettier-plugin-jsdoc",
+    "prettier-plugin-css-order",
+    "prettier-plugin-tailwindcss"
+  ],
   singleQuote: false,
   semi: false,
   trailingComma: "none",
-  bracketSpacing: true,
-  plugins: [
-    "@ianvs/prettier-plugin-sort-imports",
-    "prettier-plugin-css-order",
-    "prettier-plugin-jsdoc",
-    "prettier-plugin-tailwindcss"
-  ]
+  bracketSpacing: true
 }
 
 const tsconfigPaths = ["@ui", "@content", "~"]
@@ -32,20 +32,20 @@ const sortImportsConfig = {
   importOrderTypeScriptVersion: "5.1.6" // TypeScript version used by project.
 }
 
-/** @type {import("prettier-plugin-tailwindcss").PluginOptions} */
-const tailwindConfig = {
-  tailwindFunctions: ["clsx", "tw"]
-}
-
 /** @type {import("prettier-plugin-jsdoc").Options} */
 const jsdocConfig = {
   tsdoc: true
 }
 
+/** @type {import("prettier-plugin-tailwindcss").PluginOptions} */
+const tailwindConfig = {
+  tailwindFunctions: ["clsx", "tw"]
+}
+
 // noinspection JSUnusedGlobalSymbols
 export default {
-  ...sortImportsConfig,
   ...tailwindConfig,
   ...jsdocConfig,
+  ...sortImportsConfig,
   ...baseConfig
 }
