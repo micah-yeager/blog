@@ -478,7 +478,7 @@ In [Cloudflare Zero Trust](https://one.dash.cloudflare.com/):
    section, copy the command under **If you already have cloudflared installed
    on your machine**.
 
-![The initialization command](./cloudflare-tunnel-setup.png)
+   ![The initialization command](./cloudflare-tunnel-setup.png)
 
 3. Paste the command in a text editor and copy just the token (the last part of
    the command). Using the screenshot above as an example, the token would begin
@@ -489,42 +489,42 @@ On the target FreeBSD system's command line:
 1. Install the `cloudflared` package with the following command (alternatively,
    you could build it yourself from the ports tree):
 
-```console
-$ pkg install cloudflared
-```
+   ```console
+   $ pkg install cloudflared
+   ```
 
 2. Configure the service with the following commands:
 
-```console
-$ sysrc -f /etc/rc.conf.d/cloudflared cloudflared_enable="YES"
-$ sysrc -f /etc/rc.conf.d/cloudflared cloudflared_mode="tunnel run"
-$ chmod 640 /etc/rc.conf.d/cloudflared
-```
+   ```console
+   $ sysrc -f /etc/rc.conf.d/cloudflared cloudflared_enable="YES"
+   $ sysrc -f /etc/rc.conf.d/cloudflared cloudflared_mode="tunnel run"
+   $ chmod 640 /etc/rc.conf.d/cloudflared
+   ```
 
 3. Add the token to the configuration, replacing `<token>` with the token you
    copied above:
 
-```console
-$ sysrc -f /etc/rc.conf.d/cloudflared cloudflared_env="TUNNEL_TOKEN=<token>"
-```
+   ```console
+   $ sysrc -f /etc/rc.conf.d/cloudflared cloudflared_env="TUNNEL_TOKEN=<token>"
+   ```
 
 4. Start the service:
 
-```console
-$ service cloudflared start
-```
+   ```console
+   $ service cloudflared start
+   ```
 
 5. Ensure the service is still running:
 
-```console
-$ service cloudflared status
-```
+   ```console
+   $ service cloudflared status
+   ```
 
 Back in [Cloudflare Zero Trust](https://one.dash.cloudflare.com/):
 
 1. Ensure the tunnel status shows as **Healthy**.
 
-![Cloudflare's Zero Trust dashboard showing that the tunnel is healthy](./cloudflare-healthy-tunnel.png)
+   ![Cloudflare's Zero Trust dashboard showing that the tunnel is healthy](./cloudflare-healthy-tunnel.png)
 
 2. The tunnel is successfully configured! You can now remotely manage it from
    Cloudflare Zero Trust.
