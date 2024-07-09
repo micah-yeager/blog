@@ -2,6 +2,7 @@ import type { ComponentPropsWithoutRef, ElementType, ReactNode } from "react"
 import { Link } from "@remix-run/react"
 import clsx from "clsx"
 
+import { FULL_NAME } from "../constants"
 import { ContainerInner, ContainerOuter } from "./Container"
 
 function NavLink({ to, children }: { to: string; children: ReactNode }) {
@@ -54,7 +55,7 @@ export function Footer() {
                 as="p"
                 className="px-3 text-sm text-zinc-600 dark:text-zinc-400"
               >
-                &copy; {new Date().getFullYear()} Micah Yeager. All rights
+                &copy; {new Date().getFullYear()} {FULL_NAME}. All rights
                 reserved.
               </Background>
             </div>

@@ -21,6 +21,7 @@ import { AppError } from "@ui/AppError"
 import { Layout } from "@ui/Layout"
 import { TURNSTILE_SITE_KEY } from "~/services/captcha.server"
 
+import { FULL_NAME } from "./constants"
 import styles from "./tailwind.css?url"
 
 export const links: LinksFunction = () => [
@@ -55,7 +56,7 @@ export const headers: HeadersFunction = () => {
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "Micah Yeager" },
+    { title: FULL_NAME },
     { description: "Solutions architect, developer, and cat enthusiast." }
   ]
 }
@@ -106,7 +107,7 @@ export default function Root() {
 
 export function ErrorBoundary() {
   return (
-    <App title="Whoops :/ | Micah Yeager">
+    <App title={`Whoops :/ | ${FULL_NAME}`}>
       <AppError />
     </App>
   )

@@ -1,5 +1,6 @@
 import { ArrowDownIcon, BriefcaseIcon } from "@heroicons/react/24/outline"
 
+import { FULL_NAME } from "../constants"
 import { Button } from "./Button"
 import { Icon } from "./Icon"
 import { Role } from "./Role"
@@ -51,7 +52,7 @@ export function CV() {
         to="/documents/cv.pdf"
         variant="secondary"
         className="group mt-6 block w-full"
-        download="CV - Micah Yeager.pdf"
+        download={`CV - ${FULL_NAME}.pdf`}
         // reload required to force download
         reloadDocument
       >

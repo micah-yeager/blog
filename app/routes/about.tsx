@@ -7,8 +7,8 @@ import type { IconProp } from "@ui/Icon"
 import { ContactMe } from "@ui/ContactMe"
 import { Container } from "@ui/Container"
 import { Icon } from "@ui/Icon"
-import { GITHUB_URL, LINKEDIN_URL } from "~/constants"
 import { mergeMeta } from "~/utils/meta"
+import { FULL_NAME, GITHUB_URL, LINKEDIN_URL } from "~/constants"
 
 export const meta = mergeMeta(() => [{ title: "About" }])
 
@@ -68,7 +68,7 @@ export default function About() {
         {/* main */}
         <div className="lg:order-first lg:row-span-2">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-            I’m Micah Yeager. I like learning and building things.
+            I’m {FULL_NAME}. I like learning and building things.
           </h1>
           <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
             <p>
