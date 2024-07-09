@@ -47,7 +47,7 @@ type ButtonProps<T extends ButtonShapeOption> = {
 const ButtonContext = createContext({} as { size: string })
 
 export function Button<T extends ButtonShapeOption>({
-  variant = "primary",
+  variant = "secondary",
   shape = "pill" as T,
   size = "md",
   className,
