@@ -7,7 +7,6 @@
     "build": "remix vite:build",
     "dev": "remix vite:dev",
     "format": "prettier --no-error-on-unmatched-pattern --write '{**/*,*}.{js,ts,jsx,tsx,vue,astro,css,scss,sass,json,yaml,toml,md,mdx,cjs,mjs}'",
-    "start": "remix-serve ./build/server/index.js",
     "typecheck": "tsc"
   },
   "files": [
