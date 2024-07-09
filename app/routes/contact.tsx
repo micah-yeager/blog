@@ -26,7 +26,8 @@ export async function action({ request }: ActionFunctionArgs) {
   try {
     await verifyTurnstile({ request, formData })
   } catch (error) {
-    // If this is a response object, return it as the appropriately-typed response.
+    // If this is a response object, return it as the appropriately-typed
+    // response.
     if (error instanceof Response) {
       return error as VerifyTurnstileErrorResponse
     }
