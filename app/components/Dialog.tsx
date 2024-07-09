@@ -4,7 +4,7 @@ import { XMarkIcon } from "@heroicons/react/24/outline"
 import clsx from "clsx"
 import { Fragment, useRef } from "react"
 
-import { Icon } from "~/components/Icon"
+import { Icon } from "./Icon"
 
 type DialogProps = ComponentPropsWithoutRef<typeof HeadlessUIDialog.Panel> & {
   open: boolean

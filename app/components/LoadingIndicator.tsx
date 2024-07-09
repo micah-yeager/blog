@@ -3,8 +3,8 @@ import { faSpinner } from "@fortawesome/free-solid-svg-icons"
 import { EllipsisHorizontalIcon } from "@heroicons/react/20/solid"
 import clsx from "clsx"
 
-import type { IconProp } from "~/components/Icon"
-import { Icon } from "~/components/Icon"
+import type { IconProp } from "./Icon"
+import { Icon } from "./Icon"
 
 type VariantMap = {
   icon: IconProp

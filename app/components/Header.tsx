@@ -11,9 +11,10 @@ import { Link, NavLink, useLocation } from "@remix-run/react"
 import clsx from "clsx"
 import { Fragment, useEffect, useRef, useState } from "react"
 
-import { Container } from "~/components/Container"
-import { Icon } from "~/components/Icon"
 import { clamp } from "~/utils/numbers"
+
+import { Container } from "./Container"
+import { Icon } from "./Icon"
 
 function MobileNavItem({
   className,

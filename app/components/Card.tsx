@@ -4,7 +4,7 @@ import { ChevronRightIcon } from "@heroicons/react/24/outline"
 import { Link } from "@remix-run/react"
 import clsx from "clsx"
 
-import { Icon } from "~/components/Icon"
+import { Icon } from "./Icon"
 
 export function Card<T extends ElementType = "div">({
   as,

@@ -17,8 +17,8 @@ import { json } from "@vercel/remix"
 import { SpeedInsights } from "@vercel/speed-insights/remix"
 
 import type { Env } from "~/browser-globals"
-import { AppError } from "~/components/AppError"
-import { Layout } from "~/components/Layout"
+import { AppError } from "@ui/AppError"
+import { Layout } from "@ui/Layout"
 import { TURNSTILE_SITE_KEY } from "~/services/captcha.server"
 
 import styles from "./tailwind.css?url"

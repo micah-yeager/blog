@@ -1,8 +1,8 @@
 import { useLoaderData } from "@remix-run/react"
 import { json } from "@vercel/remix"
 
-import { PostOverview } from "~/components/PostOverview"
-import { SimpleLayout } from "~/components/SimpleLayout"
+import { PostOverview } from "@ui/PostOverview"
+import { SimpleLayout } from "@ui/SimpleLayout"
 import { getAllPosts } from "~/services/posts.server"
 import { mergeMeta } from "~/utils/meta"
 

@@ -3,8 +3,8 @@ import { ExclamationCircleIcon } from "@heroicons/react/24/solid"
 import clsx from "clsx"
 import { forwardRef } from "react"
 
-import { Icon } from "~/components/Icon"
-import { InlineAddOn } from "~/components/inputs/shared/InlineAddOn"
+import { Icon } from "@ui/Icon"
+import { InlineAddOn } from "@ui/inputs/shared/InlineAddOn"
 
 import type { SharedFormProps } from "./shared"
 import { InputDescription } from "./shared/InputDescription"

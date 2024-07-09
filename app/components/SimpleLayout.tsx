@@ -1,6 +1,6 @@
 import type { PropsWithChildren } from "react"
 
-import { Container } from "~/components/Container"
+import { Container } from "./Container"
 
 export function SimpleLayout({
   title,

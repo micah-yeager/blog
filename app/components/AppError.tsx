@@ -1,6 +1,6 @@
 import { isRouteErrorResponse, useRouteError } from "@remix-run/react"
 
-import { Button } from "~/components/Button"
+import { Button } from "./Button"
 
 export function AppError() {
   const error = useRouteError()

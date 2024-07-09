@@ -4,10 +4,11 @@ import clsx from "clsx"
 import { createContext, useContext } from "react"
 import { useGlobalSubmittingState } from "remix-utils/use-global-navigation-state"
 
-import type { IconProps } from "~/components/Icon"
-import { Icon } from "~/components/Icon"
-import { LoadingIndicator } from "~/components/LoadingIndicator"
 import { tw } from "~/utils/templates"
+
+import type { IconProps } from "./Icon"
+import { Icon } from "./Icon"
+import { LoadingIndicator } from "./LoadingIndicator"
 
 const variantStyles = {
   primary: tw`bg-primary-800 font-semibold text-primary-100 hover:bg-primary-700 focus-visible:outline-primary-800 active:bg-primary-800 active:text-primary-100/70 dark:bg-primary-700 dark:hover:bg-primary-600 dark:focus-visible:outline-primary-700 dark:active:bg-primary-700 dark:active:text-primary-100/70`,

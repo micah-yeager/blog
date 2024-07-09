@@ -1,7 +1,7 @@
 import type { ActionFunctionArgs } from "@vercel/remix"
 import { json } from "@vercel/remix"
 
-import type { ContactMeFields } from "~/components/ContactMe"
+import type { ContactMeFields } from "@ui/ContactMe"
 import type { VerifyTurnstileErrorResponse } from "~/services/captcha.server"
 import type { ActionResponse, FieldErrors } from "~/utils/response"
 import { verifyTurnstile } from "~/services/captcha.server"

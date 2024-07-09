@@ -2,7 +2,7 @@ import type { ComponentPropsWithoutRef, ElementType, ReactNode } from "react"
 import { Link } from "@remix-run/react"
 import clsx from "clsx"
 
-import { ContainerInner, ContainerOuter } from "~/components/Container"
+import { ContainerInner, ContainerOuter } from "./Container"
 
 function NavLink({ to, children }: { to: string; children: ReactNode }) {
   return (

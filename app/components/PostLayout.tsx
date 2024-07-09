@@ -5,9 +5,10 @@ import clsx from "clsx"
 import { DateTime } from "luxon"
 
 import type { Post } from "~/services/posts.server"
-import { Button } from "~/components/Button"
-import { Container } from "~/components/Container"
-import { Prose } from "~/components/Prose"
+
+import { Button } from "./Button"
+import { Container } from "./Container"
+import { Prose } from "./Prose"
 
 function ScrollToTop({ className }: { className?: string }) {
   return (

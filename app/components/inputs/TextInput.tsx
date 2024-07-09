@@ -10,15 +10,15 @@ import { ExclamationCircleIcon } from "@heroicons/react/24/solid"
 import clsx from "clsx"
 import { forwardRef, useRef, useState } from "react"
 
-import { Icon } from "~/components/Icon"
-import { InlineAddOn } from "~/components/inputs/shared/InlineAddOn"
-import { InputOptionalHint } from "~/components/inputs/shared/InputOptionalHint"
 import { useDimensions, useForwardRef } from "~/utils/hooks"
 
 import type { SharedFormProps } from "./shared"
+import { Icon } from "../Icon"
+import { InlineAddOn } from "./shared/InlineAddOn"
 import { InputDescription } from "./shared/InputDescription"
 import { InputError } from "./shared/InputError"
 import { InputLabel } from "./shared/InputLabel"
+import { InputOptionalHint } from "./shared/InputOptionalHint"
 
 type TextInputAddOnProps = {
   className?: string

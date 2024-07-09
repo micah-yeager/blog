@@ -8,13 +8,14 @@ import { useFetcher } from "@remix-run/react"
 import { useState } from "react"
 
 import type { ContactMeResponse } from "~/routes/contact"
-import { Alert } from "~/components/Alert"
-import { Button } from "~/components/Button"
-import { Captcha } from "~/components/Captcha"
-import { Dialog } from "~/components/Dialog"
-import { Icon } from "~/components/Icon"
-import { TextArea } from "~/components/inputs/TextArea"
-import { TextInput } from "~/components/inputs/TextInput"
+
+import { Alert } from "./Alert"
+import { Button } from "./Button"
+import { Captcha } from "./Captcha"
+import { Dialog } from "./Dialog"
+import { Icon } from "./Icon"
+import { TextArea } from "./inputs/TextArea"
+import { TextInput } from "./inputs/TextInput"
 
 export type ContactMeFields = {
   subject: string

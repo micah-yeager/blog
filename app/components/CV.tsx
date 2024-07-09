@@ -1,8 +1,8 @@
 import { ArrowDownIcon, BriefcaseIcon } from "@heroicons/react/24/outline"
 
-import { Button } from "~/components/Button"
-import { Icon } from "~/components/Icon"
-import { Role } from "~/components/Role"
+import { Button } from "./Button"
+import { Icon } from "./Icon"
+import { Role } from "./Role"
 
 export function CV() {
   // Define within route, so end.dateTime gets updated independently of server
