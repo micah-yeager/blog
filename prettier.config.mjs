@@ -1,13 +1,16 @@
 import packageJson from "./package.json" with { type: "json" }
 import tsconfigJson from "./tsconfig.json" with { type: "json" }
 
-/** @type {import("prettier").Config} */
+/**
+ * @type {import("prettier").Config}
+ * @see https://prettier.io/docs/en/configuration.html
+ */
 const baseConfig = {
   plugins: [
     "@ianvs/prettier-plugin-sort-imports",
     "prettier-plugin-jsdoc",
     "prettier-plugin-css-order",
-    "prettier-plugin-tailwindcss"
+    "prettier-plugin-tailwindcss" // Must be last.
   ],
   singleQuote: false,
   semi: false,
@@ -15,7 +18,6 @@ const baseConfig = {
   bracketSpacing: true
 }
 
-/** @type {import("@ianvs/prettier-plugin-sort-imports").PrettierConfig} */
 /**
  * A regex pattern that matches any of the path aliases from `tsconfig.json`.
  *
@@ -33,6 +35,10 @@ const tsconfigPathAliasesRegex =
     .join("|") +
   // End matching group.
   ")"
+/**
+ * @type {import("@ianvs/prettier-plugin-sort-imports").PrettierConfig}
+ * @see https://github.com/IanVS/prettier-plugin-sort-imports#options
+ */
 const sortImportsConfig = {
   importOrder: [
     "", // Empty line for top-of-file comments.
@@ -59,17 +65,22 @@ const sortImportsConfig = {
   importOrderTypeScriptVersion: packageJson.devDependencies.typescript.slice(1)
 }
 
-/** @type {import("prettier-plugin-jsdoc").Options} */
+/**
+ * @type {import("prettier-plugin-jsdoc").Options}
+ * @see https://github.com/hosseinmd/prettier-plugin-jsdoc?tab=readme-ov-file#Options
+ */
 const jsdocConfig = {
   tsdoc: true
 }
 
-/** @type {import("prettier-plugin-tailwindcss").PluginOptions} */
+/**
+ * @type {import("prettier-plugin-tailwindcss").PluginOptions}
+ * @see https://github.com/tailwindlabs/prettier-plugin-tailwindcss#options
+ */
 const tailwindConfig = {
   tailwindFunctions: ["clsx", "tw"]
 }
 
-// noinspection JSUnusedGlobalSymbols
 export default {
   ...tailwindConfig,
   ...jsdocConfig,
