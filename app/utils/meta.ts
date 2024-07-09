@@ -18,11 +18,11 @@ export const mergeMeta = <
   leafMetaFn: MetaFunction<Loader, ParentsLoaders>
 ): MetaFunction<Loader, ParentsLoaders> => {
   return (args) => {
-    let leafMeta = leafMetaFn(args)
+    const leafMeta = leafMetaFn(args)
 
     // Reduce in reverse order to give priority to the leaf routes' metas.
     return args.matches.reduceRight((acc, match) => {
-      for (let parentMeta of match.meta) {
+      for (const parentMeta of match.meta) {
         // Only add the parent's meta property if...
         const index = acc.findIndex(
           (meta) =>

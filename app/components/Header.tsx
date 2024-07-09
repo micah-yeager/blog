@@ -248,17 +248,18 @@ function Avatar({
 }
 
 export function Header() {
-  let isHomePage = useLocation().pathname === "/"
+  const isHomePage = useLocation().pathname === "/"
 
-  let headerRef = useRef<ElementRef<"div">>(null)
-  let avatarRef = useRef<ElementRef<"div">>(null)
-  let isInitial = useRef(true)
+  const headerRef = useRef<ElementRef<"div">>(null)
+  const avatarRef = useRef<ElementRef<"div">>(null)
+  const isInitial = useRef(true)
 
   useEffect(() => {
-    // How far the user needs to scroll down before the header starts being hidden.
-    let downDelay = avatarRef.current?.offsetTop ?? 0
+    // How far the user needs to scroll down before the header starts being
+    // hidden.
+    const downDelay = avatarRef.current?.offsetTop ?? 0
     // How far the user needs to scroll up before the header is displayed again.
-    let upDelay = 64
+    const upDelay = 64
 
     // Alias frequently-used, deeply-nested functions for brevity.
     function setProperty(property: string, value: string) {
@@ -269,13 +270,14 @@ export function Header() {
       document.documentElement.style.removeProperty(property)
     }
 
-    // Update avatar and header positioning based on scroll position. Uses CSS variables to avoid layout thrashing.
+    // Update avatar and header positioning based on scroll position. Uses CSS
+    // variables to avoid layout thrashing.
     function updateHeaderStyles() {
       if (!headerRef.current) return
 
       // get current scroll position
-      let { top, height } = headerRef.current.getBoundingClientRect()
-      let scrollY = clamp(
+      const { top, height } = headerRef.current.getBoundingClientRect()
+      const scrollY = clamp(
         window.scrollY,
         0,
         document.body.scrollHeight - window.innerHeight
@@ -293,7 +295,7 @@ export function Header() {
         setProperty("--header-height", `${downDelay + height}px`)
         setProperty("--header-mb", `${-downDelay}px`)
       } else if (top + height < -upDelay) {
-        let offset = Math.max(height, scrollY - upDelay)
+        const offset = Math.max(height, scrollY - upDelay)
         setProperty("--header-height", `${offset}px`)
         setProperty("--header-mb", `${height - offset}px`)
       } else if (top === 0) {
@@ -318,12 +320,12 @@ export function Header() {
         return
       }
 
-      let fromScale = 1
-      let toScale = 36 / 64
-      let fromX = 0
-      let toX = 2 / 16
+      const fromScale = 1
+      const toScale = 36 / 64
+      const fromX = 0
+      const toX = 2 / 16
 
-      let scrollY = downDelay - window.scrollY
+      const scrollY = downDelay - window.scrollY
 
       let scale = (scrollY * (fromScale - toScale)) / downDelay + toScale
       scale = clamp(scale, fromScale, toScale)
@@ -336,9 +338,9 @@ export function Header() {
         `translate3d(${x}rem, 0, 0) scale(${scale})`
       )
 
-      let borderScale = 1 / (toScale / scale)
-      let borderX = (-toX + x) * borderScale
-      let borderTransform = `translate3d(${borderX}rem, 0, 0) scale(${borderScale})`
+      const borderScale = 1 / (toScale / scale)
+      const borderX = (-toX + x) * borderScale
+      const borderTransform = `translate3d(${borderX}rem, 0, 0) scale(${borderScale})`
 
       setProperty("--avatar-border-transform", borderTransform)
       setProperty("--avatar-border-opacity", scale === toScale ? "1" : "0")

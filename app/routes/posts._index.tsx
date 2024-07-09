@@ -9,7 +9,7 @@ import { mergeMeta } from "~/utils/meta"
 export const meta = mergeMeta(() => [{ title: "Posts" }])
 
 export async function loader() {
-  let postMetas = await getAllPosts()
+  const postMetas = await getAllPosts()
   return json({ postMetas }, { status: 200 })
 }
 

@@ -121,7 +121,7 @@ Card.Meta = function CardMeta<T extends ElementType = "p">({
   as?: T
   decorate?: boolean
 }) {
-  let Component = as ?? "p"
+  const Component = as ?? "p"
 
   return (
     <Component

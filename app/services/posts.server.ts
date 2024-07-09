@@ -18,7 +18,7 @@ type PostFrontmatter = {
   title: string
   description: string
   date: string
-  [key: string]: any
+  [key: string]: string
 }
 export type PostMeta = Pick<
   Awaited<ReturnType<typeof bundleMDX<PostFrontmatter>>>,
@@ -30,8 +30,8 @@ export type PostMeta = Pick<
 export async function getAllPosts(): Promise<PostMeta[]> {
   // get all postMetas from local filesystem
   const cwd = `${process.cwd()}/content/posts`
-  let postFilenames = await fastGlob.glob("*/page.mdx", { cwd })
-  let posts = await Promise.all(
+  const postFilenames = await fastGlob.glob("*/page.mdx", { cwd })
+  const posts = await Promise.all(
     postFilenames.map((file) => {
       return getPost({ file: `${cwd}/${file}`, cwd })
     })

@@ -3,7 +3,7 @@ import { useEffect, useMemo, useRef, useSyncExternalStore } from "react"
 
 export const useForwardRef = <T>(
   ref: ForwardedRef<T>,
-  initialValue: any = null
+  initialValue: T | null = null
 ) => {
   const targetRef = useRef<T>(initialValue)
 
