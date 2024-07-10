@@ -1,5 +1,3 @@
-import path from "node:path"
-
 import type { Options as AutolinkOptions } from "rehype-autolink-headings"
 import type { Options as TocOptions } from "remark-toc"
 import { LinkIcon } from "@heroicons/react/24/outline"
@@ -15,50 +13,93 @@ import remarkGfm from "remark-gfm"
 import remarkMdxImages from "remark-mdx-images"
 import remarkToc from "remark-toc"
 import tsconfigJson from "tsconfig.json" with { type: "json" }
-import { SetRequired } from "type-fest"
+import { DistributedOmit } from "type-fest"
+import { z } from "zod"
 
 import { Icon } from "@ui/Icon"
 import { tw } from "@utils/templates"
 
-type PostFrontmatter = {
-  title: string
-  description: string
-  date: string
-  [key: string]: string
-}
-export type PostMeta = Pick<
-  Awaited<ReturnType<typeof bundleMDX<PostFrontmatter>>>,
-  "frontmatter"
-> & {
-  slug: string
-}
+import { FULL_NAME } from "../constants"
 
+/** Schema for a post's frontmatter. */
+const frontmatterSchema = z.object({
+  title: z.string().min(1).max(60),
+  description: z.string().min(1).max(160),
+  tags: z.array(z.string().min(1)).default([]),
+  authors: z.array(z.string().min(1)).default([FULL_NAME]),
+  created: z.date(),
+  updated: z.date().optional()
+})
+/** Frontmatter for a post. */
+export type PostFrontmatter = z.infer<typeof frontmatterSchema>
+
+/** Schema for a post's slug. */
+const slugSchema = z.object({ slug: z.string() })
+/** Schema for a post's metadata. */
+const postMetaSchema = frontmatterSchema.merge(slugSchema)
+/** Schema for an unsaved post's metadata. */
+const unsavedPostMetaSchema = frontmatterSchema.merge(slugSchema.partial())
+/** Metadata for a post. */
+export type PostMeta = z.infer<typeof postMetaSchema>
+/** Metadata for an unsaved post. */
+export type UnsavedPostMeta = z.infer<typeof unsavedPostMetaSchema>
+
+/** The path to the posts' directory. */
+const postsPath = `${process.cwd()}/content/posts`
+
+/**
+ * Get all posts' metadata.
+ *
+ * @returns The metadata for all posts.
+ */
 export async function getAllPosts(): Promise<PostMeta[]> {
   // get all postMetas from local filesystem
-  const cwd = `${process.cwd()}/content/posts`
-  const postFilenames = await fastGlob.glob("*/page.mdx", { cwd })
+  const postFilenames = await fastGlob.glob("*/page.mdx", { cwd: postsPath })
   const posts = await Promise.all(
-    postFilenames.map((file) => {
-      return getPost({ file: `${cwd}/${file}`, cwd })
-    })
+    postFilenames.map((file) =>
+      getPost({ file: `${postsPath}/${file}`, cwd: postsPath })
+    )
   )
 
-  // sort postMetas by date and extract frontmatter / slug
-  return posts
-    .sort(
-      (a, z) => +new Date(z.frontmatter.date) - +new Date(a.frontmatter.date)
-    )
-    .map(({ frontmatter, slug }) => ({
-      frontmatter,
-      slug
-    }))
+  return (
+    posts
+      // Sort by updated date, or created date if updated date is not available.
+      .sort(
+        (a, z) =>
+          +new Date(z.meta.updated ?? z.meta.created) -
+          +new Date(a.meta.updated ?? a.meta.created)
+      )
+      // Extract metadata.
+      .map(({ meta }) => meta)
+  )
 }
 
-export type Post = Awaited<ReturnType<typeof bundleMDX<PostFrontmatter>>> & {
-  slug: string
+/**
+ * Get a file path from a post's slug.
+ *
+ * @param slug The slug of the post.
+ */
+function fileFromSlug(slug: string) {
+  return `${postsPath}/${slug}/page.mdx`
 }
 
-/** An `Icon` component rendered to a Hast tree. */
+/**
+ * Get a slug from a file path.
+ *
+ * @param file The file path of the post.
+ */
+function slugFromFile(file: string) {
+  return file.replace(`${postsPath}/`, "").replace("/page.mdx", "")
+}
+
+type BasePost = Omit<
+  Awaited<ReturnType<typeof bundleMDX<PostFrontmatter>>>,
+  "frontmatter" | "matter"
+>
+export type Post = BasePost & { meta: PostMeta }
+export type UnsavedPost = BasePost & { meta: UnsavedPostMeta }
+
+/** An {@link Icon} component rendered to a Hast tree. */
 // Defined outside the `getPost` function, so it's only rendered once.
 const linkIconHast = fromHtml(
   renderToString(
@@ -67,26 +108,38 @@ const linkIconHast = fromHtml(
   { fragment: true }
 ).children
 
+/** Args for {@link getPost}. */
+// Use `DistributedOmit` to avoid messing up union type.
+type GetPostArgs = DistributedOmit<
+  Parameters<typeof bundleMDX>[0],
+  "mdxOptions" | "esbuildOptions"
+>
+
 /**
  * Parse a post from an MDX file.
  *
- * @param file The MDX file to parse.
- * @param rest The options to pass to `bundleMDX`.
+ * @param args - Arguments ({@link GetPostArgs}) for `bundleMDX`. If `file` is
+ *   provided but doesn't have the `.mdx` extension, it will be assumed to be a
+ *   slug and formatted accordingly.
  */
-export async function getPost({
-  file,
-  ...rest
-}: SetRequired<
-  Omit<
-    Parameters<typeof bundleMDX>[0],
-    "source" | "mdxOptions" | "esbuildOptions" | "grayMatterOptions"
-  >,
-  "file"
->): Promise<Post> {
-  // Parse MDX file.
-  const mdx = await bundleMDX<PostFrontmatter>({
-    file,
-    ...rest,
+export async function getPost<Args extends GetPostArgs>(
+  args: Args
+): Promise<Args extends { file: string } ? Post : UnsavedPost> {
+  args.cwd ??= postsPath
+
+  // Normalize file input.
+  args.file =
+    args.file && !args.file.endsWith(".mdx")
+      ? fileFromSlug(args.file)
+      : args.file
+
+  // Parse MDX file, separating the returned `matter` and `frontmatter`.
+  const {
+    matter: _,
+    frontmatter,
+    ...mdx
+  } = await bundleMDX<PostFrontmatter>({
+    ...args,
 
     // Add plugins.
     mdxOptions(options) {
@@ -102,16 +155,21 @@ export async function getPost({
         rehypeSlug,
         [
           rehypeAutolinkHeadings,
+          // Link an inserted icon before the heading text, not the heading
+          // text itself.
           {
             behavior: "before",
+            // Wrap both the link and heading for easier positioning.
             group: {
               type: "element",
               tagName: "div",
               properties: {
+                // Create space for the inserted icon.
                 className: tw`group/LinkedHeading relative -ml-12 pl-12`
               },
               children: []
             },
+            // Styles for the link itself.
             properties: (element) => ({
               className: tw`invisible absolute top-1/2 -ml-8 -translate-y-1/2 px-1 text-zinc-500 group-hover/LinkedHeading:visible`,
               ariaLabel: `Section titled: ${toString(element)}`
@@ -143,7 +201,16 @@ export async function getPost({
     }
   })
 
-  // Add the slug to the post.
-  const slug = path.basename(path.dirname(file))
-  return { ...mdx, slug }
+  // Parse frontmatter.
+  const parsedFrontmatter = frontmatterSchema.parse(frontmatter)
+  if (args.file) {
+    return {
+      ...mdx,
+      // Add the slug to the meta.
+      meta: { ...parsedFrontmatter, slug: slugFromFile(args.file) }
+    }
+  }
+  // @ts-expect-error TODO: figure out how to inform TS that this is the
+  //                   correct type.
+  return { ...mdx, meta: parsedFrontmatter }
 }

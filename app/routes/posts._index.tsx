@@ -23,8 +23,8 @@ export default function Route() {
     >
       <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
         <div className="flex max-w-3xl flex-col space-y-16">
-          {postMetas.map((postMeta) => (
-            <PostOverview {...{ postMeta }} key={postMeta.slug} />
+          {postMetas.map((meta) => (
+            <PostOverview {...{ meta }} key={meta.slug} />
           ))}
         </div>
       </div>

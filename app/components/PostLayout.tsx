@@ -4,7 +4,7 @@ import { ArrowLeftIcon, ChevronDoubleUpIcon } from "@heroicons/react/24/outline"
 import clsx from "clsx"
 import { DateTime } from "luxon"
 
-import type { Post } from "@services/posts.server"
+import type { PostMeta } from "@services/posts.server"
 
 import { Button } from "./Button"
 import { Container } from "./Container"
@@ -34,13 +34,14 @@ function ScrollToTop({ className }: { className?: string }) {
 }
 
 export function PostLayout({
-  post,
+  meta,
   children
 }: {
-  post: Jsonify<Post>
+  meta: Jsonify<PostMeta>
   children: ReactNode
 }) {
-  const date = DateTime.fromISO(post.frontmatter.date)
+  const created = DateTime.fromISO(meta.created)
+  const updated = meta.updated ? DateTime.fromISO(meta.updated) : null
 
   return (
     <Container className="mt-16 lg:mt-32">
@@ -74,19 +75,33 @@ export function PostLayout({
             <header className="flex flex-col">
               {/* title */}
               <h1 className="mt-6 text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-                {post.frontmatter.title}
+                {meta.title}
               </h1>
 
               {/* meta */}
               <time
-                dateTime={post.frontmatter.date}
+                dateTime={meta.created}
                 className="order-first flex items-center text-base text-zinc-400 dark:text-zinc-500"
               >
                 <span className="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500" />
                 <span className="ml-3">
-                  {date.toLocaleString(DateTime.DATE_FULL)}
+                  {created.toLocaleString(DateTime.DATE_FULL)}
                 </span>
               </time>
+              {updated && (
+                <>
+                  <span className="mx-3">•</span>
+                  <time
+                    dateTime={meta.updated}
+                    className="order-last flex items-center text-base text-zinc-400 dark:text-zinc-500"
+                  >
+                    <span className="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500" />
+                    <span className="ml-3">
+                      {updated.toLocaleString(DateTime.DATE_FULL)}
+                    </span>
+                  </time>
+                </>
+              )}
             </header>
 
             {/* body */}

@@ -125,6 +125,9 @@ importers:
       turnstile-types:
         specifier: ^1.2.1
         version: 1.2.1
+      zod:
+        specifier: ^3.23.8
+        version: 3.23.8
     devDependencies:
       '@eslint/js':
         specifier: ^9.6.0

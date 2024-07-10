@@ -76,8 +76,8 @@ export default function Index() {
       <Container className="mt-24 md:mt-28">
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2 lg:gap-y-0">
           <div className="flex flex-col gap-16">
-            {recentPosts.map((post) => (
-              <PostOverview key={post.slug} postMeta={post} />
+            {recentPosts.map((meta) => (
+              <PostOverview key={meta.slug} meta={meta} />
             ))}
           </div>
           <div className="space-y-10 lg:pl-16 xl:pl-24">

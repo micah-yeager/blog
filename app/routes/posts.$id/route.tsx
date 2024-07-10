@@ -1,4 +1,4 @@
-import type { LoaderFunctionArgs, TypedResponse } from "@vercel/remix"
+import type { LoaderFunctionArgs } from "@vercel/remix"
 import { useLoaderData } from "@remix-run/react"
 import { json } from "@vercel/remix"
 import { getMDXComponent } from "mdx-bundler/client/index.js"
@@ -20,11 +20,7 @@ export const meta = mergeMeta<typeof loader>(({ data }) => {
   return [{ title: data?.post.frontmatter.title ?? "Whoops :/" }]
 })
 
-export async function loader({ params }: LoaderFunctionArgs): Promise<
-  TypedResponse<{
-    post: Post
-  }>
-> {
+export async function loader({ params }: LoaderFunctionArgs) {
   // Ensure a post ID is provided.
   const postId = params.id
   if (!postId) {
@@ -35,11 +31,9 @@ export async function loader({ params }: LoaderFunctionArgs): Promise<
   }
 
   // Load and process the post.
-  const cwd = `${process.cwd()}/content/posts/${postId}`
-  const file = `${cwd}/page.mdx`
   let post: Post
   try {
-    post = await getPost({ file, cwd })
+    post = await getPost({ file: postId })
   } catch (error) {
     // Check if this is a file-not-found error and respond accordingly.
     if (
@@ -68,7 +62,7 @@ export async function loader({ params }: LoaderFunctionArgs): Promise<
   return json({ post }, { status: 200 })
 }
 
-export default function Post() {
+export default function Route() {
   const { post } = useLoaderData<typeof loader>()
 
   const Component = useMemo(() => {
@@ -76,7 +70,7 @@ export default function Post() {
   }, [post.code])
 
   return (
-    <PostLayout post={post}>
+    <PostLayout meta={post.meta}>
       <Component />
     </PostLayout>
   )
