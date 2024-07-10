@@ -11,6 +11,7 @@ import rehypeSlug from "rehype-slug"
 import remarkGfm from "remark-gfm"
 import remarkMdxImages from "remark-mdx-images"
 import remarkToc from "remark-toc"
+import tsconfigJson from "tsconfig.json" with { type: "json" }
 import { SetRequired } from "type-fest"
 
 import { tw } from "@utils/templates"
@@ -133,7 +134,7 @@ export async function getPost({
     esbuildOptions(options) {
       // Use the same target as the root app, needs to be set since it would
       // otherwise default to `esnext`.
-      options.target = "ES2022"
+      options.target = tsconfigJson.compilerOptions.target
       // Inline images.
       options.loader = {
         ...options.loader,
