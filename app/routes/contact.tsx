@@ -17,6 +17,8 @@ type ContactResult = {
 }
 export type ContactMeResponse = ActionResponse<ContactMeFields, ContactResult>
 
+export const config = { runtime: "nodejs" }
+
 // No meta since this is an action-only route.
 
 export async function action({ request }: ActionFunctionArgs) {
