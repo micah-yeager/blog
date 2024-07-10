@@ -2,9 +2,12 @@ import path from "node:path"
 
 import type { Options as AutolinkOptions } from "rehype-autolink-headings"
 import type { Options as TocOptions } from "remark-toc"
+import { LinkIcon } from "@heroicons/react/24/outline"
 import fastGlob from "fast-glob"
+import { fromHtml } from "hast-util-from-html"
 import { toString } from "hast-util-to-string"
 import { bundleMDX } from "mdx-bundler"
+import { renderToString } from "react-dom/server"
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
 import rehypeHighlight from "rehype-highlight"
 import rehypeSlug from "rehype-slug"
@@ -14,6 +17,7 @@ import remarkToc from "remark-toc"
 import tsconfigJson from "tsconfig.json" with { type: "json" }
 import { SetRequired } from "type-fest"
 
+import { Icon } from "@ui/Icon"
 import { tw } from "@utils/templates"
 
 type PostFrontmatter = {
@@ -54,6 +58,21 @@ export type Post = Awaited<ReturnType<typeof bundleMDX<PostFrontmatter>>> & {
   slug: string
 }
 
+/** An `Icon` component rendered to a Hast tree. */
+// Defined outside the `getPost` function, so it's only rendered once.
+const linkIconHast = fromHtml(
+  renderToString(
+    <Icon as={LinkIcon} className="size-5 text-zinc-500" aria-hidden />
+  ),
+  { fragment: true }
+).children
+
+/**
+ * Parse a post from an MDX file.
+ *
+ * @param file The MDX file to parse.
+ * @param rest The options to pass to `bundleMDX`.
+ */
 export async function getPost({
   file,
   ...rest
@@ -97,33 +116,8 @@ export async function getPost({
               className: tw`invisible absolute top-1/2 -ml-8 -translate-y-1/2 px-1 text-zinc-500 group-hover/LinkedHeading:visible`,
               ariaLabel: `Section titled: ${toString(element)}`
             }),
-            content: [
-              {
-                type: "element",
-                tagName: "svg",
-                properties: {
-                  xmlns: "http://www.w3.org/2000/svg",
-                  fill: "none",
-                  viewBox: "0 0 24 24",
-                  strokeWidth: 1.5,
-                  stroke: "currentColor",
-                  className: tw`size-5 text-zinc-500`,
-                  ariaHidden: true
-                },
-                children: [
-                  {
-                    type: "element",
-                    tagName: "path",
-                    properties: {
-                      strokeLinecap: "round",
-                      strokeLinejoin: "round",
-                      d: "M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244"
-                    },
-                    children: []
-                  }
-                ]
-              }
-            ]
+            // Link content, an icon in this case.
+            content: linkIconHast
           } as AutolinkOptions
         ]
       ]
