@@ -12,6 +12,8 @@ import { mergeMeta } from "@utils/meta"
 import { CANONICAL_ORIGIN, FULL_NAME, LOCALE } from "../../constants"
 import codeStyles from "./prism.css?url"
 
+export const config = { runtime: "nodejs" }
+
 const og_locale = LOCALE.replace("-", "_")
 
 export function links() {
