@@ -11,6 +11,7 @@ import rehypeSlug from "rehype-slug"
 import remarkGfm from "remark-gfm"
 import remarkMdxImages from "remark-mdx-images"
 import remarkToc from "remark-toc"
+import { SetRequired } from "type-fest"
 
 import { tw } from "@utils/templates"
 
@@ -55,13 +56,13 @@ export type Post = Awaited<ReturnType<typeof bundleMDX<PostFrontmatter>>> & {
 export async function getPost({
   file,
   ...rest
-}: Omit<
-  Parameters<typeof bundleMDX>[0],
-  "source" | "file" | "mdxOptions" | "esbuildOptions" | "grayMatterOptions"
-> &
-  Required<
-    Pick<Parameters<typeof bundleMDX<PostFrontmatter>>[0], "file">
-  >): Promise<Post> {
+}: SetRequired<
+  Omit<
+    Parameters<typeof bundleMDX>[0],
+    "source" | "mdxOptions" | "esbuildOptions" | "grayMatterOptions"
+  >,
+  "file"
+>): Promise<Post> {
   // Parse MDX file.
   const mdx = await bundleMDX<PostFrontmatter>({
     file,
