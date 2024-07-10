@@ -7,7 +7,7 @@ import type { IconProp } from "@ui/Icon"
 import { ContactMe } from "@ui/ContactMe"
 import { Container } from "@ui/Container"
 import { Icon } from "@ui/Icon"
-import { mergeMeta } from "~/utils/meta"
+import { mergeMeta } from "@utils/meta"
 import { FULL_NAME, GITHUB_URL, LINKEDIN_URL } from "~/constants"
 
 export const meta = mergeMeta(() => [{ title: "About" }])

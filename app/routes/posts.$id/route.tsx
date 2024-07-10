@@ -4,10 +4,10 @@ import { json } from "@vercel/remix"
 import { getMDXComponent } from "mdx-bundler/client/index.js"
 import { useMemo } from "react"
 
-import type { Post } from "~/services/posts.server"
+import type { Post } from "@services/posts.server"
+import { getPost } from "@services/posts.server"
 import { PostLayout } from "@ui/PostLayout"
-import { getPost } from "~/services/posts.server"
-import { mergeMeta } from "~/utils/meta"
+import { mergeMeta } from "@utils/meta"
 
 import codeStyles from "./prism.css?url"
 

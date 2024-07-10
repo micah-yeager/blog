@@ -1,6 +1,6 @@
 import { DateTime } from "luxon"
 
-import type { PostMeta } from "~/services/posts.server"
+import type { PostMeta } from "@services/posts.server"
 
 import { Card } from "./Card"
 

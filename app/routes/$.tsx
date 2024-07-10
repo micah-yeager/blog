@@ -1,4 +1,4 @@
-import { mergeMeta } from "~/utils/meta"
+import { mergeMeta } from "@utils/meta"
 
 export const meta = mergeMeta(() => [{ title: "Not Found" }])
 

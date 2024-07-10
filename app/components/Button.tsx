@@ -4,7 +4,7 @@ import clsx from "clsx"
 import { createContext, useContext } from "react"
 import { useGlobalSubmittingState } from "remix-utils/use-global-navigation-state"
 
-import { tw } from "~/utils/templates"
+import { tw } from "@utils/templates"
 
 import type { IconProps } from "./Icon"
 import { Icon } from "./Icon"

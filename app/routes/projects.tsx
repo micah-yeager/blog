@@ -7,7 +7,7 @@ import type { IconProp } from "@ui/Icon"
 import { Card } from "@ui/Card"
 import { Icon } from "@ui/Icon"
 import { SimpleLayout } from "@ui/SimpleLayout"
-import { mergeMeta } from "~/utils/meta"
+import { mergeMeta } from "@utils/meta"
 
 type Project = {
   name: string

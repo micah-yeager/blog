@@ -11,7 +11,7 @@ import { Link, NavLink, useLocation } from "@remix-run/react"
 import clsx from "clsx"
 import { Fragment, useEffect, useRef, useState } from "react"
 
-import { clamp } from "~/utils/numbers"
+import { clamp } from "@utils/numbers"
 
 import { Container } from "./Container"
 import { Icon } from "./Icon"

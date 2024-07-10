@@ -18,6 +18,8 @@
     "paths": {
       "@ui/*": ["./app/components/*"],
       "@content/*": ["./content/*"],
+      "@utils/*": ["./app/utils/*"],
+      "@services/*": ["./app/services/*"],
       "~/*": ["./app/*"]
     },
     "noEmit": true

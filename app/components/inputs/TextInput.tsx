@@ -10,7 +10,7 @@ import { ExclamationCircleIcon } from "@heroicons/react/24/solid"
 import clsx from "clsx"
 import { forwardRef, useRef, useState } from "react"
 
-import { useDimensions, useForwardRef } from "~/utils/hooks"
+import { useDimensions, useForwardRef } from "@utils/hooks"
 
 import type { SharedFormProps } from "./shared"
 import { Icon } from "../Icon"

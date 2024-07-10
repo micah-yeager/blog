@@ -4,6 +4,7 @@ import { Link, useLoaderData } from "@remix-run/react"
 import { json } from "@vercel/remix"
 
 import type { IconProp } from "@ui/Icon"
+import { getAllPosts } from "@services/posts.server"
 import { ContactMe } from "@ui/ContactMe"
 import { Container } from "@ui/Container"
 import { CV } from "@ui/CV"
@@ -11,7 +12,6 @@ import { Icon } from "@ui/Icon"
 import { Photos } from "@ui/Photos"
 import { PostOverview } from "@ui/PostOverview"
 import { GITHUB_URL, LINKEDIN_URL } from "~/constants"
-import { getAllPosts } from "~/services/posts.server"
 
 export async function loader() {
   const postMetas = await getAllPosts()

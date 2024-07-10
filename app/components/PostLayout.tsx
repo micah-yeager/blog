@@ -4,7 +4,7 @@ import { ArrowLeftIcon, ChevronDoubleUpIcon } from "@heroicons/react/24/outline"
 import clsx from "clsx"
 import { DateTime } from "luxon"
 
-import type { Post } from "~/services/posts.server"
+import type { Post } from "@services/posts.server"
 
 import { Button } from "./Button"
 import { Container } from "./Container"

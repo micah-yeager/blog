@@ -1,16 +1,16 @@
 import type { ActionFunctionArgs } from "@vercel/remix"
 import { json } from "@vercel/remix"
 
+import type { VerifyTurnstileErrorResponse } from "@services/captcha.server"
 import type { ContactMeFields } from "@ui/ContactMe"
-import type { VerifyTurnstileErrorResponse } from "~/services/captcha.server"
-import type { ActionResponse, FieldErrors } from "~/utils/response"
-import { verifyTurnstile } from "~/services/captcha.server"
+import type { ActionResponse, FieldErrors } from "@utils/response"
+import { verifyTurnstile } from "@services/captcha.server"
 import {
   EMAIL_FROM,
   EMAIL_TO,
   initEmailClient,
   POSTMARK_TRANSACTIONAL_STREAM
-} from "~/services/email.server"
+} from "@services/email.server"
 
 type ContactResult = {
   success: boolean

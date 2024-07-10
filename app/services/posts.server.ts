@@ -12,7 +12,7 @@ import remarkGfm from "remark-gfm"
 import remarkMdxImages from "remark-mdx-images"
 import remarkToc from "remark-toc"
 
-import { tw } from "~/utils/templates"
+import { tw } from "@utils/templates"
 
 type PostFrontmatter = {
   title: string

@@ -4,7 +4,7 @@ import type { TypedResponse } from "@vercel/remix"
 import { json } from "@vercel/remix"
 import { getClientIPAddress } from "remix-utils/get-client-ip-address"
 
-import type { ActionResponse } from "~/utils/response"
+import type { ActionResponse } from "@utils/response"
 
 const VERIFICATION_ENDPOINT =
   "https://challenges.cloudflare.com/turnstile/v0/siteverify"
