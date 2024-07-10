@@ -9,7 +9,10 @@ import { getPost } from "@services/posts.server"
 import { PostLayout } from "@ui/PostLayout"
 import { mergeMeta } from "@utils/meta"
 
+import { FULL_NAME, LOCALE } from "../../constants"
 import codeStyles from "./prism.css?url"
+
+const og_locale = LOCALE.replace("-", "_")
 
 export function links() {
   return [{ rel: "stylesheet", href: codeStyles }]
@@ -17,7 +20,35 @@ export function links() {
 
 export const meta = mergeMeta<typeof loader>(({ data }) => {
   // Use the post title as the page title.
-  return [{ title: data?.post.frontmatter.title ?? "Whoops :/" }]
+  if (!data) return []
+
+  // Add additional metadata.
+  const meta = data.post.meta
+  return [
+    { title: meta.title },
+    { name: "description", content: meta.description },
+    // Open Graph protocol metadata, see https://ogp.me
+    { property: "og:title", content: meta.title },
+    { property: "og:description", content: meta.description },
+    { property: "og:site_name", content: FULL_NAME },
+    { property: "og:locale", content: og_locale },
+    { property: "og:type", content: "article" },
+    { property: "og:article:published_time", content: meta.created },
+    // Only append the modified time if it exists.
+    ...(meta.updated
+      ? [{ property: "og:article:modified_time", content: meta.updated }]
+      : []),
+    // Map tags.
+    ...meta.tags.map((tag) => ({
+      property: "og:article:tag",
+      content: tag
+    })),
+    // Map authors.
+    ...meta.authors.map((author) => ({
+      property: "og:article:author",
+      content: author
+    }))
+  ]
 })
 
 export async function loader({ params }: LoaderFunctionArgs) {
