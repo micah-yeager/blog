@@ -9,7 +9,7 @@ import { getPost } from "@services/posts.server"
 import { PostLayout } from "@ui/PostLayout"
 import { mergeMeta } from "@utils/meta"
 
-import { FULL_NAME, LOCALE } from "../../constants"
+import { CANONICAL_ORIGIN, FULL_NAME, LOCALE } from "../../constants"
 import codeStyles from "./prism.css?url"
 
 const og_locale = LOCALE.replace("-", "_")
@@ -28,6 +28,7 @@ export const meta = mergeMeta<typeof loader>(({ data }) => {
     { title: meta.title },
     { name: "description", content: meta.description },
     // Open Graph protocol metadata, see https://ogp.me
+    { property: "og:url", content: `${CANONICAL_ORIGIN}/posts/${meta.slug}` },
     { property: "og:title", content: meta.title },
     { property: "og:description", content: meta.description },
     { property: "og:site_name", content: FULL_NAME },
