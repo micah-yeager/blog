@@ -96,9 +96,8 @@ export default function About() {
             <p>
               I’ve learned a lot since that project, and I’ll never stop
               learning. I’m not satisfied with "good enough" — I’m always
-              looking for ways to improve systems, processes, and myself. Maybe
-              I won’t change the world, but I can certainly do my best to make
-              it just a little bit better.
+              looking for ways to improve systems, processes, and myself. My
+              goal is to always leave things better than I found them!
             </p>
           </div>
         </div>
