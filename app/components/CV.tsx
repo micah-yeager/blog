@@ -59,7 +59,7 @@ export function CV() {
         to="/documents/cv.pdf"
         variant="secondary"
         className="group mt-6 block w-full"
-        download={`CV - ${FULL_NAME}.pdf`}
+        download={`CV - ${FULL_NAME}, DevOps Engineer & Solutions Architect.pdf`}
         // reload required to force download
         reloadDocument
       >
