@@ -11,13 +11,20 @@ export function CV() {
   const cv: Array<Role> = [
     {
       company: "Innovative, Inc.",
-      title: "Solutions Architect",
+      title: "DevOps Engineer & Solutions Architect",
       logo: "/images/logos/innovative-inc.svg",
       start: "2017",
       end: {
         label: "Present",
         dateTime: new Date().getFullYear().toString()
       }
+    },
+    {
+      company: "Hummert IT",
+      title: "Owner",
+      logo: "/images/logos/circuit.svg",
+      start: "2016",
+      end: "2017"
     },
     {
       company: "Life Pacific University - Virginia",
@@ -52,7 +59,7 @@ export function CV() {
         to="/documents/cv.pdf"
         variant="secondary"
         className="group mt-6 block w-full"
-        download={`CV - ${FULL_NAME}.pdf`}
+        download={`CV - ${FULL_NAME}, DevOps Engineer & Solutions Architect.pdf`}
         // reload required to force download
         reloadDocument
       >
