@@ -53,7 +53,7 @@ export default function Index() {
               beautiful, functional, and accessible by all.
             </p>
             <p>
-              And holy <i>shit</i> do I love cats.
+              And oh my <i>god</i> do I love cats.
             </p>
           </div>
           <div className="flex gap-6">
