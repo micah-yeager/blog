@@ -11,7 +11,7 @@ export function CV() {
   const cv: Array<Role> = [
     {
       company: "Innovative, Inc.",
-      title: "Solutions Architect",
+      title: "DevOps Engineer & Solutions Architect",
       logo: "/images/logos/innovative-inc.svg",
       start: "2017",
       end: {
