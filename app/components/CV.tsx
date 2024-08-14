@@ -20,6 +20,13 @@ export function CV() {
       }
     },
     {
+      company: "Hummert IT",
+      title: "Owner",
+      logo: "/images/logos/circuit.svg",
+      start: "2016",
+      end: "2017"
+    },
+    {
       company: "Life Pacific University - Virginia",
       title: "IT & Media Management",
       logo: "/images/logos/life-pacific-university.svg",
