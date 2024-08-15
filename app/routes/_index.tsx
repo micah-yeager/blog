@@ -43,14 +43,13 @@ export default function Index() {
       <Container className="mt-9">
         <div className="max-w-2xl space-y-6">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100 sm:text-5xl">
-            Solutions architect, developer, and cat enthusiast.
+            Developer and cat enthusiast.
           </h1>
           <div className="space-y-4 text-base text-zinc-600 dark:text-zinc-400">
             <p>
-              I’m Micah, a full-stack developer based in Maryland, United States
-              (soon to be British Columbia, Canada). I enjoy tackling problems
-              holistically, and I’m passionate about building software that is
-              beautiful, functional, and accessible by all.
+              I’m Micah, a full-stack developer currently based in Maryland,
+              United States. I enjoy tackling problems holistically, and I’m
+              passionate about building software that is beautiful, functional,
             </p>
             <p>
               And oh my <i>god</i> do I love cats.
