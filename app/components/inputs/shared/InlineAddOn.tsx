@@ -2,9 +2,22 @@ import type { ComponentPropsWithoutRef } from "react"
 import clsx from "clsx"
 import { forwardRef } from "react"
 
+/**
+ * Properties for the `InlineAddOn` component. Extends the properties of the
+ * `div` element.
+ */
 type InlineAddOnProps = ComponentPropsWithoutRef<"div"> & {
+  /** Whether the parent field is disabled. */
   disabled?: boolean
 }
+
+/**
+ * An inline add-on for a text input field.
+ *
+ * @component
+ * @see InlineAddOnProps
+ * @see TextInput
+ */
 export const InlineAddOn = forwardRef<HTMLDivElement, InlineAddOnProps>(
   function InlineAddOn(
     { disabled, className, children, ...rest },

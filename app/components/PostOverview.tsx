@@ -5,6 +5,12 @@ import type { PostMeta } from "@services/posts.server"
 
 import { Card } from "./Card"
 
+/**
+ * A preview of a blog post.
+ *
+ * @param meta - The metadata for the post.
+ * @component
+ */
 export function PostOverview({ meta }: { meta: Jsonify<PostMeta> }) {
   const date = meta.updated
     ? DateTime.fromISO(meta.updated)

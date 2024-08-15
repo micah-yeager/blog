@@ -23,25 +23,53 @@ import { FULL_NAME } from "../constants"
 
 /** Schema for a post's frontmatter. */
 const frontmatterSchema = z.object({
+  /** The title of the post. */
   title: z.string().min(1).max(60),
+  /** A brief description for the post preview. */
   description: z.string().min(1).max(160),
+  /** The associated tags. */
   tags: z.array(z.string().min(1)).default([]),
+  /** The post's authors. */
   authors: z.array(z.string().min(1)).default([FULL_NAME]),
+  /** The date the post was created. */
   created: z.date(),
+  /** The date the post was last updated. */
   updated: z.date().optional()
 })
-/** Frontmatter for a post. */
+/**
+ * Frontmatter for a post.
+ *
+ * @see frontmatterSchema
+ */
 export type PostFrontmatter = z.infer<typeof frontmatterSchema>
 
 /** Schema for a post's slug. */
 const slugSchema = z.object({ slug: z.string() })
-/** Schema for a post's metadata. */
+/**
+ * Schema for a post's metadata.
+ *
+ * @see frontmatterSchema
+ * @see slugSchema
+ */
 const postMetaSchema = frontmatterSchema.merge(slugSchema)
-/** Schema for an unsaved post's metadata. */
+/**
+ * Schema for an unsaved post's metadata.
+ *
+ * @see frontmatterSchema
+ * @see slugSchema
+ */
 const unsavedPostMetaSchema = frontmatterSchema.merge(slugSchema.partial())
-/** Metadata for a post. */
+/**
+ * Metadata for a post.
+ *
+ * @see postMetaSchema
+ */
 export type PostMeta = z.infer<typeof postMetaSchema>
-/** Metadata for an unsaved post. */
+/**
+ * Metadata for an unsaved post.
+ *
+ * @see unsavedPostMetaSchema
+ */
 export type UnsavedPostMeta = z.infer<typeof unsavedPostMetaSchema>
 
 /** The path to the posts' directory. */
@@ -92,14 +120,29 @@ function slugFromFile(file: string) {
   return file.replace(`${postsPath}/`, "").replace("/page.mdx", "")
 }
 
+/** The base post type, excluding metadata. */
 type BasePost = Omit<
   Awaited<ReturnType<typeof bundleMDX<PostFrontmatter>>>,
   "frontmatter" | "matter"
 >
+/**
+ * A post with metadata.
+ *
+ * @see BasePost
+ */
 export type Post = BasePost & { meta: PostMeta }
+/**
+ * An unsaved post with metadata.
+ *
+ * @see BasePost
+ */
 export type UnsavedPost = BasePost & { meta: UnsavedPostMeta }
 
-/** An {@link Icon} component rendered to a Hast tree. */
+/**
+ * An {@link Icon} component rendered to a Hast tree.
+ *
+ * @see getPost
+ */
 // Defined outside the `getPost` function, so it's only rendered once.
 const linkIconHast = fromHtml(
   renderToString(
@@ -108,7 +151,11 @@ const linkIconHast = fromHtml(
   { fragment: true }
 ).children
 
-/** Args for {@link getPost}. */
+/**
+ * Arguments for {@link getPost}.
+ *
+ * @see getPost
+ */
 // Use `DistributedOmit` to avoid messing up union type.
 type GetPostArgs = DistributedOmit<
   Parameters<typeof bundleMDX>[0],

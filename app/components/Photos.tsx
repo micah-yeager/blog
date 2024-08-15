@@ -1,12 +1,22 @@
 import type { ComponentPropsWithoutRef } from "react"
 import clsx from "clsx"
 
+/**
+ * Photo definition for the `Photos` component.
+ *
+ * @see photos
+ */
 type Photo = {
   src: string
   alt: string
   className?: string
 }
 
+/**
+ * An array of photos to display in the `Photos` component.
+ *
+ * @see Photo
+ */
 const photos: Photo[] = [
   {
     src: "/images/bean-couch.jpeg",
@@ -30,6 +40,13 @@ const photos: Photo[] = [
   }
 ]
 
+/**
+ * A frame for a photo.
+ *
+ * @component
+ * @see Photo
+ * @see Photos
+ */
 function PhotoFrame({
   className,
   children,
@@ -48,9 +65,21 @@ function PhotoFrame({
   )
 }
 
+/**
+ * Properties for the `Photo` component. Extends the properties of the `img`
+ * element.
+ *
+ * @see Photo
+ */
 type PhotoProps = Omit<ComponentPropsWithoutRef<"img">, "alt"> &
   Required<Pick<ComponentPropsWithoutRef<"img">, "alt">>
 
+/**
+ * A photo for the photos display.
+ *
+ * @component
+ * @see Photos
+ */
 function Photo({ alt, className, ...rest }: PhotoProps) {
   return (
     <img
@@ -63,6 +92,11 @@ function Photo({ alt, className, ...rest }: PhotoProps) {
   )
 }
 
+/**
+ * A collection of for the home page.
+ *
+ * @component
+ */
 export function Photos() {
   const rotations = [
     "rotate-2",

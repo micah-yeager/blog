@@ -2,6 +2,13 @@ import type { ComponentPropsWithoutRef, ElementRef } from "react"
 import clsx from "clsx"
 import { forwardRef } from "react"
 
+/**
+ * The outer portion of a responsive page container. Extends the properties of
+ * the `div` element.
+ *
+ * @component
+ * @see ContainerInner
+ */
 export const ContainerOuter = forwardRef<
   ElementRef<"div">,
   ComponentPropsWithoutRef<"div">
@@ -13,6 +20,13 @@ export const ContainerOuter = forwardRef<
   )
 })
 
+/**
+ * The inner portion of a responsive page container. Extends the properties of
+ * the `div` element.
+ *
+ * @component
+ * @see ContainerOuter
+ */
 export const ContainerInner = forwardRef<
   ElementRef<"div">,
   ComponentPropsWithoutRef<"div">
@@ -28,6 +42,12 @@ export const ContainerInner = forwardRef<
   )
 })
 
+/**
+ * A self-contained responsive page container. Extends the properties of the
+ * `div` element.
+ *
+ * @component
+ */
 export const Container = forwardRef<
   ElementRef<typeof ContainerOuter>,
   ComponentPropsWithoutRef<typeof ContainerOuter>

@@ -7,14 +7,30 @@ import {
 } from "@heroicons/react/20/solid"
 import clsx from "clsx"
 
+/**
+ * Variant definition for the Alert component.
+ *
+ * @see variants
+ */
 type VariantMap = {
+  /** The icon to display for this variant. */
   Icon: ({ className }: { className: string }) => ReactNode
+  /** The classes for the icon. */
   iconClassName?: string
+  /** The classes for the alert's background. */
   bgClassName: string
+  /** The classes for the alert's header. */
   headerClassName: string
+  /** The classes for the alert's text. */
   textClassName: string
 }
-const variants: Record<string, VariantMap> = {
+/**
+ * Variant definitions for the Alert component.
+ *
+ * @see Alert
+ * @see AlertProps
+ */
+const variants = {
   error: {
     Icon: XCircleIcon,
     iconClassName: "text-red-400 dark:text-red-600",
@@ -43,13 +59,26 @@ const variants: Record<string, VariantMap> = {
     headerClassName: "text-blue-800 dark:text-blue-200",
     textClassName: "text-blue-700 dark:text-blue-300"
   }
-}
+} as const satisfies Record<string, VariantMap>
 
+/**
+ * Properties for the Alert component. Extends the `div` element's props.
+ *
+ * @see Alert
+ */
 type AlertProps = ComponentPropsWithoutRef<"div"> & {
+  /** The variant to use. */
   variant: keyof typeof variants
+  /** The alert header text. */
   title?: string
 }
 
+/**
+ * A simple alert component.
+ *
+ * @component
+ * @see AlertProps
+ */
 export function Alert({
   variant,
   title,

@@ -20,10 +20,20 @@ import { InputError } from "./shared/InputError"
 import { InputLabel } from "./shared/InputLabel"
 import { InputOptionalHint } from "./shared/InputOptionalHint"
 
+/** Properties for visual addons to the `TextInput` component. */
 type TextInputAddOnProps = {
+  /** Additional classes to apply to the add-on. */
   className?: string
+  /** Whether the parent field is disabled. */
   disabled?: boolean
 }
+/**
+ * Properties for the `TextInput` component. Extends the `input` element
+ * properties.
+ *
+ * @see TextInput
+ * @see SharedFormProps
+ */
 type TextInputProps = ComponentPropsWithoutRef<"input"> &
   SharedFormProps & {
     LeadingAddOn?: ComponentType<TextInputAddOnProps>
@@ -33,6 +43,12 @@ type TextInputProps = ComponentPropsWithoutRef<"input"> &
     hideOptionalHint?: boolean
   }
 
+/**
+ * A single-line text input field.
+ *
+ * @component
+ * @see TextInputProps
+ */
 export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
   function TextInput(
     {
@@ -78,7 +94,8 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
     const trailingInlinePadding =
       12 + // default input padding with TailwindCSS Forms
       trailingInlineWidth - // defaults to 0 if ref is null
-      (trailingInlineAddOn ? 4 : 0) // inner padding should just be 8px, not 12px
+      (trailingInlineAddOn ? 4 : 0) // inner padding should just be 8px, not
+    // 12px
 
     // shortcut for showing the `optional` hint
     const showOptionalHint = !hideOptionalHint && !required
@@ -222,14 +239,34 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
   }
 )
 
+/**
+ * Properties for the add-on components. Extends the properties of the element
+ * or component passed to the `as` prop.
+ *
+ * @see AddOn
+ */
 type AddOnProps<TTag extends ElementType> = Omit<
   ComponentPropsWithoutRef<TTag>,
   "as"
 > & {
+  /**
+   * The element or component to render the add-on as.
+   *
+   * @default "div"
+   * @see ElementType
+   */
   as?: TTag
+  /** Whether the parent field is disabled. */
   disabled?: boolean
 }
 
+/**
+ * An add-on for the `TextInput` component.
+ *
+ * @component
+ * @see AddOnProps
+ * @see TextInput
+ */
 function AddOn<TTag extends ElementType>({
   as,
   disabled,
@@ -255,6 +292,13 @@ function AddOn<TTag extends ElementType>({
   )
 }
 
+/**
+ * Add-on button for the `TextInput` component.
+ *
+ * @component
+ * @see AddOnProps
+ * @see TextInput
+ */
 export function AddOnButton({
   className,
   children,

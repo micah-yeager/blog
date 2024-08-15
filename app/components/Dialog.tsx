@@ -6,12 +6,28 @@ import { Fragment, useRef } from "react"
 
 import { Icon } from "./Icon"
 
+/**
+ * Props for the Dialog component. Extends the props of the Headless UI Dialog
+ * component.
+ *
+ * @see Dialog
+ * @see HeadlessUIDialog.Panel
+ */
 type DialogProps = ComponentPropsWithoutRef<typeof HeadlessUIDialog.Panel> & {
+  /** The open state for the dialog. */
   open: boolean
+  /** A function to set the dialog's open state. */
   setOpen: (open: boolean) => void
+  /** A function to run when the dialog is closed. */
   onClose?: () => void
 }
 
+/**
+ * A dialog component that uses the Headless UI Dialog component.
+ *
+ * @component
+ * @see DialogProps
+ */
 export function Dialog({ open, setOpen, onClose, children }: DialogProps) {
   function close() {
     setOpen(false)
@@ -92,6 +108,14 @@ export function Dialog({ open, setOpen, onClose, children }: DialogProps) {
   )
 }
 
+/**
+ * Title for a dialog. Extends the props of the Headless UI Dialog.Title
+ * component.
+ *
+ * @component
+ * @see HeadlessUIDialog.Title
+ * @see Dialog
+ */
 Dialog.Title = function DialogTitle({
   as = "h3",
   className,
@@ -112,6 +136,12 @@ Dialog.Title = function DialogTitle({
   )
 }
 
+/**
+ * Actions for a dialog. Extends the 'div' element's props.
+ *
+ * @component
+ * @see Dialog
+ */
 Dialog.Actions = function DialogActions({
   className,
   children,

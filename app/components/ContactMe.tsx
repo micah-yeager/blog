@@ -17,12 +17,22 @@ import { Icon } from "./Icon"
 import { TextArea } from "./inputs/TextArea"
 import { TextInput } from "./inputs/TextInput"
 
+/** Fields for the contact form. */
 export type ContactMeFields = {
+  /** The subject of the message. */
   subject: string
+  /** The reply address for the sender. */
   email: string
+  /** The message body to send. */
   message: string
 }
 
+/**
+ * A button that opens a dialog to contact the site owner. Extends the `button`
+ * element properties.
+ *
+ * @component
+ */
 export function ContactMe(
   props: Omit<
     ComponentPropsWithoutRef<"button">,

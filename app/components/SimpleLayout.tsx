@@ -2,6 +2,14 @@ import type { PropsWithChildren } from "react"
 
 import { Container } from "./Container"
 
+/**
+ * A simple layout with a title and introduction.
+ *
+ * @param title - The page title.
+ * @param intro - The page subtitle.
+ * @param children - The content of the page.
+ * @component
+ */
 export function SimpleLayout({
   title,
   intro,

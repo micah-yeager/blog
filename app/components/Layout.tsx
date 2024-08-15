@@ -3,6 +3,11 @@ import type { ReactNode } from "react"
 import { Footer } from "./Footer"
 import { Header } from "./Header"
 
+/**
+ * The layout for the application.
+ *
+ * @component
+ */
 export function Layout({ children }: { children: ReactNode }) {
   return (
     <>

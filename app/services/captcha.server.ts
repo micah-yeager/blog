@@ -6,11 +6,14 @@ import { getClientIPAddress } from "remix-utils/get-client-ip-address"
 
 import type { ActionResponse } from "@utils/response"
 
+/** The endpoint for verifying Turnstile tokens. */
 const VERIFICATION_ENDPOINT =
   "https://challenges.cloudflare.com/turnstile/v0/siteverify"
 
 // Cast to string since verification below will ensure the value exists.
+/** The site key for Turnstile. */
 const TURNSTILE_SITE_KEY = process.env.TURNSTILE_SITE_KEY as string
+/** The secret key for Turnstile. */
 const TURNSTILE_SECRET_KEY = process.env.TURNSTILE_SECRET_KEY as string
 if (!TURNSTILE_SITE_KEY || !TURNSTILE_SECRET_KEY) {
   throw new Error("Missing required Turnstile environment variable(s).")
@@ -18,16 +21,27 @@ if (!TURNSTILE_SITE_KEY || !TURNSTILE_SECRET_KEY) {
 // Don't export secret key since it won't be needed elsewhere.
 export { TURNSTILE_SITE_KEY }
 
+/** The response from the Turnstile verification endpoint. */
 type VerificationResponse = {
+  /** Whether the token was successfully verified. */
   success: boolean
+  /** Any error codes returned by the verification endpoint. */
   "error-codes"?: string[]
+  /** Any human-readable messages returned by the verification endpoint. */
   messages?: string[]
 }
+/** The data response for verifying a Turnstile token. */
 export type VerifyTurnstileErrorResponse = TypedResponse<
   typeof json<ActionResponse>
 >
+/** The arguments for verifying a Turnstile token. */
 type VerifyTurnstileArgs = {
+  /** The incoming request. */
   request: Request
+  /**
+   * The form data to parse. If not provided, it will be parsed from the
+   * request.
+   */
   // separate from request, so we don't run into the "already read" error
   formData?: FormData
 }
