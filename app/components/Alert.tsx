@@ -14,7 +14,7 @@ type VariantMap = {
   headerClassName: string
   textClassName: string
 }
-const variants: Record<string, VariantMap> = {
+const variants = {
   error: {
     Icon: XCircleIcon,
     iconClassName: "text-red-400 dark:text-red-600",
@@ -43,7 +43,7 @@ const variants: Record<string, VariantMap> = {
     headerClassName: "text-blue-800 dark:text-blue-200",
     textClassName: "text-blue-700 dark:text-blue-300"
   }
-}
+} as const satisfies Record<string, VariantMap>
 
 type AlertProps = ComponentPropsWithoutRef<"div"> & {
   variant: keyof typeof variants

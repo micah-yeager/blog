@@ -1,4 +1,5 @@
 import type { ComponentPropsWithoutRef } from "react"
+import type { KeysOfUnion, ValueOf } from "type-fest"
 import { Link } from "@remix-run/react"
 import clsx from "clsx"
 import { createContext, useContext } from "react"
@@ -13,8 +14,8 @@ import { LoadingIndicator } from "./LoadingIndicator"
 const variantStyles = {
   primary: tw`bg-primary-800 font-semibold text-primary-100 hover:bg-primary-700 focus-visible:outline-primary-800 active:bg-primary-800 active:text-primary-100/70 dark:bg-primary-700 dark:hover:bg-primary-600 dark:focus-visible:outline-primary-700 dark:active:bg-primary-700 dark:active:text-primary-100/70`,
   secondary: tw`bg-zinc-100 font-medium text-zinc-900 hover:bg-zinc-100 focus-visible:outline-zinc-100 active:bg-zinc-100 active:text-zinc-900/60 dark:bg-zinc-800/90 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-zinc-50 dark:focus-visible:outline-zinc-800/75 dark:active:bg-zinc-800/75 dark:active:text-zinc-50/70`
-}
-const shapeSizeStyles: Record<string, Record<string, string>> = {
+} as const satisfies Record<string, string>
+const shapeSizeStyles = {
   rectangle: {
     xs: tw`gap-x-1.5 rounded px-2 py-1 text-xs`,
     sm: tw`gap-x-1.5 rounded px-2 py-1 text-sm`,
@@ -34,31 +35,41 @@ const shapeSizeStyles: Record<string, Record<string, string>> = {
     md: tw`h-8 w-8 rounded-full p-1.5`,
     lg: tw`h-10 w-10 rounded-full p-2`
   }
-} as const
+} as const satisfies Record<string, Record<string, string>>
 
 type ButtonShapeOption = keyof typeof shapeSizeStyles
-type ButtonProps<T extends ButtonShapeOption> = {
+type ButtonShapeSizeOption<T extends ButtonShapeOption> =
+  keyof (typeof shapeSizeStyles)[T]
+type ButtonAnySizeOption = KeysOfUnion<ValueOf<typeof shapeSizeStyles>>
+
+const DEFAULT_SHAPE = "pill" as const satisfies ButtonShapeOption
+const DEFAULT_SIZE = "md" as const satisfies ButtonShapeSizeOption<
+  typeof DEFAULT_SHAPE
+>
+
+const ButtonContext = createContext({} as { size: ButtonAnySizeOption })
+
+type ButtonProps<TShape extends ButtonShapeOption> = {
   variant?: keyof typeof variantStyles
-  shape?: T
-  size?: keyof (typeof shapeSizeStyles)[T]
+  shape?: TShape
+  size?: ButtonShapeSizeOption<TShape>
 } & (
   | (ComponentPropsWithoutRef<"button"> & { to?: undefined })
   | ComponentPropsWithoutRef<typeof Link>
 )
-const ButtonContext = createContext({} as { size: string })
 
-export function Button<T extends ButtonShapeOption>({
+export function Button<TShape extends ButtonShapeOption>({
   variant = "secondary",
-  shape = "pill" as T,
-  size = "md",
+  shape = DEFAULT_SHAPE as TShape,
+  size = DEFAULT_SIZE,
   className,
   children,
   ...props
-}: ButtonProps<T>) {
+}: ButtonProps<TShape>) {
   className = clsx(
     "outline-offset-2 backdrop-blur transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 active:transition-none",
     variantStyles[variant],
-    shapeSizeStyles[shape][size],
+    shapeSizeStyles[shape][size] as string,
     className
   )
 
@@ -67,7 +78,9 @@ export function Button<T extends ButtonShapeOption>({
   const disableForSubmit = props.type === "submit" && navState === "submitting"
 
   return (
-    <ButtonContext.Provider value={{ size }}>
+    <ButtonContext.Provider
+      value={{ size: (size as ButtonAnySizeOption) ?? DEFAULT_SIZE }}
+    >
       {typeof props.to === "undefined" ? (
         <button
           {...props}

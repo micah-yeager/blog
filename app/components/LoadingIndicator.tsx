@@ -10,7 +10,7 @@ type VariantMap = {
   icon: IconProp
   className: string
 }
-const variants: Record<string, VariantMap> = {
+const variants = {
   spinner: {
     icon: faSpinner,
     className: "animate-spin"
@@ -19,7 +19,7 @@ const variants: Record<string, VariantMap> = {
     icon: EllipsisHorizontalIcon,
     className: "animate-pulse"
   }
-}
+} as const satisfies Record<string, VariantMap>
 
 type LoadingIndicatorProps = Omit<
   ComponentPropsWithoutRef<typeof Icon>,
