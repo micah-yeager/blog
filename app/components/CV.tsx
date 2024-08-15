@@ -5,6 +5,12 @@ import { Button } from "./Button"
 import { Icon } from "./Icon"
 import { Role } from "./Role"
 
+/**
+ * A list of roles in the CV.
+ *
+ * @component
+ * @see Role
+ */
 export function CV() {
   // Define within route, so end.dateTime gets updated independently of server
   // execution and subsequent storage of end.dateTime.

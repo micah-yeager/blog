@@ -16,6 +16,12 @@ import { clamp } from "@utils/numbers"
 import { Container } from "./Container"
 import { Icon } from "./Icon"
 
+/**
+ * A navigation item for the mobile menu.
+ *
+ * @component
+ * @see LinkProps
+ */
 function MobileNavItem({
   className,
   children,
@@ -35,6 +41,12 @@ function MobileNavItem({
   )
 }
 
+/**
+ * The mobile navigation menu.
+ *
+ * @component
+ * @see Popover
+ */
 function MobileNavigation(props: ComponentPropsWithoutRef<typeof Popover>) {
   return (
     <Popover {...props}>
@@ -104,6 +116,12 @@ function MobileNavigation(props: ComponentPropsWithoutRef<typeof Popover>) {
   )
 }
 
+/**
+ * A navigation item for the desktop menu.
+ *
+ * @component
+ * @see LinkProps
+ */
 function NavItem({
   className,
   children,
@@ -137,6 +155,11 @@ function NavItem({
   )
 }
 
+/**
+ * The desktop navigation menu. Extends the properties of the `nav` element.
+ *
+ * @component
+ */
 function DesktopNavigation(props: ComponentPropsWithoutRef<"nav">) {
   return (
     <nav {...props}>
@@ -149,6 +172,11 @@ function DesktopNavigation(props: ComponentPropsWithoutRef<"nav">) {
   )
 }
 
+/**
+ * A button to toggle the dark / light theme.
+ *
+ * @component
+ */
 function ThemeToggle() {
   const [darkMode, setDarkMode] = useState<boolean>(true)
 
@@ -206,6 +234,12 @@ function ThemeToggle() {
   )
 }
 
+/**
+ * A container for the avatar image. Extends the properties of the `div`
+ * element.
+ *
+ * @component
+ */
 function AvatarContainer({
   className,
   ...props
@@ -221,13 +255,18 @@ function AvatarContainer({
   )
 }
 
-function Avatar({
-  large = false,
-  className,
-  ...props
-}: Omit<ComponentPropsWithoutRef<typeof Link>, "to"> & {
+/**
+ * A clickable avatar image. Extends the properties of the `Link` component.
+ *
+ * @component
+ * @see Link
+ */
+type AvatarProps = Omit<ComponentPropsWithoutRef<typeof Link>, "to"> & {
+  /** Whether to display a larger avatar. */
   large?: boolean
-}) {
+}
+
+function Avatar({ large = false, className, ...props }: AvatarProps) {
   return (
     <Link
       to="/"
@@ -248,6 +287,11 @@ function Avatar({
   )
 }
 
+/**
+ * The page header. Contains the avatar, navigation, and theme toggle.
+ *
+ * @class
+ */
 export function Header() {
   const isHomePage = useLocation().pathname === "/"
 

@@ -11,6 +11,7 @@ import type {
 } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
+/** A custom type to represent a Heroicon definition. */
 type HeroIconDefinition = ForwardRefExoticComponent<
   PropsWithoutRef<SVGProps<SVGSVGElement>> & {
     title?: string
@@ -18,6 +19,11 @@ type HeroIconDefinition = ForwardRefExoticComponent<
   } & RefAttributes<SVGSVGElement>
 >
 
+/**
+ * An icon definition for use with the `Icon` component.
+ *
+ * @see IconProps
+ */
 export type IconProp =
   | HeroIconDefinition
   | FACoreIconDefinition
@@ -25,10 +31,22 @@ export type IconProp =
   | FARegularIconDefinition
   | FASolidIconDefinition
 
+/**
+ * Properties for the `Icon` component. Extends the `svg` element's props.
+ *
+ * @see Icon
+ */
 export type IconProps = Omit<ComponentPropsWithoutRef<"svg">, "as" | "mask"> & {
+  /** The icon component to render. */
   as: IconProp
 }
 
+/**
+ * Renders an icon component using a consistent interface, regardless of the
+ * icon library.
+ *
+ * @component
+ */
 export function Icon({ as, ...rest }: IconProps) {
   // FontAwesome-specific rendering
   if ("icon" in as) {

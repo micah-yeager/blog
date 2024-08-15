@@ -12,9 +12,11 @@ import {
   POSTMARK_TRANSACTIONAL_STREAM
 } from "@services/email.server"
 
+/** The response for the contact form. */
 type ContactResult = {
   success: boolean
 }
+/** The data response for the contact form. */
 export type ContactMeResponse = ActionResponse<ContactMeFields, ContactResult>
 
 // No meta since this is an action-only route.

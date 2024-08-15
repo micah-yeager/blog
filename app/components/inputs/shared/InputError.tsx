@@ -1,6 +1,12 @@
 import type { ComponentPropsWithoutRef } from "react"
 import clsx from "clsx"
 
+/**
+ * An error message for an input field. Extends the properties of the `div`
+ * element.
+ *
+ * @component
+ */
 export function InputError({
   className,
   children,

@@ -12,6 +12,15 @@ import { FULL_NAME, GITHUB_URL, LINKEDIN_URL } from "~/constants"
 
 export const meta = mergeMeta(() => [{ title: "About" }])
 
+/**
+ * A social media link.
+ *
+ * @param className - Additional classes to apply to the link.
+ * @param href - The URL to link to.
+ * @param children - Link contents.
+ * @param icon - The icon to render.
+ * @component
+ */
 function SocialLink({
   className,
   href,

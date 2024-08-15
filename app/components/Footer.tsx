@@ -5,7 +5,25 @@ import clsx from "clsx"
 import { FULL_NAME } from "../constants"
 import { ContainerInner, ContainerOuter } from "./Container"
 
-function NavLink({ to, children }: { to: string; children: ReactNode }) {
+/**
+ * Props for the NavLink component.
+ *
+ * @see NavLink
+ */
+type NavLinkProps = {
+  /** The URL to link to. */
+  to: string
+  /** The content of the link. */
+  children: ReactNode
+}
+
+/**
+ * A link to use in the footer.
+ *
+ * @component
+ * @see NavLinkProps
+ */
+function NavLink({ to, children }: NavLinkProps) {
   return (
     <Link
       to={to}
@@ -16,13 +34,36 @@ function NavLink({ to, children }: { to: string; children: ReactNode }) {
   )
 }
 
+/**
+ * Props for the Background component. Extends the props of the component or
+ * element used in the `as` property.
+ *
+ * @see Background
+ */
+type BackgroundProps<T extends ElementType> = Omit<
+  ComponentPropsWithoutRef<T>,
+  "as"
+> & {
+  /**
+   * The element type or component to render the background as.
+   *
+   * @default "div"
+   * @see ElementType
+   */
+  as?: T
+}
+
+/**
+ * The background for the footer.
+ *
+ * @component
+ * @see BackgroundProps
+ */
 function Background<T extends ElementType = "div">({
   as,
   className,
   ...rest
-}: Omit<ComponentPropsWithoutRef<T>, "as"> & {
-  as?: T
-}) {
+}: BackgroundProps<T>) {
   const Component = as ?? "div"
 
   return (
@@ -36,6 +77,11 @@ function Background<T extends ElementType = "div">({
   )
 }
 
+/**
+ * The main footer component.
+ *
+ * @component
+ */
 export function Footer() {
   return (
     <footer className="mt-32 flex-none">

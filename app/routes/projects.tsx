@@ -9,24 +9,34 @@ import { Icon } from "@ui/Icon"
 import { SimpleLayout } from "@ui/SimpleLayout"
 import { mergeMeta } from "@utils/meta"
 
+/** Definition for a public project I've worked on. */
 type Project = {
+  /** The name of the project. */
   name: string
+  /** A brief description of the project. */
   description: string
+  /** The logo to display for the project. */
   logo: {
+    /** The icon to render. */
     using: string | IconProp
+    /** The classes to apply to the icon. */
     className: string
   }
+  /** A link to the project's repository or website. */
   link: {
+    /** The URL to link to. */
     to: string
+    /** The label for the link. */
     label: string
   }
 }
 
+/** A list of public projects I've worked on. */
 const projects: Project[] = [
   {
     name: "Personal website",
     description:
-      "You’re looking at it, baby! A blog and portfolio built using the Tailwind UI Spotlight template, ported to Remix and adapted.",
+      "You’re looking at it, baby! A blog and portfolio built using Tailwind UI and Remix.",
     link: {
       to: "https://github.com/micah-yeager/blog",
       label: "github.com"

@@ -9,6 +9,7 @@ import typographyStyles from "./typography"
 export default {
   content: ["./app/**/*.{js,jsx,ts,tsx,mdx}"],
   plugins: [typographyPlugin, formsPlugin],
+  // Use class-based dark mode to allow for button-based toggling.
   darkMode: "class",
   theme: {
     fontSize: {

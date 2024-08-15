@@ -6,13 +6,33 @@ import clsx from "clsx"
 
 import { Icon } from "./Icon"
 
+/**
+ * Props for the Card component. Extends the props of the component or element
+ * used in the `as` property.
+ */
+type CardProps<T extends ElementType> = Omit<
+  ComponentPropsWithoutRef<T>,
+  "as"
+> & {
+  /**
+   * The element type or component to render the card as.
+   *
+   * @default "div"
+   * @see ElementType
+   */
+  as?: T
+}
+
+/**
+ * Wraps content in a card-like container.
+ *
+ * @component
+ */
 export function Card<T extends ElementType = "div">({
   as,
   className,
   children
-}: Omit<ComponentPropsWithoutRef<T>, "as"> & {
-  as?: T
-}) {
+}: CardProps<T>) {
   const Component = as ?? "div"
 
   return (
@@ -27,6 +47,13 @@ export function Card<T extends ElementType = "div">({
   )
 }
 
+/**
+ * A link to use as a card overlay.
+ *
+ * @component
+ * @see Link
+ * @see Card
+ */
 Card.Link = function CardLink({
   children,
   ...props
@@ -42,16 +69,40 @@ Card.Link = function CardLink({
   )
 }
 
+/**
+ * Props for the Card.Title component. Extends the props of the component or
+ * element used in the `as` property.
+ *
+ * @see Card.Title
+ */
+type CardTitleProps<T extends ElementType> = Omit<
+  ComponentPropsWithoutRef<T>,
+  "as" | "href" | "to"
+> &
+  Partial<Pick<LinkProps, "to">> & {
+    /**
+     * The element type or component to render the title as.
+     *
+     * @default "h2"
+     * @see ElementType
+     */
+    as?: T
+  }
+
+/**
+ * Title for a card.
+ *
+ * @component
+ * @see CardTitleProps
+ * @see Card
+ */
 Card.Title = function CardTitle<T extends ElementType = "h2">({
   as,
   to,
   className,
   children,
   ...rest
-}: Omit<ComponentPropsWithoutRef<T>, "as" | "href" | "to"> &
-  Partial<Pick<LinkProps, "to">> & {
-    as?: T
-  }) {
+}: CardTitleProps<T>) {
   const Component = as ?? "h2"
 
   return (
@@ -73,6 +124,14 @@ Card.Title = function CardTitle<T extends ElementType = "h2">({
   )
 }
 
+/**
+ * Description for a card.
+ *
+ * Extends the `p` element's props.
+ *
+ * @component
+ * @see Card
+ */
 Card.Description = function CardDescription({
   className,
   children,
@@ -91,6 +150,14 @@ Card.Description = function CardDescription({
   )
 }
 
+/**
+ * Call-to-action for a card.
+ *
+ * Extends the `div` element's props.
+ *
+ * @component
+ * @see Card
+ */
 Card.CallToAction = function CardCallToAction({
   className,
   children,
@@ -111,16 +178,47 @@ Card.CallToAction = function CardCallToAction({
   )
 }
 
+/**
+ * Props for the Card.Meta component. Extends the props of the component or
+ * element used in the `as` property.
+ *
+ * @component
+ * @see Card.Meta
+ */
+type CardMetaProps<T extends ElementType> = Omit<
+  ComponentPropsWithoutRef<T>,
+  "as" | "decorate"
+> & {
+  /**
+   * The element type or component to render the meta as.
+   *
+   * @default "p"
+   * @see ElementType
+   */
+  as?: T
+  /**
+   * Add a decorative vertical line to the left of the meta to act as a visual
+   * root.
+   *
+   * @default false
+   */
+  decorate?: boolean
+}
+
+/**
+ * "Meta" information for a card.
+ *
+ * @component
+ * @see CardMetaProps
+ * @see Card
+ */
 Card.Meta = function CardMeta<T extends ElementType = "p">({
   as,
   decorate = false,
   className,
   children,
   ...rest
-}: Omit<ComponentPropsWithoutRef<T>, "as" | "decorate"> & {
-  as?: T
-  decorate?: boolean
-}) {
+}: CardMetaProps<T>) {
   const Component = as ?? "p"
 
   return (

@@ -1,6 +1,12 @@
 import type { ComponentPropsWithoutRef } from "react"
 import clsx from "clsx"
 
+/**
+ * A component for rendering prose content. Extends the properties of the `div`
+ * element.
+ *
+ * @component
+ */
 export function Prose({
   className,
   ...props

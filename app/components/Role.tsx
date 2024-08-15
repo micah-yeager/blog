@@ -1,13 +1,25 @@
 import type { ComponentPropsWithoutRef } from "react"
 
+/** Information about a role at a company. */
 export interface Role {
+  /** The name of the company. */
   company: string
+  /** The job title held while at the company. */
   title: string
+  /** The URL of the company's logo. */
   logo: ComponentPropsWithoutRef<"img">["src"]
+  /** The start date of the role. */
   start: string | { label: string; dateTime: string }
+  /** The end date of the role. */
   end: string | { label: string; dateTime: string }
 }
 
+/**
+ * A role at a company.
+ *
+ * @param role - The role information.
+ * @component
+ */
 export function Role({ role }: { role: Role }) {
   const startLabel =
     typeof role.start === "string" ? role.start : role.start.label

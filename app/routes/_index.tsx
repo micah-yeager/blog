@@ -19,6 +19,13 @@ export async function loader() {
   return json({ recentPosts: postMetas.slice(0, 4) }, { status: 200 })
 }
 
+/**
+ * A social media link. Extends the properties of the `Link` element.
+ *
+ * @param icon - The icon to render.
+ * @param props - The properties to apply to the `Link` element.
+ * @component
+ */
 function SocialLink({
   icon,
   ...props

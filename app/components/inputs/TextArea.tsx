@@ -14,11 +14,24 @@ import { InputError } from "./shared/InputError"
 import { InputLabel } from "./shared/InputLabel"
 import { InputOptionalHint } from "./shared/InputOptionalHint"
 
+/**
+ * Properties for the `TextArea` component. Extends the `textarea` element
+ * properties.
+ *
+ * @see TextArea
+ * @see SharedFormProps
+ */
 type TextAreaProps = ComponentPropsWithoutRef<"textarea"> &
   SharedFormProps & {
     hideOptionalHint?: boolean
   }
 
+/**
+ * A multi-line text input field.
+ *
+ * @component
+ * @see TextAreaProps
+ */
 export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
   function TextArea(
     {

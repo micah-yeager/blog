@@ -1,6 +1,12 @@
 import type { ComponentPropsWithoutRef } from "react"
 import clsx from "clsx"
 
+/**
+ * A description for an input field. Extends the properties of the `div`
+ * element.
+ *
+ * @component
+ */
 export function InputDescription({
   className,
   children,
