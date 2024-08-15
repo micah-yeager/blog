@@ -6,7 +6,7 @@
   "scripts": {
     "build": "remix vite:build",
     "dev": "remix vite:dev",
-    "format": "prettier --no-error-on-unmatched-pattern --write '{**/*,*}.{js,ts,jsx,tsx,vue,astro,css,scss,sass,json,yaml,toml,md,mdx,cjs,mjs}'",
+    "format": "prettier --ignore-unknown --write .",
     "lint": "eslint .",
     "typecheck": "tsc"
   },

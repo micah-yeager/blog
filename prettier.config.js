@@ -2,23 +2,6 @@ import packageJson from "./package.json" with { type: "json" }
 import tsconfigJson from "./tsconfig.json" with { type: "json" }
 
 /**
- * @type {import("prettier").Config}
- * @see https://prettier.io/docs/en/configuration.html
- */
-const baseConfig = {
-  plugins: [
-    "@ianvs/prettier-plugin-sort-imports",
-    "prettier-plugin-jsdoc",
-    "prettier-plugin-css-order",
-    "prettier-plugin-tailwindcss" // Must be last.
-  ],
-  singleQuote: false,
-  semi: false,
-  trailingComma: "none",
-  bracketSpacing: true
-}
-
-/**
  * A regex pattern that matches any of the path aliases from `tsconfig.json`.
  *
  * Note that this is a string, not RegExp, since the plugin requires strings.
@@ -35,11 +18,29 @@ const tsconfigPathAliasesRegex =
     .join("|") +
   // End matching group.
   ")"
+
 /**
- * @type {import("@ianvs/prettier-plugin-sort-imports").PrettierConfig}
+ * @type {import("@ianvs/prettier-plugin-sort-imports").PrettierConfig &
+ *   import("prettier-plugin-jsdoc").Options &
+ *   import("prettier-plugin-tailwindcss").PluginOptions}
+ * @see https://prettier.io/docs/en/configuration.html
  * @see https://github.com/IanVS/prettier-plugin-sort-imports#options
+ * @see https://github.com/hosseinmd/prettier-plugin-jsdoc?tab=readme-ov-file#Options
+ * @see https://github.com/tailwindlabs/prettier-plugin-tailwindcss#options
  */
-const sortImportsConfig = {
+const config = {
+  plugins: [
+    "@ianvs/prettier-plugin-sort-imports",
+    "prettier-plugin-jsdoc",
+    "prettier-plugin-css-order",
+    "prettier-plugin-tailwindcss" // Must be last.
+  ],
+  singleQuote: false,
+  semi: false,
+  trailingComma: "none",
+  bracketSpacing: true,
+
+  // Import order
   importOrder: [
     "", // Empty line for top-of-file comments.
     "<TYPES>^(node:)", // Node.js built-in module types.
@@ -62,28 +63,13 @@ const sortImportsConfig = {
     "decorators"
   ],
   // Remove the leading version indicator from the TypeScript package version.
-  importOrderTypeScriptVersion: packageJson.devDependencies.typescript.slice(1)
-}
+  importOrderTypeScriptVersion: packageJson.devDependencies.typescript.slice(1),
 
-/**
- * @type {import("prettier-plugin-jsdoc").Options}
- * @see https://github.com/hosseinmd/prettier-plugin-jsdoc?tab=readme-ov-file#Options
- */
-const jsdocConfig = {
-  tsdoc: true
-}
+  // JSDoc
+  tsdoc: true,
 
-/**
- * @type {import("prettier-plugin-tailwindcss").PluginOptions}
- * @see https://github.com/tailwindlabs/prettier-plugin-tailwindcss#options
- */
-const tailwindConfig = {
+  // Tailwind CSS
   tailwindFunctions: ["clsx", "tw"]
 }
 
-export default {
-  ...tailwindConfig,
-  ...jsdocConfig,
-  ...sortImportsConfig,
-  ...baseConfig
-}
+export default config
