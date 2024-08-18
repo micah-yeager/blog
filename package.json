@@ -20,7 +20,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@headlessui/react": "^2.1.2",
-    "@heroicons/react": "^2.1.4",
+    "@heroicons/react": "^2.1.5",
     "@lexical/code": "^0.17.0",
     "@lexical/list": "^0.17.0",
     "@lexical/react": "^0.17.0",
