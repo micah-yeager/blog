@@ -1,243 +1,233 @@
-import type { ComponentPropsWithoutRef } from "react"
-import type { KeysOfUnion, ValueOf } from "type-fest"
-import { Link } from "@remix-run/react"
+import type {
+  ComponentPropsWithoutRef,
+  ForwardedRef,
+  PropsWithChildren
+} from "react"
+import {
+  Button as HeadlessButton,
+  ButtonProps as HeadlessButtonProps
+} from "@headlessui/react"
 import clsx from "clsx"
-import { createContext, useContext } from "react"
-import { useGlobalSubmittingState } from "remix-utils/use-global-navigation-state"
+import { forwardRef } from "react"
 
 import { tw } from "@utils/templates"
 
-import type { IconProps } from "./Icon"
-import { Icon } from "./Icon"
-import { LoadingIndicator } from "./LoadingIndicator"
+import { Link } from "./Link"
 
-/**
- * Style variants for the Button component.
- *
- * @see ButtonProps
- */
-const variantStyles = {
-  primary: tw`bg-primary-800 font-semibold text-primary-100 hover:bg-primary-700 focus-visible:outline-primary-800 active:bg-primary-800 active:text-primary-100/70 dark:bg-primary-700 dark:hover:bg-primary-600 dark:focus-visible:outline-primary-700 dark:active:bg-primary-700 dark:active:text-primary-100/70`,
-  secondary: tw`bg-zinc-100 font-medium text-zinc-900 hover:bg-zinc-100 focus-visible:outline-zinc-100 active:bg-zinc-100 active:text-zinc-900/60 dark:bg-zinc-800/90 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-zinc-50 dark:focus-visible:outline-zinc-800/75 dark:active:bg-zinc-800/75 dark:active:text-zinc-50/70`
-} as const satisfies Record<string, string>
-/**
- * Shape and size variants for the Button component.
- *
- * @see ButtonProps
- */
-const shapeSizeStyles = {
-  rectangle: {
-    xs: tw`gap-x-1.5 rounded px-2 py-1 text-xs`,
-    sm: tw`gap-x-1.5 rounded px-2 py-1 text-sm`,
-    md: tw`gap-x-2 rounded-md px-2.5 py-1.5 text-sm`,
-    lg: tw`gap-x-2.5 rounded-md px-3 py-2 text-sm`,
-    xl: tw`gap-x-3 rounded-md px-3.5 py-2.5 text-sm`
-  },
-  pill: {
-    xs: tw`gap-x-1.5 rounded-full px-2.5 py-1 text-xs`,
-    sm: tw`gap-x-1.5 rounded-full px-2.5 py-1 text-sm`,
-    md: tw`gap-x-2 rounded-full px-3 py-1.5 text-sm`,
-    lg: tw`gap-x-2.5 rounded-full px-3.5 py-2 text-sm`,
-    xl: tw`gap-x-3 rounded-full px-4 py-2.5 text-sm`
-  },
-  circle: {
-    sm: tw`h-6 w-6 rounded-full p-1`,
-    md: tw`h-8 w-8 rounded-full p-1.5`,
-    lg: tw`h-10 w-10 rounded-full p-2`
+const styles = {
+  base: [
+    // Base
+    tw`relative isolate inline-flex items-center justify-center gap-x-2 rounded-lg border text-base/6 font-semibold`,
+    // Sizing
+    tw`px-[calc(theme(spacing[3.5])-1px)] py-[calc(theme(spacing[2.5])-1px)] sm:px-[calc(theme(spacing.3)-1px)] sm:py-[calc(theme(spacing[1.5])-1px)] sm:text-sm/6`,
+    // Focus
+    tw`focus:outline-none data-[focus]:outline data-[focus]:outline-2 data-[focus]:outline-offset-2 data-[focus]:outline-blue-500`,
+    // Disabled
+    tw`data-[disabled]:opacity-50`,
+    // Icon
+    tw`forced-colors:[--btn-icon:ButtonText] forced-colors:data-[hover]:[--btn-icon:ButtonText] [&>[data-slot=icon]]:-mx-0.5 [&>[data-slot=icon]]:my-0.5 [&>[data-slot=icon]]:size-5 [&>[data-slot=icon]]:shrink-0 [&>[data-slot=icon]]:text-[--btn-icon] [&>[data-slot=icon]]:sm:my-1 [&>[data-slot=icon]]:sm:size-4`
+  ],
+  solid: [
+    // Optical border, implemented as the button background to avoid corner
+    // artifacts
+    tw`border-transparent bg-[--btn-border]`,
+    // Dark mode: border is rendered on `after` so background is set to button
+    // background
+    tw`dark:bg-[--btn-bg]`,
+    // Button background, implemented as foreground layer to stack on top of
+    // pseudo-border layer
+    tw`before:absolute before:inset-0 before:-z-10 before:rounded-[calc(theme(borderRadius.lg)-1px)] before:bg-[--btn-bg]`,
+    // Drop shadow, applied to the inset `before` layer so it blends with the
+    // border
+    tw`before:shadow`,
+    // Background color is moved to control and shadow is removed in dark mode
+    // so hide `before` pseudo
+    tw`dark:before:hidden`,
+    // Dark mode: Subtle white outline is applied using a border
+    tw`dark:border-white/5`,
+    // Shim/overlay, inset to match button foreground and used for hover state
+    // + highlight shadow
+    tw`after:absolute after:inset-0 after:-z-10 after:rounded-[calc(theme(borderRadius.lg)-1px)]`,
+    // Inner highlight shadow
+    tw`after:shadow-[shadow:inset_0_1px_theme(colors.white/15%)]`,
+    // White overlay on hover
+    tw`after:data-[active]:bg-[--btn-hover-overlay] after:data-[hover]:bg-[--btn-hover-overlay]`,
+    // Dark mode: `after` layer expands to cover entire button
+    tw`dark:after:-inset-px dark:after:rounded-lg`,
+    // Disabled
+    tw`before:data-[disabled]:shadow-none after:data-[disabled]:shadow-none`
+  ],
+  outline: [
+    // Base
+    tw`border-zinc-950/10 text-zinc-950 data-[active]:bg-zinc-950/[2.5%] data-[hover]:bg-zinc-950/[2.5%]`,
+    // Dark mode
+    tw`dark:border-white/15 dark:text-white dark:[--btn-bg:transparent] dark:data-[active]:bg-white/5 dark:data-[hover]:bg-white/5`,
+    // Icon
+    tw`[--btn-icon:theme(colors.zinc.500)] data-[active]:[--btn-icon:theme(colors.zinc.700)] data-[hover]:[--btn-icon:theme(colors.zinc.700)] dark:data-[active]:[--btn-icon:theme(colors.zinc.400)] dark:data-[hover]:[--btn-icon:theme(colors.zinc.400)]`
+  ],
+  plain: [
+    // Base
+    tw`border-transparent text-zinc-950 data-[active]:bg-zinc-950/5 data-[hover]:bg-zinc-950/5`,
+    // Dark mode
+    tw`dark:text-white dark:data-[active]:bg-white/10 dark:data-[hover]:bg-white/10`,
+    // Icon
+    tw`[--btn-icon:theme(colors.zinc.500)] data-[active]:[--btn-icon:theme(colors.zinc.700)] data-[hover]:[--btn-icon:theme(colors.zinc.700)] dark:[--btn-icon:theme(colors.zinc.500)] dark:data-[active]:[--btn-icon:theme(colors.zinc.400)] dark:data-[hover]:[--btn-icon:theme(colors.zinc.400)]`
+  ],
+  colors: {
+    "dark/zinc": [
+      tw`text-white [--btn-bg:theme(colors.zinc.900)] [--btn-border:theme(colors.zinc.950/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
+      tw`dark:text-white dark:[--btn-bg:theme(colors.zinc.600)] dark:[--btn-hover-overlay:theme(colors.white/5%)]`,
+      tw`[--btn-icon:theme(colors.zinc.400)] data-[active]:[--btn-icon:theme(colors.zinc.300)] data-[hover]:[--btn-icon:theme(colors.zinc.300)]`
+    ],
+    light: [
+      tw`text-zinc-950 [--btn-bg:white] [--btn-border:theme(colors.zinc.950/10%)] [--btn-hover-overlay:theme(colors.zinc.950/2.5%)] data-[active]:[--btn-border:theme(colors.zinc.950/15%)] data-[hover]:[--btn-border:theme(colors.zinc.950/15%)]`,
+      tw`dark:text-white dark:[--btn-bg:theme(colors.zinc.800)] dark:[--btn-hover-overlay:theme(colors.white/5%)]`,
+      tw`[--btn-icon:theme(colors.zinc.500)] data-[active]:[--btn-icon:theme(colors.zinc.700)] data-[hover]:[--btn-icon:theme(colors.zinc.700)] dark:[--btn-icon:theme(colors.zinc.500)] dark:data-[active]:[--btn-icon:theme(colors.zinc.400)] dark:data-[hover]:[--btn-icon:theme(colors.zinc.400)]`
+    ],
+    "dark/white": [
+      tw`text-white [--btn-bg:theme(colors.zinc.900)] [--btn-border:theme(colors.zinc.950/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
+      tw`dark:text-zinc-950 dark:[--btn-bg:white] dark:[--btn-hover-overlay:theme(colors.zinc.950/5%)]`,
+      tw`[--btn-icon:theme(colors.zinc.400)] data-[active]:[--btn-icon:theme(colors.zinc.300)] data-[hover]:[--btn-icon:theme(colors.zinc.300)] dark:[--btn-icon:theme(colors.zinc.500)] dark:data-[active]:[--btn-icon:theme(colors.zinc.400)] dark:data-[hover]:[--btn-icon:theme(colors.zinc.400)]`
+    ],
+    dark: [
+      tw`text-white [--btn-bg:theme(colors.zinc.900)] [--btn-border:theme(colors.zinc.950/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
+      tw`dark:[--btn-bg:theme(colors.zinc.800)] dark:[--btn-hover-overlay:theme(colors.white/5%)]`,
+      tw`[--btn-icon:theme(colors.zinc.400)] data-[active]:[--btn-icon:theme(colors.zinc.300)] data-[hover]:[--btn-icon:theme(colors.zinc.300)]`
+    ],
+    white: [
+      tw`text-zinc-950 [--btn-bg:white] [--btn-border:theme(colors.zinc.950/10%)] [--btn-hover-overlay:theme(colors.zinc.950/2.5%)] data-[active]:[--btn-border:theme(colors.zinc.950/15%)] data-[hover]:[--btn-border:theme(colors.zinc.950/15%)]`,
+      tw`dark:[--btn-hover-overlay:theme(colors.zinc.950/5%)]`,
+      tw`[--btn-icon:theme(colors.zinc.400)] data-[active]:[--btn-icon:theme(colors.zinc.500)] data-[hover]:[--btn-icon:theme(colors.zinc.500)]`
+    ],
+    zinc: [
+      tw`text-white [--btn-bg:theme(colors.zinc.600)] [--btn-border:theme(colors.zinc.700/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
+      tw`dark:[--btn-hover-overlay:theme(colors.white/5%)]`,
+      tw`[--btn-icon:theme(colors.zinc.400)] data-[active]:[--btn-icon:theme(colors.zinc.300)] data-[hover]:[--btn-icon:theme(colors.zinc.300)]`
+    ],
+    indigo: [
+      tw`text-white [--btn-bg:theme(colors.indigo.500)] [--btn-border:theme(colors.indigo.600/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
+      tw`[--btn-icon:theme(colors.indigo.300)] data-[active]:[--btn-icon:theme(colors.indigo.200)] data-[hover]:[--btn-icon:theme(colors.indigo.200)]`
+    ],
+    cyan: [
+      tw`text-cyan-950 [--btn-bg:theme(colors.cyan.300)] [--btn-border:theme(colors.cyan.400/80%)] [--btn-hover-overlay:theme(colors.white/25%)]`,
+      tw`[--btn-icon:theme(colors.cyan.500)]`
+    ],
+    red: [
+      tw`text-white [--btn-bg:theme(colors.red.600)] [--btn-border:theme(colors.red.700/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
+      tw`[--btn-icon:theme(colors.red.300)] data-[active]:[--btn-icon:theme(colors.red.200)] data-[hover]:[--btn-icon:theme(colors.red.200)]`
+    ],
+    orange: [
+      tw`text-white [--btn-bg:theme(colors.orange.500)] [--btn-border:theme(colors.orange.600/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
+      tw`[--btn-icon:theme(colors.orange.300)] data-[active]:[--btn-icon:theme(colors.orange.200)] data-[hover]:[--btn-icon:theme(colors.orange.200)]`
+    ],
+    amber: [
+      tw`text-amber-950 [--btn-bg:theme(colors.amber.400)] [--btn-border:theme(colors.amber.500/80%)] [--btn-hover-overlay:theme(colors.white/25%)]`,
+      tw`[--btn-icon:theme(colors.amber.600)]`
+    ],
+    yellow: [
+      tw`text-yellow-950 [--btn-bg:theme(colors.yellow.300)] [--btn-border:theme(colors.yellow.400/80%)] [--btn-hover-overlay:theme(colors.white/25%)]`,
+      tw`[--btn-icon:theme(colors.yellow.600)] data-[active]:[--btn-icon:theme(colors.yellow.700)] data-[hover]:[--btn-icon:theme(colors.yellow.700)]`
+    ],
+    lime: [
+      tw`text-lime-950 [--btn-bg:theme(colors.lime.300)] [--btn-border:theme(colors.lime.400/80%)] [--btn-hover-overlay:theme(colors.white/25%)]`,
+      tw`[--btn-icon:theme(colors.lime.600)] data-[active]:[--btn-icon:theme(colors.lime.700)] data-[hover]:[--btn-icon:theme(colors.lime.700)]`
+    ],
+    green: [
+      tw`text-white [--btn-bg:theme(colors.green.600)] [--btn-border:theme(colors.green.700/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
+      tw`[--btn-icon:theme(colors.white/60%)] data-[active]:[--btn-icon:theme(colors.white/80%)] data-[hover]:[--btn-icon:theme(colors.white/80%)]`
+    ],
+    emerald: [
+      tw`text-white [--btn-bg:theme(colors.emerald.600)] [--btn-border:theme(colors.emerald.700/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
+      tw`[--btn-icon:theme(colors.white/60%)] data-[active]:[--btn-icon:theme(colors.white/80%)] data-[hover]:[--btn-icon:theme(colors.white/80%)]`
+    ],
+    teal: [
+      tw`text-white [--btn-bg:theme(colors.teal.600)] [--btn-border:theme(colors.teal.700/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
+      tw`[--btn-icon:theme(colors.white/60%)] data-[active]:[--btn-icon:theme(colors.white/80%)] data-[hover]:[--btn-icon:theme(colors.white/80%)]`
+    ],
+    sky: [
+      tw`text-white [--btn-bg:theme(colors.sky.500)] [--btn-border:theme(colors.sky.600/80%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
+      tw`[--btn-icon:theme(colors.white/60%)] data-[active]:[--btn-icon:theme(colors.white/80%)] data-[hover]:[--btn-icon:theme(colors.white/80%)]`
+    ],
+    blue: [
+      tw`text-white [--btn-bg:theme(colors.blue.600)] [--btn-border:theme(colors.blue.700/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
+      tw`[--btn-icon:theme(colors.blue.400)] data-[active]:[--btn-icon:theme(colors.blue.300)] data-[hover]:[--btn-icon:theme(colors.blue.300)]`
+    ],
+    violet: [
+      tw`text-white [--btn-bg:theme(colors.violet.500)] [--btn-border:theme(colors.violet.600/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
+      tw`[--btn-icon:theme(colors.violet.300)] data-[active]:[--btn-icon:theme(colors.violet.200)] data-[hover]:[--btn-icon:theme(colors.violet.200)]`
+    ],
+    purple: [
+      tw`text-white [--btn-bg:theme(colors.purple.500)] [--btn-border:theme(colors.purple.600/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
+      tw`[--btn-icon:theme(colors.purple.300)] data-[active]:[--btn-icon:theme(colors.purple.200)] data-[hover]:[--btn-icon:theme(colors.purple.200)]`
+    ],
+    fuchsia: [
+      tw`text-white [--btn-bg:theme(colors.fuchsia.500)] [--btn-border:theme(colors.fuchsia.600/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
+      tw`[--btn-icon:theme(colors.fuchsia.300)] data-[active]:[--btn-icon:theme(colors.fuchsia.200)] data-[hover]:[--btn-icon:theme(colors.fuchsia.200)]`
+    ],
+    pink: [
+      tw`text-white [--btn-bg:theme(colors.pink.500)] [--btn-border:theme(colors.pink.600/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
+      tw`[--btn-icon:theme(colors.pink.300)] data-[active]:[--btn-icon:theme(colors.pink.200)] data-[hover]:[--btn-icon:theme(colors.pink.200)]`
+    ],
+    rose: [
+      tw`text-white [--btn-bg:theme(colors.rose.500)] [--btn-border:theme(colors.rose.600/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
+      tw`[--btn-icon:theme(colors.rose.300)] data-[active]:[--btn-icon:theme(colors.rose.200)] data-[hover]:[--btn-icon:theme(colors.rose.200)]`
+    ]
   }
-} as const satisfies Record<string, Record<string, string>>
+} as const
 
-/**
- * The shape name of the button.
- *
- * @see ButtonProps
- */
-type ButtonShapeOption = keyof typeof shapeSizeStyles
-/**
- * The size name of the button size.
- *
- * @see ButtonProps
- */
-type ButtonShapeSizeOption<T extends ButtonShapeOption> =
-  keyof (typeof shapeSizeStyles)[T]
-/**
- * The size name of any button size.
- *
- * @see ButtonProps
- */
-type ButtonAnySizeOption = KeysOfUnion<ValueOf<typeof shapeSizeStyles>>
-
-/**
- * Default shape for the button.
- *
- * @see ButtonShapeOption
- */
-const DEFAULT_SHAPE = "pill" as const satisfies ButtonShapeOption
-/**
- * Default size for the button.
- *
- * @see ButtonShapeSizeOption
- */
-const DEFAULT_SIZE = "md" as const satisfies ButtonShapeSizeOption<
-  typeof DEFAULT_SHAPE
->
-
-/**
- * Context for button children, primarily used for icon sizing.
- *
- * @see Button
- */
-const ButtonContext = createContext(
-  {} as {
-    /** The size of the parent button. */
-    size: ButtonAnySizeOption
-  }
-)
-
-/**
- * Properties for the Button component.
- *
- * If `to` is provided, the button will render as a Remix `Link` component.
- * Otherwise, it will render as a `button` element.
- *
- * @see Button
- */
-type ButtonProps<TShape extends ButtonShapeOption> = {
-  /**
-   * The variant style to use.
-   *
-   * @default "secondary"
-   */
-  variant?: keyof typeof variantStyles
-  /**
-   * The shape of the button.
-   *
-   * @default "pill"
-   */
-  shape?: TShape
-  /**
-   * The size of the button's shape. Not all sizes are available for all shapes.
-   *
-   * @default "md"
-   */
-  size?: ButtonShapeSizeOption<TShape>
-} & (
-  | (ComponentPropsWithoutRef<"button"> & { to?: undefined })
-  | ComponentPropsWithoutRef<typeof Link>
-)
-
-/**
- * A button that can render as a `button` or `Link` element.
- *
- * @component
- * @see ButtonProps
- */
-export function Button<TShape extends ButtonShapeOption>({
-  variant = "secondary",
-  shape = DEFAULT_SHAPE as TShape,
-  size = DEFAULT_SIZE,
-  className,
-  children,
-  ...props
-}: ButtonProps<TShape>) {
-  className = clsx(
-    "outline-offset-2 backdrop-blur transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 active:transition-none",
-    variantStyles[variant],
-    shapeSizeStyles[shape][size] as string,
-    className
+type ButtonProps = (
+  | { color?: keyof typeof styles.colors; outline?: never; plain?: never }
+  | { color?: never; outline: true; plain?: never }
+  | { color?: never; outline?: never; plain: true }
+) &
+  Required<PropsWithChildren> &
+  (
+    | Omit<HeadlessButtonProps, "as" | "children">
+    | ComponentPropsWithoutRef<typeof Link>
   )
 
-  // nav state to disable proper buttons when submitting
-  const navState = useGlobalSubmittingState()
-  const disableForSubmit = props.type === "submit" && navState === "submitting"
+export const Button = forwardRef(function Button(
+  { color, outline, plain, className, children, ...props }: ButtonProps,
+  ref: ForwardedRef<HTMLElement>
+) {
+  const classes = clsx(
+    className,
+    styles.base,
+    outline
+      ? styles.outline
+      : plain
+        ? styles.plain
+        : clsx(styles.solid, styles.colors[color ?? "dark/zinc"])
+  )
 
-  return (
-    <ButtonContext.Provider
-      value={{ size: (size as ButtonAnySizeOption) ?? DEFAULT_SIZE }}
+  return "to" in props ? (
+    <Link
+      {...props}
+      className={classes}
+      ref={ref as ForwardedRef<HTMLAnchorElement>}
     >
-      {typeof props.to === "undefined" ? (
-        <button
-          {...props}
-          className={clsx(
-            "disabled:cursor-default disabled:bg-zinc-100 disabled:opacity-75 dark:disabled:bg-zinc-900",
-            className
-          )}
-          disabled={props.disabled || disableForSubmit}
-        >
-          {/* Make the children invisible rather than replacing with the spinner
-          to reduce layout shift. */}
-          {disableForSubmit ? (
-            <>
-              <span className="invisible">{children}</span>
-              <LoadingIndicator variant="subtle" className="h-5 w-5" />
-            </>
-          ) : (
-            <span className="flex w-full items-center justify-center gap-x-2">
-              {children}
-            </span>
-          )}
-        </button>
-      ) : (
-        <Link {...props} {...{ className }}>
-          <span className="inline-flex w-full items-center justify-center gap-x-2">
-            {children}
-          </span>
-        </Link>
-      )}
-    </ButtonContext.Provider>
+      <TouchTarget>{children}</TouchTarget>
+    </Link>
+  ) : (
+    <HeadlessButton
+      {...props}
+      className={clsx(classes, "cursor-default")}
+      ref={ref}
+    >
+      <TouchTarget>{children}</TouchTarget>
+    </HeadlessButton>
   )
-}
+})
 
-/**
- * Size variants for the Button.Icon.
- *
- * @see ButtonIconProps
- */
-const buttonIconSizes = {
-  xs: "h-3 w-3",
-  sm: "h-4 w-4",
-  _default: "h-5 w-5"
-}
-
-/**
- * Properties for the Button.Icon component.
- *
- * @see IconProps
- * @see Button.Icon
- */
-type ButtonIconProps = IconProps & {
-  sizeOverride?: keyof Omit<typeof buttonIconSizes, "_default">
-}
-
-/**
- * A button icon that sizes the icon based on the parent button's size.
- *
- * @component
- * @see Button
- * @see ButtonIconProps
- */
-Button.Icon = function ButtonIcon({
-  sizeOverride,
-  className,
-  ...rest
-}: ButtonIconProps) {
-  // Determine button size from context.
-  // Use a switch instead of a direct mapping since the size shouldn't increase
-  // beyond the medium size.
-  const { size } = useContext(ButtonContext)
-
+/** Expand the hit area to at least 44×44px on touch devices */
+export function TouchTarget({ children }: Required<PropsWithChildren>) {
   return (
-    <Icon
-      {...rest}
-      className={clsx(
-        "transition",
-        sizeOverride
-          ? buttonIconSizes[sizeOverride]
-          : size in buttonIconSizes
-            ? buttonIconSizes[size as keyof typeof buttonIconSizes]
-            : buttonIconSizes._default,
-        className
-      )}
-    />
+    <>
+      <span
+        className="absolute left-1/2 top-1/2 size-[max(100%,2.75rem)] -translate-x-1/2 -translate-y-1/2 [@media(pointer:fine)]:hidden"
+        aria-hidden="true"
+      />
+      {children}
+    </>
   )
 }
