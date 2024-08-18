@@ -1,9 +1,9 @@
 import type { ComponentPropsWithoutRef, ElementType, ReactNode } from "react"
-import { Link } from "@remix-run/react"
 import clsx from "clsx"
 
 import { FULL_NAME } from "../constants"
 import { ContainerInner, ContainerOuter } from "./Container"
+import { Link } from "./Link"
 
 /**
  * Props for the NavLink component.

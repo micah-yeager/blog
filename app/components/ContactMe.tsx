@@ -1,5 +1,4 @@
 import type { ComponentPropsWithoutRef } from "react"
-import { EnvelopeIcon as EnvelopeOutlineIcon } from "@heroicons/react/24/outline"
 import {
   ChatBubbleLeftEllipsisIcon,
   EnvelopeIcon as EnvelopeSolidIcon
@@ -43,15 +42,9 @@ export function ContactMe(
   const fetcher = useFetcher<ContactMeResponse>()
 
   return (
-    <Button
-      {...props}
-      type="button"
-      variant="secondary"
-      size="sm"
-      onClick={() => setOpen(true)}
-    >
+    <Button {...props} type="button" color="dark" onClick={() => setOpen(true)}>
       Get in touch
-      <Button.Icon as={EnvelopeOutlineIcon} />
+      <Icon className="size-4" as={EnvelopeSolidIcon} />
       {/* dialog */}
       <Dialog open={open} setOpen={setOpen}>
         {/* show form until submission */}
@@ -96,14 +89,10 @@ export function ContactMe(
 
             {/* actions */}
             <Dialog.Actions>
-              <Button type="submit" variant="primary">
+              <Button type="submit" color="orange">
                 Send
               </Button>
-              <Button
-                type="button"
-                variant="secondary"
-                onClick={() => setOpen(false)}
-              >
+              <Button type="button" plain onClick={() => setOpen(false)}>
                 Cancel
               </Button>
             </Dialog.Actions>
@@ -121,11 +110,7 @@ export function ContactMe(
 
             {/* actions */}
             <Dialog.Actions>
-              <Button
-                type="button"
-                variant="secondary"
-                onClick={() => setOpen(false)}
-              >
+              <Button type="button" plain onClick={() => setOpen(false)}>
                 Close
               </Button>
             </Dialog.Actions>

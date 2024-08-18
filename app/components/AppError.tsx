@@ -39,7 +39,7 @@ export function AppError() {
         </p>
 
         {/* back to home link */}
-        <Button to="/" variant="secondary" className="mt-4">
+        <Button to="/" color="dark/white" className="mt-4">
           Go back home
         </Button>
       </div>

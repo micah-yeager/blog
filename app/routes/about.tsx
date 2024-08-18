@@ -1,12 +1,12 @@
 import type { ReactNode } from "react"
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons"
-import { Link } from "@remix-run/react"
 import clsx from "clsx"
 
 import type { IconProp } from "@ui/Icon"
 import { ContactMe } from "@ui/ContactMe"
 import { Container } from "@ui/Container"
 import { Icon } from "@ui/Icon"
+import { Link } from "@ui/Link"
 import { mergeMeta } from "@utils/meta"
 import { FULL_NAME, GITHUB_URL, LINKEDIN_URL } from "~/constants"
 
@@ -16,26 +16,26 @@ export const meta = mergeMeta(() => [{ title: "About" }])
  * A social media link.
  *
  * @param className - Additional classes to apply to the link.
- * @param href - The URL to link to.
+ * @param to - The URL to link to.
  * @param children - Link contents.
  * @param icon - The icon to render.
  * @component
  */
 function SocialLink({
   className,
-  href,
+  to,
   children,
   icon
 }: {
   className?: string
-  href: string
+  to: string
   icon: IconProp
   children: ReactNode
 }) {
   return (
     <li className={clsx(className, "flex")}>
       <Link
-        to={href}
+        to={to}
         className="group flex text-sm font-medium text-zinc-800 transition hover:text-orange-500 dark:text-zinc-200 dark:hover:text-orange-500"
       >
         <Icon
@@ -113,10 +113,10 @@ export default function About() {
 
         {/* contact */}
         <div className="space-y-4 lg:pl-20">
-          <SocialLink href={GITHUB_URL} icon={faGithub}>
+          <SocialLink to={GITHUB_URL} icon={faGithub}>
             Follow on GitHub
           </SocialLink>
-          <SocialLink href={LINKEDIN_URL} icon={faLinkedin}>
+          <SocialLink to={LINKEDIN_URL} icon={faLinkedin}>
             Follow on LinkedIn
           </SocialLink>
           <ContactMe className="lg:w-full" />

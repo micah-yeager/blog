@@ -63,14 +63,14 @@ export function CV() {
       {/* CV download */}
       <Button
         to="/documents/cv.pdf"
-        variant="secondary"
+        color="orange"
         className="group mt-6 block w-full"
         download={`CV - ${FULL_NAME}, DevOps Engineer & Solutions Architect.pdf`}
         // reload required to force download
         reloadDocument
       >
         Download CV
-        <Button.Icon as={ArrowDownIcon} sizeOverride="sm" className="-ml-1" />
+        <Icon as={ArrowDownIcon} className="-ml-1 size-4" />
       </Button>
     </div>
   )

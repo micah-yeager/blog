@@ -8,6 +8,7 @@ import type { PostMeta } from "@services/posts.server"
 
 import { Button } from "./Button"
 import { Container } from "./Container"
+import { Icon } from "./Icon"
 import { Prose } from "./Prose"
 
 /**
@@ -21,21 +22,11 @@ function ScrollToTop({ className }: { className?: string }) {
   return (
     <Button
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      variant="secondary"
-      shape="circle"
-      size="lg"
-      className={clsx(
-        "group/ToTopButton shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:ring-0 dark:ring-white/10 dark:hover:border-zinc-700 dark:hover:ring-white/20 lg:relative lg:mb-0",
-        className
-      )}
+      color="dark"
+      className={clsx("lg:relative lg:mb-0", className)}
       aria-label="Scroll to top"
     >
-      <Button.Icon
-        as={ChevronDoubleUpIcon}
-        sizeOverride="sm"
-        className="stroke-zinc-500 group-hover/ToTopButton:stroke-zinc-700 dark:stroke-zinc-500 dark:group-hover/ToTopButton:stroke-zinc-400"
-        aria-hidden="true"
-      />
+      <Icon as={ChevronDoubleUpIcon} className="size-4" aria-hidden="true" />
     </Button>
   )
 }
@@ -67,16 +58,13 @@ export function PostLayout({
               <Button
                 to="/posts"
                 prefetch="intent"
-                variant="secondary"
-                shape="circle"
-                size="lg"
-                className="group/BackButton mb-8 inline-block shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:ring-0 dark:ring-white/10 dark:hover:border-zinc-700 dark:hover:ring-white/20 lg:mb-0"
+                color="dark"
+                className="mb-8 inline-block lg:mb-0"
                 aria-label="Go back to all posts"
               >
-                <Button.Icon
+                <Icon
                   as={ArrowLeftIcon}
-                  sizeOverride="sm"
-                  className="stroke-zinc-500 group-hover/BackButton:stroke-zinc-700 dark:stroke-zinc-500 dark:group-hover/BackButton:stroke-zinc-400"
+                  className="size-4"
                   aria-hidden="true"
                 />
               </Button>

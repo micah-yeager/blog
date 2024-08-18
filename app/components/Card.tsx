@@ -1,10 +1,10 @@
 import type { LinkProps } from "@remix-run/react"
 import type { ComponentPropsWithoutRef, ElementType } from "react"
 import { ChevronRightIcon } from "@heroicons/react/24/outline"
-import { Link } from "@remix-run/react"
 import clsx from "clsx"
 
 import { Icon } from "./Icon"
+import { Link } from "./Link"
 
 /**
  * Props for the Card component. Extends the props of the component or element
