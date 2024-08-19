@@ -1,10 +1,23 @@
-import type { FieldProps, SwitchProps } from "@headlessui/react"
+// noinspection JSCommentMatchesSignature
+
+import type {
+  FieldProps,
+  SwitchProps as HeadlessSwitchProps
+} from "@headlessui/react"
 import type { ComponentPropsWithoutRef } from "react"
 import { Field, Switch as HeadlessSwitch } from "@headlessui/react"
 import clsx from "clsx"
 
 import { tw } from "@utils/templates"
 
+/**
+ * Optionally stack multiple {@link Switch}es together in a list.
+ *
+ * If the switches are related in purpose, use `role="group"` and an aria label
+ * to signify that relationship to assistive technologies.
+ *
+ * @see {@link HTMLDivElement}
+ */
 export function SwitchGroup({
   className,
   ...props
@@ -24,6 +37,11 @@ export function SwitchGroup({
   )
 }
 
+/**
+ * A field wrapper for a {@link Switch}.
+ *
+ * @see Headless UI's {@link Field}
+ */
 export function SwitchField({ className, ...props }: Omit<FieldProps, "as">) {
   return (
     <Field
@@ -137,13 +155,28 @@ const colors = {
   ]
 } as const
 
+/**
+ * Properties for the {@link Switch} component.
+ *
+ * @see Headless UI's {@link HeadlessSwitchProps SwitchProps}
+ */
+type SwitchProps = Omit<HeadlessSwitchProps, "as" | "children"> & {
+  /** The color variant to use. */
+  color?: keyof typeof colors
+}
+
+/**
+ * A switch (aka. toggle).
+ *
+ * @param color - The color variant to use.
+ * @see {@link SwitchProps}
+ * @see Headless UI's {@link HeadlessSwitch Switch}
+ */
 export function Switch({
   color = "dark/zinc",
   className,
   ...props
-}: {
-  color?: keyof typeof colors
-} & Omit<SwitchProps, "as" | "children">) {
+}: SwitchProps) {
   return (
     <HeadlessSwitch
       data-slot="control"

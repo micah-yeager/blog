@@ -1,22 +1,17 @@
 import type { ComponentPropsWithoutRef } from "react"
+import type { SetRequired } from "type-fest"
 import clsx from "clsx"
 
-/**
- * Photo definition for the `Photos` component.
- *
- * @see photos
- */
+/** Photo definition for the {@link Photos} component. */
 type Photo = {
+  /** The source URI to display. */
   src: string
+  /** The alt-text to display. */
   alt: string
+  /** Classes to apply. */
   className?: string
 }
 
-/**
- * An array of photos to display in the `Photos` component.
- *
- * @see Photo
- */
 const photos: Photo[] = [
   {
     src: "/images/bean-couch.jpeg",
@@ -41,10 +36,9 @@ const photos: Photo[] = [
 ]
 
 /**
- * A frame for a photo.
+ * A frame for a single {@link Photo}.
  *
- * @see Photo
- * @see Photos
+ * @see {@link HTMLDivElement}
  */
 function PhotoFrame({
   className,
@@ -65,20 +59,15 @@ function PhotoFrame({
 }
 
 /**
- * Properties for the `Photo` component. Extends the properties of the `img`
- * element.
+ * A photo for the {@link Photos} display.
  *
- * @see Photo
+ * @see {@link HTMLImageElement}
  */
-type PhotoProps = Omit<ComponentPropsWithoutRef<"img">, "alt"> &
-  Required<Pick<ComponentPropsWithoutRef<"img">, "alt">>
-
-/**
- * A photo for the photos display.
- *
- * @see Photos
- */
-function Photo({ alt, className, ...rest }: PhotoProps) {
+function Photo({
+  alt,
+  className,
+  ...rest
+}: SetRequired<ComponentPropsWithoutRef<"img">, "alt">) {
   return (
     <img
       {...rest}
@@ -90,7 +79,10 @@ function Photo({ alt, className, ...rest }: PhotoProps) {
   )
 }
 
-/** A collection of for the home page. */
+/**
+ * A collection of multiple skewed {@link Photo}s to display across the screen
+ * horizontally.
+ */
 export function Photos() {
   const rotations = [
     "rotate-2",

@@ -1,3 +1,5 @@
+// noinspection JSCommentMatchesSignature
+
 import type { ComponentPropsWithoutRef } from "react"
 import {
   DialogPanel,
@@ -13,11 +15,9 @@ import { Fragment, useRef } from "react"
 import { Icon } from "./Icon"
 
 /**
- * Props for the Dialog component. Extends the props of the Headless UI Dialog
- * component.
+ * Properties for the {@link Dialog} component.
  *
- * @see Dialog
- * @see HeadlessUIDialog.Panel
+ * @see Headless UI's {@link DialogPanel}
  */
 type DialogProps = ComponentPropsWithoutRef<typeof DialogPanel> & {
   /** The open state for the dialog. */
@@ -29,9 +29,12 @@ type DialogProps = ComponentPropsWithoutRef<typeof DialogPanel> & {
 }
 
 /**
- * A dialog component that uses the Headless UI Dialog component.
+ * A floating dialog to display over the current page.
  *
- * @see DialogProps
+ * @param open - The open state for the dialog.
+ * @param setOpen - A function to set the dialog's open state.
+ * @param onClose - A function to run when the dialog is closed.
+ * @see {@link DialogProps}
  */
 export function Dialog({ open, setOpen, onClose, children }: DialogProps) {
   function close() {
@@ -114,11 +117,10 @@ export function Dialog({ open, setOpen, onClose, children }: DialogProps) {
 }
 
 /**
- * Title for a dialog. Extends the props of the Headless UI Dialog.Title
- * component.
+ * Title for a {@link Dialog}.
  *
- * @see HeadlessUIDialog.Title
- * @see Dialog
+ * @param as - The element type or component to render as. Defaults to `"h3"`.
+ * @see Headless UI's {@link HeadlessUIDialogTitle DialogTitle}
  */
 Dialog.Title = function DialogTitle({
   as = "h3",
@@ -141,9 +143,9 @@ Dialog.Title = function DialogTitle({
 }
 
 /**
- * Actions for a dialog. Extends the 'div' element's props.
+ * Actions for a {@link Dialog}.
  *
- * @see Dialog
+ * @see {@link HTMLDivElement}
  */
 Dialog.Actions = function DialogActions({
   className,

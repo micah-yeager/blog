@@ -1,3 +1,5 @@
+// noinspection JSCommentMatchesSignature
+
 import type { ButtonProps } from "@headlessui/react"
 import type {
   ComponentPropsWithoutRef,
@@ -34,13 +36,27 @@ const colors = {
   zinc: tw`bg-zinc-600/10 text-zinc-700 group-data-[hover]:bg-zinc-600/20 dark:bg-white/5 dark:text-zinc-400 dark:group-data-[hover]:bg-white/10`
 } as const
 
-type BadgeBaseProps = { color?: keyof typeof colors }
+/** Base properties for the {@link Badge} and {@link BadgeButton} components. */
+type BadgeBaseProps = {
+  /** The color variant to use. */
+  color?: keyof typeof colors
+}
 
-export function Badge({
-  color = "zinc",
-  className,
-  ...props
-}: BadgeBaseProps & ComponentPropsWithoutRef<"span">) {
+/**
+ * Properties for the {@link Badge} component.
+ *
+ * @see {@link BadgeBaseProps}
+ * @see {@link HTMLSpanElement}
+ */
+type BadgeProps = BadgeBaseProps & ComponentPropsWithoutRef<"span">
+
+/**
+ * A simple badge.
+ *
+ * @param color - The color variant to use.
+ * @see {@link BadgeProps}
+ */
+export function Badge({ color = "zinc", className, ...props }: BadgeProps) {
   return (
     <span
       {...props}
@@ -53,10 +69,29 @@ export function Badge({
   )
 }
 
+/**
+ * Properties for the {@link BadgeButton} component.
+ *
+ * @see {@link BadgeBaseProps}
+ * @see Headless UI's {@link ButtonProps}
+ * @see {@link Link}
+ */
 type BadgeButtonProps = BadgeBaseProps &
   Required<PropsWithChildren> &
   (Omit<ButtonProps, "as"> | ComponentPropsWithoutRef<typeof Link>)
 
+/**
+ * A badge button.
+ *
+ * If the `to` prop is provided, the component will render a {@link Link}
+ * component. Otherwise, it will render a {@link Button} component.
+ *
+ * @param color - The color variant to use.
+ * @param to - If provided, a {@link Link} will be rendered with the provided
+ *   URL. Otherwise, a Headless UI {@link HeadlessButton Button} component will
+ *   be used instead.
+ * @see {@link BadgeButtonProps}
+ */
 export const BadgeButton = forwardRef<HTMLElement, BadgeButtonProps>(
   function BadgeButton({ color = "zinc", className, children, ...props }, ref) {
     const classes = clsx(

@@ -1,3 +1,5 @@
+// noinspection JSCommentMatchesSignature
+
 import type { LinkProps } from "@remix-run/react"
 import type { ComponentPropsWithoutRef, ElementType } from "react"
 import { ChevronRightIcon } from "@heroicons/react/24/outline"
@@ -7,23 +9,29 @@ import { Icon } from "./Icon"
 import { Link } from "./Link"
 
 /**
- * Props for the Card component. Extends the props of the component or element
- * used in the `as` property.
+ * Properties for the {@link Card} component.
+ *
+ * @typeParam T - The element type or component to render as.
  */
 type CardProps<T extends ElementType> = Omit<
   ComponentPropsWithoutRef<T>,
   "as"
 > & {
   /**
-   * The element type or component to render the card as.
+   * The element type or component to render as.
    *
    * @default "div"
-   * @see ElementType
+   * @see {@link ElementType}
    */
   as?: T
 }
 
-/** Wraps content in a card-like container. */
+/**
+ * Wraps content in a card-like container.
+ *
+ * @param as - The element type or component to render as. Defaults to `"div"`.
+ * @see {@link CardProps}
+ */
 export function Card<T extends ElementType = "div">({
   as,
   className,
@@ -44,10 +52,9 @@ export function Card<T extends ElementType = "div">({
 }
 
 /**
- * A link to use as a card overlay.
+ * A link to use as a {@link Card} overlay.
  *
- * @see Link
- * @see Card
+ * @see {@link Link}
  */
 Card.Link = function CardLink({
   children,
@@ -65,10 +72,10 @@ Card.Link = function CardLink({
 }
 
 /**
- * Props for the Card.Title component. Extends the props of the component or
- * element used in the `as` property.
+ * Properties for the {@link Card.Title} component.
  *
- * @see Card.Title
+ * @typeParam T - The element type or component to render as.
+ * @see {@link LinkProps}
  */
 type CardTitleProps<T extends ElementType> = Omit<
   ComponentPropsWithoutRef<T>,
@@ -76,7 +83,7 @@ type CardTitleProps<T extends ElementType> = Omit<
 > &
   Partial<Pick<LinkProps, "to">> & {
     /**
-     * The element type or component to render the title as.
+     * The element type or component to render as.
      *
      * @default "h2"
      * @see ElementType
@@ -85,10 +92,11 @@ type CardTitleProps<T extends ElementType> = Omit<
   }
 
 /**
- * Title for a card.
+ * Title for a {@link Card}.
  *
- * @see CardTitleProps
- * @see Card
+ * @param as - The element type or component to render as. Defaults to `"h2"`.
+ * @param to - The URL to link to. Optional.
+ * @see {@link CardTitleProps}
  */
 Card.Title = function CardTitle<T extends ElementType = "h2">({
   as,
@@ -119,11 +127,9 @@ Card.Title = function CardTitle<T extends ElementType = "h2">({
 }
 
 /**
- * Description for a card.
+ * Description for a {@link Card}.
  *
- * Extends the `p` element's props.
- *
- * @see Card
+ * @see {@link HTMLParagraphElement}
  */
 Card.Description = function CardDescription({
   className,
@@ -144,11 +150,9 @@ Card.Description = function CardDescription({
 }
 
 /**
- * Call-to-action for a card.
+ * Call-to-action for a {@link Card}.
  *
- * Extends the `div` element's props.
- *
- * @see Card
+ * @see {@link HTMLDivElement}
  */
 Card.CallToAction = function CardCallToAction({
   className,
@@ -171,25 +175,23 @@ Card.CallToAction = function CardCallToAction({
 }
 
 /**
- * Props for the Card.Meta component. Extends the props of the component or
- * element used in the `as` property.
+ * Properties for the {@link Card.Meta} component.
  *
- * @see Card.Meta
+ * @typeParam T - The element type or component to render as.
  */
 type CardMetaProps<T extends ElementType> = Omit<
   ComponentPropsWithoutRef<T>,
   "as" | "decorate"
 > & {
   /**
-   * The element type or component to render the meta as.
+   * The element type or component to render as.
    *
    * @default "p"
    * @see ElementType
    */
   as?: T
   /**
-   * Add a decorative vertical line to the left of the meta to act as a visual
-   * root.
+   * Add a decorative vertical line to the left as a visual root.
    *
    * @default false
    */
@@ -197,10 +199,12 @@ type CardMetaProps<T extends ElementType> = Omit<
 }
 
 /**
- * "Meta" information for a card.
+ * "Meta" information for a {@link Card}.
  *
- * @see CardMetaProps
- * @see Card
+ * @param as - The element type or component to render as. Defaults to `"p"`.
+ * @param decorate - Add a decorative vertical line to the left as a visual
+ *   root.
+ * @see {@link CardMetaProps}
  */
 Card.Meta = function CardMeta<T extends ElementType = "p">({
   as,

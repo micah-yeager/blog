@@ -175,6 +175,12 @@ const styles = {
   }
 } as const
 
+/**
+ * Properties for the {@link Button} component.
+ *
+ * @see Headless UI's {@link HeadlessButtonProps ButtonProps}
+ * @see {@link Link}
+ */
 type ButtonProps = (
   | { color?: keyof typeof styles.colors; outline?: never; plain?: never }
   | { color?: never; outline: true; plain?: never }
@@ -186,6 +192,19 @@ type ButtonProps = (
     | ComponentPropsWithoutRef<typeof Link>
   )
 
+/**
+ * A styled button.
+ *
+ * The `color`, `outline`, and `plain` props are mutually exclusive.
+ *
+ * @param color - Render a solid button with the specified color variant.
+ * @param outline - Render an outline button.
+ * @param plain - Render a plain button.
+ * @param to - If provided, a {@link Link} will be rendered with the provided
+ *   URL. Otherwise, a Headless UI {@link HeadlessButton Button} component will
+ *   be used instead.
+ * @see {@link ButtonProps}
+ */
 export const Button = forwardRef<HTMLElement, ButtonProps>(function Button(
   { color, outline, plain, className, children, ...props },
   ref
@@ -219,7 +238,11 @@ export const Button = forwardRef<HTMLElement, ButtonProps>(function Button(
   )
 })
 
-/** Expand the hit area to at least 44×44px on touch devices */
+/**
+ * Expand the hit area to at least 44×44px on touch devices.
+ *
+ * @see {@link PropsWithChildren}
+ */
 export function TouchTarget({ children }: Required<PropsWithChildren>) {
   return (
     <>

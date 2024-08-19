@@ -1,4 +1,4 @@
-import type { ReactNode } from "react"
+import type { PropsWithChildren } from "react"
 import type { Jsonify } from "type-fest"
 import { ArrowLeftIcon, ChevronDoubleUpIcon } from "@heroicons/react/24/outline"
 import clsx from "clsx"
@@ -12,10 +12,10 @@ import { Icon } from "./Icon"
 import { Prose } from "./Prose"
 
 /**
- * A floating button that scrolls to the top of the page when clicked.
+ * A floating button for a {@link PostLayout} that scrolls to the top of the page
+ * when clicked.
  *
  * @param className - Additional classes to apply to the button.
- * @see PostLayout
  */
 function ScrollToTop({ className }: { className?: string }) {
   return (
@@ -30,19 +30,24 @@ function ScrollToTop({ className }: { className?: string }) {
   )
 }
 
+/** Properties for the {@link PostLayout} component. */
+type PostLayoutProps = Required<PropsWithChildren> & {
+  /**
+   * The metadata for the post.
+   *
+   * @see PostMeta
+   */
+  meta: Jsonify<PostMeta>
+}
+
 /**
  * The layout for a blog post.
  *
  * @param meta - The metadata for the post.
  * @param children - The content of the post.
+ * @see {@link PostLayoutProps}
  */
-export function PostLayout({
-  meta,
-  children
-}: {
-  meta: Jsonify<PostMeta>
-  children: ReactNode
-}) {
+export function PostLayout({ meta, children }: PostLayoutProps) {
   const created = DateTime.fromISO(meta.created)
   const updated = meta.updated ? DateTime.fromISO(meta.updated) : null
 

@@ -1,10 +1,14 @@
-import type { ReactNode } from "react"
+import type { PropsWithChildren } from "react"
 
 import { Footer } from "./Footer"
 import { Header } from "./Header"
 
-/** The layout for the application. */
-export function Layout({ children }: { children: ReactNode }) {
+/**
+ * The layout for the application.
+ *
+ * @see {@link PropsWithChildren}
+ */
+export function Layout({ children }: Required<PropsWithChildren>) {
   return (
     <>
       <div className="fixed inset-0 flex justify-center sm:px-8">

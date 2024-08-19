@@ -1,3 +1,5 @@
+// noinspection JSCommentMatchesSignature
+
 import type { LinkProps } from "@remix-run/react"
 import type { ComponentPropsWithoutRef, CSSProperties, ElementRef } from "react"
 import {
@@ -24,9 +26,9 @@ import { Container } from "./Container"
 import { Icon } from "./Icon"
 
 /**
- * A navigation item for the mobile menu.
+ * A navigation item for the {@link MobileNavigation} menu.
  *
- * @see LinkProps
+ * @see {@link LinkProps}
  */
 function MobileNavItem({
   className,
@@ -50,7 +52,7 @@ function MobileNavItem({
 /**
  * The mobile navigation menu.
  *
- * @see Popover
+ * @see {@link Popover}
  */
 function MobileNavigation(props: ComponentPropsWithoutRef<typeof Popover>) {
   return (
@@ -122,9 +124,9 @@ function MobileNavigation(props: ComponentPropsWithoutRef<typeof Popover>) {
 }
 
 /**
- * A navigation item for the desktop menu.
+ * A navigation item for the {@link DesktopNavigation} menu.
  *
- * @see LinkProps
+ * @see {@link LinkProps}
  */
 function NavItem({
   className,
@@ -159,7 +161,11 @@ function NavItem({
   )
 }
 
-/** The desktop navigation menu. Extends the properties of the `nav` element. */
+/**
+ * The desktop navigation menu.
+ *
+ * @see {@link HTMLElement}
+ */
 function DesktopNavigation(props: ComponentPropsWithoutRef<"nav">) {
   return (
     <nav {...props}>
@@ -231,8 +237,9 @@ function ThemeToggle() {
 }
 
 /**
- * A container for the avatar image. Extends the properties of the `div`
- * element.
+ * A container for the avatar image.
+ *
+ * @see {@link HTMLDivElement}
  */
 function AvatarContainer({
   className,
@@ -250,15 +257,21 @@ function AvatarContainer({
 }
 
 /**
- * A clickable avatar image. Extends the properties of the `Link` component.
+ * Properties for the {@link Avatar} component.
  *
- * @see Link
+ * @see {@link Link}
  */
 type AvatarProps = Omit<ComponentPropsWithoutRef<typeof Link>, "to"> & {
   /** Whether to display a larger avatar. */
   large?: boolean
 }
 
+/**
+ * An avatar that serves as a link to the site index page.
+ *
+ * @param large - Whether to display a larger avatar.
+ * @see {@link AvatarProps}
+ */
 function Avatar({ large = false, className, ...props }: AvatarProps) {
   return (
     <Link
@@ -280,11 +293,7 @@ function Avatar({ large = false, className, ...props }: AvatarProps) {
   )
 }
 
-/**
- * The page header. Contains the avatar, navigation, and theme toggle.
- *
- * @class
- */
+/** The page header. Contains the avatar, navigation, and theme toggle. */
 export function Header() {
   const isHomePage = useLocation().pathname === "/"
 

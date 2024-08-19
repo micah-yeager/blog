@@ -1,3 +1,5 @@
+// noinspection JSCommentMatchesSignature
+
 import type {
   ComponentPropsWithoutRef,
   ComponentType,
@@ -20,7 +22,7 @@ import { InputError } from "./shared/InputError"
 import { InputLabel } from "./shared/InputLabel"
 import { InputOptionalHint } from "./shared/InputOptionalHint"
 
-/** Properties for visual addons to the `TextInput` component. */
+/** Properties for visual addons to the {@link TextInput} component. */
 type TextInputAddOnProps = {
   /** Additional classes to apply to the add-on. */
   className?: string
@@ -28,25 +30,30 @@ type TextInputAddOnProps = {
   disabled?: boolean
 }
 /**
- * Properties for the `TextInput` component. Extends the `input` element
- * properties.
+ * Properties for the {@link TextInput} component.
  *
- * @see TextInput
- * @see SharedFormProps
+ * @see {@link SharedFormProps}
+ * @see {@link HTMLInputElement}
  */
 type TextInputProps = ComponentPropsWithoutRef<"input"> &
   SharedFormProps & {
+    /** Component to use as a visual prefix to the field. */
     LeadingAddOn?: ComponentType<TextInputAddOnProps>
+    /** Visual in-line prefix to the field. */
     leadingInlineAddOn?: ReactNode
+    /** Component to use as a visual suffix to the field. */
     TrailingAddOn?: ComponentType<TextInputAddOnProps>
+    /** Visual in-line suffix to the field. */
     trailingInlineAddOn?: ReactNode
+    /** Whether to hide the hint when a field is optional. */
     hideOptionalHint?: boolean
   }
 
 /**
  * A single-line text input field.
  *
- * @see TextInputProps
+ * @param hideOptionalHint - Whether to hide the hint when a field is optional.
+ * @see {@link TextInputProps}
  */
 export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
   function TextInput(
@@ -239,10 +246,9 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
 )
 
 /**
- * Properties for the add-on components. Extends the properties of the element
- * or component passed to the `as` prop.
+ * Properties for the visual add-on components.
  *
- * @see AddOn
+ * @typeParam TTag - The element type or component to render as.
  */
 type AddOnProps<TTag extends ElementType> = Omit<
   ComponentPropsWithoutRef<TTag>,
@@ -260,10 +266,12 @@ type AddOnProps<TTag extends ElementType> = Omit<
 }
 
 /**
- * An add-on for the `TextInput` component.
+ * Any visual add-on for a {@link TextInput} field.
  *
- * @see AddOnProps
- * @see TextInput
+ * @param as - The element or component to render the add-on as. Defaults to
+ *   `"div"`.
+ * @param disabled - Whether the parent field is disabled.
+ * @see {@link AddOnProps}
  */
 function AddOn<TTag extends ElementType>({
   as,
@@ -291,10 +299,10 @@ function AddOn<TTag extends ElementType>({
 }
 
 /**
- * Add-on button for the `TextInput` component.
+ * An interactable add-on button for the {@link TextInput} component.
  *
- * @see AddOnProps
- * @see TextInput
+ * @param disabled - Whether the parent field is disabled.
+ * @see {@link AddOnProps}
  */
 export function AddOnButton({
   className,

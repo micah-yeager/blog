@@ -5,18 +5,19 @@ import { useOutletContext } from "@remix-run/react"
 import type { Env } from "~/browser-globals"
 
 /**
- * Props for the Captcha component.
+ * Properties for the {@link Captcha} component.
  *
- * @see Turnstile
- * @see Captcha
+ * @see React Turnstile's {@link Turnstile}
  */
 type CaptchaProps = Omit<ComponentPropsWithoutRef<typeof Turnstile>, "siteKey">
 
+// noinspection GrazieInspection
 /**
- * A wrapper around the Turnstile component to provide the site key from via the
- * outlet context.
+ * A wrapper around the React Turnstile's {@link Turnstile} component to provide
+ * the site key from via the Remix's
+ * {@link import('@remix-run/react').Outlet Outlet} context.
  *
- * @see CaptchaProps
+ * @see {@link CaptchaProps}
  */
 export function Captcha(props: CaptchaProps) {
   const { TURNSTILE_SITE_KEY } = useOutletContext<Env>()

@@ -2,8 +2,9 @@ import type { ComponentPropsWithoutRef } from "react"
 import clsx from "clsx"
 
 /**
- * A component for rendering prose content. Extends the properties of the `div`
- * element.
+ * A component for rendering contents with TailwindCSS prose styling.
+ *
+ * @see {@link HTMLDivElement}
  */
 export function Prose({
   className,

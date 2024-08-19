@@ -1,3 +1,5 @@
+// noinspection JSCommentMatchesSignature
+
 import type { ComponentPropsWithoutRef, ElementType, ReactNode } from "react"
 import clsx from "clsx"
 
@@ -5,11 +7,7 @@ import { FULL_NAME } from "../constants"
 import { ContainerInner, ContainerOuter } from "./Container"
 import { Link } from "./Link"
 
-/**
- * Props for the NavLink component.
- *
- * @see NavLink
- */
+/** Properties for the {@link NavLink} component. */
 type NavLinkProps = {
   /** The URL to link to. */
   to: string
@@ -20,7 +18,8 @@ type NavLinkProps = {
 /**
  * A link to use in the footer.
  *
- * @see NavLinkProps
+ * @param to - The URL to link to.
+ * @see {@link NavLinkProps}
  */
 function NavLink({ to, children }: NavLinkProps) {
   return (
@@ -34,17 +33,16 @@ function NavLink({ to, children }: NavLinkProps) {
 }
 
 /**
- * Props for the Background component. Extends the props of the component or
- * element used in the `as` property.
+ * Properties for the {@link Background} component.
  *
- * @see Background
+ * @typeParam T - The element type or component to render as.
  */
 type BackgroundProps<T extends ElementType> = Omit<
   ComponentPropsWithoutRef<T>,
   "as"
 > & {
   /**
-   * The element type or component to render the background as.
+   * The element type or component to render as.
    *
    * @default "div"
    * @see ElementType
@@ -55,7 +53,8 @@ type BackgroundProps<T extends ElementType> = Omit<
 /**
  * The background for the footer.
  *
- * @see BackgroundProps
+ * @param as - The element type or component to render as. Defaults to `"div"`.
+ * @see {@link BackgroundProps}
  */
 function Background<T extends ElementType = "div">({
   as,
@@ -75,7 +74,7 @@ function Background<T extends ElementType = "div">({
   )
 }
 
-/** The main footer component. */
+/** The site footer. */
 export function Footer() {
   return (
     <footer className="mt-32 flex-none">

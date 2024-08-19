@@ -15,21 +15,28 @@ import { InputLabel } from "./shared/InputLabel"
 import { InputOptionalHint } from "./shared/InputOptionalHint"
 
 /**
- * Properties for the `TextArea` component. Extends the `textarea` element
- * properties.
+ * Properties for the {@link TextArea} component.
  *
- * @see TextArea
- * @see SharedFormProps
+ * @see {@link SharedFormProps}
+ * @see {@link HTMLTextAreaElement}
  */
 type TextAreaProps = ComponentPropsWithoutRef<"textarea"> &
   SharedFormProps & {
+    /**
+     * Whether to hide the hint when a field is optional.
+     *
+     * @default false
+     */
     hideOptionalHint?: boolean
   }
 
 /**
  * A multi-line text input field.
  *
- * @see TextAreaProps
+ * Automatically expands to fit content as it is entered.
+ *
+ * @param hideOptionalHint - Whether to hide the hint when a field is optional.
+ * @see {@link TextAreaProps}
  */
 export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
   function TextArea(

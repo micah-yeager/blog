@@ -1,3 +1,5 @@
+// noinspection JSCommentMatchesSignature
+
 import type { FieldProps, RadioGroupProps, RadioProps } from "@headlessui/react"
 import {
   Field,
@@ -8,6 +10,14 @@ import clsx from "clsx"
 
 import { tw } from "@utils/templates"
 
+/**
+ * Group multiple {@link Radio} buttons together.
+ *
+ * Recommended to use an aria label to provide context to assistive
+ * technologies.
+ *
+ * @see Headless UI's {@link HeadlessRadioGroup RadioGroup}
+ */
 export function RadioGroup({
   className,
   ...props
@@ -27,6 +37,11 @@ export function RadioGroup({
   )
 }
 
+/**
+ * A field wrapper for a {@link Radio}.
+ *
+ * @see Headless UI's {@link Field}
+ */
 export function RadioField({ className, ...props }: Omit<FieldProps, "as">) {
   return (
     <Field
@@ -80,6 +95,14 @@ const colors = {
   rose: tw`[--radio-checked-bg:theme(colors.rose.500)] [--radio-checked-border:theme(colors.rose.600/90%)] [--radio-checked-indicator:theme(colors.white)]`
 } as const
 
+/**
+ * A radio button component.
+ *
+ * Usually used wrapped by a {@link RadioField} within a {@link RadioGroup}.
+ *
+ * @param color - The color variant to use.
+ * @see HeadlessUI's {@link HeadlessRadio Radio}
+ */
 export function Radio({
   color = "dark/zinc",
   className,

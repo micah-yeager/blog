@@ -1,4 +1,6 @@
-import type { ComponentPropsWithoutRef, ReactNode } from "react"
+// noinspection JSCommentMatchesSignature
+
+import type { ComponentPropsWithoutRef } from "react"
 import {
   CheckCircleIcon,
   ExclamationTriangleIcon,
@@ -7,14 +9,12 @@ import {
 } from "@heroicons/react/20/solid"
 import clsx from "clsx"
 
-/**
- * Variant definition for the Alert component.
- *
- * @see variants
- */
-type VariantMap = {
+import type { IconProp } from "./Icon"
+
+/** A variant definition for the {@link Alert} component. */
+type Variant = {
   /** The icon to display for this variant. */
-  Icon: ({ className }: { className: string }) => ReactNode
+  Icon: IconProp
   /** The classes for the icon. */
   iconClassName?: string
   /** The classes for the alert's background. */
@@ -24,12 +24,7 @@ type VariantMap = {
   /** The classes for the alert's text. */
   textClassName: string
 }
-/**
- * Variant definitions for the Alert component.
- *
- * @see Alert
- * @see AlertProps
- */
+
 const variants = {
   error: {
     Icon: XCircleIcon,
@@ -59,12 +54,12 @@ const variants = {
     headerClassName: "text-blue-800 dark:text-blue-200",
     textClassName: "text-blue-700 dark:text-blue-300"
   }
-} as const satisfies Record<string, VariantMap>
+} as const satisfies Record<string, Variant>
 
 /**
- * Properties for the Alert component. Extends the `div` element's props.
+ * Properties for the {@link Alert} component.
  *
- * @see Alert
+ * @see {@link HTMLDivElement}
  */
 type AlertProps = ComponentPropsWithoutRef<"div"> & {
   /** The variant to use. */
@@ -74,9 +69,11 @@ type AlertProps = ComponentPropsWithoutRef<"div"> & {
 }
 
 /**
- * A simple alert component.
+ * A notification to the end-user.
  *
- * @see AlertProps
+ * @param variant - The variant to use.
+ * @param title - The alert header text.
+ * @see {@link AlertProps}
  */
 export function Alert({
   variant,

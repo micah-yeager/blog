@@ -1,8 +1,15 @@
+// noinspection JSCommentMatchesSignature
+
 import type { ComponentPropsWithoutRef, PropsWithChildren } from "react"
 import clsx from "clsx"
 
 import { Button } from "./Button"
 
+/**
+ * A paginator for navigating through pages of data.
+ *
+ * @see {@link HTMLElement}
+ */
 export function Pagination({
   "aria-label": ariaLabel = "Page navigation",
   className,
@@ -17,6 +24,12 @@ export function Pagination({
   )
 }
 
+/**
+ * A button for {@link Pagination} to navigate to the previous page of data.
+ *
+ * @param to - The URL to navigate to.
+ * @param children - The content of the button. Defaults to `"Previous"`.
+ */
 export function PaginationPrevious({
   to = null,
   className,
@@ -52,6 +65,12 @@ export function PaginationPrevious({
   )
 }
 
+/**
+ * A button for {@link Pagination} to navigate to the next page of data.
+ *
+ * @param to - The URL to navigate to.
+ * @param children - The content of the button. Defaults to `"Next"`.
+ */
 export function PaginationNext({
   to = null,
   className,
@@ -87,6 +106,11 @@ export function PaginationNext({
   )
 }
 
+/**
+ * A list of page numbers for {@link Pagination}.
+ *
+ * @see {@link HTMLSpanElement}
+ */
 export function PaginationList({
   className,
   ...props
@@ -99,6 +123,13 @@ export function PaginationList({
   )
 }
 
+/**
+ * A button for a {@link PaginationList} to navigate to a specific page of data.
+ *
+ * @param to - The URL to navigate to.
+ * @param current - Whether the page is the current page.
+ * @param children - The content of the button.
+ */
 export function PaginationPage({
   to,
   className,
@@ -126,6 +157,11 @@ export function PaginationPage({
   )
 }
 
+/**
+ * A gap in a {@link PaginationList} to indicate omitted page numbers.
+ *
+ * @see {@link HTMLSpanElement}
+ */
 export function PaginationGap({
   className,
   children = <>&hellip;</>,

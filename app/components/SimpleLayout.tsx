@@ -3,7 +3,9 @@ import type { PropsWithChildren } from "react"
 import { Container } from "./Container"
 
 /**
- * A simple layout with a title and introduction.
+ * A simple page layout with a title and introduction.
+ *
+ * Already includes a {@link Container} component, so no need to wrap it.
  *
  * @param title - The page title.
  * @param intro - The page subtitle.

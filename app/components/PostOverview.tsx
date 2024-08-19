@@ -5,12 +5,23 @@ import type { PostMeta } from "@services/posts.server"
 
 import { Card } from "./Card"
 
+/** Properties for the {@link PostOverview} component. */
+type PostOverviewProps = {
+  /**
+   * The metadata for the post
+   *
+   * @see {@link PostMeta}
+   */
+  meta: Jsonify<PostMeta>
+}
+
 /**
  * A preview of a blog post.
  *
  * @param meta - The metadata for the post.
+ * @see {@link PostOverviewProps}
  */
-export function PostOverview({ meta }: { meta: Jsonify<PostMeta> }) {
+export function PostOverview({ meta }: PostOverviewProps) {
   const date = meta.updated
     ? DateTime.fromISO(meta.updated)
     : DateTime.fromISO(meta.created)

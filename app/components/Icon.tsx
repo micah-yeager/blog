@@ -1,3 +1,5 @@
+// noinspection JSCommentMatchesSignature
+
 import type { IconDefinition as FACoreIconDefinition } from "@fortawesome/fontawesome-svg-core"
 import type { IconDefinition as FABrandIconDefinition } from "@fortawesome/free-brands-svg-icons"
 import type { IconDefinition as FARegularIconDefinition } from "@fortawesome/free-regular-svg-icons"
@@ -19,11 +21,7 @@ type HeroIconDefinition = ForwardRefExoticComponent<
   } & RefAttributes<SVGSVGElement>
 >
 
-/**
- * An icon definition for use with the `Icon` component.
- *
- * @see IconProps
- */
+/** An icon definition for use with the {@link Icon} component. */
 export type IconProp =
   | HeroIconDefinition
   | FACoreIconDefinition
@@ -32,18 +30,21 @@ export type IconProp =
   | FASolidIconDefinition
 
 /**
- * Properties for the `Icon` component. Extends the `svg` element's props.
+ * Properties for the `Icon` component.
  *
- * @see Icon
+ * @see {@link SVGSVGElement}
  */
 export type IconProps = Omit<ComponentPropsWithoutRef<"svg">, "as" | "mask"> & {
-  /** The icon component to render. */
+  /** The icon definition to render. */
   as: IconProp
 }
 
 /**
  * Renders an icon component using a consistent interface, regardless of the
  * icon library.
+ *
+ * @param as - The icon definition to render.
+ * @see {@link IconProps}
  */
 export function Icon({ as, ...rest }: IconProps) {
   // FontAwesome-specific rendering

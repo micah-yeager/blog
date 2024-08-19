@@ -1,19 +1,20 @@
-import type { ReactNode } from "react"
+import type { PropsWithChildren } from "react"
 import { useId } from "react"
+
+/** Properties for the {@link Section} component. */
+type SectionProps = Required<PropsWithChildren> & {
+  /** The title of the section. */
+  title: string
+}
 
 /**
  * A section of content with a title.
  *
  * @param title - The title of the section.
  * @param children - The content of the section.
+ * @see {@link SectionProps}
  */
-export function Section({
-  title,
-  children
-}: {
-  title: string
-  children: ReactNode
-}) {
+export function Section({ title, children }: SectionProps) {
   const id = useId()
 
   return (

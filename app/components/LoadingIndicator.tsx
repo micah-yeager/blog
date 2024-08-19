@@ -1,3 +1,5 @@
+// noinspection JSCommentMatchesSignature
+
 import type { ComponentPropsWithoutRef } from "react"
 import { faSpinner } from "@fortawesome/free-solid-svg-icons"
 import { EllipsisHorizontalIcon } from "@heroicons/react/20/solid"
@@ -6,22 +8,14 @@ import clsx from "clsx"
 import type { IconProp } from "./Icon"
 import { Icon } from "./Icon"
 
-/**
- * A map of variant names to their respective icon and class name.
- *
- * @see variants
- */
+/** A variant definition for the {@link LoadingIndicator} component. */
 type VariantMap = {
-  /** The icon to render. */
+  /** The icon definition to render. */
   icon: IconProp
   /** The class name to apply to the icon. */
   className: string
 }
-/**
- * Available variants for the loading indicator.
- *
- * @see LoadingIndicatorProps
- */
+
 const variants = {
   spinner: {
     icon: faSpinner,
@@ -34,10 +28,9 @@ const variants = {
 } as const satisfies Record<string, VariantMap>
 
 /**
- * Properties for the `LoadingIndicator` component. Extends the `Icon`
- * component's props.
+ * Properties for the {@link LoadingIndicator} component.
  *
- * @see LoadingIndicator
+ * @see {@link Icon}
  */
 type LoadingIndicatorProps = Omit<
   ComponentPropsWithoutRef<typeof Icon>,
@@ -48,9 +41,13 @@ type LoadingIndicatorProps = Omit<
 }
 
 /**
- * A loading indicator that can be styled with different variants.
+ * A loading indicator (aka. spinner).
  *
- * @see LoadingIndicatorProps
+ * If no variant is specified, the component will use the best option based on
+ * the user's motion preference.
+ *
+ * @param variant - The style variant to use.
+ * @see {@link LoadingIndicatorProps}
  */
 export function LoadingIndicator({
   variant,

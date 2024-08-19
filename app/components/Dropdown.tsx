@@ -1,3 +1,5 @@
+// noinspection JSCommentMatchesSignature
+
 import type {
   DescriptionProps,
   LabelProps,
@@ -25,19 +27,36 @@ import clsx from "clsx"
 import { Button } from "./Button"
 import { Link } from "./Link"
 
+/**
+ * A dropdown menu.
+ *
+ * @see Headless UI's {@link Menu}
+ */
 export function Dropdown(props: MenuProps) {
   return <Menu {...props} />
 }
 
+/**
+ * A button that toggles a {@link Dropdown}'s {@link DropdownMenu} visibility.
+ *
+ * @param as - The element type or component to render as. Defaults to
+ *   {@link Button}.
+ * @see Headless UI's {@link MenuButtonProps}
+ */
 export function DropdownButton<T extends ElementType = typeof Button>({
-  as = Button,
+  as,
   ...props
-}: {
-  className?: string
-} & Omit<MenuButtonProps<T>, "className">) {
-  return <MenuButton as={as} {...props} />
+}: Omit<MenuButtonProps<T>, "className">) {
+  // @ts-expect-error TODO: resolve the `as` property type issue.
+  return <MenuButton as={as ?? Button} {...props} />
 }
 
+/**
+ * The flyout panel for a {@link Dropdown}.
+ *
+ * @param anchor - The anchor position for the flyout. Defaults to `"bottom"`.
+ * @see Headless UI's {@link MenuItems}
+ */
 export function DropdownMenu({
   anchor = "bottom",
   className,
@@ -72,12 +91,24 @@ export function DropdownMenu({
   )
 }
 
-export function DropdownItem({
-  className,
-  ...props
-}:
+/**
+ * Properties for a {@link DropdownItem}.
+ *
+ * @see {@link HTMLButtonElement}
+ * @see {@link Link}
+ */
+type DropdownItemProps =
   | Omit<ComponentPropsWithoutRef<"button">, "as">
-  | ComponentPropsWithoutRef<typeof Link>) {
+  | ComponentPropsWithoutRef<typeof Link>
+
+/**
+ * An item for a {@link DropdownMenu}.
+ *
+ * @param to - If provided, a {@link Link} will be rendered with the provided
+ *   URL. Otherwise, an {@link HTMLButtonElement} will be used instead.
+ * @see {@link DropdownItemProps}
+ */
+export function DropdownItem({ className, ...props }: DropdownItemProps) {
   const classes = clsx(
     className,
     // Base styles
@@ -110,6 +141,13 @@ export function DropdownItem({
   )
 }
 
+/**
+ * A header for a {@link DropdownMenu}.
+ *
+ * Note that assistive technologies will not announce child content.
+ *
+ * @see {@link HTMLDivElement}
+ */
 export function DropdownHeader({
   className,
   ...props
@@ -122,6 +160,12 @@ export function DropdownHeader({
   )
 }
 
+/**
+ * A section wrapper containing grouped {@link DropdownItem}s for a
+ * {@link DropdownMenu}.
+ *
+ * @see Headless UI's {@link MenuSection}
+ */
 export function DropdownSection({
   className,
   ...props
@@ -139,6 +183,11 @@ export function DropdownSection({
   )
 }
 
+/**
+ * A heading for a {@link DropdownSection}.
+ *
+ * @see Headless UI's {@link MenuHeading}
+ */
 export function DropdownHeading({
   className,
   ...props
@@ -154,6 +203,11 @@ export function DropdownHeading({
   )
 }
 
+/**
+ * A horizontal divider for a {@link DropdownMenu}.
+ *
+ * @see Headless UI's {@link MenuSeparator}
+ */
 export function DropdownDivider({
   className,
   ...props
@@ -169,6 +223,11 @@ export function DropdownDivider({
   )
 }
 
+/**
+ * A label for a {@link Dropdown}.
+ *
+ * @see Headless UI's {@link Label}
+ */
 export function DropdownLabel({ className, ...props }: Omit<LabelProps, "as">) {
   return (
     <Label
@@ -180,6 +239,11 @@ export function DropdownLabel({ className, ...props }: Omit<LabelProps, "as">) {
   )
 }
 
+/**
+ * A description for a {@link Dropdown}.
+ *
+ * @see Headless UI's {@link Description}
+ */
 export function DropdownDescription({
   className,
   ...props
@@ -196,13 +260,26 @@ export function DropdownDescription({
   )
 }
 
+/**
+ * Properties for the {@link DropdownShortcut} component.
+ *
+ * @see {@link HTMLElement}
+ */
+type DropdownShortcutProps = Omit<DescriptionProps<"kbd">, "as"> & {
+  keys: string | string[]
+}
+
+/**
+ * Keyboard shortcut indicator for a {@link DropdownItem}.
+ *
+ * @param keys - The key combination to display.
+ * @see {@link DropdownShortcutProps}
+ */
 export function DropdownShortcut({
   keys,
   className,
   ...props
-}: {
-  keys: string | string[]
-} & Omit<DescriptionProps<"kbd">, "as">) {
+}: DropdownShortcutProps) {
   return (
     <Description
       as="kbd"

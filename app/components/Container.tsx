@@ -3,10 +3,11 @@ import clsx from "clsx"
 import { forwardRef } from "react"
 
 /**
- * The outer portion of a responsive page container. Extends the properties of
- * the `div` element.
+ * The outer portion of a responsive page container.
  *
- * @see ContainerInner
+ * Typically used with a child {@link ContainerInner}.
+ *
+ * @see {@link HTMLDivElement}
  */
 export const ContainerOuter = forwardRef<
   ElementRef<"div">,
@@ -20,10 +21,11 @@ export const ContainerOuter = forwardRef<
 })
 
 /**
- * The inner portion of a responsive page container. Extends the properties of
- * the `div` element.
+ * The inner portion of a responsive page container.
  *
- * @see ContainerOuter
+ * Typically used with a parent {@link ContainerOuter}.
+ *
+ * @see {@link HTMLDivElement}
  */
 export const ContainerInner = forwardRef<
   ElementRef<"div">,
@@ -41,8 +43,9 @@ export const ContainerInner = forwardRef<
 })
 
 /**
- * A self-contained responsive page container. Extends the properties of the
- * `div` element.
+ * A self-contained responsive page container.
+ *
+ * @see {@link ContainerOuter}
  */
 export const Container = forwardRef<
   ElementRef<typeof ContainerOuter>,
