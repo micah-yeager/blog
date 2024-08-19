@@ -6,7 +6,6 @@ import { useId } from "react"
  *
  * @param title - The title of the section.
  * @param children - The content of the section.
- * @component
  */
 export function Section({
   title,

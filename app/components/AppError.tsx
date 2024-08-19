@@ -2,11 +2,7 @@ import { isRouteErrorResponse, useRouteError } from "@remix-run/react"
 
 import { Button } from "./Button"
 
-/**
- * Component to display an application error.
- *
- * @component
- */
+/** Component to display an application error. */
 export function AppError() {
   const error = useRouteError()
 

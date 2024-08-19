@@ -23,11 +23,7 @@ type CardProps<T extends ElementType> = Omit<
   as?: T
 }
 
-/**
- * Wraps content in a card-like container.
- *
- * @component
- */
+/** Wraps content in a card-like container. */
 export function Card<T extends ElementType = "div">({
   as,
   className,
@@ -50,7 +46,6 @@ export function Card<T extends ElementType = "div">({
 /**
  * A link to use as a card overlay.
  *
- * @component
  * @see Link
  * @see Card
  */
@@ -92,7 +87,6 @@ type CardTitleProps<T extends ElementType> = Omit<
 /**
  * Title for a card.
  *
- * @component
  * @see CardTitleProps
  * @see Card
  */
@@ -129,7 +123,6 @@ Card.Title = function CardTitle<T extends ElementType = "h2">({
  *
  * Extends the `p` element's props.
  *
- * @component
  * @see Card
  */
 Card.Description = function CardDescription({
@@ -155,7 +148,6 @@ Card.Description = function CardDescription({
  *
  * Extends the `div` element's props.
  *
- * @component
  * @see Card
  */
 Card.CallToAction = function CardCallToAction({
@@ -182,7 +174,6 @@ Card.CallToAction = function CardCallToAction({
  * Props for the Card.Meta component. Extends the props of the component or
  * element used in the `as` property.
  *
- * @component
  * @see Card.Meta
  */
 type CardMetaProps<T extends ElementType> = Omit<
@@ -208,7 +199,6 @@ type CardMetaProps<T extends ElementType> = Omit<
 /**
  * "Meta" information for a card.
  *
- * @component
  * @see CardMetaProps
  * @see Card
  */

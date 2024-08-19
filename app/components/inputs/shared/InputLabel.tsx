@@ -1,11 +1,7 @@
 import type { ComponentPropsWithoutRef } from "react"
 import clsx from "clsx"
 
-/**
- * A label for an input field. Extends the properties of the `div` element.
- *
- * @component
- */
+/** A label for an input field. Extends the properties of the `div` element. */
 export function InputLabel({
   className,
   children,

@@ -19,7 +19,6 @@ export const meta = mergeMeta(() => [{ title: "About" }])
  * @param to - The URL to link to.
  * @param children - Link contents.
  * @param icon - The icon to render.
- * @component
  */
 function SocialLink({
   className,

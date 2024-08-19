@@ -18,7 +18,6 @@ export interface Role {
  * A role at a company.
  *
  * @param role - The role information.
- * @component
  */
 export function Role({ role }: { role: Role }) {
   const startLabel =

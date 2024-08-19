@@ -8,7 +8,6 @@ import { Role } from "./Role"
 /**
  * A list of roles in the CV.
  *
- * @component
  * @see Role
  */
 export function CV() {

@@ -43,7 +43,6 @@ const photos: Photo[] = [
 /**
  * A frame for a photo.
  *
- * @component
  * @see Photo
  * @see Photos
  */
@@ -77,7 +76,6 @@ type PhotoProps = Omit<ComponentPropsWithoutRef<"img">, "alt"> &
 /**
  * A photo for the photos display.
  *
- * @component
  * @see Photos
  */
 function Photo({ alt, className, ...rest }: PhotoProps) {
@@ -92,11 +90,7 @@ function Photo({ alt, className, ...rest }: PhotoProps) {
   )
 }
 
-/**
- * A collection of for the home page.
- *
- * @component
- */
+/** A collection of for the home page. */
 export function Photos() {
   const rotations = [
     "rotate-2",

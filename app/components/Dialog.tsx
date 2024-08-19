@@ -31,7 +31,6 @@ type DialogProps = ComponentPropsWithoutRef<typeof DialogPanel> & {
 /**
  * A dialog component that uses the Headless UI Dialog component.
  *
- * @component
  * @see DialogProps
  */
 export function Dialog({ open, setOpen, onClose, children }: DialogProps) {
@@ -118,7 +117,6 @@ export function Dialog({ open, setOpen, onClose, children }: DialogProps) {
  * Title for a dialog. Extends the props of the Headless UI Dialog.Title
  * component.
  *
- * @component
  * @see HeadlessUIDialog.Title
  * @see Dialog
  */
@@ -145,7 +143,6 @@ Dialog.Title = function DialogTitle({
 /**
  * Actions for a dialog. Extends the 'div' element's props.
  *
- * @component
  * @see Dialog
  */
 Dialog.Actions = function DialogActions({

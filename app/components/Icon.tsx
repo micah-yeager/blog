@@ -44,8 +44,6 @@ export type IconProps = Omit<ComponentPropsWithoutRef<"svg">, "as" | "mask"> & {
 /**
  * Renders an icon component using a consistent interface, regardless of the
  * icon library.
- *
- * @component
  */
 export function Icon({ as, ...rest }: IconProps) {
   // FontAwesome-specific rendering

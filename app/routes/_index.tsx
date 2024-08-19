@@ -24,7 +24,6 @@ export async function loader() {
  *
  * @param icon - The icon to render.
  * @param props - The properties to apply to the `Link` element.
- * @component
  */
 function SocialLink({
   icon,

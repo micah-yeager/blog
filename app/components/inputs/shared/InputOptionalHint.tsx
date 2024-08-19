@@ -4,8 +4,6 @@ import clsx from "clsx"
 /**
  * A hint for an optional input field. Extends the properties of the `span`
  * element.
- *
- * @component
  */
 export function InputOptionalHint({
   className,

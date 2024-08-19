@@ -9,7 +9,6 @@ import { Card } from "./Card"
  * A preview of a blog post.
  *
  * @param meta - The metadata for the post.
- * @component
  */
 export function PostOverview({ meta }: { meta: Jsonify<PostMeta> }) {
   const date = meta.updated

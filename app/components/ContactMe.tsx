@@ -29,8 +29,6 @@ export type ContactMeFields = {
 /**
  * A button that opens a dialog to contact the site owner. Extends the `button`
  * element properties.
- *
- * @component
  */
 export function ContactMe(
   props: Omit<

@@ -20,7 +20,6 @@ type NavLinkProps = {
 /**
  * A link to use in the footer.
  *
- * @component
  * @see NavLinkProps
  */
 function NavLink({ to, children }: NavLinkProps) {
@@ -56,7 +55,6 @@ type BackgroundProps<T extends ElementType> = Omit<
 /**
  * The background for the footer.
  *
- * @component
  * @see BackgroundProps
  */
 function Background<T extends ElementType = "div">({
@@ -77,11 +75,7 @@ function Background<T extends ElementType = "div">({
   )
 }
 
-/**
- * The main footer component.
- *
- * @component
- */
+/** The main footer component. */
 export function Footer() {
   return (
     <footer className="mt-32 flex-none">

@@ -16,7 +16,6 @@ type CaptchaProps = Omit<ComponentPropsWithoutRef<typeof Turnstile>, "siteKey">
  * A wrapper around the Turnstile component to provide the site key from via the
  * outlet context.
  *
- * @component
  * @see CaptchaProps
  */
 export function Captcha(props: CaptchaProps) {

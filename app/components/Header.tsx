@@ -26,7 +26,6 @@ import { Icon } from "./Icon"
 /**
  * A navigation item for the mobile menu.
  *
- * @component
  * @see LinkProps
  */
 function MobileNavItem({
@@ -51,7 +50,6 @@ function MobileNavItem({
 /**
  * The mobile navigation menu.
  *
- * @component
  * @see Popover
  */
 function MobileNavigation(props: ComponentPropsWithoutRef<typeof Popover>) {
@@ -126,7 +124,6 @@ function MobileNavigation(props: ComponentPropsWithoutRef<typeof Popover>) {
 /**
  * A navigation item for the desktop menu.
  *
- * @component
  * @see LinkProps
  */
 function NavItem({
@@ -162,11 +159,7 @@ function NavItem({
   )
 }
 
-/**
- * The desktop navigation menu. Extends the properties of the `nav` element.
- *
- * @component
- */
+/** The desktop navigation menu. Extends the properties of the `nav` element. */
 function DesktopNavigation(props: ComponentPropsWithoutRef<"nav">) {
   return (
     <nav {...props}>
@@ -179,11 +172,7 @@ function DesktopNavigation(props: ComponentPropsWithoutRef<"nav">) {
   )
 }
 
-/**
- * A button to toggle the dark / light theme.
- *
- * @component
- */
+/** A button to toggle the dark / light theme. */
 function ThemeToggle() {
   const [darkMode, setDarkMode] = useState<boolean>(true)
 
@@ -244,8 +233,6 @@ function ThemeToggle() {
 /**
  * A container for the avatar image. Extends the properties of the `div`
  * element.
- *
- * @component
  */
 function AvatarContainer({
   className,
@@ -265,7 +252,6 @@ function AvatarContainer({
 /**
  * A clickable avatar image. Extends the properties of the `Link` component.
  *
- * @component
  * @see Link
  */
 type AvatarProps = Omit<ComponentPropsWithoutRef<typeof Link>, "to"> & {

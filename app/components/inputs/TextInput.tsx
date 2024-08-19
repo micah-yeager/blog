@@ -46,7 +46,6 @@ type TextInputProps = ComponentPropsWithoutRef<"input"> &
 /**
  * A single-line text input field.
  *
- * @component
  * @see TextInputProps
  */
 export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
@@ -263,7 +262,6 @@ type AddOnProps<TTag extends ElementType> = Omit<
 /**
  * An add-on for the `TextInput` component.
  *
- * @component
  * @see AddOnProps
  * @see TextInput
  */
@@ -295,7 +293,6 @@ function AddOn<TTag extends ElementType>({
 /**
  * Add-on button for the `TextInput` component.
  *
- * @component
  * @see AddOnProps
  * @see TextInput
  */

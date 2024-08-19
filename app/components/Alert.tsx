@@ -76,7 +76,6 @@ type AlertProps = ComponentPropsWithoutRef<"div"> & {
 /**
  * A simple alert component.
  *
- * @component
  * @see AlertProps
  */
 export function Alert({

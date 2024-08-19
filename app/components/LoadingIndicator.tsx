@@ -50,7 +50,6 @@ type LoadingIndicatorProps = Omit<
 /**
  * A loading indicator that can be styled with different variants.
  *
- * @component
  * @see LoadingIndicatorProps
  */
 export function LoadingIndicator({

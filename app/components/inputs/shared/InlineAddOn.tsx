@@ -14,7 +14,6 @@ type InlineAddOnProps = ComponentPropsWithoutRef<"div"> & {
 /**
  * An inline add-on for a text input field.
  *
- * @component
  * @see InlineAddOnProps
  * @see TextInput
  */

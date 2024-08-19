@@ -15,7 +15,6 @@ import { Prose } from "./Prose"
  * A floating button that scrolls to the top of the page when clicked.
  *
  * @param className - Additional classes to apply to the button.
- * @component
  * @see PostLayout
  */
 function ScrollToTop({ className }: { className?: string }) {
@@ -36,7 +35,6 @@ function ScrollToTop({ className }: { className?: string }) {
  *
  * @param meta - The metadata for the post.
  * @param children - The content of the post.
- * @component
  */
 export function PostLayout({
   meta,

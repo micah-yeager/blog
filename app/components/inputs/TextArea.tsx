@@ -29,7 +29,6 @@ type TextAreaProps = ComponentPropsWithoutRef<"textarea"> &
 /**
  * A multi-line text input field.
  *
- * @component
  * @see TextAreaProps
  */
 export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
