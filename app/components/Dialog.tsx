@@ -1,5 +1,11 @@
 import type { ComponentPropsWithoutRef } from "react"
-import { Dialog as HeadlessUIDialog, Transition } from "@headlessui/react"
+import {
+  DialogPanel,
+  Dialog as HeadlessUIDialog,
+  DialogTitle as HeadlessUIDialogTitle,
+  Transition,
+  TransitionChild
+} from "@headlessui/react"
 import { XMarkIcon } from "@heroicons/react/24/outline"
 import clsx from "clsx"
 import { Fragment, useRef } from "react"
@@ -13,7 +19,7 @@ import { Icon } from "./Icon"
  * @see Dialog
  * @see HeadlessUIDialog.Panel
  */
-type DialogProps = ComponentPropsWithoutRef<typeof HeadlessUIDialog.Panel> & {
+type DialogProps = ComponentPropsWithoutRef<typeof DialogPanel> & {
   /** The open state for the dialog. */
   open: boolean
   /** A function to set the dialog's open state. */
@@ -37,7 +43,7 @@ export function Dialog({ open, setOpen, onClose, children }: DialogProps) {
   const closeRef = useRef<HTMLButtonElement>(null)
 
   return (
-    <Transition.Root show={open} as={Fragment}>
+    <Transition show={open} as={Fragment}>
       <HeadlessUIDialog
         as="div"
         className="relative z-10"
@@ -47,7 +53,7 @@ export function Dialog({ open, setOpen, onClose, children }: DialogProps) {
         onClick={(e) => e.stopPropagation()}
       >
         {/* background overlay */}
-        <Transition.Child
+        <TransitionChild
           as={Fragment}
           enter="ease-out duration-300"
           enterFrom="opacity-0"
@@ -57,12 +63,12 @@ export function Dialog({ open, setOpen, onClose, children }: DialogProps) {
           leaveTo="opacity-0"
         >
           <div className="fixed inset-0 bg-zinc-500/75 transition-opacity dark:bg-zinc-950/75" />
-        </Transition.Child>
+        </TransitionChild>
 
         {/* dialog proper */}
         <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
           <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-            <Transition.Child
+            <TransitionChild
               as={Fragment}
               enter="ease-out duration-300"
               enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
@@ -71,7 +77,7 @@ export function Dialog({ open, setOpen, onClose, children }: DialogProps) {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <HeadlessUIDialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all dark:bg-black sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
+              <DialogPanel className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all dark:bg-black sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
                 {(props) => (
                   <>
                     {/* close button */}
@@ -99,12 +105,12 @@ export function Dialog({ open, setOpen, onClose, children }: DialogProps) {
                     )}
                   </>
                 )}
-              </HeadlessUIDialog.Panel>
-            </Transition.Child>
+              </DialogPanel>
+            </TransitionChild>
           </div>
         </div>
       </HeadlessUIDialog>
-    </Transition.Root>
+    </Transition>
   )
 }
 
@@ -121,9 +127,9 @@ Dialog.Title = function DialogTitle({
   className,
   children,
   ...rest
-}: ComponentPropsWithoutRef<typeof HeadlessUIDialog.Title>) {
+}: ComponentPropsWithoutRef<typeof HeadlessUIDialogTitle>) {
   return (
-    <HeadlessUIDialog.Title
+    <HeadlessUIDialogTitle
       {...rest}
       as={as}
       className={clsx(
@@ -132,7 +138,7 @@ Dialog.Title = function DialogTitle({
       )}
     >
       {children}
-    </HeadlessUIDialog.Title>
+    </HeadlessUIDialogTitle>
   )
 }
 
