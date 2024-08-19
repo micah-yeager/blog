@@ -5,6 +5,9 @@ node_modules/
 .env
 .vercel/
 
+### Vitest
+coverage/
+
 ### VS Code
 .history/
 

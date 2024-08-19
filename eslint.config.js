@@ -1,6 +1,7 @@
 // @ts-check
 
 import eslint from "@eslint/js"
+import jestDom from "eslint-plugin-jest-dom"
 import unusedImports from "eslint-plugin-unused-imports"
 import tseslint from "typescript-eslint"
 
@@ -20,5 +21,11 @@ export default tseslint.config(
       // Superseded by "unused-imports/no-unused-vars" above.
       "@typescript-eslint/no-unused-vars": "off"
     }
+  },
+  // TSX test files
+  {
+    files: ["*.test.tsx"],
+    plugins: { ...jestDom.configs["flat/recommended"].plugins },
+    rules: { ...jestDom.configs["flat/recommended"].rules }
   }
 )
