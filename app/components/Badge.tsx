@@ -53,37 +53,33 @@ export function Badge({
   )
 }
 
-export const BadgeButton = forwardRef(function BadgeButton(
-  {
-    color = "zinc",
-    className,
-    children,
-    ...props
-  }: BadgeBaseProps &
-    Required<PropsWithChildren> &
-    (Omit<ButtonProps, "as"> | ComponentPropsWithoutRef<typeof Link>),
-  ref: ForwardedRef<HTMLElement>
-) {
-  const classes = clsx(
-    className,
-    "group relative inline-flex rounded-md focus:outline-none data-[focus]:outline data-[focus]:outline-2 data-[focus]:outline-offset-2 data-[focus]:outline-blue-500"
-  )
+type BadgeButtonProps = BadgeBaseProps &
+  Required<PropsWithChildren> &
+  (Omit<ButtonProps, "as"> | ComponentPropsWithoutRef<typeof Link>)
 
-  return "to" in props ? (
-    <Link
-      {...props}
-      className={classes}
-      ref={ref as ForwardedRef<HTMLAnchorElement>}
-    >
-      <TouchTarget>
-        <Badge color={color}>{children}</Badge>
-      </TouchTarget>
-    </Link>
-  ) : (
-    <Button {...props} className={classes} ref={ref}>
-      <TouchTarget>
-        <Badge color={color}>{children}</Badge>
-      </TouchTarget>
-    </Button>
-  )
-})
+export const BadgeButton = forwardRef<HTMLElement, BadgeButtonProps>(
+  function BadgeButton({ color = "zinc", className, children, ...props }, ref) {
+    const classes = clsx(
+      className,
+      "group relative inline-flex rounded-md focus:outline-none data-[focus]:outline data-[focus]:outline-2 data-[focus]:outline-offset-2 data-[focus]:outline-blue-500"
+    )
+
+    return "to" in props ? (
+      <Link
+        {...props}
+        className={classes}
+        ref={ref as ForwardedRef<HTMLAnchorElement>}
+      >
+        <TouchTarget>
+          <Badge color={color}>{children}</Badge>
+        </TouchTarget>
+      </Link>
+    ) : (
+      <Button {...props} className={classes} ref={ref}>
+        <TouchTarget>
+          <Badge color={color}>{children}</Badge>
+        </TouchTarget>
+      </Button>
+    )
+  }
+)

@@ -186,9 +186,9 @@ type ButtonProps = (
     | ComponentPropsWithoutRef<typeof Link>
   )
 
-export const Button = forwardRef(function Button(
-  { color, outline, plain, className, children, ...props }: ButtonProps,
-  ref: ForwardedRef<HTMLElement>
+export const Button = forwardRef<HTMLElement, ButtonProps>(function Button(
+  { color, outline, plain, className, children, ...props },
+  ref
 ) {
   const classes = clsx(
     className,
