@@ -36,7 +36,13 @@ type DialogProps = ComponentPropsWithoutRef<typeof DialogPanel> & {
  * @param onClose - A function to run when the dialog is closed.
  * @see {@link DialogProps}
  */
-export function Dialog({ open, setOpen, onClose, children }: DialogProps) {
+export function Dialog({
+  open,
+  setOpen,
+  onClose,
+  children,
+  ...rest
+}: DialogProps) {
   function close() {
     setOpen(false)
     onClose?.()
@@ -79,7 +85,10 @@ export function Dialog({ open, setOpen, onClose, children }: DialogProps) {
               leaveFrom="opacity-100 translate-y-0 sm:scale-100"
               leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             >
-              <DialogPanel className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all dark:bg-black sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
+              <DialogPanel
+                {...rest}
+                className="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all dark:bg-black sm:my-8 sm:w-full sm:max-w-lg sm:p-6"
+              >
                 {(props) => (
                   <>
                     {/* close button */}

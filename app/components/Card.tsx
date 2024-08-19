@@ -35,12 +35,14 @@ type CardProps<T extends ElementType> = Omit<
 export function Card<T extends ElementType = "div">({
   as,
   className,
-  children
+  children,
+  ...rest
 }: CardProps<T>) {
   const Component = as ?? "div"
 
   return (
     <Component
+      {...rest}
       className={clsx(
         className,
         "group/Card relative flex flex-col items-start"
