@@ -12,9 +12,10 @@ import { Alert } from "../Alert"
 import { Button } from "../Button"
 import { Captcha } from "../Captcha"
 import { Dialog } from "../Dialog"
+import { Field, FieldGroup, Fieldset, Label } from "../Fieldset"
 import { Icon } from "../Icon"
-import { TextArea } from "../inputs/TextArea"
-import { TextInput } from "../inputs/TextInput"
+import { Input, InputGroup } from "../Input"
+import { Textarea } from "../Textarea"
 
 /** Fields for the {@link ContactMe} form. */
 export type ContactMeFields = {
@@ -49,42 +50,50 @@ export function ContactMe(
         {/* show form until submission */}
         {!fetcher.data?.result?.success ? (
           <fetcher.Form method="post" action="/contact">
-            <div className="space-y-5 sm:space-y-4">
-              <Dialog.Title>Contact me</Dialog.Title>
+            <Dialog.Title className="mb-4">Contact me</Dialog.Title>
 
-              {fetcher.data?.formError && (
-                <Alert
-                  variant="error"
-                  title="There was an error while submitting this form:"
-                >
-                  {fetcher.data.formError}
-                </Alert>
-              )}
+            {/* Form error */}
+            {fetcher.data?.formError && (
+              <Alert
+                variant="error"
+                title="There was an error while submitting this form:"
+              >
+                {fetcher.data.formError}
+              </Alert>
+            )}
 
-              {/* form */}
-              <TextInput
-                label="Subject"
-                name="subject"
-                leadingInlineAddOn={
-                  <Icon as={ChatBubbleLeftEllipsisIcon} className="h-5 w-5" />
-                }
-                required
-              />
-              <TextInput
-                label="Your email"
-                name="email"
-                type="email"
-                leadingInlineAddOn={
-                  <Icon as={EnvelopeSolidIcon} className="h-5 w-5" />
-                }
-                placeholder="you@example.com"
-                required
-              />
-              <TextArea label="Message" name="message" rows={8} required />
+            <Fieldset>
+              <FieldGroup>
+                {/* Subject */}
+                <Field>
+                  <Label>Subject</Label>
+                  <InputGroup>
+                    <Icon as={ChatBubbleLeftEllipsisIcon} />
+                    <Input name="subject" required />
+                  </InputGroup>
+                </Field>
 
-              {/* Cloudflare captcha */}
-              <Captcha className="mx-auto" />
-            </div>
+                {/* Email */}
+                <Field>
+                  <Label>Your email</Label>
+                  <InputGroup>
+                    <Icon as={EnvelopeSolidIcon} />
+                    <Input name="email" type="email" required />
+                  </InputGroup>
+                </Field>
+
+                {/* Message */}
+                <Field>
+                  <Label>Message</Label>
+                  <Textarea name="message" rows={4} required />
+                </Field>
+
+                {/* Captcha */}
+                <Field>
+                  <Captcha className="mx-auto" />
+                </Field>
+              </FieldGroup>
+            </Fieldset>
 
             {/* actions */}
             <Dialog.Actions>
