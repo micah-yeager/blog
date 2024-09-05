@@ -92,8 +92,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           className={clsx(classes, "invisible whitespace-pre-wrap")}
           aria-hidden
         >
-          {/* The trailing space ensures trailing newlines without content still force vertical expansion. */}
-          {value}{" "}
+          {value}‍
         </div>
       </span>
     )
