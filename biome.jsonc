@@ -1,0 +1,60 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
+  // Global configuration.
+  "formatter": {
+    "indentStyle": "space",
+    "indentWidth": 2
+  },
+  "linter": {
+    "rules": {
+      "all": true,
+      "correctness": {
+        "noNodejsModules": "off"
+      },
+      "nursery": {
+        "noEvolvingTypes": "error"
+      },
+      "performance": {
+        "noBarrelFile": "off",
+        "noReExportAll": "off"
+      },
+      "style": {
+        "noDefaultExport": "off",
+        "noImplicitBoolean": "off",
+        "noNamespaceImport": "off",
+        "useBlockStatements": "off",
+        "useCollapsedElseIf": "off",
+        "useForOf": "off",
+        "useNamingConvention": "off"
+      },
+      "suspicious": {}
+    }
+  },
+  "organizeImports": {},
+  // Project configuration.
+  "vcs": {
+    "enabled": true,
+    "clientKind": "git",
+    "useIgnoreFile": true
+  },
+  // Language configuration.
+  "css": {
+    "formatter": {
+      "enabled": true
+    },
+    "linter": {
+      "enabled": true
+    },
+    "parser": {
+      "cssModules": true
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "semicolons": "asNeeded"
+    }
+  },
+  "json": {
+    "formatter": {}
+  }
+}
