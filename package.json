@@ -10,9 +10,7 @@
     "lint": "eslint .",
     "typecheck": "tsc"
   },
-  "files": [
-    "content"
-  ],
+  "files": ["content"],
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
     "@fortawesome/free-brands-svg-icons": "^6.5.2",

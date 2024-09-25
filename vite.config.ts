@@ -10,8 +10,8 @@ export default defineConfig({
   plugins: [
     remix({
       presets: [vercelPreset()],
-      ignoredRouteFiles: ["**/.*"]
+      ignoredRouteFiles: ["**/.*"],
     }),
-    tsconfigPaths()
-  ]
+    tsconfigPaths(),
+  ],
 })

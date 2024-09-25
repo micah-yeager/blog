@@ -11,7 +11,7 @@ import { useEffect, useMemo, useRef, useSyncExternalStore } from "react"
  */
 export const useForwardRef = <T>(
   ref: ForwardedRef<T>,
-  initialValue: T | null = null
+  initialValue: T | null = null,
 ) => {
   const targetRef = useRef<T>(initialValue)
 
@@ -51,7 +51,7 @@ export function useDimensions(ref: RefObject<HTMLElement>) {
   function getSnapshot() {
     return JSON.stringify({
       width: ref.current?.offsetWidth ?? 0,
-      height: ref.current?.offsetHeight ?? 0
+      height: ref.current?.offsetHeight ?? 0,
     })
   }
 

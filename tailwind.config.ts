@@ -1,6 +1,6 @@
-import type { Config } from "tailwindcss"
 import formsPlugin from "@tailwindcss/forms"
 import typographyPlugin from "@tailwindcss/typography"
+import type { Config } from "tailwindcss"
 import colors from "tailwindcss/colors"
 import defaultTheme from "tailwindcss/defaultTheme"
 
@@ -25,17 +25,17 @@ export default {
       "6xl": ["3.75rem", { lineHeight: "1" }],
       "7xl": ["4.5rem", { lineHeight: "1" }],
       "8xl": ["6rem", { lineHeight: "1" }],
-      "9xl": ["8rem", { lineHeight: "1" }]
+      "9xl": ["8rem", { lineHeight: "1" }],
     },
     typography: typographyStyles,
     extend: {
       colors: {
-        primary: colors.orange
+        primary: colors.orange,
       },
       fontFamily: {
         sans: ["Inter var", ...defaultTheme.fontFamily.sans],
-        dyslexic: ["OpenDyslexic"]
-      }
-    }
-  }
+        dyslexic: ["OpenDyslexic"],
+      },
+    },
+  },
 } satisfies Config

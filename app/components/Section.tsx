@@ -10,7 +10,7 @@ import { useId } from "react"
  */
 export function Section({
   title,
-  children
+  children,
 }: {
   title: string
   children: ReactNode

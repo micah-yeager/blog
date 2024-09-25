@@ -1,9 +1,9 @@
-import type { ComponentPropsWithoutRef } from "react"
-import type { KeysOfUnion, ValueOf } from "type-fest"
 import { Link } from "@remix-run/react"
 import clsx from "clsx"
+import type { ComponentPropsWithoutRef } from "react"
 import { createContext, useContext } from "react"
 import { useGlobalSubmittingState } from "remix-utils/use-global-navigation-state"
+import type { KeysOfUnion, ValueOf } from "type-fest"
 
 import { tw } from "@utils/templates"
 
@@ -18,7 +18,7 @@ import { LoadingIndicator } from "./LoadingIndicator"
  */
 const variantStyles = {
   primary: tw`bg-primary-800 font-semibold text-primary-100 hover:bg-primary-700 focus-visible:outline-primary-800 active:bg-primary-800 active:text-primary-100/70 dark:bg-primary-700 dark:hover:bg-primary-600 dark:focus-visible:outline-primary-700 dark:active:bg-primary-700 dark:active:text-primary-100/70`,
-  secondary: tw`bg-zinc-100 font-medium text-zinc-900 hover:bg-zinc-100 focus-visible:outline-zinc-100 active:bg-zinc-100 active:text-zinc-900/60 dark:bg-zinc-800/90 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-zinc-50 dark:focus-visible:outline-zinc-800/75 dark:active:bg-zinc-800/75 dark:active:text-zinc-50/70`
+  secondary: tw`bg-zinc-100 font-medium text-zinc-900 hover:bg-zinc-100 focus-visible:outline-zinc-100 active:bg-zinc-100 active:text-zinc-900/60 dark:bg-zinc-800/90 dark:text-zinc-300 dark:hover:bg-zinc-800 dark:hover:text-zinc-50 dark:focus-visible:outline-zinc-800/75 dark:active:bg-zinc-800/75 dark:active:text-zinc-50/70`,
 } as const satisfies Record<string, string>
 /**
  * Shape and size variants for the Button component.
@@ -31,20 +31,20 @@ const shapeSizeStyles = {
     sm: tw`gap-x-1.5 rounded px-2 py-1 text-sm`,
     md: tw`gap-x-2 rounded-md px-2.5 py-1.5 text-sm`,
     lg: tw`gap-x-2.5 rounded-md px-3 py-2 text-sm`,
-    xl: tw`gap-x-3 rounded-md px-3.5 py-2.5 text-sm`
+    xl: tw`gap-x-3 rounded-md px-3.5 py-2.5 text-sm`,
   },
   pill: {
     xs: tw`gap-x-1.5 rounded-full px-2.5 py-1 text-xs`,
     sm: tw`gap-x-1.5 rounded-full px-2.5 py-1 text-sm`,
     md: tw`gap-x-2 rounded-full px-3 py-1.5 text-sm`,
     lg: tw`gap-x-2.5 rounded-full px-3.5 py-2 text-sm`,
-    xl: tw`gap-x-3 rounded-full px-4 py-2.5 text-sm`
+    xl: tw`gap-x-3 rounded-full px-4 py-2.5 text-sm`,
   },
   circle: {
     sm: tw`h-6 w-6 rounded-full p-1`,
     md: tw`h-8 w-8 rounded-full p-1.5`,
-    lg: tw`h-10 w-10 rounded-full p-2`
-  }
+    lg: tw`h-10 w-10 rounded-full p-2`,
+  },
 } as const satisfies Record<string, Record<string, string>>
 
 /**
@@ -91,7 +91,7 @@ const ButtonContext = createContext(
   {} as {
     /** The size of the parent button. */
     size: ButtonAnySizeOption
-  }
+  },
 )
 
 /**
@@ -144,7 +144,7 @@ export function Button<TShape extends ButtonShapeOption>({
     "outline-offset-2 backdrop-blur transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 active:transition-none",
     variantStyles[variant],
     shapeSizeStyles[shape][size] as string,
-    className
+    className,
   )
 
   // nav state to disable proper buttons when submitting
@@ -160,7 +160,7 @@ export function Button<TShape extends ButtonShapeOption>({
           {...props}
           className={clsx(
             "disabled:cursor-default disabled:bg-zinc-100 disabled:opacity-75 dark:disabled:bg-zinc-900",
-            className
+            className,
           )}
           disabled={props.disabled || disableForSubmit}
         >
@@ -196,7 +196,7 @@ export function Button<TShape extends ButtonShapeOption>({
 const buttonIconSizes = {
   xs: "h-3 w-3",
   sm: "h-4 w-4",
-  _default: "h-5 w-5"
+  _default: "h-5 w-5",
 }
 
 /**
@@ -236,7 +236,7 @@ Button.Icon = function ButtonIcon({
           : size in buttonIconSizes
             ? buttonIconSizes[size as keyof typeof buttonIconSizes]
             : buttonIconSizes._default,
-        className
+        className,
       )}
     />
   )

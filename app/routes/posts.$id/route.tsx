@@ -1,5 +1,5 @@
-import type { LoaderFunctionArgs } from "@vercel/remix"
 import { useLoaderData } from "@remix-run/react"
+import type { LoaderFunctionArgs } from "@vercel/remix"
 import { json } from "@vercel/remix"
 import { getMDXComponent } from "mdx-bundler/client/index.js"
 import { useMemo } from "react"
@@ -43,13 +43,13 @@ export const meta = mergeMeta<typeof loader>(({ data }) => {
     // Map tags.
     ...meta.tags.map((tag) => ({
       property: "og:article:tag",
-      content: tag
+      content: tag,
     })),
     // Map authors.
     ...meta.authors.map((author) => ({
       property: "og:article:author",
-      content: author
-    }))
+      content: author,
+    })),
   ]
 })
 
@@ -59,7 +59,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
   if (!postId) {
     throw new Response(null, {
       status: 404,
-      statusText: "Not Found"
+      statusText: "Not Found",
     })
   }
 
@@ -79,8 +79,8 @@ export async function loader({ params }: LoaderFunctionArgs) {
         "Not all who wander are lost, but the page you’re looking for is.",
         {
           status: 404,
-          statusText: "Not found"
-        }
+          statusText: "Not found",
+        },
       )
     }
 
@@ -88,7 +88,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
     console.error(error)
     throw new Response(null, {
       status: 500,
-      statusText: "Server error"
+      statusText: "Server error",
     })
   }
 

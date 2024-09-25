@@ -13,7 +13,7 @@ export default function handleRequest(
   responseStatusCode: number,
   responseHeaders: Headers,
   remixContext: EntryContext,
-  _loadContext: AppLoadContext
+  _loadContext: AppLoadContext,
 ) {
   return new Promise((resolve, reject) => {
     let shellRendered = false
@@ -35,8 +35,8 @@ export default function handleRequest(
           resolve(
             new Response(stream, {
               headers: responseHeaders,
-              status: responseStatusCode
-            })
+              status: responseStatusCode,
+            }),
           )
 
           pipe(body)
@@ -45,6 +45,7 @@ export default function handleRequest(
           reject(error)
         },
         onError(error: unknown) {
+          // biome-ignore lint/style/noParameterAssign: Valid use case for parameter reassignment.
           responseStatusCode = 500
           // Log streaming rendering errors from inside the shell.  Don't log
           // errors encountered during initial shell rendering since they'll
@@ -52,8 +53,8 @@ export default function handleRequest(
           if (shellRendered) {
             console.error(error)
           }
-        }
-      }
+        },
+      },
     )
 
     setTimeout(abort, ABORT_DELAY)

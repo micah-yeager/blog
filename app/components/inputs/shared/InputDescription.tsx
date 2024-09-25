@@ -1,5 +1,5 @@
-import type { ComponentPropsWithoutRef } from "react"
 import clsx from "clsx"
+import type { ComponentPropsWithoutRef } from "react"
 
 /**
  * A description for an input field. Extends the properties of the `div`
