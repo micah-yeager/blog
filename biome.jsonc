@@ -41,7 +41,11 @@
         // Conflicts with some Remix route conventions.
         "useFilenamingConvention": "off"
       },
-      "suspicious": {}
+      "suspicious": {
+        // Async functions without `await` are still useful, since exceptions
+        // reject the promise instead of being synchronously thrown.
+        "useAwait": "off"
+      }
     }
   },
   "organizeImports": {},
