@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
+  "$schema": "node_modules/@biomejs/biome/configuration_schema.json",
   // Global configuration.
   "formatter": {
     "indentStyle": "space",
@@ -10,11 +10,11 @@
       "all": true,
       "correctness": {
         // Still required for now.
-        "noNodejsModules": "off"
+        "noNodejsModules": "off",
+        // Since we're using a bundler, this is unnecessary.
+        "useImportExtensions": "off"
       },
-      "nursery": {
-        "noEvolvingTypes": "error"
-      },
+      "nursery": {},
       "performance": {
         // Since we're using a bundler, this is unnecessary.
         "noBarrelFile": "off",
@@ -44,7 +44,9 @@
       "suspicious": {
         // Async functions without `await` are still useful, since exceptions
         // reject the promise instead of being synchronously thrown.
-        "useAwait": "off"
+        "useAwait": "off",
+        // We're using React.
+        "noReactSpecificProps": "off"
       }
     }
   },
