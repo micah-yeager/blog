@@ -1,5 +1,5 @@
-import type { ComponentPropsWithoutRef } from "react"
 import clsx from "clsx"
+import type { ComponentPropsWithoutRef } from "react"
 
 /**
  * A hint for an optional input field. Extends the properties of the `span`

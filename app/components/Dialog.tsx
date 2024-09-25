@@ -1,7 +1,7 @@
-import type { ComponentPropsWithoutRef } from "react"
 import { Dialog as HeadlessUIDialog, Transition } from "@headlessui/react"
 import { XMarkIcon } from "@heroicons/react/24/outline"
 import clsx from "clsx"
+import type { ComponentPropsWithoutRef } from "react"
 import { Fragment, useRef } from "react"
 
 import { Icon } from "./Icon"
@@ -128,7 +128,7 @@ Dialog.Title = function DialogTitle({
       as={as}
       className={clsx(
         "LeadingAddOn-6 text-base font-semibold text-zinc-900 dark:text-zinc-100",
-        className
+        className,
       )}
     >
       {children}
@@ -152,7 +152,7 @@ Dialog.Actions = function DialogActions({
       {...rest}
       className={clsx(
         "mt-5 gap-y-3 sm:mt-4 sm:flex sm:flex-row-reverse sm:gap-x-3 sm:gap-y-0",
-        className
+        className,
       )}
     >
       {children}

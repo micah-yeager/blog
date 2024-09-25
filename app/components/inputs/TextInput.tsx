@@ -1,19 +1,19 @@
-import type {
-  ComponentPropsWithoutRef,
-  ComponentType,
-  CSSProperties,
-  ElementType,
-  ReactNode
-} from "react"
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline"
 import { ExclamationCircleIcon } from "@heroicons/react/24/solid"
 import clsx from "clsx"
+import type {
+  CSSProperties,
+  ComponentPropsWithoutRef,
+  ComponentType,
+  ElementType,
+  ReactNode,
+} from "react"
 import { forwardRef, useRef, useState } from "react"
 
 import { useDimensions, useForwardRef } from "@utils/hooks"
 
-import type { SharedFormProps } from "./shared"
 import { Icon } from "../Icon"
+import type { SharedFormProps } from "./shared"
 import { InlineAddOn } from "./shared/InlineAddOn"
 import { InputDescription } from "./shared/InputDescription"
 import { InputError } from "./shared/InputError"
@@ -50,6 +50,7 @@ type TextInputProps = ComponentPropsWithoutRef<"input"> &
  * @see TextInputProps
  */
 export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
+  // biome-ignore lint/complexity/noExcessiveCognitiveComplexity: TODO: refactor to reduce complexity
   function TextInput(
     {
       label,
@@ -66,7 +67,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       className,
       ...rest
     },
-    forwardedRef
+    forwardedRef,
   ) {
     const ref = useForwardRef(forwardedRef)
 
@@ -98,7 +99,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
     // 12px
 
     // shortcut for showing the `optional` hint
-    const showOptionalHint = !hideOptionalHint && !required
+    const showOptionalHint = !(hideOptionalHint || required)
 
     return (
       <div className={clsx("space-y-2", className)}>
@@ -112,7 +113,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
                   ? showOptionalHint
                     ? "flex justify-between"
                     : "inline-block"
-                  : "flex justify-end"
+                  : "flex justify-end",
               )}
             >
               {/* label */}
@@ -129,7 +130,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
             className={"group/Input flex rounded-md shadow-sm"}
             data-leading-add-on={Boolean(LeadingAddOn)}
             data-trailing-add-on={Boolean(
-              TrailingAddOn || inputType === "password"
+              TrailingAddOn || inputType === "password",
             )}
           >
             {/* leading add-on */}
@@ -159,13 +160,13 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
                 {...{ ref, type, required, disabled }}
                 className={clsx(
                   "block w-full rounded-md border-0 py-1.5 text-zinc-900 ring-1 ring-inset placeholder:text-zinc-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-primary-500 disabled:cursor-not-allowed disabled:bg-zinc-100 disabled:text-zinc-500 disabled:ring-zinc-200 group-data-[leading-add-on=true]/Input:rounded-l-none group-data-[trailing-add-on=true]/Input:rounded-r-none dark:bg-black dark:text-zinc-100 dark:placeholder:text-zinc-600 dark:focus:ring-primary-500 dark:disabled:bg-zinc-900 dark:disabled:ring-zinc-800 sm:text-sm sm:leading-6",
-                  error ? "ring-red-500" : "ring-zinc-300 dark:ring-zinc-700"
+                  error ? "ring-red-500" : "ring-zinc-300 dark:ring-zinc-700",
                 )}
                 aria-invalid={Boolean(error)}
                 style={
                   {
                     paddingLeft: `${leadingInlinePadding}px`,
-                    paddingRight: `${trailingInlinePadding}px`
+                    paddingRight: `${trailingInlinePadding}px`,
                   } as Pick<CSSProperties, "paddingLeft" | "paddingRight">
                 }
               />
@@ -236,7 +237,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
         )}
       </div>
     )
-  }
+  },
 )
 
 /**
@@ -284,7 +285,7 @@ function AddOn<TTag extends ElementType>({
         disabled
           ? "cursor-not-allowed !bg-zinc-100 !text-zinc-500 ring-zinc-200 dark:!bg-zinc-900 dark:ring-zinc-800"
           : "text-zinc-500 ring-zinc-300 dark:ring-zinc-700",
-        className
+        className,
       )}
     >
       {children}
@@ -310,7 +311,7 @@ export function AddOnButton({
       as="button"
       className={clsx(
         "items-center gap-x-1.5 py-2 font-semibold text-zinc-900 ring-1 ring-inset ring-zinc-300 hover:bg-zinc-50/25 disabled:ring-0 disabled:ring-zinc-200 dark:text-zinc-100 dark:ring-zinc-700 dark:hover:bg-zinc-950/25 disabled:dark:ring-zinc-800",
-        className
+        className,
       )}
     >
       {children}

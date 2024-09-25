@@ -1,5 +1,5 @@
-import type { ComponentPropsWithoutRef } from "react"
 import clsx from "clsx"
+import type { ComponentPropsWithoutRef } from "react"
 
 /**
  * A label for an input field. Extends the properties of the `div` element.
@@ -16,7 +16,7 @@ export function InputLabel({
       {...rest}
       className={clsx(
         "inline-block text-sm font-medium leading-6 text-zinc-900 dark:text-zinc-100",
-        className
+        className,
       )}
     >
       {children}

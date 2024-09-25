@@ -3,8 +3,8 @@ import { faCropSimple } from "@fortawesome/free-solid-svg-icons"
 import { LinkIcon } from "@heroicons/react/24/outline"
 import clsx from "clsx"
 
-import type { IconProp } from "@ui/Icon"
 import { Card } from "@ui/Card"
+import type { IconProp } from "@ui/Icon"
 import { Icon } from "@ui/Icon"
 import { SimpleLayout } from "@ui/SimpleLayout"
 import { mergeMeta } from "@utils/meta"
@@ -39,12 +39,12 @@ const projects: Project[] = [
       "You’re looking at it, baby! A blog and portfolio built using Tailwind UI and Remix.",
     link: {
       to: "https://github.com/micah-yeager/blog",
-      label: "github.com"
+      label: "github.com",
     },
     logo: {
       using: faCropSimple,
-      className: "bg-orange-500 dark:bg-orange-600"
-    }
+      className: "bg-orange-500 dark:bg-orange-600",
+    },
   },
   {
     name: "KotOR Switch Modding",
@@ -52,10 +52,10 @@ const projects: Project[] = [
       "Tools to make modding Star Wars: Knights of the Old Republic I & II on Nintendo Switch less confusing and cumbersome.",
     link: {
       to: "https://github.com/DrSnuggly/KotOR-Switch-modding",
-      label: "github.com"
+      label: "github.com",
     },
-    logo: { using: faOldRepublic, className: "bg-[#000a21]" }
-  }
+    logo: { using: faOldRepublic, className: "bg-[#000a21]" },
+  },
 ]
 
 export const meta = mergeMeta(() => [{ title: "Projects" }])
@@ -73,7 +73,7 @@ export default function Route() {
             <div
               className={clsx(
                 "relative z-10 flex h-12 w-12 items-center justify-center rounded-full text-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:ring-0",
-                project.logo.className
+                project.logo.className,
               )}
             >
               {typeof project.logo.using === "string" ? (

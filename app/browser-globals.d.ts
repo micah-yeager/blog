@@ -1,5 +1,3 @@
-export {}
-
 export type Env = {
   TURNSTILE_SITE_KEY: string
 }

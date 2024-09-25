@@ -1,11 +1,11 @@
-import type { ComponentPropsWithoutRef, ReactNode } from "react"
 import {
   CheckCircleIcon,
   ExclamationTriangleIcon,
   InformationCircleIcon,
-  XCircleIcon
+  XCircleIcon,
 } from "@heroicons/react/20/solid"
 import clsx from "clsx"
+import type { ComponentPropsWithoutRef, ReactNode } from "react"
 
 /**
  * Variant definition for the Alert component.
@@ -36,29 +36,29 @@ const variants = {
     iconClassName: "text-red-400 dark:text-red-600",
     bgClassName: "bg-red-50 dark:bg-red-950",
     headerClassName: "text-red-800 dark:text-red-200",
-    textClassName: "text-red-700 dark:text-red-300"
+    textClassName: "text-red-700 dark:text-red-300",
   },
   warning: {
     Icon: ExclamationTriangleIcon,
     iconClassName: "text-yellow-400 dark:text-yellow-600",
     bgClassName: "bg-yellow-50 dark:bg-yellow-950",
     headerClassName: "text-yellow-800 dark:text-yellow-200",
-    textClassName: "text-yellow-700 dark:text-yellow-300"
+    textClassName: "text-yellow-700 dark:text-yellow-300",
   },
   success: {
     Icon: CheckCircleIcon,
     iconClassName: "text-green-400 dark:text-green-600",
     bgClassName: "bg-green-50 dark:bg-green-950",
     headerClassName: "text-green-800 dark:text-green-200",
-    textClassName: "text-green-700 dark:text-green-300"
+    textClassName: "text-green-700 dark:text-green-300",
   },
   info: {
     Icon: InformationCircleIcon,
     iconClassName: "text-blue-400 dark:text-blue-600",
     bgClassName: "bg-blue-50 dark:bg-blue-950",
     headerClassName: "text-blue-800 dark:text-blue-200",
-    textClassName: "text-blue-700 dark:text-blue-300"
-  }
+    textClassName: "text-blue-700 dark:text-blue-300",
+  },
 } as const satisfies Record<string, VariantMap>
 
 /**
@@ -94,7 +94,7 @@ export function Alert({
       className={clsx(
         "rounded-md p-4 leading-normal",
         alertMap.bgClassName,
-        className
+        className,
       )}
     >
       <div className="space-y-2">

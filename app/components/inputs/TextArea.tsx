@@ -1,6 +1,6 @@
-import type { ComponentPropsWithoutRef, FormEvent } from "react"
 import { ExclamationCircleIcon } from "@heroicons/react/24/solid"
 import clsx from "clsx"
+import type { ComponentPropsWithoutRef, FormEvent } from "react"
 import { forwardRef, useState } from "react"
 
 import { Icon } from "@ui/Icon"
@@ -45,12 +45,12 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
       className,
       ...rest
     },
-    forwardedRef
+    forwardedRef,
   ) {
     const ref = useForwardRef(forwardedRef)
 
     // shortcut for showing the `optional` hint
-    const showOptionalHint = !hideOptionalHint && !required
+    const showOptionalHint = !(hideOptionalHint || required)
 
     // Rendering control for auto-resizing.
     const [value, setValue] = useState<string>(ref.current?.value ?? "")
@@ -66,7 +66,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
     const baseClassName = clsx(
       gridClassName,
       "block min-h-[2.25rem] w-full rounded-md border-0 px-3 py-1.5 text-inherit text-zinc-900 shadow-sm ring-1 ring-inset placeholder:text-zinc-400 focus:ring-2 focus:ring-inset focus:ring-primary-500 disabled:cursor-not-allowed disabled:bg-zinc-100 disabled:text-zinc-500 disabled:ring-zinc-200 dark:bg-black dark:text-zinc-100 focus:dark:ring-primary-500 dark:disabled:bg-zinc-900 dark:disabled:ring-zinc-800 sm:text-sm sm:leading-6",
-      error ? "pr-10 ring-red-500" : "ring-zinc-300 dark:ring-zinc-700"
+      error ? "pr-10 ring-red-500" : "ring-zinc-300 dark:ring-zinc-700",
     )
 
     return (
@@ -80,7 +80,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
                   ? showOptionalHint
                     ? "flex justify-between"
                     : "inline-block"
-                  : "flex justify-end"
+                  : "flex justify-end",
               )}
             >
               {/* label */}
@@ -139,5 +139,5 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
         )}
       </div>
     )
-  }
+  },
 )
