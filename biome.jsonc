@@ -25,7 +25,9 @@
         "useBlockStatements": "off",
         "useCollapsedElseIf": "off",
         "useForOf": "off",
-        "useNamingConvention": "off"
+        "useNamingConvention": "off",
+        // Conflicts with some Remix route conventions.
+        "useFilenamingConvention": "off"
       },
       "suspicious": {}
     }
