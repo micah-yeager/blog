@@ -1,9 +1,9 @@
 // noinspection JSCommentMatchesSignature
 
-import type { ComponentPropsWithoutRef } from "react"
 import { faSpinner } from "@fortawesome/free-solid-svg-icons"
 import { EllipsisHorizontalIcon } from "@heroicons/react/20/solid"
 import clsx from "clsx"
+import type { ComponentPropsWithoutRef } from "react"
 
 import type { IconProp } from "../Icon"
 import { Icon } from "../Icon"
@@ -19,12 +19,12 @@ type VariantMap = {
 const variants = {
   spinner: {
     icon: faSpinner,
-    className: "animate-spin"
+    className: "animate-spin",
   },
   subtle: {
     icon: EllipsisHorizontalIcon,
-    className: "animate-pulse"
-  }
+    className: "animate-pulse",
+  },
 } as const satisfies Record<string, VariantMap>
 
 /**
@@ -77,20 +77,20 @@ export function LoadingIndicator({
       {/* spinner for most people */}
       <Icon
         {...rest}
-        as={variants["spinner"].icon}
+        as={variants.spinner.icon}
         className={clsx(
           "hidden motion-safe:block",
-          variants["spinner"].className,
-          className
+          variants.spinner.className,
+          className,
         )}
       />
       <Icon
         {...rest}
-        as={variants["subtle"].icon}
+        as={variants.subtle.icon}
         className={clsx(
           "hidden motion-reduce:block",
-          variants["spinner"].className,
-          className
+          variants.spinner.className,
+          className,
         )}
       />
     </>

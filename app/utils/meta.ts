@@ -13,9 +13,9 @@ export const mergeMeta = <
   ParentsLoaders extends Record<string, LoaderFunction | unknown> = Record<
     string,
     unknown
-  >
+  >,
 >(
-  leafMetaFn: MetaFunction<Loader, ParentsLoaders>
+  leafMetaFn: MetaFunction<Loader, ParentsLoaders>,
 ): MetaFunction<Loader, ParentsLoaders> => {
   return (args) => {
     const leafMeta = leafMetaFn(args)
@@ -35,7 +35,7 @@ export const mergeMeta = <
               "property" in parentMeta &&
               meta.property === parentMeta.property) ||
             // ...title is present in both the leaf and parent meta.
-            ("title" in meta && "title" in parentMeta)
+            ("title" in meta && "title" in parentMeta),
         )
         // If not present, add the parent's meta property to the accumulator.
         if (index === -1) {

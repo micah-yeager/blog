@@ -13,9 +13,9 @@ export default defineConfig({
     !process.env.VITEST &&
       remix({
         presets: [vercelPreset()],
-        ignoredRouteFiles: ["**/.*"]
+        ignoredRouteFiles: ["**/.*"],
       }),
-    tsconfigPaths()
+    tsconfigPaths(),
   ],
   test: {
     setupFiles: ["test/setup/extend-expect.ts"],
@@ -27,7 +27,7 @@ export default defineConfig({
       provider: "v8",
       all: true,
       reporter: ["json-summary", "json"],
-      reportOnFailure: true
-    }
-  }
+      reportOnFailure: true,
+    },
+  },
 })

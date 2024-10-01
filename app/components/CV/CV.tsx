@@ -10,7 +10,7 @@ import { Role } from "../Role"
 export function CV() {
   // Define within route, so end.dateTime gets updated independently of server
   // execution and subsequent storage of end.dateTime.
-  const cv: Array<Role> = [
+  const cv: Role[] = [
     {
       company: "Innovative, Inc.",
       title: "DevOps Engineer & Solutions Architect",
@@ -18,23 +18,23 @@ export function CV() {
       start: "2017",
       end: {
         label: "Present",
-        dateTime: new Date().getFullYear().toString()
-      }
+        dateTime: new Date().getFullYear().toString(),
+      },
     },
     {
       company: "Hummert IT",
       title: "Owner",
       logo: "/images/logos/circuit.svg",
       start: "2016",
-      end: "2017"
+      end: "2017",
     },
     {
       company: "Life Pacific University - Virginia",
       title: "IT & Media Management",
       logo: "/images/logos/life-pacific-university.svg",
       start: "2014",
-      end: "2017"
-    }
+      end: "2017",
+    },
   ]
 
   return (
@@ -51,8 +51,8 @@ export function CV() {
 
       {/* roles list */}
       <ol className="mt-6 space-y-4">
-        {cv.map((role, roleIndex) => (
-          <Role key={roleIndex} role={role} />
+        {cv.map((role) => (
+          <Role key={`${role.company}|${role.title}`} role={role} />
         ))}
       </ol>
 

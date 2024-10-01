@@ -1,18 +1,18 @@
 import type {
   ListboxButtonProps,
-  ListboxSelectedOptionProps
+  ListboxSelectedOptionProps,
 } from "@headlessui/react"
-import type { ComponentPropsWithoutRef, ReactNode } from "react"
 import {
   Listbox as HeadlessListbox,
   ListboxOption as HeadlessListboxOption,
-  ListboxOptionProps as HeadlessListboxOptionProps,
-  ListboxProps as HeadlessListboxProps,
+  type ListboxOptionProps as HeadlessListboxOptionProps,
+  type ListboxProps as HeadlessListboxProps,
   ListboxButton,
   ListboxOptions,
-  ListboxSelectedOption
+  ListboxSelectedOption,
 } from "@headlessui/react"
 import clsx from "clsx"
+import type { ComponentPropsWithoutRef, ReactNode } from "react"
 import { Fragment } from "react"
 
 /**
@@ -64,7 +64,7 @@ export function Listbox<T>({
           // Focus ring
           "after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:ring-inset after:ring-transparent after:data-[focus]:ring-2 after:data-[focus]:ring-blue-500",
           // Disabled state
-          "data-[disabled]:opacity-50 before:data-[disabled]:bg-zinc-950/5 before:data-[disabled]:shadow-none"
+          "data-[disabled]:opacity-50 before:data-[disabled]:bg-zinc-950/5 before:data-[disabled]:shadow-none",
         ])}
       >
         <ListboxSelectedOption
@@ -93,7 +93,7 @@ export function Listbox<T>({
             // Invalid state
             "group-data-[invalid]:border-red-500 group-data-[invalid]:group-data-[hover]:border-red-500 group-data-[invalid]:dark:border-red-600 group-data-[invalid]:data-[hover]:dark:border-red-600",
             // Disabled state
-            "group-data-[disabled]:border-zinc-950/20 group-data-[disabled]:opacity-100 group-data-[disabled]:dark:border-white/15 group-data-[disabled]:dark:bg-white/[2.5%] dark:data-[hover]:group-data-[disabled]:border-white/15"
+            "group-data-[disabled]:border-zinc-950/20 group-data-[disabled]:opacity-100 group-data-[disabled]:dark:border-white/15 group-data-[disabled]:dark:bg-white/[2.5%] dark:data-[hover]:group-data-[disabled]:border-white/15",
           ])}
         />
         <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
@@ -137,7 +137,7 @@ export function Listbox<T>({
           // Shadows
           "shadow-lg ring-1 ring-zinc-950/10 dark:ring-inset dark:ring-white/10",
           // Transitions
-          "transition-opacity duration-100 ease-in data-[transition]:pointer-events-none data-[closed]:data-[leave]:opacity-0"
+          "transition-opacity duration-100 ease-in data-[transition]:pointer-events-none data-[closed]:data-[leave]:opacity-0",
         )}
       >
         {options}
@@ -177,7 +177,7 @@ export function ListboxOption<T>({
     "[&>[data-slot=icon]]:text-zinc-500 [&>[data-slot=icon]]:group-data-[focus]/option:text-white [&>[data-slot=icon]]:dark:text-zinc-400",
     "forced-colors:[&>[data-slot=icon]]:text-[CanvasText] forced-colors:[&>[data-slot=icon]]:group-data-[focus]/option:text-[Canvas]",
     // Avatars
-    "[&>[data-slot=avatar]]:-mx-0.5 [&>[data-slot=avatar]]:size-6 sm:[&>[data-slot=avatar]]:size-5"
+    "[&>[data-slot=avatar]]:-mx-0.5 [&>[data-slot=avatar]]:size-6 sm:[&>[data-slot=avatar]]:size-5",
   )
 
   return (
@@ -201,7 +201,7 @@ export function ListboxOption<T>({
               // Forced colors mode
               "forced-color-adjust-none forced-colors:data-[focus]:bg-[Highlight] forced-colors:data-[focus]:text-[HighlightText]",
               // Disabled
-              "data-[disabled]:opacity-50"
+              "data-[disabled]:opacity-50",
             )}
           >
             <svg
@@ -241,7 +241,7 @@ export function ListboxLabel({
       {...props}
       className={clsx(
         className,
-        "ml-2.5 truncate first:ml-0 sm:ml-2 sm:first:ml-0"
+        "ml-2.5 truncate first:ml-0 sm:ml-2 sm:first:ml-0",
       )}
     />
   )
@@ -262,7 +262,7 @@ export function ListboxDescription({
       {...props}
       className={clsx(
         className,
-        "flex flex-1 overflow-hidden text-zinc-500 before:w-2 before:min-w-0 before:shrink group-data-[focus]/option:text-white dark:text-zinc-400"
+        "flex flex-1 overflow-hidden text-zinc-500 before:w-2 before:min-w-0 before:shrink group-data-[focus]/option:text-white dark:text-zinc-400",
       )}
     >
       <span className="flex-1 truncate">{children}</span>

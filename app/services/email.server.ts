@@ -12,10 +12,12 @@ const POSTMARK_SERVER_TOKEN = process.env.POSTMARK_SERVER_TOKEN as string
 const POSTMARK_TRANSACTIONAL_STREAM = process.env
   .POSTMARK_TRANSACTIONAL_STREAM as string
 if (
-  !EMAIL_FROM ||
-  !EMAIL_TO ||
-  !POSTMARK_SERVER_TOKEN ||
-  !POSTMARK_TRANSACTIONAL_STREAM
+  !(
+    EMAIL_FROM &&
+    EMAIL_TO &&
+    POSTMARK_SERVER_TOKEN &&
+    POSTMARK_TRANSACTIONAL_STREAM
+  )
 ) {
   throw new Error("Missing required email environment variable(s).")
 }

@@ -1,19 +1,19 @@
 import type {
   DescriptionProps,
   FieldProps,
-  LabelProps
+  LabelProps,
 } from "@headlessui/react"
-import type { ComponentPropsWithoutRef } from "react"
 import {
-  FieldsetProps,
+  type FieldsetProps,
   Description as HeadlessDescription,
   Field as HeadlessField,
   Fieldset as HeadlessFieldset,
   Label as HeadlessLabel,
   Legend as HeadlessLegend,
-  LegendProps
+  type LegendProps,
 } from "@headlessui/react"
 import clsx from "clsx"
+import type { ComponentPropsWithoutRef } from "react"
 
 /**
  * Set of related {@link FieldGroup}s.
@@ -26,7 +26,7 @@ export function Fieldset({ className, ...props }: Omit<FieldsetProps, "as">) {
       {...props}
       className={clsx(
         className,
-        "[&>*+[data-slot=control]]:mt-6 [&>[data-slot=text]]:mt-1"
+        "[&>*+[data-slot=control]]:mt-6 [&>[data-slot=text]]:mt-1",
       )}
     />
   )
@@ -44,7 +44,7 @@ export function Legend({ className, ...props }: Omit<LegendProps, "as">) {
       {...props}
       className={clsx(
         className,
-        "text-base/6 font-semibold text-zinc-950 data-[disabled]:opacity-50 dark:text-white sm:text-sm/6"
+        "text-base/6 font-semibold text-zinc-950 data-[disabled]:opacity-50 dark:text-white sm:text-sm/6",
       )}
     />
   )
@@ -84,7 +84,7 @@ export function Field({ className, ...props }: Omit<FieldProps, "as">) {
         "[&>[data-slot=description]+[data-slot=control]]:mt-3",
         "[&>[data-slot=control]+[data-slot=description]]:mt-3",
         "[&>[data-slot=control]+[data-slot=error]]:mt-3",
-        "[&>[data-slot=label]]:font-medium"
+        "[&>[data-slot=label]]:font-medium",
       )}
     />
   )
@@ -102,7 +102,7 @@ export function Label({ className, ...props }: Omit<LabelProps, "as">) {
       {...props}
       className={clsx(
         className,
-        "select-none text-base/6 text-zinc-950 data-[disabled]:opacity-50 dark:text-white sm:text-sm/6"
+        "select-none text-base/6 text-zinc-950 data-[disabled]:opacity-50 dark:text-white sm:text-sm/6",
       )}
     />
   )
@@ -123,7 +123,7 @@ export function Description({
       {...props}
       className={clsx(
         className,
-        "text-base/6 text-zinc-500 data-[disabled]:opacity-50 dark:text-zinc-400 sm:text-sm/6"
+        "text-base/6 text-zinc-500 data-[disabled]:opacity-50 dark:text-zinc-400 sm:text-sm/6",
       )}
     />
   )
@@ -144,7 +144,7 @@ export function ErrorMessage({
       {...props}
       className={clsx(
         className,
-        "text-base/6 text-red-600 data-[disabled]:opacity-50 dark:text-red-500 sm:text-sm/6"
+        "text-base/6 text-red-600 data-[disabled]:opacity-50 dark:text-red-500 sm:text-sm/6",
       )}
     />
   )

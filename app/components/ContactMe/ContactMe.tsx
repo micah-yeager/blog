@@ -1,9 +1,9 @@
-import type { ComponentPropsWithoutRef } from "react"
 import {
   ChatBubbleLeftEllipsisIcon,
-  EnvelopeIcon as EnvelopeSolidIcon
+  EnvelopeIcon as EnvelopeSolidIcon,
 } from "@heroicons/react/24/solid"
 import { useFetcher } from "@remix-run/react"
+import type { ComponentPropsWithoutRef } from "react"
 import { useState } from "react"
 
 import type { ContactMeResponse } from "~/routes/contact"
@@ -36,7 +36,7 @@ export function ContactMe(
   props: Omit<
     ComponentPropsWithoutRef<"button">,
     "type" | "children" | "onClick"
-  >
+  >,
 ) {
   const [open, setOpen] = useState(false)
   const fetcher = useFetcher<ContactMeResponse>()
@@ -48,7 +48,25 @@ export function ContactMe(
       {/* dialog */}
       <Dialog open={open} setOpen={setOpen}>
         {/* show form until submission */}
-        {!fetcher.data?.result?.success ? (
+        {fetcher.data?.result?.success ? (
+          // after successful submission
+          <>
+            <div className="space-y-5 sm:space-y-4">
+              <Dialog.Title>Submitted!</Dialog.Title>
+
+              <p className="prose dark:prose-invert">
+                Thanks for getting in touch! I’ll get back to you as I’m able.
+              </p>
+            </div>
+
+            {/* actions */}
+            <Dialog.Actions>
+              <Button type="button" plain onClick={() => setOpen(false)}>
+                Close
+              </Button>
+            </Dialog.Actions>
+          </>
+        ) : (
           <fetcher.Form method="post" action="/contact">
             <Dialog.Title className="mb-4">Contact me</Dialog.Title>
 
@@ -105,24 +123,6 @@ export function ContactMe(
               </Button>
             </Dialog.Actions>
           </fetcher.Form>
-        ) : (
-          // after successful submission
-          <>
-            <div className="space-y-5 sm:space-y-4">
-              <Dialog.Title>Submitted!</Dialog.Title>
-
-              <p className="prose dark:prose-invert">
-                Thanks for getting in touch! I’ll get back to you as I’m able.
-              </p>
-            </div>
-
-            {/* actions */}
-            <Dialog.Actions>
-              <Button type="button" plain onClick={() => setOpen(false)}>
-                Close
-              </Button>
-            </Dialog.Actions>
-          </>
         )}
       </Dialog>
     </Button>

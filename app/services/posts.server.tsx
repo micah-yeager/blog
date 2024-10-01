@@ -1,19 +1,19 @@
-import type { Options as AutolinkOptions } from "rehype-autolink-headings"
-import type { Options as TocOptions } from "remark-toc"
 import { LinkIcon } from "@heroicons/react/24/outline"
 import fastGlob from "fast-glob"
-import { fromHtml } from "hast-util-from-html"
-import { toString } from "hast-util-to-string"
+import { fromHtml as hastFromHtml } from "hast-util-from-html"
+import { toString as hastToString } from "hast-util-to-string"
 import { bundleMDX } from "mdx-bundler"
 import { renderToString } from "react-dom/server"
+import type { Options as AutolinkOptions } from "rehype-autolink-headings"
 import rehypeAutolinkHeadings from "rehype-autolink-headings"
 import rehypeHighlight from "rehype-highlight"
 import rehypeSlug from "rehype-slug"
 import remarkGfm from "remark-gfm"
 import remarkMdxImages from "remark-mdx-images"
+import type { Options as TocOptions } from "remark-toc"
 import remarkToc from "remark-toc"
 import tsconfigJson from "tsconfig.json" with { type: "json" }
-import { DistributedOmit } from "type-fest"
+import type { DistributedOmit } from "type-fest"
 import { z } from "zod"
 
 import { Icon } from "@ui/Icon"
@@ -34,7 +34,7 @@ const frontmatterSchema = z.object({
   /** The date the post was created. */
   created: z.date(),
   /** The date the post was last updated. */
-  updated: z.date().optional()
+  updated: z.date().optional(),
 })
 /**
  * Frontmatter for a post.
@@ -85,8 +85,8 @@ export async function getAllPosts(): Promise<PostMeta[]> {
   const postFilenames = await fastGlob.glob("*/page.mdx", { cwd: postsPath })
   const posts = await Promise.all(
     postFilenames.map((file) =>
-      getPost({ file: `${postsPath}/${file}`, cwd: postsPath })
-    )
+      getPost({ file: `${postsPath}/${file}`, cwd: postsPath }),
+    ),
   )
 
   return (
@@ -95,7 +95,7 @@ export async function getAllPosts(): Promise<PostMeta[]> {
       .sort(
         (a, z) =>
           +new Date(z.meta.updated ?? z.meta.created) -
-          +new Date(a.meta.updated ?? a.meta.created)
+          +new Date(a.meta.updated ?? a.meta.created),
       )
       // Extract metadata.
       .map(({ meta }) => meta)
@@ -144,11 +144,11 @@ export type UnsavedPost = BasePost & { meta: UnsavedPostMeta }
  * @see getPost
  */
 // Defined outside the `getPost` function, so it's only rendered once.
-const linkIconHast = fromHtml(
+const linkIconHast = hastFromHtml(
   renderToString(
-    <Icon as={LinkIcon} className="size-5 text-zinc-500" aria-hidden />
+    <Icon as={LinkIcon} className="size-5 text-zinc-500" aria-hidden />,
   ),
-  { fragment: true }
+  { fragment: true },
 ).children
 
 /**
@@ -170,7 +170,7 @@ type GetPostArgs = DistributedOmit<
  *   slug and formatted accordingly.
  */
 export async function getPost<Args extends GetPostArgs>(
-  args: Args
+  args: Args,
 ): Promise<Args extends { file: string } ? Post : UnsavedPost> {
   args.cwd ??= postsPath
 
@@ -194,7 +194,7 @@ export async function getPost<Args extends GetPostArgs>(
         ...(options.remarkPlugins ?? []),
         [remarkToc, { maxDepth: 3 } as TocOptions],
         remarkGfm,
-        remarkMdxImages
+        remarkMdxImages,
       ]
       options.rehypePlugins = [
         ...(options.rehypePlugins ?? []),
@@ -212,19 +212,19 @@ export async function getPost<Args extends GetPostArgs>(
               tagName: "div",
               properties: {
                 // Create space for the inserted icon.
-                className: tw`group/LinkedHeading relative -ml-12 pl-12`
+                className: tw`group/LinkedHeading relative -ml-12 pl-12`,
               },
-              children: []
+              children: [],
             },
             // Styles for the link itself.
             properties: (element) => ({
               className: tw`invisible absolute top-1/2 -ml-8 -translate-y-1/2 px-1 text-zinc-500 group-hover/LinkedHeading:visible`,
-              ariaLabel: `Section titled: ${toString(element)}`
+              ariaLabel: `Section titled: ${hastToString(element)}`,
             }),
             // Link content, an icon in this case.
-            content: linkIconHast
-          } as AutolinkOptions
-        ]
+            content: linkIconHast,
+          } as AutolinkOptions,
+        ],
       ]
       return options
     },
@@ -242,10 +242,10 @@ export async function getPost<Args extends GetPostArgs>(
         ".jpeg": "dataurl",
         ".gif": "dataurl",
         ".svg": "dataurl",
-        ".webp": "dataurl"
+        ".webp": "dataurl",
       }
       return options
-    }
+    },
   })
 
   // Parse frontmatter.
@@ -254,7 +254,7 @@ export async function getPost<Args extends GetPostArgs>(
     return {
       ...mdx,
       // Add the slug to the meta.
-      meta: { ...parsedFrontmatter, slug: slugFromFile(args.file) }
+      meta: { ...parsedFrontmatter, slug: slugFromFile(args.file) },
     }
   }
   // @ts-expect-error TODO: figure out how to inform TS that this is the

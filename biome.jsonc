@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
+  "$schema": "node_modules/@biomejs/biome/configuration_schema.json",
   // Global configuration.
   "formatter": {
     "indentStyle": "space",
@@ -9,25 +9,45 @@
     "rules": {
       "all": true,
       "correctness": {
-        "noNodejsModules": "off"
+        // Still required for now.
+        "noNodejsModules": "off",
+        // Since we're using a bundler, this is unnecessary.
+        "useImportExtensions": "off"
       },
-      "nursery": {
-        "noEvolvingTypes": "error"
-      },
+      "nursery": {},
       "performance": {
+        // Since we're using a bundler, this is unnecessary.
         "noBarrelFile": "off",
+        // Since we're using a bundler, this is unnecessary.
         "noReExportAll": "off"
       },
       "style": {
+        // Required for Remix.
         "noDefaultExport": "off",
+        // Requires more boilerplate for no real readability benefit.
         "noImplicitBoolean": "off",
+        // Helpful for some libraries, e.g. Node built-ins.
         "noNamespaceImport": "off",
+        // Requires more boilerplate for no real readability benefit.
         "useBlockStatements": "off",
+        // Requires more boilerplate in some instances for no real readability
+        // benefit.
         "useCollapsedElseIf": "off",
+        // While `for...of` is more readable, it's sometimes substantially slower
+        // than an index-based loop.
         "useForOf": "off",
-        "useNamingConvention": "off"
+        // React often uses non-standard naming, e.g. in component properties.
+        "useNamingConvention": "off",
+        // Conflicts with some Remix route conventions.
+        "useFilenamingConvention": "off"
       },
-      "suspicious": {}
+      "suspicious": {
+        // Async functions without `await` are still useful, since exceptions
+        // reject the promise instead of being synchronously thrown.
+        "useAwait": "off",
+        // We're using React.
+        "noReactSpecificProps": "off"
+      }
     }
   },
   "organizeImports": {},

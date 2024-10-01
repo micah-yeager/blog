@@ -1,9 +1,9 @@
-import type { ChangeEvent } from "react"
 import {
   Textarea as HeadlessTextarea,
-  TextareaProps as HeadlessTextareaProps
+  type TextareaProps as HeadlessTextareaProps,
 } from "@headlessui/react"
 import clsx from "clsx"
+import type { ChangeEvent } from "react"
 import { forwardRef, useState } from "react"
 
 import { useForwardRef } from "@utils/hooks"
@@ -27,7 +27,7 @@ type TextareaProps = Omit<HeadlessTextareaProps, "as"> & {
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   function Textarea(
     { className, autoResize = true, onChange: inputOnChange, ...props },
-    forwardedRef
+    forwardedRef,
   ) {
     // Rendering controls for auto-resizing.
     const ref = useForwardRef(forwardedRef)
@@ -53,7 +53,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       // Invalid state
       "data-[invalid]:border-red-500 data-[invalid]:data-[hover]:border-red-500 data-[invalid]:dark:border-red-600 data-[invalid]:data-[hover]:dark:border-red-600",
       // Disabled state
-      "disabled:border-zinc-950/20 disabled:dark:border-white/15 disabled:dark:bg-white/[2.5%] dark:data-[hover]:disabled:border-white/15"
+      "disabled:border-zinc-950/20 disabled:dark:border-white/15 disabled:dark:bg-white/[2.5%] dark:data-[hover]:disabled:border-white/15",
     ]
 
     return (
@@ -72,7 +72,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           // Focus ring
           "after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:ring-inset after:ring-transparent sm:after:focus-within:ring-2 sm:after:focus-within:ring-blue-500",
           // Disabled state
-          "has-[[data-disabled]]:opacity-50 before:has-[[data-disabled]]:bg-zinc-950/5 before:has-[[data-disabled]]:shadow-none"
+          "has-[[data-disabled]]:opacity-50 before:has-[[data-disabled]]:bg-zinc-950/5 before:has-[[data-disabled]]:shadow-none",
         )}
       >
         <HeadlessTextarea
@@ -82,7 +82,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           className={clsx(
             ...classes,
             // Manual resizing resizing since it breaks auto-resizing.
-            autoResize ? "resize-none overflow-clip" : "resize-y"
+            autoResize ? "resize-none overflow-clip" : "resize-y",
           )}
         />
         {/* Auto-resize invisible "preview" block */}
@@ -96,5 +96,5 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         </div>
       </span>
     )
-  }
+  },
 )

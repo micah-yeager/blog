@@ -1,7 +1,7 @@
 // noinspection JSCommentMatchesSignature
 
-import type { ComponentPropsWithoutRef, ElementType, ReactNode } from "react"
 import clsx from "clsx"
+import type { ComponentPropsWithoutRef, ElementType, ReactNode } from "react"
 
 import { FULL_NAME } from "~/constants"
 
@@ -69,7 +69,7 @@ function Background<T extends ElementType = "div">({
       {...rest}
       className={clsx(
         "rounded-full bg-zinc-50/75 drop-shadow-2xl dark:bg-zinc-900/75",
-        className
+        className,
       )}
     />
   )

@@ -1,8 +1,8 @@
-import type { PropsWithChildren } from "react"
-import type { Jsonify } from "type-fest"
 import { ArrowLeftIcon, ChevronDoubleUpIcon } from "@heroicons/react/24/outline"
 import clsx from "clsx"
 import { DateTime } from "luxon"
+import type { PropsWithChildren } from "react"
+import type { Jsonify } from "type-fest"
 
 import type { PostMeta } from "@services/posts.server"
 

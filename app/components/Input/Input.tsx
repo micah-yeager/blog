@@ -1,9 +1,9 @@
-import type { ComponentPropsWithoutRef } from "react"
 import {
   Input as HeadlessInput,
-  InputProps as HeadlessInputProps
+  type InputProps as HeadlessInputProps,
 } from "@headlessui/react"
 import clsx from "clsx"
+import type { ComponentPropsWithoutRef } from "react"
 import { forwardRef } from "react"
 
 /**
@@ -20,7 +20,7 @@ export function InputGroup({ children }: ComponentPropsWithoutRef<"span">) {
         "[&_input]:has-[[data-slot=icon]:first-child]:pl-10 [&_input]:has-[[data-slot=icon]:last-child]:pr-10 sm:[&_input]:has-[[data-slot=icon]:first-child]:pl-8 sm:[&_input]:has-[[data-slot=icon]:last-child]:pr-8",
         "[&>[data-slot=icon]]:pointer-events-none [&>[data-slot=icon]]:absolute [&>[data-slot=icon]]:top-3 [&>[data-slot=icon]]:z-10 [&>[data-slot=icon]]:size-5 sm:[&>[data-slot=icon]]:top-2.5 sm:[&>[data-slot=icon]]:size-4",
         "[&>[data-slot=icon]:first-child]:left-3 sm:[&>[data-slot=icon]:first-child]:left-2.5 [&>[data-slot=icon]:last-child]:right-3 sm:[&>[data-slot=icon]:last-child]:right-2.5",
-        "[&>[data-slot=icon]]:text-zinc-500 dark:[&>[data-slot=icon]]:text-zinc-400"
+        "[&>[data-slot=icon]]:text-zinc-500 dark:[&>[data-slot=icon]]:text-zinc-400",
       )}
     >
       {children}
@@ -55,7 +55,7 @@ type InputProps = {
  */
 export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   { className, ...props },
-  ref
+  ref,
 ) {
   return (
     <span
@@ -75,7 +75,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
         // Disabled state
         "has-[[data-disabled]]:opacity-50 before:has-[[data-disabled]]:bg-zinc-950/5 before:has-[[data-disabled]]:shadow-none",
         // Invalid state
-        "before:has-[[data-invalid]]:shadow-red-500/10"
+        "before:has-[[data-invalid]]:shadow-red-500/10",
       ])}
     >
       <HeadlessInput
@@ -96,7 +96,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
               "[&::-webkit-datetime-edit-minute-field]:p-0",
               "[&::-webkit-datetime-edit-second-field]:p-0",
               "[&::-webkit-datetime-edit-millisecond-field]:p-0",
-              "[&::-webkit-datetime-edit-meridiem-field]:p-0"
+              "[&::-webkit-datetime-edit-meridiem-field]:p-0",
             ],
           // Basic layout
           "relative block w-full appearance-none rounded-lg px-[calc(theme(spacing[3.5])-1px)] py-[calc(theme(spacing[2.5])-1px)] sm:px-[calc(theme(spacing[3])-1px)] sm:py-[calc(theme(spacing[1.5])-1px)]",
@@ -113,7 +113,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
           // Disabled state
           "data-[disabled]:border-zinc-950/20 dark:data-[hover]:data-[disabled]:border-white/15 data-[disabled]:dark:border-white/15 data-[disabled]:dark:bg-white/[2.5%]",
           // System icons
-          "dark:[color-scheme:dark]"
+          "dark:[color-scheme:dark]",
         ])}
       />
     </span>

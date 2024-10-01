@@ -1,7 +1,7 @@
 // noinspection JSCommentMatchesSignature
 
-import type { ComponentPropsWithoutRef } from "react"
 import clsx from "clsx"
+import type { ComponentPropsWithoutRef } from "react"
 
 /**
  * Properties for the {@link Divider} component.
@@ -28,7 +28,7 @@ export function Divider({ soft = false, className, ...props }: DividerProps) {
         className,
         "w-full border-t",
         soft && "border-zinc-950/5 dark:border-white/5",
-        !soft && "border-zinc-950/10 dark:border-white/10"
+        !soft && "border-zinc-950/10 dark:border-white/10",
       )}
     />
   )

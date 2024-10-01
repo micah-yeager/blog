@@ -15,7 +15,7 @@ const VERIFICATION_ENDPOINT =
 const TURNSTILE_SITE_KEY = process.env.TURNSTILE_SITE_KEY as string
 /** The secret key for Turnstile. */
 const TURNSTILE_SECRET_KEY = process.env.TURNSTILE_SECRET_KEY as string
-if (!TURNSTILE_SITE_KEY || !TURNSTILE_SECRET_KEY) {
+if (!(TURNSTILE_SITE_KEY && TURNSTILE_SECRET_KEY)) {
   throw new Error("Missing required Turnstile environment variable(s).")
 }
 // Don't export secret key since it won't be needed elsewhere.
@@ -56,7 +56,7 @@ type VerifyTurnstileArgs = {
  */
 export async function verifyTurnstile({
   request,
-  formData
+  formData,
 }: VerifyTurnstileArgs) {
   // If formData is not provided, parse it from the request.
   if (!formData) {
@@ -68,10 +68,10 @@ export async function verifyTurnstile({
   const connectingIp = getClientIPAddress(request) ?? "127.0.0.1"
 
   // If the requisite info is missing, return a 400 error.
-  if (!cfTurnstileResponse || !connectingIp) {
+  if (!(cfTurnstileResponse && connectingIp)) {
     throw json<ActionResponse>(
       { formError: "Missing Turnstile token." },
-      { status: 400 }
+      { status: 400 },
     )
   }
 
@@ -86,12 +86,12 @@ export async function verifyTurnstile({
 
   const verificationResult = await fetch(VERIFICATION_ENDPOINT, {
     body: verificationFormData,
-    method: "POST"
+    method: "POST",
   })
   if (!verificationResult.ok) {
     throw json<ActionResponse>(
       { formError: "Error verifying Turnstile response." },
-      { status: 400 }
+      { status: 400 },
     )
   }
 

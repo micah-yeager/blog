@@ -1,10 +1,10 @@
-import type { ReactNode } from "react"
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons"
 import clsx from "clsx"
+import type { ReactNode } from "react"
 
-import type { IconProp } from "@ui/Icon"
 import { ContactMe } from "@ui/ContactMe"
 import { Container } from "@ui/Container"
+import type { IconProp } from "@ui/Icon"
 import { Icon } from "@ui/Icon"
 import { Link } from "@ui/Link"
 import { mergeMeta } from "@utils/meta"
@@ -24,7 +24,7 @@ function SocialLink({
   className,
   to,
   children,
-  icon
+  icon,
 }: {
   className?: string
   to: string

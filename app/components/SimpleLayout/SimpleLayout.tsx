@@ -14,7 +14,7 @@ import { Container } from "../Container"
 export function SimpleLayout({
   title,
   intro,
-  children
+  children,
 }: PropsWithChildren<{
   title: string
   intro: string

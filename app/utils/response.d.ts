@@ -1,4 +1,4 @@
-import { EmptyObject } from "type-fest"
+import type { EmptyObject } from "type-fest"
 
 /**
  * The general shape of a form's fields.

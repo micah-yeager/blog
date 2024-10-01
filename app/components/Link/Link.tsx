@@ -1,5 +1,5 @@
-import type { LinkProps } from "@remix-run/react"
 import { DataInteractive } from "@headlessui/react"
+import type { LinkProps } from "@remix-run/react"
 import { Link as RemixLink } from "@remix-run/react"
 import { forwardRef } from "react"
 
@@ -16,5 +16,5 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
         <RemixLink {...props} ref={ref} />
       </DataInteractive>
     )
-  }
+  },
 )

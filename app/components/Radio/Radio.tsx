@@ -4,7 +4,7 @@ import type { FieldProps, RadioGroupProps, RadioProps } from "@headlessui/react"
 import {
   Field,
   Radio as HeadlessRadio,
-  RadioGroup as HeadlessRadioGroup
+  RadioGroup as HeadlessRadioGroup,
 } from "@headlessui/react"
 import clsx from "clsx"
 
@@ -31,7 +31,7 @@ export function RadioGroup({
         // Basic groups
         "space-y-3 [&_[data-slot=label]]:font-normal",
         // With descriptions
-        "has-[[data-slot=description]]:space-y-6 [&_[data-slot=label]]:has-[[data-slot=description]]:font-medium"
+        "has-[[data-slot=description]]:space-y-6 [&_[data-slot=label]]:has-[[data-slot=description]]:font-medium",
       )}
     />
   )
@@ -58,7 +58,7 @@ export function RadioField({ className, ...props }: Omit<FieldProps, "as">) {
         // Description layout
         "[&>[data-slot=description]]:col-start-2 [&>[data-slot=description]]:row-start-2",
         // With description
-        "[&_[data-slot=label]]:has-[[data-slot=description]]:font-medium"
+        "[&_[data-slot=label]]:has-[[data-slot=description]]:font-medium",
       )}
     />
   )
@@ -67,11 +67,11 @@ export function RadioField({ className, ...props }: Omit<FieldProps, "as">) {
 const colors = {
   "dark/zinc": [
     tw`[--radio-checked-bg:theme(colors.zinc.900)] [--radio-checked-border:theme(colors.zinc.950/90%)] [--radio-checked-indicator:theme(colors.white)]`,
-    tw`dark:[--radio-checked-bg:theme(colors.zinc.600)]`
+    tw`dark:[--radio-checked-bg:theme(colors.zinc.600)]`,
   ],
   "dark/white": [
     tw`[--radio-checked-bg:theme(colors.zinc.900)] [--radio-checked-border:theme(colors.zinc.950/90%)] [--radio-checked-indicator:theme(colors.white)]`,
-    tw`dark:[--radio-checked-bg:theme(colors.white)] dark:[--radio-checked-border:theme(colors.zinc.950/15%)] dark:[--radio-checked-indicator:theme(colors.zinc.900)]`
+    tw`dark:[--radio-checked-bg:theme(colors.white)] dark:[--radio-checked-border:theme(colors.zinc.950/15%)] dark:[--radio-checked-indicator:theme(colors.zinc.900)]`,
   ],
   white: tw`[--radio-checked-bg:theme(colors.white)] [--radio-checked-border:theme(colors.zinc.950/15%)] [--radio-checked-indicator:theme(colors.zinc.900)]`,
   dark: tw`[--radio-checked-bg:theme(colors.zinc.900)] [--radio-checked-border:theme(colors.zinc.950/90%)] [--radio-checked-indicator:theme(colors.white)]`,
@@ -92,7 +92,7 @@ const colors = {
   purple: tw`[--radio-checked-bg:theme(colors.purple.500)] [--radio-checked-border:theme(colors.purple.600/90%)] [--radio-checked-indicator:theme(colors.white)]`,
   fuchsia: tw`[--radio-checked-bg:theme(colors.fuchsia.500)] [--radio-checked-border:theme(colors.fuchsia.600/90%)] [--radio-checked-indicator:theme(colors.white)]`,
   pink: tw`[--radio-checked-bg:theme(colors.pink.500)] [--radio-checked-border:theme(colors.pink.600/90%)] [--radio-checked-indicator:theme(colors.white)]`,
-  rose: tw`[--radio-checked-bg:theme(colors.rose.500)] [--radio-checked-border:theme(colors.rose.600/90%)] [--radio-checked-indicator:theme(colors.white)]`
+  rose: tw`[--radio-checked-bg:theme(colors.rose.500)] [--radio-checked-border:theme(colors.rose.600/90%)] [--radio-checked-indicator:theme(colors.white)]`,
 } as const
 
 /**
@@ -146,14 +146,14 @@ export function Radio({
           "group-data-[disabled]:opacity-50",
           "group-data-[disabled]:border-zinc-950/25 group-data-[disabled]:bg-zinc-950/5 group-data-[disabled]:[--radio-checked-indicator:theme(colors.zinc.950/50%)] group-data-[disabled]:before:bg-transparent",
           "dark:group-data-[disabled]:border-white/20 dark:group-data-[disabled]:bg-white/[2.5%] dark:group-data-[disabled]:[--radio-checked-indicator:theme(colors.white/50%)] dark:group-data-[disabled]:group-data-[checked]:after:hidden",
-          colors[color]
+          colors[color],
         )}
       >
         <span
           className={clsx(
             "size-full rounded-full border-[4.5px] border-transparent bg-[--radio-indicator] bg-clip-padding",
             // Forced colors mode
-            "forced-colors:border-[Canvas] forced-colors:group-data-[checked]:border-[Highlight]"
+            "forced-colors:border-[Canvas] forced-colors:group-data-[checked]:border-[Highlight]",
           )}
         />
       </span>

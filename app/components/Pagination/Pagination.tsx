@@ -1,7 +1,7 @@
 // noinspection JSCommentMatchesSignature
 
-import type { ComponentPropsWithoutRef, PropsWithChildren } from "react"
 import clsx from "clsx"
+import type { ComponentPropsWithoutRef, PropsWithChildren } from "react"
 
 import { Button } from "../Button"
 
@@ -33,7 +33,7 @@ export function Pagination({
 export function PaginationPrevious({
   to = null,
   className,
-  children = "Previous"
+  children = "Previous",
 }: PropsWithChildren<{
   to?: string | null
   className?: string
@@ -74,7 +74,7 @@ export function PaginationPrevious({
 export function PaginationNext({
   to = null,
   className,
-  children = "Next"
+  children = "Next",
 }: PropsWithChildren<{
   to?: string | null
   className?: string
@@ -134,7 +134,7 @@ export function PaginationPage({
   to,
   className,
   current = false,
-  children
+  children,
 }: PropsWithChildren<{
   to: string
   className?: string
@@ -149,7 +149,7 @@ export function PaginationPage({
       className={clsx(
         className,
         "min-w-[2.25rem] before:absolute before:-inset-px before:rounded-lg",
-        current && "before:bg-zinc-950/5 dark:before:bg-white/10"
+        current && "before:bg-zinc-950/5 dark:before:bg-white/10",
       )}
     >
       <span className="-mx-0.5">{children}</span>
@@ -173,7 +173,7 @@ export function PaginationGap({
       {...props}
       className={clsx(
         className,
-        "w-[2.25rem] select-none text-center text-sm/6 font-semibold text-zinc-950 dark:text-white"
+        "w-[2.25rem] select-none text-center text-sm/6 font-semibold text-zinc-950 dark:text-white",
       )}
     >
       {children}

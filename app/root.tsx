@@ -1,25 +1,25 @@
-import type {
-  HeadersFunction,
-  LinksFunction,
-  MetaFunction
-} from "@vercel/remix"
-import type { PropsWithChildren } from "react"
 import {
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
-  useLoaderData
+  useLoaderData,
 } from "@remix-run/react"
 import { Analytics } from "@vercel/analytics/react"
+import type {
+  HeadersFunction,
+  LinksFunction,
+  MetaFunction,
+} from "@vercel/remix"
 import { json } from "@vercel/remix"
 import { SpeedInsights } from "@vercel/speed-insights/remix"
+import type { PropsWithChildren } from "react"
 
-import type { Env } from "~/browser-globals"
 import { TURNSTILE_SITE_KEY } from "@services/captcha.server"
 import { AppError } from "@ui/AppError"
 import { Layout } from "@ui/Layout"
+import type { Env } from "~/browser-globals"
 
 import { FULL_NAME } from "./constants"
 import styles from "./tailwind.css?url"
@@ -29,7 +29,7 @@ export const links: LinksFunction = () => [
   { rel: "preconnect", href: "https://rsms.me/" },
   { rel: "stylesheet", href: "https://rsms.me/inter/inter.css" },
   { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" },
-  { rel: "icon", type: "image/png", href: "/favicon.png" }
+  { rel: "icon", type: "image/png", href: "/favicon.png" },
 ]
 
 export const headers: HeadersFunction = () => {
@@ -50,22 +50,22 @@ export const headers: HeadersFunction = () => {
   const cdnRevalidationPeriod = 60 * 60 * 24 * 90 // 90 days
   return {
     "CDN-Cache-Control": `max-age=${cdnMaxAge}, stale-while-revalidate=${cdnRevalidationPeriod}`,
-    "Cache-Control": "no-cache"
+    "Cache-Control": "no-cache",
   }
 }
 
 export const meta: MetaFunction = () => {
   return [
     { title: FULL_NAME },
-    { description: "Solutions architect, developer, and cat enthusiast." }
+    { description: "Solutions architect, developer, and cat enthusiast." },
   ]
 }
 
 export async function loader() {
   return json({
     ENV: {
-      TURNSTILE_SITE_KEY
-    } as Env
+      TURNSTILE_SITE_KEY,
+    } as Env,
   })
 }
 
