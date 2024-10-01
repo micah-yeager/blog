@@ -11,6 +11,8 @@
       "correctness": {
         // Still required for now.
         "noNodejsModules": "off",
+        // No support for TypeScript aliases yet.
+        "noUndeclaredDependencies": "off",
         // Since we're using a bundler, this is unnecessary.
         "useImportExtensions": "off"
       },
@@ -33,6 +35,8 @@
         // Requires more boilerplate in some instances for no real readability
         // benefit.
         "useCollapsedElseIf": "off",
+        // Requires more boilerplate for no real readability benefit.
+        "useExplicitLengthCheck": "off",
         // While `for...of` is more readable, it's sometimes substantially slower
         // than an index-based loop.
         "useForOf": "off",
@@ -46,7 +50,9 @@
         // reject the promise instead of being synchronously thrown.
         "useAwait": "off",
         // We're using React.
-        "noReactSpecificProps": "off"
+        "noReactSpecificProps": "off",
+        // Console logging is useful in production, too.
+        "noConsole": "off"
       }
     }
   },
