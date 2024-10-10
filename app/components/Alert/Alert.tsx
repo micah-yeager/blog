@@ -17,7 +17,7 @@ type Variant = {
   /** The icon to display for this variant. */
   Icon: IconProp
   /** The classes for the icon. */
-  iconClassName?: string
+  iconClassName: string
   /** The classes for the alert's background. */
   bgClassName: string
   /** The classes for the alert's header. */
