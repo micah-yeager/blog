@@ -1,9 +1,10 @@
 import formsPlugin from "@tailwindcss/forms"
 import typographyPlugin from "@tailwindcss/typography"
+import { colorAliasMap } from "lib/tailwindcss"
 import type { Config } from "tailwindcss"
 import colors from "tailwindcss/colors"
 import defaultTheme from "tailwindcss/defaultTheme"
-
+import type { ValueOf } from "type-fest"
 import typographyStyles from "./typography"
 
 export default {
@@ -29,9 +30,12 @@ export default {
     },
     typography: typographyStyles,
     extend: {
-      colors: {
-        primary: colors.orange,
-      },
+      colors: Array.from(colorAliasMap).reduce<
+        Record<string, ValueOf<typeof colors>>
+      >((acc, [alias, color]) => {
+        acc[alias] = colors[color]
+        return acc
+      }, {}),
       fontFamily: {
         sans: ["Inter var", ...defaultTheme.fontFamily.sans],
         dyslexic: ["OpenDyslexic"],

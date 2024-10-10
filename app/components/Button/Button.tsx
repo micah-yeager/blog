@@ -12,7 +12,18 @@ import { forwardRef } from "react"
 
 import { tw } from "@utils/templates"
 
+import {
+  type Color,
+  type Shade,
+  addColorAliases,
+  darkKey,
+  darkWhiteKey,
+  darkZincKey,
+  whiteKey,
+} from "lib/tailwindcss"
 import { Link } from "../Link"
+
+export const lightKey = "light"
 
 const styles = {
   base: [
@@ -73,107 +84,113 @@ const styles = {
     // Icon
     tw`[--btn-icon:theme(colors.zinc.500)] data-[active]:[--btn-icon:theme(colors.zinc.700)] data-[hover]:[--btn-icon:theme(colors.zinc.700)] dark:[--btn-icon:theme(colors.zinc.500)] dark:data-[active]:[--btn-icon:theme(colors.zinc.400)] dark:data-[hover]:[--btn-icon:theme(colors.zinc.400)]`,
   ],
-  colors: {
-    "dark/zinc": [
-      tw`text-white [--btn-bg:theme(colors.zinc.900)] [--btn-border:theme(colors.zinc.950/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
-      tw`dark:text-white dark:[--btn-bg:theme(colors.zinc.600)] dark:[--btn-hover-overlay:theme(colors.white/5%)]`,
-      tw`[--btn-icon:theme(colors.zinc.400)] data-[active]:[--btn-icon:theme(colors.zinc.300)] data-[hover]:[--btn-icon:theme(colors.zinc.300)]`,
-    ],
-    light: [
+  colors: addColorAliases({
+    // Adaptive
+    [lightKey]: [
       tw`text-zinc-950 [--btn-bg:white] [--btn-border:theme(colors.zinc.950/10%)] [--btn-hover-overlay:theme(colors.zinc.950/2.5%)] data-[active]:[--btn-border:theme(colors.zinc.950/15%)] data-[hover]:[--btn-border:theme(colors.zinc.950/15%)]`,
       tw`dark:text-white dark:[--btn-bg:theme(colors.zinc.800)] dark:[--btn-hover-overlay:theme(colors.white/5%)]`,
       tw`[--btn-icon:theme(colors.zinc.500)] data-[active]:[--btn-icon:theme(colors.zinc.700)] data-[hover]:[--btn-icon:theme(colors.zinc.700)] dark:[--btn-icon:theme(colors.zinc.500)] dark:data-[active]:[--btn-icon:theme(colors.zinc.400)] dark:data-[hover]:[--btn-icon:theme(colors.zinc.400)]`,
     ],
-    "dark/white": [
+    [darkWhiteKey]: [
       tw`text-white [--btn-bg:theme(colors.zinc.900)] [--btn-border:theme(colors.zinc.950/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
       tw`dark:text-zinc-950 dark:[--btn-bg:white] dark:[--btn-hover-overlay:theme(colors.zinc.950/5%)]`,
       tw`[--btn-icon:theme(colors.zinc.400)] data-[active]:[--btn-icon:theme(colors.zinc.300)] data-[hover]:[--btn-icon:theme(colors.zinc.300)] dark:[--btn-icon:theme(colors.zinc.500)] dark:data-[active]:[--btn-icon:theme(colors.zinc.400)] dark:data-[hover]:[--btn-icon:theme(colors.zinc.400)]`,
     ],
-    dark: [
+    [darkZincKey]: [
+      tw`text-white [--btn-bg:theme(colors.zinc.900)] [--btn-border:theme(colors.zinc.950/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
+      tw`dark:text-white dark:[--btn-bg:theme(colors.zinc.600)] dark:[--btn-hover-overlay:theme(colors.white/5%)]`,
+      tw`[--btn-icon:theme(colors.zinc.400)] data-[active]:[--btn-icon:theme(colors.zinc.300)] data-[hover]:[--btn-icon:theme(colors.zinc.300)]`,
+    ],
+    // Static
+    [darkKey]: [
       tw`text-white [--btn-bg:theme(colors.zinc.900)] [--btn-border:theme(colors.zinc.950/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
       tw`dark:[--btn-bg:theme(colors.zinc.800)] dark:[--btn-hover-overlay:theme(colors.white/5%)]`,
       tw`[--btn-icon:theme(colors.zinc.400)] data-[active]:[--btn-icon:theme(colors.zinc.300)] data-[hover]:[--btn-icon:theme(colors.zinc.300)]`,
     ],
-    white: [
+    [whiteKey]: [
       tw`text-zinc-950 [--btn-bg:white] [--btn-border:theme(colors.zinc.950/10%)] [--btn-hover-overlay:theme(colors.zinc.950/2.5%)] data-[active]:[--btn-border:theme(colors.zinc.950/15%)] data-[hover]:[--btn-border:theme(colors.zinc.950/15%)]`,
       tw`dark:[--btn-hover-overlay:theme(colors.zinc.950/5%)]`,
       tw`[--btn-icon:theme(colors.zinc.400)] data-[active]:[--btn-icon:theme(colors.zinc.500)] data-[hover]:[--btn-icon:theme(colors.zinc.500)]`,
     ],
-    zinc: [
-      tw`text-white [--btn-bg:theme(colors.zinc.600)] [--btn-border:theme(colors.zinc.700/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
-      tw`dark:[--btn-hover-overlay:theme(colors.white/5%)]`,
-      tw`[--btn-icon:theme(colors.zinc.400)] data-[active]:[--btn-icon:theme(colors.zinc.300)] data-[hover]:[--btn-icon:theme(colors.zinc.300)]`,
+    // Colors
+    amber: [
+      tw`text-amber-950 [--btn-bg:theme(colors.amber.400)] [--btn-border:theme(colors.amber.500/80%)] [--btn-hover-overlay:theme(colors.white/25%)]`,
+      tw`[--btn-icon:theme(colors.amber.600)]`,
     ],
-    indigo: [
-      tw`text-white [--btn-bg:theme(colors.indigo.500)] [--btn-border:theme(colors.indigo.600/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
-      tw`[--btn-icon:theme(colors.indigo.300)] data-[active]:[--btn-icon:theme(colors.indigo.200)] data-[hover]:[--btn-icon:theme(colors.indigo.200)]`,
+    blue: [
+      tw`text-white [--btn-bg:theme(colors.blue.600)] [--btn-border:theme(colors.blue.700/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
+      tw`[--btn-icon:theme(colors.blue.400)] data-[active]:[--btn-icon:theme(colors.blue.300)] data-[hover]:[--btn-icon:theme(colors.blue.300)]`,
     ],
     cyan: [
       tw`text-cyan-950 [--btn-bg:theme(colors.cyan.300)] [--btn-border:theme(colors.cyan.400/80%)] [--btn-hover-overlay:theme(colors.white/25%)]`,
       tw`[--btn-icon:theme(colors.cyan.500)]`,
     ],
-    red: [
-      tw`text-white [--btn-bg:theme(colors.red.600)] [--btn-border:theme(colors.red.700/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
-      tw`[--btn-icon:theme(colors.red.300)] data-[active]:[--btn-icon:theme(colors.red.200)] data-[hover]:[--btn-icon:theme(colors.red.200)]`,
+    emerald: [
+      tw`text-white [--btn-bg:theme(colors.emerald.600)] [--btn-border:theme(colors.emerald.700/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
+      tw`[--btn-icon:theme(colors.white/60%)] data-[active]:[--btn-icon:theme(colors.white/80%)] data-[hover]:[--btn-icon:theme(colors.white/80%)]`,
     ],
-    orange: [
-      tw`text-white [--btn-bg:theme(colors.orange.500)] [--btn-border:theme(colors.orange.600/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
-      tw`[--btn-icon:theme(colors.orange.300)] data-[active]:[--btn-icon:theme(colors.orange.200)] data-[hover]:[--btn-icon:theme(colors.orange.200)]`,
-    ],
-    amber: [
-      tw`text-amber-950 [--btn-bg:theme(colors.amber.400)] [--btn-border:theme(colors.amber.500/80%)] [--btn-hover-overlay:theme(colors.white/25%)]`,
-      tw`[--btn-icon:theme(colors.amber.600)]`,
-    ],
-    yellow: [
-      tw`text-yellow-950 [--btn-bg:theme(colors.yellow.300)] [--btn-border:theme(colors.yellow.400/80%)] [--btn-hover-overlay:theme(colors.white/25%)]`,
-      tw`[--btn-icon:theme(colors.yellow.600)] data-[active]:[--btn-icon:theme(colors.yellow.700)] data-[hover]:[--btn-icon:theme(colors.yellow.700)]`,
-    ],
-    lime: [
-      tw`text-lime-950 [--btn-bg:theme(colors.lime.300)] [--btn-border:theme(colors.lime.400/80%)] [--btn-hover-overlay:theme(colors.white/25%)]`,
-      tw`[--btn-icon:theme(colors.lime.600)] data-[active]:[--btn-icon:theme(colors.lime.700)] data-[hover]:[--btn-icon:theme(colors.lime.700)]`,
+    fuchsia: [
+      tw`text-white [--btn-bg:theme(colors.fuchsia.500)] [--btn-border:theme(colors.fuchsia.600/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
+      tw`[--btn-icon:theme(colors.fuchsia.300)] data-[active]:[--btn-icon:theme(colors.fuchsia.200)] data-[hover]:[--btn-icon:theme(colors.fuchsia.200)]`,
     ],
     green: [
       tw`text-white [--btn-bg:theme(colors.green.600)] [--btn-border:theme(colors.green.700/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
       tw`[--btn-icon:theme(colors.white/60%)] data-[active]:[--btn-icon:theme(colors.white/80%)] data-[hover]:[--btn-icon:theme(colors.white/80%)]`,
     ],
-    emerald: [
-      tw`text-white [--btn-bg:theme(colors.emerald.600)] [--btn-border:theme(colors.emerald.700/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
+    indigo: [
+      tw`text-white [--btn-bg:theme(colors.indigo.500)] [--btn-border:theme(colors.indigo.600/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
+      tw`[--btn-icon:theme(colors.indigo.300)] data-[active]:[--btn-icon:theme(colors.indigo.200)] data-[hover]:[--btn-icon:theme(colors.indigo.200)]`,
+    ],
+    lime: [
+      tw`text-lime-950 [--btn-bg:theme(colors.lime.300)] [--btn-border:theme(colors.lime.400/80%)] [--btn-hover-overlay:theme(colors.white/25%)]`,
+      tw`[--btn-icon:theme(colors.lime.600)] data-[active]:[--btn-icon:theme(colors.lime.700)] data-[hover]:[--btn-icon:theme(colors.lime.700)]`,
+    ],
+    orange: [
+      tw`text-white [--btn-bg:theme(colors.orange.500)] [--btn-border:theme(colors.orange.600/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
+      tw`[--btn-icon:theme(colors.orange.300)] data-[active]:[--btn-icon:theme(colors.orange.200)] data-[hover]:[--btn-icon:theme(colors.orange.200)]`,
+    ],
+    pink: [
+      tw`text-white [--btn-bg:theme(colors.pink.500)] [--btn-border:theme(colors.pink.600/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
+      tw`[--btn-icon:theme(colors.pink.300)] data-[active]:[--btn-icon:theme(colors.pink.200)] data-[hover]:[--btn-icon:theme(colors.pink.200)]`,
+    ],
+    purple: [
+      tw`text-white [--btn-bg:theme(colors.purple.500)] [--btn-border:theme(colors.purple.600/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
+      tw`[--btn-icon:theme(colors.purple.300)] data-[active]:[--btn-icon:theme(colors.purple.200)] data-[hover]:[--btn-icon:theme(colors.purple.200)]`,
+    ],
+    red: [
+      tw`text-white [--btn-bg:theme(colors.red.600)] [--btn-border:theme(colors.red.700/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
+      tw`[--btn-icon:theme(colors.red.300)] data-[active]:[--btn-icon:theme(colors.red.200)] data-[hover]:[--btn-icon:theme(colors.red.200)]`,
+    ],
+    rose: [
+      tw`text-white [--btn-bg:theme(colors.rose.500)] [--btn-border:theme(colors.rose.600/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
+      tw`[--btn-icon:theme(colors.rose.300)] data-[active]:[--btn-icon:theme(colors.rose.200)] data-[hover]:[--btn-icon:theme(colors.rose.200)]`,
+    ],
+    sky: [
+      tw`text-white [--btn-bg:theme(colors.sky.500)] [--btn-border:theme(colors.sky.600/80%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
       tw`[--btn-icon:theme(colors.white/60%)] data-[active]:[--btn-icon:theme(colors.white/80%)] data-[hover]:[--btn-icon:theme(colors.white/80%)]`,
     ],
     teal: [
       tw`text-white [--btn-bg:theme(colors.teal.600)] [--btn-border:theme(colors.teal.700/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
       tw`[--btn-icon:theme(colors.white/60%)] data-[active]:[--btn-icon:theme(colors.white/80%)] data-[hover]:[--btn-icon:theme(colors.white/80%)]`,
     ],
-    sky: [
-      tw`text-white [--btn-bg:theme(colors.sky.500)] [--btn-border:theme(colors.sky.600/80%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
-      tw`[--btn-icon:theme(colors.white/60%)] data-[active]:[--btn-icon:theme(colors.white/80%)] data-[hover]:[--btn-icon:theme(colors.white/80%)]`,
-    ],
-    blue: [
-      tw`text-white [--btn-bg:theme(colors.blue.600)] [--btn-border:theme(colors.blue.700/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
-      tw`[--btn-icon:theme(colors.blue.400)] data-[active]:[--btn-icon:theme(colors.blue.300)] data-[hover]:[--btn-icon:theme(colors.blue.300)]`,
-    ],
     violet: [
       tw`text-white [--btn-bg:theme(colors.violet.500)] [--btn-border:theme(colors.violet.600/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
       tw`[--btn-icon:theme(colors.violet.300)] data-[active]:[--btn-icon:theme(colors.violet.200)] data-[hover]:[--btn-icon:theme(colors.violet.200)]`,
     ],
-    purple: [
-      tw`text-white [--btn-bg:theme(colors.purple.500)] [--btn-border:theme(colors.purple.600/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
-      tw`[--btn-icon:theme(colors.purple.300)] data-[active]:[--btn-icon:theme(colors.purple.200)] data-[hover]:[--btn-icon:theme(colors.purple.200)]`,
+    yellow: [
+      tw`text-yellow-950 [--btn-bg:theme(colors.yellow.300)] [--btn-border:theme(colors.yellow.400/80%)] [--btn-hover-overlay:theme(colors.white/25%)]`,
+      tw`[--btn-icon:theme(colors.yellow.600)] data-[active]:[--btn-icon:theme(colors.yellow.700)] data-[hover]:[--btn-icon:theme(colors.yellow.700)]`,
     ],
-    fuchsia: [
-      tw`text-white [--btn-bg:theme(colors.fuchsia.500)] [--btn-border:theme(colors.fuchsia.600/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
-      tw`[--btn-icon:theme(colors.fuchsia.300)] data-[active]:[--btn-icon:theme(colors.fuchsia.200)] data-[hover]:[--btn-icon:theme(colors.fuchsia.200)]`,
+    zinc: [
+      tw`text-white [--btn-bg:theme(colors.zinc.600)] [--btn-border:theme(colors.zinc.700/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
+      tw`dark:[--btn-hover-overlay:theme(colors.white/5%)]`,
+      tw`[--btn-icon:theme(colors.zinc.400)] data-[active]:[--btn-icon:theme(colors.zinc.300)] data-[hover]:[--btn-icon:theme(colors.zinc.300)]`,
     ],
-    pink: [
-      tw`text-white [--btn-bg:theme(colors.pink.500)] [--btn-border:theme(colors.pink.600/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
-      tw`[--btn-icon:theme(colors.pink.300)] data-[active]:[--btn-icon:theme(colors.pink.200)] data-[hover]:[--btn-icon:theme(colors.pink.200)]`,
-    ],
-    rose: [
-      tw`text-white [--btn-bg:theme(colors.rose.500)] [--btn-border:theme(colors.rose.600/90%)] [--btn-hover-overlay:theme(colors.white/10%)]`,
-      tw`[--btn-icon:theme(colors.rose.300)] data-[active]:[--btn-icon:theme(colors.rose.200)] data-[hover]:[--btn-icon:theme(colors.rose.200)]`,
-    ],
-  },
-} as const
+  } satisfies Record<
+    Color | Shade | typeof lightKey,
+    [string, string] | [string, string, string]
+  >),
+}
 
 /**
  * Properties for the {@link Button} component.
@@ -216,7 +233,7 @@ export const Button = forwardRef<HTMLElement, ButtonProps>(function Button(
       ? styles.outline
       : plain
         ? styles.plain
-        : clsx(styles.solid, styles.colors[color ?? "dark/zinc"]),
+        : clsx(styles.solid, styles.colors[color ?? darkZincKey]),
   )
 
   return "to" in props ? (

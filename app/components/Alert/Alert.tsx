@@ -9,6 +9,7 @@ import {
 import clsx from "clsx"
 import type { ComponentPropsWithoutRef } from "react"
 
+import { tw } from "@utils/templates"
 import type { IconProp } from "../Icon"
 
 /** A variant definition for the {@link Alert} component. */
@@ -28,31 +29,31 @@ type Variant = {
 const variants = {
   error: {
     Icon: XCircleIcon,
-    iconClassName: "text-red-400 dark:text-red-600",
-    bgClassName: "bg-red-50 dark:bg-red-950",
-    headerClassName: "text-red-800 dark:text-red-200",
-    textClassName: "text-red-700 dark:text-red-300",
-  },
-  warning: {
-    Icon: ExclamationTriangleIcon,
-    iconClassName: "text-yellow-400 dark:text-yellow-600",
-    bgClassName: "bg-yellow-50 dark:bg-yellow-950",
-    headerClassName: "text-yellow-800 dark:text-yellow-200",
-    textClassName: "text-yellow-700 dark:text-yellow-300",
-  },
-  success: {
-    Icon: CheckCircleIcon,
-    iconClassName: "text-green-400 dark:text-green-600",
-    bgClassName: "bg-green-50 dark:bg-green-950",
-    headerClassName: "text-green-800 dark:text-green-200",
-    textClassName: "text-green-700 dark:text-green-300",
+    iconClassName: tw`text-error-400 dark:text-error-600`,
+    bgClassName: tw`bg-error-50 dark:bg-error-950`,
+    headerClassName: tw`text-error-800 dark:text-error-200`,
+    textClassName: tw`text-error-700 dark:text-error-300`,
   },
   info: {
     Icon: InformationCircleIcon,
-    iconClassName: "text-blue-400 dark:text-blue-600",
-    bgClassName: "bg-blue-50 dark:bg-blue-950",
-    headerClassName: "text-blue-800 dark:text-blue-200",
-    textClassName: "text-blue-700 dark:text-blue-300",
+    iconClassName: tw`text-info-400 dark:text-info-600`,
+    bgClassName: tw`bg-info-50 dark:bg-info-950`,
+    headerClassName: tw`text-info-800 dark:text-info-200`,
+    textClassName: tw`text-info-700 dark:text-info-300`,
+  },
+  success: {
+    Icon: CheckCircleIcon,
+    iconClassName: tw`text-success-400 dark:text-success-600`,
+    bgClassName: tw`bg-success-50 dark:bg-success-950`,
+    headerClassName: tw`text-success-800 dark:text-success-200`,
+    textClassName: tw`text-success-700 dark:text-success-300`,
+  },
+  warning: {
+    Icon: ExclamationTriangleIcon,
+    iconClassName: tw`text-warning-400 dark:text-warning-600`,
+    bgClassName: tw`bg-warning-50 dark:bg-warning-950`,
+    headerClassName: tw`text-warning-800 dark:text-warning-200`,
+    textClassName: tw`text-warning-700 dark:text-warning-300`,
   },
 } as const satisfies Record<string, Variant>
 

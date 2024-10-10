@@ -9,6 +9,16 @@ import {
 import clsx from "clsx"
 
 import { tw } from "@utils/templates"
+import {
+  type AdaptiveShade,
+  type Color,
+  type StaticShade,
+  addColorAliases,
+  darkKey,
+  darkWhiteKey,
+  darkZincKey,
+  whiteKey,
+} from "lib/tailwindcss"
 
 /**
  * Group multiple {@link Radio} buttons together.
@@ -64,36 +74,42 @@ export function RadioField({ className, ...props }: Omit<FieldProps, "as">) {
   )
 }
 
-const colors = {
-  "dark/zinc": [
-    tw`[--radio-checked-bg:theme(colors.zinc.900)] [--radio-checked-border:theme(colors.zinc.950/90%)] [--radio-checked-indicator:theme(colors.white)]`,
-    tw`dark:[--radio-checked-bg:theme(colors.zinc.600)]`,
-  ],
-  "dark/white": [
+const colors = addColorAliases({
+  // Adaptive
+  [darkWhiteKey]: [
     tw`[--radio-checked-bg:theme(colors.zinc.900)] [--radio-checked-border:theme(colors.zinc.950/90%)] [--radio-checked-indicator:theme(colors.white)]`,
     tw`dark:[--radio-checked-bg:theme(colors.white)] dark:[--radio-checked-border:theme(colors.zinc.950/15%)] dark:[--radio-checked-indicator:theme(colors.zinc.900)]`,
   ],
-  white: tw`[--radio-checked-bg:theme(colors.white)] [--radio-checked-border:theme(colors.zinc.950/15%)] [--radio-checked-indicator:theme(colors.zinc.900)]`,
-  dark: tw`[--radio-checked-bg:theme(colors.zinc.900)] [--radio-checked-border:theme(colors.zinc.950/90%)] [--radio-checked-indicator:theme(colors.white)]`,
-  zinc: tw`[--radio-checked-bg:theme(colors.zinc.600)] [--radio-checked-border:theme(colors.zinc.700/90%)] [--radio-checked-indicator:theme(colors.white)]`,
-  red: tw`[--radio-checked-bg:theme(colors.red.600)] [--radio-checked-border:theme(colors.red.700/90%)] [--radio-checked-indicator:theme(colors.white)]`,
-  orange: tw`[--radio-checked-bg:theme(colors.orange.500)] [--radio-checked-border:theme(colors.orange.600/90%)] [--radio-checked-indicator:theme(colors.white)]`,
+  [darkZincKey]: [
+    tw`[--radio-checked-bg:theme(colors.zinc.900)] [--radio-checked-border:theme(colors.zinc.950/90%)] [--radio-checked-indicator:theme(colors.white)]`,
+    tw`dark:[--radio-checked-bg:theme(colors.zinc.600)]`,
+  ],
+  // Static
+  [darkKey]: tw`[--radio-checked-bg:theme(colors.zinc.900)] [--radio-checked-border:theme(colors.zinc.950/90%)] [--radio-checked-indicator:theme(colors.white)]`,
+  [whiteKey]: tw`[--radio-checked-bg:theme(colors.white)] [--radio-checked-border:theme(colors.zinc.950/15%)] [--radio-checked-indicator:theme(colors.zinc.900)]`,
+  // Colors
   amber: tw`[--radio-checked-bg:theme(colors.amber.400)] [--radio-checked-border:theme(colors.amber.500/80%)] [--radio-checked-indicator:theme(colors.amber.950)]`,
-  yellow: tw`[--radio-checked-bg:theme(colors.yellow.300)] [--radio-checked-border:theme(colors.yellow.400/80%)] [--radio-checked-indicator:theme(colors.yellow.950)]`,
-  lime: tw`[--radio-checked-bg:theme(colors.lime.300)] [--radio-checked-border:theme(colors.lime.400/80%)] [--radio-checked-indicator:theme(colors.lime.950)]`,
-  green: tw`[--radio-checked-bg:theme(colors.green.600)] [--radio-checked-border:theme(colors.green.700/90%)] [--radio-checked-indicator:theme(colors.white)]`,
-  emerald: tw`[--radio-checked-bg:theme(colors.emerald.600)] [--radio-checked-border:theme(colors.emerald.700/90%)] [--radio-checked-indicator:theme(colors.white)]`,
-  teal: tw`[--radio-checked-bg:theme(colors.teal.600)] [--radio-checked-border:theme(colors.teal.700/90%)] [--radio-checked-indicator:theme(colors.white)]`,
-  cyan: tw`[--radio-checked-bg:theme(colors.cyan.300)] [--radio-checked-border:theme(colors.cyan.400/80%)] [--radio-checked-indicator:theme(colors.cyan.950)]`,
-  sky: tw`[--radio-checked-bg:theme(colors.sky.500)] [--radio-checked-border:theme(colors.sky.600/80%)] [--radio-checked-indicator:theme(colors.white)]`,
   blue: tw`[--radio-checked-bg:theme(colors.blue.600)] [--radio-checked-border:theme(colors.blue.700/90%)] [--radio-checked-indicator:theme(colors.white)]`,
-  indigo: tw`[--radio-checked-bg:theme(colors.indigo.500)] [--radio-checked-border:theme(colors.indigo.600/90%)] [--radio-checked-indicator:theme(colors.white)]`,
-  violet: tw`[--radio-checked-bg:theme(colors.violet.500)] [--radio-checked-border:theme(colors.violet.600/90%)] [--radio-checked-indicator:theme(colors.white)]`,
-  purple: tw`[--radio-checked-bg:theme(colors.purple.500)] [--radio-checked-border:theme(colors.purple.600/90%)] [--radio-checked-indicator:theme(colors.white)]`,
+  cyan: tw`[--radio-checked-bg:theme(colors.cyan.300)] [--radio-checked-border:theme(colors.cyan.400/80%)] [--radio-checked-indicator:theme(colors.cyan.950)]`,
+  emerald: tw`[--radio-checked-bg:theme(colors.emerald.600)] [--radio-checked-border:theme(colors.emerald.700/90%)] [--radio-checked-indicator:theme(colors.white)]`,
   fuchsia: tw`[--radio-checked-bg:theme(colors.fuchsia.500)] [--radio-checked-border:theme(colors.fuchsia.600/90%)] [--radio-checked-indicator:theme(colors.white)]`,
+  green: tw`[--radio-checked-bg:theme(colors.green.600)] [--radio-checked-border:theme(colors.green.700/90%)] [--radio-checked-indicator:theme(colors.white)]`,
+  indigo: tw`[--radio-checked-bg:theme(colors.indigo.500)] [--radio-checked-border:theme(colors.indigo.600/90%)] [--radio-checked-indicator:theme(colors.white)]`,
+  lime: tw`[--radio-checked-bg:theme(colors.lime.300)] [--radio-checked-border:theme(colors.lime.400/80%)] [--radio-checked-indicator:theme(colors.lime.950)]`,
+  orange: tw`[--radio-checked-bg:theme(colors.orange.500)] [--radio-checked-border:theme(colors.orange.600/90%)] [--radio-checked-indicator:theme(colors.white)]`,
   pink: tw`[--radio-checked-bg:theme(colors.pink.500)] [--radio-checked-border:theme(colors.pink.600/90%)] [--radio-checked-indicator:theme(colors.white)]`,
+  purple: tw`[--radio-checked-bg:theme(colors.purple.500)] [--radio-checked-border:theme(colors.purple.600/90%)] [--radio-checked-indicator:theme(colors.white)]`,
+  red: tw`[--radio-checked-bg:theme(colors.red.600)] [--radio-checked-border:theme(colors.red.700/90%)] [--radio-checked-indicator:theme(colors.white)]`,
   rose: tw`[--radio-checked-bg:theme(colors.rose.500)] [--radio-checked-border:theme(colors.rose.600/90%)] [--radio-checked-indicator:theme(colors.white)]`,
-} as const
+  sky: tw`[--radio-checked-bg:theme(colors.sky.500)] [--radio-checked-border:theme(colors.sky.600/80%)] [--radio-checked-indicator:theme(colors.white)]`,
+  teal: tw`[--radio-checked-bg:theme(colors.teal.600)] [--radio-checked-border:theme(colors.teal.700/90%)] [--radio-checked-indicator:theme(colors.white)]`,
+  violet: tw`[--radio-checked-bg:theme(colors.violet.500)] [--radio-checked-border:theme(colors.violet.600/90%)] [--radio-checked-indicator:theme(colors.white)]`,
+  yellow: tw`[--radio-checked-bg:theme(colors.yellow.300)] [--radio-checked-border:theme(colors.yellow.400/80%)] [--radio-checked-indicator:theme(colors.yellow.950)]`,
+  zinc: tw`[--radio-checked-bg:theme(colors.zinc.600)] [--radio-checked-border:theme(colors.zinc.700/90%)] [--radio-checked-indicator:theme(colors.white)]`,
+} satisfies Record<
+  Color | AdaptiveShade | StaticShade,
+  string | [string, string]
+>)
 
 /**
  * A radio button component.
