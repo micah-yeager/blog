@@ -82,7 +82,7 @@ type BadgeButtonProps = BadgeBaseProps &
   (Omit<ButtonProps, "as"> | ComponentPropsWithoutRef<typeof Link>)
 
 /**
- * A badge button.
+ * A standalone badge as a button.
  *
  * If the `to` prop is provided, the component will render a {@link Link}
  * component. Otherwise, it will render a {@link Button} component.
