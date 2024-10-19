@@ -17,16 +17,7 @@ test.each([
 ] satisfies (ComponentPropsWithoutRef<typeof Badge> & TestCaseMeta)[])(
   "$testName Badge",
   async ({ testName: _, ...props }) => {
-    const RemixStub = createRemixStub([
-      {
-        path: "/",
-        Component() {
-          return <Badge {...props} />
-        },
-      },
-    ])
-
-    render(<RemixStub />)
+    render(<Badge {...props} />)
 
     if (props.children) {
       await waitFor(() => screen.findByText(props.children))
@@ -44,19 +35,20 @@ test.each([
     children: "content",
     to: "#",
   },
-] satisfies (ComponentPropsWithoutRef<typeof BadgeButton> & {
-  testName: string
-})[])("$testName BadgeButton", async ({ testName: _, ...props }) => {
-  const RemixStub = createRemixStub([
-    {
-      path: "/",
-      Component() {
-        return <BadgeButton {...props} />
+] satisfies (ComponentPropsWithoutRef<typeof BadgeButton> & TestCaseMeta)[])(
+  "$testName BadgeButton",
+  async ({ testName: _, ...props }) => {
+    const RemixStub = createRemixStub([
+      {
+        path: "/",
+        Component() {
+          return <BadgeButton {...props} />
+        },
       },
-    },
-  ])
+    ])
 
-  render(<RemixStub />)
+    render(<RemixStub />)
 
-  await waitFor(() => screen.findByText(props.children))
-})
+    await waitFor(() => screen.findByText(props.children))
+  },
+)
