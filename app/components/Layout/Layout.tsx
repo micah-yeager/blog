@@ -8,7 +8,7 @@ import { Header } from "../Header"
  *
  * @see {@link PropsWithChildren}
  */
-export function Layout({ children }: Required<PropsWithChildren>) {
+export function Layout({ children }: PropsWithChildren) {
   return (
     <>
       <div className="fixed inset-0 flex justify-center sm:px-8">
