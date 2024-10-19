@@ -22,7 +22,7 @@ type DividerProps = ComponentPropsWithoutRef<"hr"> & {
 export function Divider({ soft = false, className, ...props }: DividerProps) {
   return (
     <hr
-      role="presentation"
+      role="none"
       {...props}
       className={clsx(
         className,
