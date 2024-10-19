@@ -1,4 +1,4 @@
-import { cleanup, screen, waitFor } from "@testing-library/react"
+import { cleanup, screen } from "@testing-library/react"
 import { render } from "@testing-library/react"
 import type { FCCase } from "test/types"
 import { afterEach, test } from "vitest"
@@ -33,7 +33,7 @@ test.each([
     render(<Alert {...props} />)
 
     if (props.children) {
-      await waitFor(() => screen.findByText(props.children))
+      screen.getByText(props.children)
     }
   },
 )

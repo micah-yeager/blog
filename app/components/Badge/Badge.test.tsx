@@ -19,7 +19,7 @@ test.each([
     render(<Badge {...props} />)
 
     if (props.children) {
-      await waitFor(() => screen.findByText(props.children))
+      screen.getByText(props.children)
     }
   },
 )

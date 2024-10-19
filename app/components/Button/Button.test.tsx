@@ -6,10 +6,12 @@ import { Button, TouchTarget } from "./Button"
 
 afterEach(cleanup)
 
-test("TouchTarget", async () => {
-  render(<TouchTarget>content</TouchTarget>)
+test("TouchTarget", () => {
+  const content = "content"
 
-  await waitFor(() => screen.findByText("content"))
+  render(<TouchTarget>{content}</TouchTarget>)
+
+  screen.getByText(content)
 })
 
 test.each([
