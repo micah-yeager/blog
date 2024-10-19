@@ -3,6 +3,7 @@ import { afterEach, test } from "vitest"
 
 import { createRemixStub } from "@remix-run/testing"
 import type { ComponentPropsWithoutRef } from "react"
+import type { TestCaseMeta } from "test/types"
 import { Badge, BadgeButton } from "./Badge"
 
 afterEach(cleanup)
@@ -13,7 +14,7 @@ test.each([
     testName: "contentful",
     children: "content",
   },
-] satisfies (ComponentPropsWithoutRef<typeof Badge> & { testName: string })[])(
+] satisfies (ComponentPropsWithoutRef<typeof Badge> & TestCaseMeta)[])(
   "$testName Badge",
   async ({ testName: _, ...props }) => {
     const RemixStub = createRemixStub([
