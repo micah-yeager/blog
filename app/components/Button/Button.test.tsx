@@ -23,18 +23,19 @@ test.each([
   { testName: "color alias", children: "content", color: "primary" },
 ] satisfies FCCase<typeof Button>[])(
   "$testName Button",
-  async ({ testName: _, ...props }) => {
+  async ({ testName, ...props }) => {
     const RemixStub = createRemixStub([
       {
         path: "/",
         Component() {
-          return <Button {...props} />
+          return <Button {...props} data-testid={testName} />
         },
       },
     ])
 
     render(<RemixStub />)
 
+    await waitFor(() => screen.findByTestId(testName))
     await waitFor(() => screen.findByText(props.children))
     if (props.to) {
       await waitFor(() => screen.findByRole("link"))

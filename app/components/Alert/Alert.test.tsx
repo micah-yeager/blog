@@ -29,9 +29,10 @@ test.each([
   },
 ] satisfies FCCase<typeof Alert>[])(
   "$testName Badge",
-  async ({ testName: _, ...props }) => {
-    render(<Alert {...props} />)
+  ({ testName, ...props }) => {
+    render(<Alert {...props} data-testid={testName} />)
 
+    screen.getByTestId(testName)
     if (props.children) {
       screen.getByText(props.children)
     }

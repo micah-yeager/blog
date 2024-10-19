@@ -15,9 +15,10 @@ test.each([
   },
 ] satisfies FCCase<typeof Badge>[])(
   "$testName Badge",
-  async ({ testName: _, ...props }) => {
-    render(<Badge {...props} />)
+  ({ testName, ...props }) => {
+    render(<Badge {...props} data-testid={testName} />)
 
+    screen.getByTestId(testName)
     if (props.children) {
       screen.getByText(props.children)
     }
@@ -36,18 +37,19 @@ test.each([
   },
 ] satisfies FCCase<typeof BadgeButton>[])(
   "$testName BadgeButton",
-  async ({ testName: _, ...props }) => {
+  async ({ testName, ...props }) => {
     const RemixStub = createRemixStub([
       {
         path: "/",
         Component() {
-          return <BadgeButton {...props} />
+          return <BadgeButton {...props} data-testid={testName} />
         },
       },
     ])
 
     render(<RemixStub />)
 
+    await waitFor(() => screen.getByTestId(testName))
     await waitFor(() => screen.findByText(props.children))
     if (props.to) {
       await waitFor(() => screen.findByRole("link"))
