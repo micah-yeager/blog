@@ -1,9 +1,7 @@
 import { cleanup, screen, waitFor } from "@testing-library/react"
 import { render } from "@testing-library/react"
+import type { FCCase } from "test/types"
 import { afterEach, test } from "vitest"
-
-import type { ComponentPropsWithoutRef } from "react"
-import type { TestCaseMeta } from "test/types"
 import { Alert } from "./Alert"
 
 afterEach(cleanup)
@@ -29,7 +27,7 @@ test.each([
     title: "title",
     children: "content",
   },
-] satisfies (ComponentPropsWithoutRef<typeof Alert> & TestCaseMeta)[])(
+] satisfies FCCase<typeof Alert>[])(
   "$testName Badge",
   async ({ testName: _, ...props }) => {
     render(<Alert {...props} />)

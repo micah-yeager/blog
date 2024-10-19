@@ -2,8 +2,7 @@ import { cleanup, render, screen, waitFor } from "@testing-library/react"
 import { afterEach, test } from "vitest"
 
 import { createRemixStub } from "@remix-run/testing"
-import type { ComponentPropsWithoutRef } from "react"
-import type { TestCaseMeta } from "test/types"
+import type { FCCase } from "test/types"
 import { Badge, BadgeButton } from "./Badge"
 
 afterEach(cleanup)
@@ -14,7 +13,7 @@ test.each([
     testName: "contentful",
     children: "content",
   },
-] satisfies (ComponentPropsWithoutRef<typeof Badge> & TestCaseMeta)[])(
+] satisfies FCCase<typeof Badge>[])(
   "$testName Badge",
   async ({ testName: _, ...props }) => {
     render(<Badge {...props} />)
@@ -35,7 +34,7 @@ test.each([
     children: "content",
     to: "#",
   },
-] satisfies (ComponentPropsWithoutRef<typeof BadgeButton> & TestCaseMeta)[])(
+] satisfies FCCase<typeof BadgeButton>[])(
   "$testName BadgeButton",
   async ({ testName: _, ...props }) => {
     const RemixStub = createRemixStub([
