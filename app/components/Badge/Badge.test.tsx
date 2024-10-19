@@ -49,5 +49,8 @@ test.each([
     render(<RemixStub />)
 
     await waitFor(() => screen.findByText(props.children))
+    if (props.to) {
+      await waitFor(() => screen.findByRole("link"))
+    }
   },
 )
