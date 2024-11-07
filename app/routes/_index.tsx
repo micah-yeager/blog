@@ -3,8 +3,9 @@ import { Link, useLoaderData } from "@remix-run/react"
 import { json } from "@vercel/remix"
 import type { ComponentPropsWithoutRef } from "react"
 
+import { ArrowDownIcon, BriefcaseIcon } from "@heroicons/react/24/outline"
 import { getAllPosts } from "@services/posts.server"
-import { CV } from "@ui/CV"
+import { Button } from "@ui/Button"
 import { ContactMe } from "@ui/ContactMe"
 import { Container } from "@ui/Container"
 import type { IconProp } from "@ui/Icon"
@@ -12,7 +13,7 @@ import { Icon } from "@ui/Icon"
 import { PostOverview } from "@ui/PostOverview"
 import clsx from "clsx"
 import type { SetRequired } from "type-fest"
-import { GITHUB_URL, LINKEDIN_URL } from "~/constants"
+import { FULL_NAME, GITHUB_URL, LINKEDIN_URL } from "~/constants"
 
 export async function loader() {
   const postMetas = await getAllPosts()
@@ -197,6 +198,128 @@ function Photos() {
           </PhotoFrame>
         ))}
       </div>
+    </div>
+  )
+}
+
+/** Information about a role at a company. */
+interface Role {
+  /** The name of the company. */
+  company: string
+  /** The job title held while at the company. */
+  title: string
+  /** The URL of the company's logo. */
+  logo: ComponentPropsWithoutRef<"img">["src"]
+  /** The start date of the role. */
+  start: string | { label: string; dateTime: string }
+  /** The end date of the role. */
+  end: string | { label: string; dateTime: string }
+}
+
+/**
+ * A role at a company.
+ *
+ * @param role - The role information.
+ */
+export function Role({ role }: { role: Role }) {
+  const startLabel =
+    typeof role.start === "string" ? role.start : role.start.label
+  const startDate =
+    typeof role.start === "string" ? role.start : role.start.dateTime
+
+  const endLabel = typeof role.end === "string" ? role.end : role.end.label
+  const endDate = typeof role.end === "string" ? role.end : role.end.dateTime
+
+  return (
+    <li className="flex gap-4">
+      <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+        <img src={role.logo} alt="" className="h-7 w-7 rounded-full" />
+      </div>
+      <dl className="flex flex-auto flex-wrap gap-x-2">
+        <dt className="sr-only">Company</dt>
+        <dd className="w-full flex-none text-sm font-medium text-zinc-900 dark:text-zinc-100">
+          {role.company}
+        </dd>
+        <dt className="sr-only">Role</dt>
+        <dd className="text-xs text-zinc-500 dark:text-zinc-400">
+          {role.title}
+        </dd>
+        <dt className="sr-only">Date</dt>
+        <dd
+          className="ml-auto text-xs text-zinc-400 dark:text-zinc-500"
+          aria-label={`${startLabel} until ${endLabel}`}
+        >
+          <time dateTime={startDate}>{startLabel}</time>{" "}
+          <span aria-hidden="true">—</span>{" "}
+          <time dateTime={endDate}>{endLabel}</time>
+        </dd>
+      </dl>
+    </li>
+  )
+}
+
+/** A list of {@link Role}s to display as the CV. */
+function CV() {
+  // Define within route, so end.dateTime gets updated independently of server
+  // execution and subsequent storage of end.dateTime.
+  const cv: Role[] = [
+    {
+      company: "Innovative, Inc.",
+      title: "DevOps Engineer & Solutions Architect",
+      logo: "/images/logos/innovative-inc.svg",
+      start: "2017",
+      end: {
+        label: "Present",
+        dateTime: new Date().getFullYear().toString(),
+      },
+    },
+    {
+      company: "Hummert IT",
+      title: "Owner",
+      logo: "/images/logos/circuit.svg",
+      start: "2016",
+      end: "2017",
+    },
+    {
+      company: "Life Pacific University - Virginia",
+      title: "IT & Media Management",
+      logo: "/images/logos/life-pacific-university.svg",
+      start: "2014",
+      end: "2017",
+    },
+  ]
+
+  return (
+    <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
+      {/* header */}
+      <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+        <Icon
+          as={BriefcaseIcon}
+          className="h-6 w-6 flex-none"
+          aria-hidden="true"
+        />
+        <span className="ml-3">Work</span>
+      </h2>
+
+      {/* roles list */}
+      <ol className="mt-6 space-y-4">
+        {cv.map((role) => (
+          <Role key={`${role.company}|${role.title}`} role={role} />
+        ))}
+      </ol>
+
+      {/* CV download */}
+      <Button
+        to="/documents/cv.pdf"
+        color="orange"
+        className="group mt-6 block w-full"
+        download={`CV - ${FULL_NAME}, DevOps Engineer & Solutions Architect.pdf`}
+        // reload required to force download
+        reloadDocument
+      >
+        Download CV
+        <Icon as={ArrowDownIcon} className="-ml-1 size-4" />
+      </Button>
     </div>
   )
 }
