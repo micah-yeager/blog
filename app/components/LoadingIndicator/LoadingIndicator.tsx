@@ -3,7 +3,7 @@
 import { faSpinner } from "@fortawesome/free-solid-svg-icons"
 import { EllipsisHorizontalIcon } from "@heroicons/react/20/solid"
 import clsx from "clsx"
-import type { ComponentPropsWithoutRef } from "react"
+import type { ComponentPropsWithoutRef, ElementType } from "react"
 
 import type { IconProp } from "../Icon"
 import { Icon } from "../Icon"
@@ -32,10 +32,17 @@ const variants = {
  *
  * @see {@link Icon}
  */
-type LoadingIndicatorProps = Omit<
-  ComponentPropsWithoutRef<typeof Icon>,
+type LoadingIndicatorProps<T extends ElementType> = Omit<
+  ComponentPropsWithoutRef<"div">,
   "as"
 > & {
+  /**
+   * The element type or component to render as.
+   *
+   * @default "div"
+   * @see {@link ElementType}
+   */
+  as?: T
   /** The style variant to use. */
   variant?: keyof typeof variants
 }
@@ -46,53 +53,50 @@ type LoadingIndicatorProps = Omit<
  * If no variant is specified, the component will use the best option based on
  * the user's motion preference.
  *
+ * @param as - The element type or component to render as.
  * @param variant - The style variant to use.
  * @see {@link LoadingIndicatorProps}
  */
-export function LoadingIndicator({
+export function LoadingIndicator<T extends ElementType>({
+  as,
   variant,
-  className,
   ...rest
-}: LoadingIndicatorProps) {
+}: LoadingIndicatorProps<T>) {
+  const Component = as ?? "div"
   const screenReader = <span className="sr-only">Loading</span>
 
   // If a variant is specified, use it.
   if (variant) {
     return (
-      <>
+      <Component {...rest}>
         {screenReader}
         <Icon
-          {...rest}
           as={variants[variant].icon}
-          className={clsx(variants[variant].className, className)}
+          className={variants[variant].className}
+          aria-hidden="true"
         />
-      </>
+      </Component>
     )
   }
 
   // Otherwise, use both variants depending on the user's motion preference.
   return (
-    <>
+    <Component {...rest}>
       {screenReader}
       {/* spinner for most people */}
       <Icon
-        {...rest}
         as={variants.spinner.icon}
-        className={clsx(
-          "hidden motion-safe:block",
-          variants.spinner.className,
-          className,
-        )}
+        className={clsx("hidden motion-safe:block", variants.spinner.className)}
+        aria-hidden="true"
       />
       <Icon
-        {...rest}
         as={variants.subtle.icon}
         className={clsx(
           "hidden motion-reduce:block",
           variants.spinner.className,
-          className,
         )}
+        aria-hidden="true"
       />
-    </>
+    </Component>
   )
 }
