@@ -47,6 +47,8 @@ export type IconProps = Omit<ComponentPropsWithoutRef<"svg">, "as" | "mask"> & {
  * @see {@link IconProps}
  */
 export function Icon({ as, ...rest }: IconProps) {
+  rest.role ??= "img"
+
   // FontAwesome-specific rendering
   if ("icon" in as) {
     return <FontAwesomeIcon {...rest} icon={as} />
