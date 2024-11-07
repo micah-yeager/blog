@@ -6,17 +6,24 @@ import { Link } from "./Link"
 afterEach(cleanup)
 
 test("Link", async () => {
+  const testId = "Link"
+  const content = "content"
   const RemixStub = createRemixStub([
     {
       path: "/",
       Component() {
-        return <Link to="/" data-testid="Link" />
+        return (
+          <Link to="/" data-testid={testId}>
+            {content}
+          </Link>
+        )
       },
     },
   ])
 
   render(<RemixStub />)
 
-  await waitFor(() => screen.getByTestId("Link"))
+  await waitFor(() => screen.getByTestId(testId))
   await waitFor(() => screen.findByRole("link"))
+  await waitFor(() => screen.findByText(content))
 })
