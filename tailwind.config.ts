@@ -3,8 +3,22 @@ import typographyPlugin from "@tailwindcss/typography"
 import type { Config } from "tailwindcss"
 import colors from "tailwindcss/colors"
 import defaultTheme from "tailwindcss/defaultTheme"
-
+import type { ValueOf } from "type-fest"
+import type { Color } from "./lib/tailwindcss"
 import typographyStyles from "./typography"
+
+/**
+ * A map of color aliases to their corresponding Tailwind CSS color names.
+ *
+ * @see {@link colors}
+ */
+export const colorAliasMap = new Map([
+  ["error", "red"],
+  ["info", "blue"],
+  ["primary", "orange"],
+  ["success", "green"],
+  ["warning", "yellow"],
+] as const satisfies [string, Color][])
 
 export default {
   content: ["./app/**/*.{js,jsx,ts,tsx,mdx}"],
@@ -29,9 +43,12 @@ export default {
     },
     typography: typographyStyles,
     extend: {
-      colors: {
-        primary: colors.orange,
-      },
+      colors: Array.from(colorAliasMap).reduce<
+        Record<string, ValueOf<typeof colors>>
+      >((acc, [alias, color]) => {
+        acc[alias] = colors[color]
+        return acc
+      }, {}),
       fontFamily: {
         sans: ["Inter var", ...defaultTheme.fontFamily.sans],
         dyslexic: ["OpenDyslexic"],
