@@ -1,3 +1,4 @@
+import { colorAliasMap } from "tailwind.config"
 import type { DefaultColors } from "tailwindcss/types/generated/colors"
 import type { IterableElement, ValueOf } from "type-fest"
 
@@ -46,19 +47,6 @@ export type Color = Exclude<
   keyof DefaultColors,
   UtilityColor | SimpleColor | UnusedColor | DeprecatedColor
 >
-
-/**
- * A map of color aliases to their corresponding Tailwind CSS color names.
- *
- * @see {@link colors}
- */
-export const colorAliasMap = new Map([
-  ["error", "red"],
-  ["info", "blue"],
-  ["primary", "orange"],
-  ["success", "green"],
-  ["warning", "yellow"],
-] as const satisfies [string, Color][])
 
 /**
  * Color alias name.

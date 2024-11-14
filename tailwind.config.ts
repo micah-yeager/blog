@@ -1,11 +1,24 @@
 import formsPlugin from "@tailwindcss/forms"
 import typographyPlugin from "@tailwindcss/typography"
-import { colorAliasMap } from "lib/tailwindcss"
 import type { Config } from "tailwindcss"
 import colors from "tailwindcss/colors"
 import defaultTheme from "tailwindcss/defaultTheme"
 import type { ValueOf } from "type-fest"
+import type { Color } from "./lib/tailwindcss"
 import typographyStyles from "./typography"
+
+/**
+ * A map of color aliases to their corresponding Tailwind CSS color names.
+ *
+ * @see {@link colors}
+ */
+export const colorAliasMap = new Map([
+  ["error", "red"],
+  ["info", "blue"],
+  ["primary", "orange"],
+  ["success", "green"],
+  ["warning", "yellow"],
+] as const satisfies [string, Color][])
 
 export default {
   content: ["./app/**/*.{js,jsx,ts,tsx,mdx}"],
