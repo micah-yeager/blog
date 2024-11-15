@@ -3270,9 +3270,9 @@ packages:
     resolution: {integrity: sha512-fJ7cW7fQGCYAkgv4CPfwFHrfd/cLS4Hau96JuJ+ZTOWhjnhoeN1ub1tFmALm/+lW5z4WCAuAV9bm05AP0mS6Gw==}
     engines: {node: '>=12.0.0'}
 
-  hono@4.4.12:
-    resolution: {integrity: sha512-Lx4Vwbws0IqFfXIVYychxUW0A4EE+7dn/jsjVeM34OXSA2Xs45MkDDP14Mzznp7LlDemUNHQG2uv2N5jQld0hA==}
-    engines: {node: '>=16.0.0'}
+  hono@4.6.5:
+    resolution: {integrity: sha512-qsmN3V5fgtwdKARGLgwwHvcdLKursMd+YOt69eGpl1dUCJb8mCd7hZfyZnBYjxCegBG7qkJRQRUy2oO25yHcyQ==}
+    engines: {node: '>=16.9.0'}
 
   hosted-git-info@6.1.1:
     resolution: {integrity: sha512-r0EI+HBMcXadMrugk0GCQ+6BQV39PiWAZVfq7oIckeGiN7sjRGyQxPdft3nQekFTCQbYxLBH+/axZMeH8UX6+w==}
@@ -6433,9 +6433,9 @@ snapshots:
 
   '@hono/node-server@1.12.0': {}
 
-  '@hono/zod-validator@0.2.2(hono@4.4.12)(zod@3.23.8)':
+  '@hono/zod-validator@0.2.2(hono@4.6.5)(zod@3.23.8)':
     dependencies:
-      hono: 4.4.12
+      hono: 4.6.5
       zod: 3.23.8
 
   '@humanwhocodes/config-array@0.11.14':
@@ -8207,7 +8207,7 @@ snapshots:
     dependencies:
       '@esbuild-kit/esm-loader': 2.6.5
       '@hono/node-server': 1.12.0
-      '@hono/zod-validator': 0.2.2(hono@4.4.12)(zod@3.23.8)
+      '@hono/zod-validator': 0.2.2(hono@4.6.5)(zod@3.23.8)
       camelcase: 7.0.1
       chalk: 5.3.0
       commander: 9.5.0
@@ -8216,7 +8216,7 @@ snapshots:
       esbuild-register: 3.5.0(esbuild@0.19.12)
       glob: 8.1.0
       hanji: 0.0.5
-      hono: 4.4.12
+      hono: 4.6.5
       json-diff: 0.9.0
       minimatch: 7.4.6
       semver: 7.6.2
@@ -9319,7 +9319,7 @@ snapshots:
 
   highlight.js@11.9.0: {}
 
-  hono@4.4.12: {}
+  hono@4.6.5: {}
 
   hosted-git-info@6.1.1:
     dependencies:
