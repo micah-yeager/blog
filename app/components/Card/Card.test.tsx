@@ -9,16 +9,19 @@ afterEach(cleanup)
 test.each([
   { testName: "default", children: "content" },
   { testName: "section", children: "content", as: "main" },
-] as FCCase<typeof Card>[])("$testName Card", ({ testName, ...props }) => {
-  render(<Card {...props} data-testid={testName} />)
+] as const satisfies FCCase<typeof Card>[])(
+  "$testName Card",
+  ({ testName, ...props }) => {
+    render(<Card {...props} data-testid={testName} />)
 
-  screen.getByTestId(testName)
-  screen.getByText(props.children)
-  if (props.as) {
-    // Not perfect to equate `as` to `role`, but it's good enough for this test.
-    screen.getByRole(props.as)
-  }
-})
+    screen.getByTestId(testName)
+    screen.getByText(props.children)
+    if (props.as) {
+      // Not perfect to equate `as` to `role`, but it's good enough for this test.
+      screen.getByRole(props.as)
+    }
+  },
+)
 
 test.each([
   { testName: "empty", to: "#" },

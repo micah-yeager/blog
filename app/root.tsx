@@ -65,7 +65,7 @@ export async function loader() {
   return json({
     ENV: {
       TURNSTILE_SITE_KEY,
-    } as Env,
+    } satisfies Env,
   })
 }
 
