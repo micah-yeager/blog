@@ -58,6 +58,7 @@ export default function Index() {
               I’m Micah, a full-stack developer currently based in Maryland,
               United States. I enjoy tackling problems holistically, and I’m
               passionate about building software that is beautiful, functional,
+              and accessible to all.
             </p>
             <p>
               And oh my <i>god</i> do I love cats.
