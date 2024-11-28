@@ -1,7 +1,7 @@
 // noinspection JSCommentMatchesSignature
 
 import { faSpinner } from "@fortawesome/free-solid-svg-icons"
-import { EllipsisHorizontalIcon } from "@heroicons/react/20/solid"
+import EllipsisHorizontalIcon from "@heroicons/react/20/solid/EllipsisHorizontalIcon"
 import clsx from "clsx"
 import type { ComponentPropsWithoutRef, ElementType } from "react"
 

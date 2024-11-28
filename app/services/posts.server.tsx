@@ -1,4 +1,4 @@
-import { LinkIcon } from "@heroicons/react/24/outline"
+import LinkIcon from "@heroicons/react/24/outline/LinkIcon"
 import fastGlob from "fast-glob"
 import { fromHtml as hastFromHtml } from "hast-util-from-html"
 import { toString as hastToString } from "hast-util-to-string"

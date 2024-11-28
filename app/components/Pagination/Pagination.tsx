@@ -3,10 +3,8 @@
 import clsx from "clsx"
 import type { ComponentPropsWithoutRef, PropsWithChildren } from "react"
 
-import {
-  ArrowLongLeftIcon,
-  ArrowLongRightIcon,
-} from "@heroicons/react/16/solid"
+import ArrowLongLeftIcon from "@heroicons/react/16/solid/ArrowLongLeftIcon"
+import ArrowLongRightIcon from "@heroicons/react/16/solid/ArrowLongRightIcon"
 import { Button } from "../Button"
 import { Icon } from "../Icon"
 

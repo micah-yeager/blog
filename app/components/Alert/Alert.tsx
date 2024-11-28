@@ -1,11 +1,9 @@
 // noinspection JSCommentMatchesSignature
 
-import {
-  CheckCircleIcon,
-  ExclamationTriangleIcon,
-  InformationCircleIcon,
-  XCircleIcon,
-} from "@heroicons/react/20/solid"
+import CheckCircleIcon from "@heroicons/react/20/solid/CheckCircleIcon"
+import ExclamationTriangleIcon from "@heroicons/react/20/solid/ExclamationTriangleIcon"
+import InformationCircleIcon from "@heroicons/react/20/solid/InformationCircleIcon"
+import XCircleIcon from "@heroicons/react/20/solid/XCircleIcon"
 import clsx from "clsx"
 import type { ComponentPropsWithoutRef } from "react"
 

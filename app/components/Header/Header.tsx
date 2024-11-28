@@ -8,12 +8,10 @@ import {
   Transition,
   TransitionChild,
 } from "@headlessui/react"
-import {
-  ChevronDownIcon,
-  MoonIcon,
-  SunIcon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline"
+import ChevronDownIcon from "@heroicons/react/24/outline/ChevronDownIcon"
+import MoonIcon from "@heroicons/react/24/outline/MoonIcon"
+import SunIcon from "@heroicons/react/24/outline/SunIcon"
+import XMarkIcon from "@heroicons/react/24/outline/XMarkIcon"
 import type { LinkProps } from "@remix-run/react"
 import { Link, NavLink, useLocation } from "@remix-run/react"
 import clsx from "clsx"

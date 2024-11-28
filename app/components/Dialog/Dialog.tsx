@@ -7,7 +7,7 @@ import {
   Transition,
   TransitionChild,
 } from "@headlessui/react"
-import { XMarkIcon } from "@heroicons/react/24/outline"
+import XMarkIcon from "@heroicons/react/24/outline/XMarkIcon"
 import clsx from "clsx"
 import type { ComponentPropsWithoutRef } from "react"
 import { Fragment, useRef } from "react"

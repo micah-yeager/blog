@@ -1,7 +1,5 @@
-import {
-  ChatBubbleLeftEllipsisIcon,
-  EnvelopeIcon as EnvelopeSolidIcon,
-} from "@heroicons/react/24/solid"
+import ChatBubbleLeftEllipsisIcon from "@heroicons/react/24/solid/ChatBubbleLeftEllipsisIcon"
+import EnvelopeSolidIcon from "@heroicons/react/24/solid/EnvelopeIcon"
 import { useFetcher } from "@remix-run/react"
 import type { ComponentPropsWithoutRef } from "react"
 import { useState } from "react"

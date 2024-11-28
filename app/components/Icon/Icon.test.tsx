@@ -1,5 +1,5 @@
 import { faCheck } from "@fortawesome/free-solid-svg-icons"
-import { CheckIcon } from "@heroicons/react/24/solid"
+import CheckIcon from "@heroicons/react/24/solid/CheckIcon"
 import { cleanup, render, screen } from "@testing-library/react"
 import { afterEach, expect, test } from "vitest"
 import type { FCCase } from "../../../test/types"

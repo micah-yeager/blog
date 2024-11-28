@@ -1,6 +1,6 @@
 // noinspection JSCommentMatchesSignature
 
-import { ChevronRightIcon } from "@heroicons/react/24/outline"
+import ChevronRightIcon from "@heroicons/react/24/outline/ChevronRightIcon"
 import type { LinkProps } from "@remix-run/react"
 import clsx from "clsx"
 import type { ComponentPropsWithoutRef, ElementType } from "react"

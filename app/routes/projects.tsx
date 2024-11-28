@@ -1,6 +1,6 @@
 import { faOldRepublic } from "@fortawesome/free-brands-svg-icons"
 import { faCropSimple } from "@fortawesome/free-solid-svg-icons"
-import { LinkIcon } from "@heroicons/react/24/outline"
+import LinkIcon from "@heroicons/react/24/outline/LinkIcon"
 import clsx from "clsx"
 
 import { Card } from "@ui/Card"
