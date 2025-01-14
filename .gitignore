@@ -1,12 +1,13 @@
-node_modules/
-coverage/
-
+/node_modules/
 /.cache
+/.env
+
+### Vercel
+/.vercel/
+
 ### React Router
 /.react-router/
 /build/
-.env
-.vercel/
 
 ### Vitest
 coverage/
