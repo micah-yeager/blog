@@ -270,10 +270,7 @@ function CV() {
       title: "DevOps Engineer & Solutions Architect",
       logo: "/images/logos/innovative-inc.svg",
       start: "2017",
-      end: {
-        label: "Present",
-        dateTime: new Date().getFullYear().toString(),
-      },
+      end: "2025",
     },
     {
       company: "Hummert IT",
