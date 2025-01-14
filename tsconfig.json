@@ -2,6 +2,10 @@
   "include": ["env.d.ts", "**/*.ts", "**/*.tsx"],
   "compilerOptions": {
     "lib": ["DOM", "DOM.Iterable", "ES2022"],
+    "types": [
+      "@remix-run/node",
+      "vite/client"
+    ],
     "skipLibCheck": true,
     "checkJs": true,
     "isolatedModules": true,

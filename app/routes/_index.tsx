@@ -1,6 +1,6 @@
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons"
 import { Link, useLoaderData } from "@remix-run/react"
-import { json } from "@vercel/remix"
+import { data } from "@vercel/remix"
 import type { ComponentPropsWithoutRef } from "react"
 
 import ArrowDownIcon from "@heroicons/react/24/outline/ArrowDownIcon"
@@ -19,7 +19,7 @@ import { FULL_NAME, GITHUB_URL, LINKEDIN_URL } from "~/constants"
 export async function loader() {
   const postMetas = await getAllPosts()
   // Return the most recent 4 posts.
-  return json({ recentPosts: postMetas.slice(0, 4) }, { status: 200 })
+  return data({ recentPosts: postMetas.slice(0, 4) })
 }
 
 /**

@@ -12,7 +12,7 @@ import type {
   LinksFunction,
   MetaFunction,
 } from "@vercel/remix"
-import { json } from "@vercel/remix"
+import { data } from "@vercel/remix"
 import { SpeedInsights } from "@vercel/speed-insights/remix"
 import type { PropsWithChildren } from "react"
 
@@ -62,7 +62,7 @@ export const meta: MetaFunction = () => {
 }
 
 export async function loader() {
-  return json({
+  return data({
     ENV: {
       TURNSTILE_SITE_KEY,
     } satisfies Env,

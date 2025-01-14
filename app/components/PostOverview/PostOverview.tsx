@@ -1,5 +1,4 @@
 import { DateTime } from "luxon"
-import type { Jsonify } from "type-fest"
 
 import type { PostMeta } from "@services/posts.server"
 
@@ -12,7 +11,7 @@ type PostOverviewProps = {
    *
    * @see {@link PostMeta}
    */
-  meta: Jsonify<PostMeta>
+  meta: PostMeta
 }
 
 /**
@@ -23,8 +22,8 @@ type PostOverviewProps = {
  */
 export function PostOverview({ meta }: PostOverviewProps) {
   const date = meta.updated
-    ? DateTime.fromISO(meta.updated)
-    : DateTime.fromISO(meta.created)
+    ? DateTime.fromJSDate(meta.updated)
+    : DateTime.fromJSDate(meta.created)
 
   return (
     <Card as="article">

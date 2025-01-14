@@ -1,6 +1,6 @@
 import { useLoaderData } from "@remix-run/react"
 import type { LoaderFunctionArgs } from "@vercel/remix"
-import { json } from "@vercel/remix"
+import { data } from "@vercel/remix"
 import { getMDXComponent } from "mdx-bundler/client/index.js"
 import { useMemo } from "react"
 
@@ -99,7 +99,7 @@ export async function loader({ params }: LoaderFunctionArgs) {
     })
   }
 
-  return json({ post }, { status: 200 })
+  return data({ post })
 }
 
 export default function Route() {
@@ -109,8 +109,10 @@ export default function Route() {
     return getMDXComponent(post.code)
   }, [post.code])
 
-  const created = DateTime.fromISO(post.meta.created)
-  const updated = post.meta.updated ? DateTime.fromISO(post.meta.updated) : null
+  const created = DateTime.fromJSDate(post.meta.created)
+  const updated = post.meta.updated
+    ? DateTime.fromJSDate(post.meta.updated)
+    : null
 
   return (
     <Container className="mt-16 lg:mt-32">
@@ -146,7 +148,7 @@ export default function Route() {
 
               {/* meta */}
               <time
-                dateTime={post.meta.created}
+                dateTime={post.meta.created.toISOString()}
                 className="order-first flex items-center text-base text-zinc-400 dark:text-zinc-500"
               >
                 <span className="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500" />
@@ -158,7 +160,7 @@ export default function Route() {
                 <>
                   <span className="mx-3">•</span>
                   <time
-                    dateTime={post.meta.updated}
+                    dateTime={post.meta.updated?.toISOString()}
                     className="order-last flex items-center text-base text-zinc-400 dark:text-zinc-500"
                   >
                     <span className="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500" />

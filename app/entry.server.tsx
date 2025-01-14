@@ -6,7 +6,7 @@ import { RemixServer } from "@remix-run/react"
 import { renderToPipeableStream } from "react-dom/server"
 import { preloadRouteAssets } from "remix-utils/preload-route-assets"
 
-const ABORT_DELAY = 5_000
+export const streamTimeout = 5_000 // 5 seconds
 
 export default function handleRequest(
   request: Request,
@@ -18,11 +18,7 @@ export default function handleRequest(
   return new Promise((resolve, reject) => {
     let shellRendered = false
     const { pipe, abort } = renderToPipeableStream(
-      <RemixServer
-        context={remixContext}
-        url={request.url}
-        abortDelay={ABORT_DELAY}
-      />,
+      <RemixServer context={remixContext} url={request.url} />,
       {
         onShellReady() {
           shellRendered = true
@@ -57,6 +53,8 @@ export default function handleRequest(
       },
     )
 
-    setTimeout(abort, ABORT_DELAY)
+    // Automatically timeout the React renderer, giving React one second to
+    // flush down the rejected boundary contents
+    setTimeout(abort, streamTimeout + 1_000)
   })
 }

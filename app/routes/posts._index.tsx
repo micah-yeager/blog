@@ -1,5 +1,5 @@
 import { useLoaderData } from "@remix-run/react"
-import { json } from "@vercel/remix"
+import { data } from "@vercel/remix"
 
 import { getAllPosts } from "@services/posts.server"
 import { PostOverview } from "@ui/PostOverview"
@@ -10,7 +10,7 @@ export const meta = mergeMeta(() => [{ title: "Posts" }])
 
 export async function loader() {
   const postMetas = await getAllPosts()
-  return json({ postMetas }, { status: 200 })
+  return data({ postMetas })
 }
 
 export default function Route() {
