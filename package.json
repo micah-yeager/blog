@@ -25,12 +25,12 @@
     "@heroicons/react": "^2.2.0",
     "@marsidev/react-turnstile": "^0.4.1",
     "@popperjs/core": "^2.11.8",
-    "@remix-run/node": "^2.15.0",
-    "@remix-run/react": "^2.15.0",
-    "@remix-run/server-runtime": "^2.15.0",
+    "@remix-run/node": "^2.15.2",
+    "@remix-run/react": "^2.15.2",
+    "@remix-run/server-runtime": "^2.15.2",
     "@vercel/analytics": "^1.4.1",
     "@vercel/kv": "^1.0.1",
-    "@vercel/remix": "^2.15.0",
+    "@vercel/remix": "^2.15.2",
     "@vercel/speed-insights": "^1.1.0",
     "clsx": "^2.1.1",
     "esbuild": "^0.19.12",
@@ -61,9 +61,9 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@remix-run/dev": "^2.15.0",
-    "@remix-run/serve": "^2.15.0",
-    "@remix-run/testing": "^2.15.0",
+    "@remix-run/dev": "^2.15.2",
+    "@remix-run/serve": "^2.15.2",
+    "@remix-run/testing": "^2.15.2",
     "@tailwindcss/forms": "^0.5.9",
     "@tailwindcss/typography": "^0.5.15",
     "@testing-library/dom": "^10.4.0",
@@ -85,6 +85,6 @@
     "vitest": "^2.1.6"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20.0.0"
   }
 }
