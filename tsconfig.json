@@ -1,10 +1,18 @@
 {
-  "include": ["env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
   "compilerOptions": {
-    "lib": ["DOM", "DOM.Iterable", "ES2022"],
     "types": [
       "@remix-run/node",
       "vite/client"
+    ],
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ES2022"
     ],
     "skipLibCheck": true,
     "checkJs": true,
@@ -20,11 +28,21 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
     "paths": {
-      "@ui/*": ["./app/components/*"],
-      "@content/*": ["./content/*"],
-      "@utils/*": ["./app/utils/*"],
-      "@services/*": ["./app/services/*"],
-      "~/*": ["./app/*"]
+      "@ui/*": [
+        "./app/components/*"
+      ],
+      "@content/*": [
+        "./content/*"
+      ],
+      "@utils/*": [
+        "./app/utils/*"
+      ],
+      "@services/*": [
+        "./app/services/*"
+      ],
+      "~/*": [
+        "./app/*"
+      ]
     },
     "noEmit": true
   }
