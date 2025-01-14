@@ -267,7 +267,7 @@ function CV() {
   const cv: Role[] = [
     {
       company: "Innovative, Inc.",
-      title: "DevOps Engineer & Solutions Architect",
+      title: "Full-Stack Developer & DevOps Engineer",
       logo: "/images/logos/innovative-inc.svg",
       start: "2017",
       end: "2025",
@@ -281,7 +281,7 @@ function CV() {
     },
     {
       company: "Life Pacific University - Virginia",
-      title: "IT & Media Management",
+      title: "Web Developer",
       logo: "/images/logos/life-pacific-university.svg",
       start: "2014",
       end: "2017",
