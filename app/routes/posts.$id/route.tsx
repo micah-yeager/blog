@@ -1,8 +1,6 @@
-import { useLoaderData } from "react-router";
-import type { LoaderFunctionArgs } from "@vercel/remix"
-import { data } from "@vercel/remix"
 import { getMDXComponent } from "mdx-bundler/client/index.js"
 import { useMemo } from "react"
+import { type LoaderFunctionArgs, data, useLoaderData } from "react-router"
 
 import type { Post } from "@services/posts.server"
 import { getPost } from "@services/posts.server"

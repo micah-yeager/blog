@@ -1,4 +1,4 @@
-import type { LoaderFunction, MetaFunction } from "@vercel/remix"
+import type { LoaderFunction, MetaFunction } from "react-router"
 
 /**
  * Merges the meta from the leaf route with the meta from the parents. Assumes

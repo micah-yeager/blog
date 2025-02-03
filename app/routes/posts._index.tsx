@@ -1,5 +1,4 @@
-import { useLoaderData } from "react-router";
-import { data } from "@vercel/remix"
+import { data, useLoaderData } from "react-router"
 
 import { getAllPosts } from "@services/posts.server"
 import { PostOverview } from "@ui/PostOverview"

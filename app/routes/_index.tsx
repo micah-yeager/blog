@@ -1,7 +1,6 @@
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons"
-import { Link, useLoaderData } from "react-router";
-import { data } from "@vercel/remix"
 import type { ComponentPropsWithoutRef } from "react"
+import { Link, data, useLoaderData } from "react-router"
 
 import ArrowDownIcon from "@heroicons/react/24/outline/ArrowDownIcon"
 import BriefcaseIcon from "@heroicons/react/24/outline/BriefcaseIcon"

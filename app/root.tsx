@@ -1,13 +1,18 @@
-import { Links, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData } from "react-router";
 import { Analytics } from "@vercel/analytics/react"
-import type {
-  HeadersFunction,
-  LinksFunction,
-  MetaFunction,
-} from "@vercel/remix"
-import { data } from "@vercel/remix"
 import { SpeedInsights } from "@vercel/speed-insights/remix"
 import type { PropsWithChildren } from "react"
+import {
+  type HeadersFunction,
+  Links,
+  type LinksFunction,
+  Meta,
+  type MetaFunction,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
+  data,
+  useLoaderData,
+} from "react-router"
 
 import { TURNSTILE_SITE_KEY } from "@services/captcha.server"
 import { AppError } from "@ui/AppError"
