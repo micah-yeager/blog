@@ -1,5 +1,6 @@
 {
   "include": [
+    ".react-router/types/**/*",
     "env.d.ts",
     "**/*.ts",
     "**/*.tsx"
@@ -27,6 +28,10 @@
     "allowJs": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
+    "rootDirs": [
+      ".",
+      "./.react-router/types"
+    ],
     "paths": {
       "@ui/*": [
         "./app/components/*"
