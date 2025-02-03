@@ -1,8 +1,7 @@
 import type { ActionFunctionArgs } from "@vercel/remix"
 import { json } from "@vercel/remix"
 
-import type { VerifyTurnstileErrorResponse } from "@services/captcha.server"
-import { verifyTurnstile } from "@services/captcha.server"
+import { TurnstileError, verifyTurnstile } from "@services/captcha.server"
 import {
   EMAIL_FROM,
   EMAIL_TO,
@@ -30,8 +29,8 @@ export async function action({ request }: ActionFunctionArgs) {
   } catch (error) {
     // If this is a response object, return it as the appropriately-typed
     // response.
-    if (error instanceof Response) {
-      return error as VerifyTurnstileErrorResponse
+    if (error instanceof TurnstileError) {
+      return data<ActionResponse>({ formError: error.message }, { status: 400 })
     }
     throw error
   }
