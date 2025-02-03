@@ -1,5 +1,5 @@
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons"
-import { Link, useLoaderData } from "@remix-run/react"
+import { Link, useLoaderData } from "react-router";
 import { data } from "@vercel/remix"
 import type { ComponentPropsWithoutRef } from "react"
 

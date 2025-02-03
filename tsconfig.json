@@ -6,7 +6,7 @@
   ],
   "compilerOptions": {
     "types": [
-      "@remix-run/node",
+      "@react-router/node",
       "vite/client"
     ],
     "lib": [

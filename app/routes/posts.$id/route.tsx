@@ -1,4 +1,4 @@
-import { useLoaderData } from "@remix-run/react"
+import { useLoaderData } from "react-router";
 import type { LoaderFunctionArgs } from "@vercel/remix"
 import { data } from "@vercel/remix"
 import { getMDXComponent } from "mdx-bundler/client/index.js"

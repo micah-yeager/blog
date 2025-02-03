@@ -1,4 +1,4 @@
-import { createRemixStub } from "@remix-run/testing"
+import { createRoutesStub } from "react-router";
 import { cleanup, render, screen, waitFor } from "@testing-library/react"
 import type { FCCase } from "test/types"
 import { afterEach, test } from "vitest"
@@ -24,7 +24,7 @@ test.each([
 ] satisfies FCCase<typeof Button>[])(
   "$testName Button",
   async ({ testName, ...props }) => {
-    const RemixStub = createRemixStub([
+    const RemixStub = createRoutesStub([
       {
         path: "/",
         Component() {

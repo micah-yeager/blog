@@ -1,7 +1,7 @@
 import { cleanup, render, screen, waitFor } from "@testing-library/react"
 import { afterEach, test } from "vitest"
 
-import { createRemixStub } from "@remix-run/testing"
+import { createRoutesStub } from "react-router";
 import type { FCCase } from "test/types"
 import { Badge, BadgeButton } from "./Badge"
 
@@ -38,7 +38,7 @@ test.each([
 ] satisfies FCCase<typeof BadgeButton>[])(
   "$testName BadgeButton",
   async ({ testName, ...props }) => {
-    const RemixStub = createRemixStub([
+    const RemixStub = createRoutesStub([
       {
         path: "/",
         Component() {

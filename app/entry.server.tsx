@@ -1,8 +1,8 @@
 import { PassThrough } from "node:stream"
 
-import type { AppLoadContext, EntryContext } from "@remix-run/node"
-import { createReadableStreamFromReadable } from "@remix-run/node"
-import { RemixServer } from "@remix-run/react"
+import type { AppLoadContext, EntryContext } from "react-router";
+import { createReadableStreamFromReadable } from "@react-router/node";
+import { ServerRouter } from "react-router";
 import { renderToPipeableStream } from "react-dom/server"
 import { preloadRouteAssets } from "remix-utils/preload-route-assets"
 
@@ -12,13 +12,13 @@ export default function handleRequest(
   request: Request,
   responseStatusCode: number,
   responseHeaders: Headers,
-  remixContext: EntryContext,
+  reactRouterContext: EntryContext,
   _loadContext: AppLoadContext,
 ) {
   return new Promise((resolve, reject) => {
     let shellRendered = false
     const { pipe, abort } = renderToPipeableStream(
-      <RemixServer context={remixContext} url={request.url} />,
+      <ServerRouter context={reactRouterContext} url={request.url} />,
       {
         onShellReady() {
           shellRendered = true
@@ -26,7 +26,7 @@ export default function handleRequest(
           const stream = createReadableStreamFromReadable(body)
 
           responseHeaders.set("Content-Type", "text/html")
-          preloadRouteAssets(remixContext, responseHeaders)
+          preloadRouteAssets(reactRouterContext, responseHeaders)
 
           resolve(
             new Response(stream, {
@@ -56,5 +56,5 @@ export default function handleRequest(
     // Automatically timeout the React renderer, giving React one second to
     // flush down the rejected boundary contents
     setTimeout(abort, streamTimeout + 1_000)
-  })
+  });
 }

@@ -1,6 +1,6 @@
 import { DataInteractive } from "@headlessui/react"
-import type { LinkProps } from "@remix-run/react"
-import { Link as RemixLink } from "@remix-run/react"
+import type { LinkProps } from "react-router";
+import { Link as RemixLink } from "react-router";
 import { forwardRef } from "react"
 
 /**

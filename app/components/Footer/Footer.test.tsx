@@ -1,4 +1,4 @@
-import { createRemixStub } from "@remix-run/testing"
+import { createRoutesStub } from "react-router";
 import { cleanup, render, screen, waitFor } from "@testing-library/react"
 import { afterEach, test } from "vitest"
 import { FULL_NAME } from "../../constants"
@@ -7,7 +7,7 @@ import { Footer } from "./Footer"
 afterEach(cleanup)
 
 test("Footer", async () => {
-  const RemixStub = createRemixStub([
+  const RemixStub = createRoutesStub([
     {
       path: "/",
       Component() {
