@@ -80,7 +80,7 @@ function App({ title, children }: PropsWithChildren<{ title?: string }>) {
   return (
     // Always start with the "dark" class, so we don't flash-bang our dark mode
     // users while the JS loads.
-    (<html lang="en" className="dark h-full antialiased">
+    <html lang="en" className="dark h-full antialiased">
       <head>
         {title && <title>{title}</title>}
         <meta charSet="utf-8" />
@@ -95,8 +95,8 @@ function App({ title, children }: PropsWithChildren<{ title?: string }>) {
         <SpeedInsights />
         <Analytics />
       </body>
-    </html>)
-  );
+    </html>
+  )
 }
 
 export default function Root() {

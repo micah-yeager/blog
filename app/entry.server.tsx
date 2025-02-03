@@ -1,9 +1,9 @@
 import { PassThrough } from "node:stream"
 
-import type { AppLoadContext, EntryContext } from "react-router";
-import { createReadableStreamFromReadable } from "@react-router/node";
-import { ServerRouter } from "react-router";
+import { createReadableStreamFromReadable } from "@react-router/node"
 import { renderToPipeableStream } from "react-dom/server"
+import type { AppLoadContext, EntryContext } from "react-router"
+import { ServerRouter } from "react-router"
 import { preloadRouteAssets } from "remix-utils/preload-route-assets"
 
 export const streamTimeout = 5_000 // 5 seconds
@@ -56,5 +56,5 @@ export default function handleRequest(
     // Automatically timeout the React renderer, giving React one second to
     // flush down the rejected boundary contents
     setTimeout(abort, streamTimeout + 1_000)
-  });
+  })
 }

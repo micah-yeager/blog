@@ -12,11 +12,11 @@ import ChevronDownIcon from "@heroicons/react/24/outline/ChevronDownIcon"
 import MoonIcon from "@heroicons/react/24/outline/MoonIcon"
 import SunIcon from "@heroicons/react/24/outline/SunIcon"
 import XMarkIcon from "@heroicons/react/24/outline/XMarkIcon"
-import type { LinkProps } from "react-router";
-import { Link, NavLink, useLocation } from "react-router";
 import clsx from "clsx"
 import type { CSSProperties, ComponentPropsWithoutRef, ElementRef } from "react"
 import { Fragment, useEffect, useRef, useState } from "react"
+import type { LinkProps } from "react-router"
+import { Link, NavLink, useLocation } from "react-router"
 
 import { clamp } from "@utils/numbers"
 

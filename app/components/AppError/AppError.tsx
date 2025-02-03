@@ -1,4 +1,4 @@
-import { isRouteErrorResponse, useRouteError } from "react-router";
+import { isRouteErrorResponse, useRouteError } from "react-router"
 
 import { Button } from "../Button"
 

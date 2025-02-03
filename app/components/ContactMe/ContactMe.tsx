@@ -1,8 +1,8 @@
 import ChatBubbleLeftEllipsisIcon from "@heroicons/react/24/solid/ChatBubbleLeftEllipsisIcon"
 import EnvelopeSolidIcon from "@heroicons/react/24/solid/EnvelopeIcon"
-import { useFetcher } from "react-router";
 import type { ComponentPropsWithoutRef } from "react"
 import { useState } from "react"
+import { useFetcher } from "react-router"
 
 import type { ContactMeResponse } from "~/routes/contact"
 
@@ -40,14 +40,15 @@ export function ContactMe(
   const fetcher = useFetcher<ContactMeResponse>()
 
   return (
-    (<Button {...props} type="button" color="dark" onClick={() => setOpen(true)}>Get in touch
-            <Icon className="size-4" as={EnvelopeSolidIcon} />
+    <Button {...props} type="button" color="dark" onClick={() => setOpen(true)}>
+      Get in touch
+      <Icon className="size-4" as={EnvelopeSolidIcon} />
       {/* dialog */}
       <Dialog open={open} setOpen={setOpen}>
         {/* show form until submission */}
         {fetcher.data?.result?.success ? (
           // after successful submission
-          (<>
+          <>
             <div className="space-y-5 sm:space-y-4">
               <Dialog.Title>Submitted!</Dialog.Title>
 
@@ -61,7 +62,7 @@ export function ContactMe(
                 Close
               </Button>
             </Dialog.Actions>
-          </>)
+          </>
         ) : (
           <fetcher.Form method="post" action="/contact">
             <Dialog.Title className="mb-4">Contact me</Dialog.Title>
@@ -121,6 +122,6 @@ export function ContactMe(
           </fetcher.Form>
         )}
       </Dialog>
-    </Button>)
-  );
+    </Button>
+  )
 }

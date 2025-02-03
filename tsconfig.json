@@ -1,20 +1,8 @@
 {
-  "include": [
-    ".react-router/types/**/*",
-    "env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
+  "include": [".react-router/types/**/*", "env.d.ts", "**/*.ts", "**/*.tsx"],
   "compilerOptions": {
-    "types": [
-      "@react-router/node",
-      "vite/client"
-    ],
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ES2022"
-    ],
+    "types": ["@react-router/node", "vite/client"],
+    "lib": ["DOM", "DOM.Iterable", "ES2022"],
     "skipLibCheck": true,
     "checkJs": true,
     "isolatedModules": true,
@@ -28,26 +16,13 @@
     "allowJs": true,
     "forceConsistentCasingInFileNames": true,
     "baseUrl": ".",
-    "rootDirs": [
-      ".",
-      "./.react-router/types"
-    ],
+    "rootDirs": [".", "./.react-router/types"],
     "paths": {
-      "@ui/*": [
-        "./app/components/*"
-      ],
-      "@content/*": [
-        "./content/*"
-      ],
-      "@utils/*": [
-        "./app/utils/*"
-      ],
-      "@services/*": [
-        "./app/services/*"
-      ],
-      "~/*": [
-        "./app/*"
-      ]
+      "@ui/*": ["./app/components/*"],
+      "@content/*": ["./content/*"],
+      "@utils/*": ["./app/utils/*"],
+      "@services/*": ["./app/services/*"],
+      "~/*": ["./app/*"]
     },
     "noEmit": true
   }
