@@ -4,10 +4,10 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "format": "prettier --ignore-unknown --write .",
-    "lint": "biome check",
     "build": "react-router build && tsx vercel/prepare.ts",
     "dev": "cross-env NODE_ENV=development tsx ./dev-server.ts",
+    "format": "biome format --write",
+    "lint": "biome lint",
     "typecheck": "react-router typegen && tsc",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage.enabled true"
