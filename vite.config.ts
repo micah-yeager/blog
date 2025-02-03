@@ -1,11 +1,26 @@
 /// <reference types="vitest" />
 
 import { reactRouter } from "@react-router/dev/vite"
+import tailwindcss from "@tailwindcss/vite"
 import { defineConfig } from "vite"
 import tsconfigPaths from "vite-tsconfig-paths"
 
-export default defineConfig({
-  plugins: [!process.env.VITEST && reactRouter(), tsconfigPaths()],
+export default defineConfig(({ isSsrBuild, command }) => ({
+  plugins: [
+    tailwindcss(),
+    !process.env.VITEST && reactRouter(),
+    tsconfigPaths(),
+  ],
+  build: {
+    rollupOptions: isSsrBuild
+      ? {
+          input: "./server/app.ts",
+        }
+      : undefined,
+  },
+  ssr: {
+    noExternal: command === "build" ? true : undefined,
+  },
   test: {
     setupFiles: ["test/setup/extend-expect.ts"],
     clearMocks: true,
@@ -19,4 +34,4 @@ export default defineConfig({
       reportOnFailure: true,
     },
   },
-})
+}))

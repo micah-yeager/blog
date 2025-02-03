@@ -1,5 +1,11 @@
 {
-  "include": [".react-router/types/**/*", "env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "**/*",
+    "**/.server/**/*",
+    "**/.client/**/*",
+    ".react-router/types/**/*",
+    "env.d.ts"
+  ],
   "compilerOptions": {
     "types": ["@react-router/node", "vite/client"],
     "lib": ["DOM", "DOM.Iterable", "ES2022"],
@@ -8,8 +14,9 @@
     "isolatedModules": true,
     "esModuleInterop": true,
     "jsx": "react-jsx",
-    "module": "ESNext",
+    "module": "ES2022",
     "moduleResolution": "Bundler",
+    "verbatimModuleSyntax": true,
     "resolveJsonModule": true,
     "target": "ES2022",
     "strict": true,
