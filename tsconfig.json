@@ -9,28 +9,28 @@
   "compilerOptions": {
     "types": ["@react-router/node", "vite/client"],
     "lib": ["DOM", "DOM.Iterable", "ES2022"],
-    "skipLibCheck": true,
-    "checkJs": true,
-    "isolatedModules": true,
-    "esModuleInterop": true,
-    "jsx": "react-jsx",
+    "target": "ES2022",
     "module": "ES2022",
     "moduleResolution": "Bundler",
+    "jsx": "react-jsx",
+    "rootDirs": [".", "./.react-router/types"],
+    "baseUrl": ".",
+    "esModuleInterop": true,
     "verbatimModuleSyntax": true,
+    "noEmit": true,
     "resolveJsonModule": true,
-    "target": "ES2022",
+    "skipLibCheck": true,
     "strict": true,
+    "checkJs": true,
+    "isolatedModules": true,
     "allowJs": true,
     "forceConsistentCasingInFileNames": true,
-    "baseUrl": ".",
-    "rootDirs": [".", "./.react-router/types"],
     "paths": {
       "@ui/*": ["./app/components/*"],
       "@content/*": ["./content/*"],
       "@utils/*": ["./app/utils/*"],
       "@services/*": ["./app/services/*"],
       "~/*": ["./app/*"]
-    },
-    "noEmit": true
+    }
   }
 }
