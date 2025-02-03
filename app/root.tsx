@@ -1,5 +1,3 @@
-import { Analytics } from "@vercel/analytics/react"
-import { SpeedInsights } from "@vercel/speed-insights/remix"
 import type { PropsWithChildren } from "react"
 import {
   type HeadersFunction,
@@ -92,8 +90,6 @@ function App({ title, children }: PropsWithChildren<{ title?: string }>) {
         <Layout>{children}</Layout>
         <ScrollRestoration />
         <Scripts />
-        <SpeedInsights />
-        <Analytics />
       </body>
     </html>
   )
