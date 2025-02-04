@@ -6,7 +6,7 @@
   "scripts": {
     "build": "remix vite:build",
     "dev": "remix vite:dev",
-    "format": "prettier --ignore-unknown --write .",
+    "format": "biome format --write",
     "lint": "biome check",
     "typecheck": "tsc",
     "test": "vitest run",
