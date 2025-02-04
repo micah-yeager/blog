@@ -1,8 +1,7 @@
 import type { ActionFunctionArgs } from "@vercel/remix"
-import { json } from "@vercel/remix"
+import { data } from "@vercel/remix"
 
-import type { VerifyTurnstileErrorResponse } from "@services/captcha.server"
-import { verifyTurnstile } from "@services/captcha.server"
+import { TurnstileError, verifyTurnstile } from "@services/captcha.server"
 import {
   EMAIL_FROM,
   EMAIL_TO,
@@ -30,8 +29,8 @@ export async function action({ request }: ActionFunctionArgs) {
   } catch (error) {
     // If this is a response object, return it as the appropriately-typed
     // response.
-    if (error instanceof Response) {
-      return error as VerifyTurnstileErrorResponse
+    if (error instanceof TurnstileError) {
+      return data<ActionResponse>({ formError: error.message }, { status: 400 })
     }
     throw error
   }
@@ -46,7 +45,7 @@ export async function action({ request }: ActionFunctionArgs) {
     typeof email !== "string" ||
     typeof message !== "string"
   ) {
-    return json<ActionResponse>(
+    return data<ActionResponse>(
       { formError: "Invalid form submission." },
       { status: 400 },
     )
@@ -64,7 +63,7 @@ export async function action({ request }: ActionFunctionArgs) {
     message: message ? undefined : "Message is required.",
   }
   if (fieldErrors && Object.values(fieldErrors).some(Boolean)) {
-    return json<ContactMeResponse>({
+    return data<ContactMeResponse>({
       fieldErrors,
       fields,
       result: { success: false },
@@ -83,7 +82,7 @@ export async function action({ request }: ActionFunctionArgs) {
       MessageStream: POSTMARK_TRANSACTIONAL_STREAM,
     })
   } catch {
-    return json<ContactMeResponse>(
+    return data<ContactMeResponse>(
       {
         formError:
           "There was an error sending your message. Please try again later.",
@@ -93,7 +92,7 @@ export async function action({ request }: ActionFunctionArgs) {
     )
   }
 
-  return json<ContactMeResponse>({
+  return data<ContactMeResponse>({
     result: { success: true },
   })
 }

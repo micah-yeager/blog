@@ -1,10 +1,5 @@
 import crypto from "node:crypto"
-
-import type { TypedResponse } from "@vercel/remix"
-import { json } from "@vercel/remix"
 import { getClientIPAddress } from "remix-utils/get-client-ip-address"
-
-import type { ActionResponse } from "@utils/response"
 
 /** The endpoint for verifying Turnstile tokens. */
 const VERIFICATION_ENDPOINT =
@@ -30,10 +25,7 @@ type VerificationResponse = {
   /** Any human-readable messages returned by the verification endpoint. */
   messages?: string[]
 }
-/** The data response for verifying a Turnstile token. */
-export type VerifyTurnstileErrorResponse = TypedResponse<
-  typeof json<ActionResponse>
->
+
 /** The arguments for verifying a Turnstile token. */
 type VerifyTurnstileArgs = {
   /** The incoming request. */
@@ -53,6 +45,7 @@ type VerifyTurnstileArgs = {
  * @param formData The form data to parse. If not provided, it will be parsed
  *   from the request.
  * @returns The idempotency key for the verification request.
+ * @throws {@link TurnstileError}
  */
 export async function verifyTurnstile({
   request,
@@ -69,10 +62,7 @@ export async function verifyTurnstile({
 
   // If the requisite info is missing, return a 400 error.
   if (!(cfTurnstileResponse && connectingIp)) {
-    throw json<ActionResponse>(
-      { formError: "Missing Turnstile token." },
-      { status: 400 },
-    )
+    throw new TurnstileError("Missing Turnstile token.")
   }
 
   // Validate the token by calling the verification endpoint.
@@ -89,14 +79,11 @@ export async function verifyTurnstile({
     method: "POST",
   })
   if (!verificationResult.ok) {
-    throw json<ActionResponse>(
-      { formError: "Error verifying Turnstile response." },
-      { status: 400 },
-    )
+    throw new TurnstileError("Error verifying Turnstile response.")
   }
 
   // If the token is invalid, return a 400 error.
-  const outcome = (await verificationResult.json()) as VerificationResponse
+  const outcome: VerificationResponse = await verificationResult.json()
   if (!outcome.success) {
     let message = "Turnstile token rejected"
     // if human-readable messages were returned, use those
@@ -112,8 +99,20 @@ export async function verifyTurnstile({
       message += "."
     }
 
-    throw json<ActionResponse>({ formError: message }, { status: 400 })
+    throw new TurnstileError(message)
   }
 
   return { idempotencyKey, outcome }
+}
+
+/**
+ * An error thrown by {@link verifyTurnstile}.
+ */
+export class TurnstileError extends Error {
+  constructor(message: string) {
+    super(message)
+    this.name = "TurnstileError"
+    // Set the prototype explicitly to maintain the correct prototype chain.
+    Object.setPrototypeOf(this, TurnstileError.prototype)
+  }
 }
