@@ -6,7 +6,7 @@ import clsx from "clsx"
 import type { ChangeEvent } from "react"
 import { forwardRef, useState } from "react"
 
-import { useForwardRef } from "@utils/hooks"
+import { useForwardRef } from "~/utils/hooks"
 
 /**
  * Properties for the {@link Textarea} component.

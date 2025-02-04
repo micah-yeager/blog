@@ -7,7 +7,7 @@ import XCircleIcon from "@heroicons/react/20/solid/XCircleIcon"
 import clsx from "clsx"
 import type { ComponentPropsWithoutRef } from "react"
 
-import { tw } from "@utils/templates"
+import { tw } from "~/utils/templates"
 import type { IconProp } from "../Icon"
 
 /** A variant definition for the {@link Alert} component. */

@@ -10,7 +10,7 @@ import type {
 } from "react"
 import { forwardRef } from "react"
 
-import { tw } from "@utils/templates"
+import { tw } from "~/utils/templates"
 
 import {
   type Color,

@@ -8,13 +8,13 @@ import { Field, Switch as HeadlessSwitch } from "@headlessui/react"
 import clsx from "clsx"
 import type { ComponentPropsWithoutRef } from "react"
 
-import { tw } from "@utils/templates"
 import {
   type AdaptiveShade,
   type Color,
   type StaticShade,
   addColorAliases,
 } from "lib/tailwindcss"
+import { tw } from "~/utils/templates"
 
 /**
  * Optionally stack multiple {@link Switch}es together in a list.

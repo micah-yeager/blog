@@ -3,11 +3,11 @@ import { faCropSimple } from "@fortawesome/free-solid-svg-icons"
 import LinkIcon from "@heroicons/react/24/outline/LinkIcon"
 import clsx from "clsx"
 
-import { Card } from "@ui/Card"
-import type { IconProp } from "@ui/Icon"
-import { Icon } from "@ui/Icon"
-import { SimpleLayout } from "@ui/SimpleLayout"
-import { mergeMeta } from "@utils/meta"
+import { Card } from "~/components/Card"
+import type { IconProp } from "~/components/Icon"
+import { Icon } from "~/components/Icon"
+import { SimpleLayout } from "~/components/SimpleLayout"
+import { mergeMeta } from "~/utils/meta"
 
 /** Definition for a public project I've worked on. */
 type Project = {

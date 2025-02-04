@@ -2,13 +2,13 @@ import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons"
 import clsx from "clsx"
 import type { ReactNode } from "react"
 
-import { ContactMe } from "@ui/ContactMe"
-import { Container } from "@ui/Container"
-import type { IconProp } from "@ui/Icon"
-import { Icon } from "@ui/Icon"
-import { Link } from "@ui/Link"
-import { mergeMeta } from "@utils/meta"
+import { ContactMe } from "~/components/ContactMe"
+import { Container } from "~/components/Container"
+import type { IconProp } from "~/components/Icon"
+import { Icon } from "~/components/Icon"
+import { Link } from "~/components/Link"
 import { FULL_NAME, GITHUB_URL, LINKEDIN_URL } from "~/constants"
+import { mergeMeta } from "~/utils/meta"
 
 export const meta = mergeMeta(() => [{ title: "About" }])
 
