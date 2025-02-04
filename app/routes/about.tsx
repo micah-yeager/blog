@@ -1,7 +1,6 @@
 import { faGithub, faLinkedin } from "@fortawesome/free-brands-svg-icons"
 import clsx from "clsx"
 import type { ReactNode } from "react"
-
 import { ContactMe } from "~/components/ContactMe"
 import { Container } from "~/components/Container"
 import type { IconProp } from "~/components/Icon"

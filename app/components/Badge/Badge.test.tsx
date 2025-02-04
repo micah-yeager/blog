@@ -1,8 +1,7 @@
-import { cleanup, render, screen, waitFor } from "@testing-library/react"
-import { afterEach, test } from "vitest"
-
 import { createRemixStub } from "@remix-run/testing"
+import { cleanup, render, screen, waitFor } from "@testing-library/react"
 import type { FCCase } from "test/types"
+import { afterEach, test } from "vitest"
 import { Badge, BadgeButton } from "./Badge"
 
 afterEach(cleanup)

@@ -1,7 +1,5 @@
 import { DateTime } from "luxon"
-
 import type { PostMeta } from "~/services/posts.server"
-
 import { Card } from "../Card"
 
 /** Properties for the {@link PostOverview} component. */

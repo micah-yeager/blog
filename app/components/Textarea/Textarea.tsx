@@ -5,7 +5,6 @@ import {
 import clsx from "clsx"
 import type { ChangeEvent } from "react"
 import { forwardRef, useState } from "react"
-
 import { useForwardRef } from "~/utils/hooks"
 
 /**
@@ -92,7 +91,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           className={clsx(classes, "invisible whitespace-pre-wrap")}
           aria-hidden
         >
-          {value}‍
+          {value}
         </div>
       </span>
     )

@@ -15,12 +15,10 @@ import type {
 import { data } from "@vercel/remix"
 import { SpeedInsights } from "@vercel/speed-insights/remix"
 import type { PropsWithChildren } from "react"
-
 import type { Env } from "~/browser-globals"
 import { AppError } from "~/components/AppError"
 import { Layout } from "~/components/Layout"
 import { TURNSTILE_SITE_KEY } from "~/services/captcha.server"
-
 import { FULL_NAME } from "./constants"
 import styles from "./tailwind.css?url"
 

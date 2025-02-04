@@ -6,14 +6,13 @@ import type {
 } from "@headlessui/react"
 import { Field, Switch as HeadlessSwitch } from "@headlessui/react"
 import clsx from "clsx"
-import type { ComponentPropsWithoutRef } from "react"
-
 import {
   type AdaptiveShade,
   type Color,
   type StaticShade,
   addColorAliases,
 } from "lib/tailwindcss"
+import type { ComponentPropsWithoutRef } from "react"
 import { tw } from "~/utils/templates"
 
 /**
