@@ -4,7 +4,6 @@ import { faSpinner } from "@fortawesome/free-solid-svg-icons"
 import EllipsisHorizontalIcon from "@heroicons/react/20/solid/EllipsisHorizontalIcon"
 import clsx from "clsx"
 import type { ComponentPropsWithoutRef, ElementType } from "react"
-
 import type { IconProp } from "../Icon"
 import { Icon } from "../Icon"
 

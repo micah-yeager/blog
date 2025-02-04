@@ -3,15 +3,6 @@ import {
   type ButtonProps as HeadlessButtonProps,
 } from "@headlessui/react"
 import clsx from "clsx"
-import type {
-  ComponentPropsWithoutRef,
-  ForwardedRef,
-  PropsWithChildren,
-} from "react"
-import { forwardRef } from "react"
-
-import { tw } from "@utils/templates"
-
 import {
   type Color,
   type Shade,
@@ -21,6 +12,13 @@ import {
   darkZincKey,
   whiteKey,
 } from "lib/tailwindcss"
+import type {
+  ComponentPropsWithoutRef,
+  ForwardedRef,
+  PropsWithChildren,
+} from "react"
+import { forwardRef } from "react"
+import { tw } from "~/utils/templates"
 import { Link } from "../Link"
 
 export const lightKey = "light"

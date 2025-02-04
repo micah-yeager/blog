@@ -3,9 +3,7 @@ import EnvelopeSolidIcon from "@heroicons/react/24/solid/EnvelopeIcon"
 import { useFetcher } from "@remix-run/react"
 import type { ComponentPropsWithoutRef } from "react"
 import { useState } from "react"
-
 import type { ContactMeResponse } from "~/routes/contact"
-
 import { Alert } from "../Alert"
 import { Button } from "../Button"
 import { Captcha } from "../Captcha"

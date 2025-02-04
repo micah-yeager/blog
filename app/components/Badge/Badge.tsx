@@ -3,16 +3,14 @@
 import type { ButtonProps } from "@headlessui/react"
 import { Button } from "@headlessui/react"
 import clsx from "clsx"
+import { type Color, addColorAliases } from "lib/tailwindcss"
 import type {
   ComponentPropsWithoutRef,
   ForwardedRef,
   PropsWithChildren,
 } from "react"
 import { forwardRef } from "react"
-
-import { tw } from "@utils/templates"
-
-import { type Color, addColorAliases } from "lib/tailwindcss"
+import { tw } from "~/utils/templates"
 import { TouchTarget } from "../Button"
 import { Link } from "../Link"
 
