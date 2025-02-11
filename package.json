@@ -33,7 +33,7 @@
     "@vercel/remix": "^2.15.2",
     "@vercel/speed-insights": "^1.1.0",
     "clsx": "^2.1.1",
-    "esbuild": "^0.19.12",
+    "esbuild": "^0.25.0",
     "fast-glob": "^3.3.2",
     "framer-motion": "^11.12.0",
     "hast-util-from-html": "^2.0.3",
