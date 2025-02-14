@@ -7,8 +7,6 @@ import {
   RadioGroup as HeadlessRadioGroup,
 } from "@headlessui/react"
 import clsx from "clsx"
-
-import { tw } from "@utils/templates"
 import {
   type AdaptiveShade,
   type Color,
@@ -19,6 +17,7 @@ import {
   darkZincKey,
   whiteKey,
 } from "lib/tailwindcss"
+import { tw } from "~/utils/templates"
 
 /**
  * Group multiple {@link Radio} buttons together.

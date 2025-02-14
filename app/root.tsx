@@ -11,12 +11,10 @@ import {
   data,
   useLoaderData,
 } from "react-router"
-
-import { TURNSTILE_SITE_KEY } from "@services/captcha.server"
-import { AppError } from "@ui/AppError"
-import { Layout } from "@ui/Layout"
 import type { Env } from "~/browser-globals"
-
+import { AppError } from "~/components/AppError"
+import { Layout } from "~/components/Layout"
+import { TURNSTILE_SITE_KEY } from "~/services/captcha.server"
 import { FULL_NAME } from "./constants"
 import styles from "./tailwind.css?url"
 

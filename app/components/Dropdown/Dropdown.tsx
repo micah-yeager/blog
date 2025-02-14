@@ -23,7 +23,6 @@ import {
 } from "@headlessui/react"
 import clsx from "clsx"
 import type { ComponentPropsWithoutRef, ElementType } from "react"
-
 import { Button } from "../Button"
 import { Link } from "../Link"
 

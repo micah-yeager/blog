@@ -4,7 +4,6 @@ import ChevronRightIcon from "@heroicons/react/24/outline/ChevronRightIcon"
 import clsx from "clsx"
 import type { ComponentPropsWithoutRef, ElementType } from "react"
 import type { LinkProps } from "react-router"
-
 import { Icon } from "../Icon"
 import { Link } from "../Link"
 

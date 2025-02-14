@@ -3,9 +3,7 @@ import EnvelopeSolidIcon from "@heroicons/react/24/solid/EnvelopeIcon"
 import type { ComponentPropsWithoutRef } from "react"
 import { useState } from "react"
 import { useFetcher } from "react-router"
-
 import type { ContactMeResponse } from "~/routes/contact"
-
 import { Alert } from "../Alert"
 import { Button } from "../Button"
 import { Captcha } from "../Captcha"

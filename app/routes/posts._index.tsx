@@ -1,9 +1,8 @@
 import { data, useLoaderData } from "react-router"
-
-import { getAllPosts } from "@services/posts.server"
-import { PostOverview } from "@ui/PostOverview"
-import { SimpleLayout } from "@ui/SimpleLayout"
-import { mergeMeta } from "@utils/meta"
+import { PostOverview } from "~/components/PostOverview"
+import { SimpleLayout } from "~/components/SimpleLayout"
+import { getAllPosts } from "~/services/posts.server"
+import { mergeMeta } from "~/utils/meta"
 
 export const meta = mergeMeta(() => [{ title: "Posts" }])
 

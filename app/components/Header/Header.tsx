@@ -17,9 +17,7 @@ import type { CSSProperties, ComponentPropsWithoutRef, ElementRef } from "react"
 import { Fragment, useEffect, useRef, useState } from "react"
 import type { LinkProps } from "react-router"
 import { Link, NavLink, useLocation } from "react-router"
-
 import { clamp } from "@utils/numbers"
-
 import { Container } from "../Container"
 import { Icon } from "../Icon"
 

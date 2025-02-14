@@ -11,7 +11,6 @@ import XMarkIcon from "@heroicons/react/24/outline/XMarkIcon"
 import clsx from "clsx"
 import type { ComponentPropsWithoutRef } from "react"
 import { Fragment, useRef } from "react"
-
 import { Icon } from "../Icon"
 
 /**
@@ -54,7 +53,7 @@ export function Dialog({
     <Transition show={open} as={Fragment}>
       <HeadlessUIDialog
         as="div"
-        className="relative z-10"
+        className="relative z-30"
         onClose={close}
         initialFocus={closeRef}
         // ensure that events don't leak outside the dialog
@@ -74,7 +73,7 @@ export function Dialog({
         </TransitionChild>
 
         {/* dialog proper */}
-        <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
+        <div className="fixed inset-0 z-30 w-screen overflow-y-auto">
           <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
             <TransitionChild
               as={Fragment}

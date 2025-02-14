@@ -1,15 +1,14 @@
 import type { ActionFunctionArgs } from "react-router"
 import { data } from "react-router"
-
-import { TurnstileError, verifyTurnstile } from "@services/captcha.server"
+import { TurnstileError, verifyTurnstile } from "~/services/captcha.server"
 import {
   EMAIL_FROM,
   EMAIL_TO,
   POSTMARK_TRANSACTIONAL_STREAM,
   initEmailClient,
-} from "@services/email.server"
-import type { ContactMeFields } from "@ui/ContactMe"
-import type { ActionResponse, FieldErrors } from "@utils/response"
+} from "~/services/email.server"
+import type { ActionResponse, FieldErrors } from "~/utils/response"
+import type { ContactMeFields } from "../components/ContactMe"
 
 /** The response for the contact form. */
 type ContactResult = {

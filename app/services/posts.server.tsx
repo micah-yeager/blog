@@ -15,10 +15,8 @@ import remarkToc from "remark-toc"
 import tsconfigJson from "tsconfig.json" with { type: "json" }
 import type { DistributedOmit } from "type-fest"
 import { z } from "zod"
-
-import { Icon } from "@ui/Icon"
-import { tw } from "@utils/templates"
-
+import { Icon } from "~/components/Icon"
+import { tw } from "~/utils/templates"
 import { FULL_NAME } from "../constants"
 
 /** Schema for a post's frontmatter. */

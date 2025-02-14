@@ -1,7 +1,6 @@
-// Cast to string since verification below will ensure the value exists.
-
 import { ServerClient } from "postmark"
 
+// Cast to string since verification below will ensure the value exists.
 /** The email address to send as. */
 const EMAIL_FROM = process.env.EMAIL_FROM as string
 /** The email address to send the contact email to. */
