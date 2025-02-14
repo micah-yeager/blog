@@ -4,15 +4,8 @@ import { reactRouter } from "@react-router/dev/vite"
 import { defineConfig } from "vite"
 import tsconfigPaths from "vite-tsconfig-paths"
 
-export default defineConfig(({ isSsrBuild, command }) => ({
+export default defineConfig(({ command }) => ({
   plugins: [!process.env.VITEST && reactRouter(), tsconfigPaths()],
-  build: {
-    rollupOptions: isSsrBuild
-      ? {
-          input: "./server/app.ts",
-        }
-      : undefined,
-  },
   ssr: {
     noExternal: command === "build" ? true : undefined,
   },
