@@ -9,6 +9,7 @@
     "format": "biome format --write",
     "lint": "biome lint",
     "typecheck": "react-router typegen && tsc",
+    "start": "react-router-serve ./build/server/index.js",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage.enabled true"
   },
