@@ -1,6 +1,6 @@
-import { RemixBrowser } from "@remix-run/react"
 import { StrictMode, startTransition } from "react"
 import { hydrateRoot } from "react-dom/client"
+import { HydratedRouter } from "react-router/dom"
 import { cacheAssets } from "remix-utils/cache-assets"
 
 // Start loading all static assets when the page loads.
@@ -10,7 +10,7 @@ startTransition(() => {
   hydrateRoot(
     document,
     <StrictMode>
-      <RemixBrowser />
+      <HydratedRouter />
     </StrictMode>,
   )
 })

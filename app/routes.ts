@@ -1,4 +1,6 @@
-import { flatRoutes } from "@remix-run/fs-routes"
-import type { RouteConfig } from "@remix-run/route-config"
+import type { RouteConfig } from "@react-router/dev/routes"
+import { flatRoutes } from "@react-router/fs-routes"
 
-export default [...(await flatRoutes())] satisfies RouteConfig
+export default [
+  ...(await flatRoutes({ ignoredRouteFiles: ["**/.*"] })),
+] satisfies RouteConfig

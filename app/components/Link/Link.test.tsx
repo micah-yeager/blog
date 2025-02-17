@@ -1,5 +1,5 @@
-import { createRemixStub } from "@remix-run/testing"
 import { cleanup, render, screen, waitFor } from "@testing-library/react"
+import { createRoutesStub } from "react-router"
 import { afterEach, test } from "vitest"
 import { Link } from "./Link"
 
@@ -8,7 +8,7 @@ afterEach(cleanup)
 test("Link", async () => {
   const testId = "Link"
   const content = "content"
-  const RemixStub = createRemixStub([
+  const RemixStub = createRoutesStub([
     {
       path: "/",
       Component() {

@@ -1,7 +1,7 @@
 import { DataInteractive } from "@headlessui/react"
-import type { LinkProps } from "@remix-run/react"
-import { Link as RemixLink } from "@remix-run/react"
 import { forwardRef } from "react"
+import type { LinkProps } from "react-router"
+import { Link as RemixLink } from "react-router"
 
 /**
  * A link that provides additional context to assistive technologies.

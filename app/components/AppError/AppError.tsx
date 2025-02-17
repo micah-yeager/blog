@@ -1,4 +1,4 @@
-import { isRouteErrorResponse, useRouteError } from "@remix-run/react"
+import { isRouteErrorResponse, useRouteError } from "react-router"
 import { Button } from "../Button"
 
 /** Component to display an application error. */
