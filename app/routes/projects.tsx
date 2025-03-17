@@ -1,6 +1,7 @@
 import { faOldRepublic } from "@fortawesome/free-brands-svg-icons"
 import { faCropSimple } from "@fortawesome/free-solid-svg-icons"
 import LinkIcon from "@heroicons/react/24/outline/LinkIcon"
+import { QrCodeIcon } from "@heroicons/react/24/solid"
 import clsx from "clsx"
 import { Card } from "~/components/Card"
 import type { IconProp } from "~/components/Icon"
@@ -32,6 +33,19 @@ type Project = {
 
 /** A list of public projects I've worked on. */
 const projects: Project[] = [
+  {
+    name: "QR Code Generator",
+    description:
+      "Locally generate QR codes that don't rely on 3rd-party services.",
+    link: {
+      to: "https://github.com/micah-yeager/qr-generator",
+      label: "github.com",
+    },
+    logo: {
+      using: QrCodeIcon,
+      className: "bg-zinc-500",
+    },
+  },
   {
     name: "Personal website",
     description:
