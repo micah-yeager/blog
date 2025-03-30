@@ -1,4 +1,4 @@
-import type { LoaderFunction, MetaFunction } from "@vercel/remix"
+import type { LoaderFunction, MetaFunction } from "react-router"
 
 /**
  * Merges the meta from the leaf route with the meta from the parents. Assumes
@@ -18,7 +18,7 @@ export const mergeMeta = <
   leafMetaFn: MetaFunction<Loader, ParentsLoaders>,
 ): MetaFunction<Loader, ParentsLoaders> => {
   return (args) => {
-    const leafMeta = leafMetaFn(args)
+    const leafMeta = leafMetaFn(args) ?? []
 
     // Reduce in reverse order to give priority to the leaf routes' metas.
     return args.matches.reduceRight((acc, match) => {

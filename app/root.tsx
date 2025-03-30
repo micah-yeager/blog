@@ -1,20 +1,16 @@
+import type { PropsWithChildren } from "react"
 import {
+  type HeadersFunction,
   Links,
+  type LinksFunction,
   Meta,
+  type MetaFunction,
   Outlet,
   Scripts,
   ScrollRestoration,
+  data,
   useLoaderData,
-} from "@remix-run/react"
-import { Analytics } from "@vercel/analytics/react"
-import type {
-  HeadersFunction,
-  LinksFunction,
-  MetaFunction,
-} from "@vercel/remix"
-import { data } from "@vercel/remix"
-import { SpeedInsights } from "@vercel/speed-insights/remix"
-import type { PropsWithChildren } from "react"
+} from "react-router"
 import type { Env } from "~/browser-globals"
 import { AppError } from "~/components/AppError"
 import { Layout } from "~/components/Layout"
@@ -92,8 +88,6 @@ function App({ title, children }: PropsWithChildren<{ title?: string }>) {
         <Layout>{children}</Layout>
         <ScrollRestoration />
         <Scripts />
-        <SpeedInsights />
-        <Analytics />
       </body>
     </html>
   )

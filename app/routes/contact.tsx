@@ -1,6 +1,5 @@
-import type { ActionFunctionArgs } from "@vercel/remix"
-import { data } from "@vercel/remix"
-import type { ContactMeFields } from "~/components/ContactMe"
+import type { ActionFunctionArgs } from "react-router"
+import { data } from "react-router"
 import { TurnstileError, verifyTurnstile } from "~/services/captcha.server"
 import {
   EMAIL_FROM,
@@ -9,6 +8,7 @@ import {
   initEmailClient,
 } from "~/services/email.server"
 import type { ActionResponse, FieldErrors } from "~/utils/response"
+import type { ContactMeFields } from "../components/ContactMe"
 
 /** The response for the contact form. */
 type ContactResult = {

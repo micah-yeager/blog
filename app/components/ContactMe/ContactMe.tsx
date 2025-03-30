@@ -1,8 +1,8 @@
 import ChatBubbleLeftEllipsisIcon from "@heroicons/react/24/solid/ChatBubbleLeftEllipsisIcon"
 import EnvelopeSolidIcon from "@heroicons/react/24/solid/EnvelopeIcon"
-import { useFetcher } from "@remix-run/react"
 import type { ComponentPropsWithoutRef } from "react"
 import { useState } from "react"
+import { useFetcher } from "react-router"
 import type { ContactMeResponse } from "~/routes/contact"
 import { Alert } from "../Alert"
 import { Button } from "../Button"
@@ -54,7 +54,6 @@ export function ContactMe(
                 Thanks for getting in touch! I’ll get back to you as I’m able.
               </p>
             </div>
-
             {/* actions */}
             <Dialog.Actions>
               <Button type="button" plain onClick={() => setOpen(false)}>

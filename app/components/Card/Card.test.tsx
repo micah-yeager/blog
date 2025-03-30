@@ -1,5 +1,5 @@
-import { createRemixStub } from "@remix-run/testing"
 import { cleanup, render, screen, waitFor } from "@testing-library/react"
+import { createRoutesStub } from "react-router"
 import type { FCCase } from "test/types"
 import { afterEach, test } from "vitest"
 import { Card } from "./Card"
@@ -29,7 +29,7 @@ test.each([
 ] satisfies FCCase<typeof Card.Link>[])(
   "$testName Card.Link",
   async ({ testName, ...props }) => {
-    const RemixStub = createRemixStub([
+    const RemixStub = createRoutesStub([
       {
         path: "/",
         Component() {
@@ -56,7 +56,7 @@ test.each([
 ] as const satisfies FCCase<typeof Card.Title>[])(
   "$testName Card.Title",
   async ({ testName, ...props }) => {
-    const RemixStub = createRemixStub([
+    const RemixStub = createRoutesStub([
       {
         path: "/",
         Component() {
