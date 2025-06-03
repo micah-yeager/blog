@@ -1,0 +1,5 @@
+onlyBuiltDependencies:
+  - '@biomejs/biome'
+  - '@vercel/speed-insights'
+  - es5-ext
+  - esbuild
