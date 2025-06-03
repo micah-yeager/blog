@@ -25,12 +25,12 @@
     "@heroicons/react": "^2.2.0",
     "@marsidev/react-turnstile": "^0.4.1",
     "@popperjs/core": "^2.11.8",
-    "@remix-run/node": "^2.15.2",
-    "@remix-run/react": "^2.15.2",
-    "@remix-run/server-runtime": "^2.15.2",
+    "@remix-run/node": "^2.16.8",
+    "@remix-run/react": "^2.16.8",
+    "@remix-run/server-runtime": "^2.16.8",
     "@vercel/analytics": "^1.4.1",
     "@vercel/kv": "^1.0.1",
-    "@vercel/remix": "^2.15.2",
+    "@vercel/remix": "^2.16.6",
     "@vercel/speed-insights": "^1.1.0",
     "clsx": "^2.1.1",
     "esbuild": "^0.25.0",
@@ -61,11 +61,11 @@
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@remix-run/dev": "^2.15.2",
-    "@remix-run/fs-routes": "^2.15.2",
-    "@remix-run/route-config": "^2.15.2",
-    "@remix-run/serve": "^2.15.2",
-    "@remix-run/testing": "^2.15.2",
+    "@remix-run/dev": "^2.16.8",
+    "@remix-run/fs-routes": "^2.16.8",
+    "@remix-run/route-config": "^2.16.8",
+    "@remix-run/serve": "^2.16.8",
+    "@remix-run/testing": "^2.16.8",
     "@tailwindcss/forms": "^0.5.9",
     "@tailwindcss/typography": "^0.5.15",
     "@testing-library/dom": "^10.4.0",
@@ -88,5 +88,6 @@
   },
   "engines": {
     "node": ">=20.0.0"
-  }
+  },
+  "packageManager": "pnpm@10.11.1"
 }
